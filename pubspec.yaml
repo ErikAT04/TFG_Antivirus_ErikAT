@@ -1,0 +1,20 @@
+name: magik_antivirus
+description: "Trabajo de Fin de Grado de Erik Amo"
+publish_to: 'none'
+version: 0.0.1
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  mysql_client: ^0.0.27
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
