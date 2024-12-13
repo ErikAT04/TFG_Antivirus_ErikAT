@@ -1,0 +1,62 @@
+{
+    "logIn":"Anmelden",
+    "signUp":"Registrieren",
+    "userOrEmail":"Benutzer oder E-Mail",
+    "pass":"Passwort",
+    "putCredentials":"Geben Sie Ihre Anmeldeinformationen ein",
+
+
+    "analyse":"Analysieren",
+    "mainPage":"Hauptseite",
+
+    "vault":"Dateispeicher",
+    "vaultLow":"Speicher",
+    "vaultDesc":"Hier erscheinen die Dateien, die zur Sicherung des Geräts quarantänisiert wurden",
+    "fileRoute":"Dateipfad:",
+    "malType":"Malware-Typ:",
+    "confDate":"Quarantänedatum:",
+    "restFile":"Datei Wiederherstellen",
+
+    "myDevices":"Meine Geräte",
+    "devicesLow":"Geräte",
+    "lastAnalysis":"Letzte Analyse:",
+    "regDate":"Registrierungsdatum:",
+
+    "drawerFFolders":"Ausgeschlossene Ordner",
+    "drawerTranslate":"Übersetzen",
+    "drawerDarkMode":"Dunkelmodus",
+    "drawerAppVer":"App-Version",
+
+    "fFoldersInfo":"Hier erscheinen die Ordner, die der Antivirus nicht scannen soll",
+    "fFoldersAddFolder":"Ordner Hinzufügen",
+    "fFoldersFolder":"Ordner:",
+
+    "user":"Benutzer",
+    "userMemSince":"Mitglied seit:",
+    "userNumDevices":"Verbundenen Geräte:",
+    "userTotalScans":"Gesamtanzahl der Scans:",
+    "userCName":"Namen Ändern",
+    "userCPass":"Passwort Ändern",
+    "userLOut":"Abmelden",
+    "userErase":"Konto Löschen",
+
+    "appVer":"App-Version",
+    "appLastFix":"Alpha-Version 0.1 - Flutter",
+    "appFixes":[
+        {
+            "content":"Verschiedene Sprachen hinzugefügt"
+        }
+    ],
+
+    "appOtherVersions":"Andere Versionen",
+    "formerFixes":[
+        {
+            "version":"Alpha-Version 0.0 - Flutter",
+            "appFixes":[
+                {
+                    "content":"Hauptklassen hinzugefügt"
+                }
+            ]
+        }
+    ]
+}

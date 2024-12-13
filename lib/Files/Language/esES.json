@@ -1,0 +1,62 @@
+{
+    "logIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "userOrEmail":"Usuario o Correo Electrónico",
+    "pass":"Contraseña",
+    "putCredentials":"Introduzca sus credenciales",
+
+
+    "analyse":"Analizar",
+    "mainPage":"Página Principal",
+
+    "vault":"Baúl de Archivos",
+    "vaultLow":"Baúl",
+    "vaultDesc":"Aquí aparecerán los archivos que han sido puestos en cuarentena para proteger el dispositivo",
+    "fileRoute":"Ruta del Archivo:",
+    "malType":"Tipo de Malware:",
+    "confDate":"Fecha de Confinamiento:",
+    "restFile":"Restaurar Archivo",
+
+    "myDevices":"Mis Dispositivos",
+    "devicesLow":"Dispositivos",
+    "lastAnalysis":"Último análisis:",
+    "regDate":"Fecha de Registro:",
+
+    "drawerFFolders":"Carpetas Prohibidas",
+    "drawerTranslate":"Traducir",
+    "drawerDarkMode":"Modo Oscuro",
+    "drawerAppVer":"Versión de la Aplicación",
+
+    "fFoldersInfo":"Aquí aparecerán las carpetas a las que no se desea que el antivirus analice ",
+    "fFoldersAddFolder":"Añadir Carpeta",
+    "fFoldersFolder":"Carpeta:",
+
+    "user":"Usuario",
+    "userMemSince":"Miembro desde:",
+    "userNumDevices":"Dispositivos conectados:",
+    "userTotalScans":"Total de escaneos:",
+    "userCName":"Cambiar Nombre",
+    "userCPass":"Cambiar Contraseña",
+    "userLOut":"Cerrar Sesión",
+    "userErase":"Borrar Cuenta",
+
+    "appVer":"Versión de la Aplicación",
+    "appLastFix":"Versión Alpha 0.1 - Flutter",
+    "appFixes":[
+        {
+            "content":"Añadidos distintos idiomas"
+        }
+    ],
+
+    "appOtherVersions":"Otras Versiones",
+    "formerFixes":[
+        {
+            "version":"Version Alpha 0.0 - Flutter",
+            "appFixes":[
+                {
+                    "content":"Clases principales añadidas"
+                }
+            ]
+        }
+    ]
+}

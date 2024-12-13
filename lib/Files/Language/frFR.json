@@ -1,0 +1,62 @@
+{
+    "logIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "userOrEmail": "Utilisateur ou E-mail",
+    "pass": "Mot de passe",
+    "putCredentials": "Veuillez entrer vos identifiants",
+
+    
+    "analyse": "Analyser",
+    "mainPage": "Page principale",
+
+    "vault": "Coffre de fichiers",
+    "vaultLow": "Coffre",
+    "vaultDesc": "Ici apparaîtront les fichiers qui ont été mis en quarantaine pour protéger l'appareil",
+    "fileRoute": "Chemin du fichier :",
+    "malType": "Type de malware :",
+    "confDate": "Date de confinement :",
+    "restFile": "Restaurer le fichier",
+
+    "myDevices": "Mes appareils",
+    "devicesLow": "Appareils",
+    "lastAnalysis": "Dernière analyse :",
+    "regDate": "Date d'enregistrement :",
+
+    "drawerFFolders": "Dossiers exclus",
+    "drawerTranslate": "Traduire",
+    "drawerDarkMode": "Mode sombre",
+    "drawerAppVer": "Version de l'application",
+
+    "fFoldersInfo": "Ici apparaîtront les dossiers que l'antivirus ne doit pas analyser",
+    "fFoldersAddFolder": "Ajouter un dossier",
+    "fFoldersFolder": "Dossier :",
+
+    "user": "Utilisateur",
+    "userMemSince": "Membre depuis :",
+    "userNumDevices": "Appareils connectés :",
+    "userTotalScans": "Total des analyses :",
+    "userCName": "Changer de nom",
+    "userCPass": "Changer de mot de passe",
+    "userLOut": "Se déconnecter",
+    "userErase": "Supprimer le compte",
+
+    "appVer": "Version de l'application",
+    "appLastFix": "Version Alpha 0.1 - Flutter",
+    "appFixes": [
+        {
+            "content": "Ajout de différentes langues"
+        }
+    ],
+
+    "appOtherVersions": "Autres versions",
+    "formerFixes": [
+        {
+            "version": "Version Alpha 0.0 - Flutter",
+            "appFixes": [
+                {
+                    "content": "Classes principales ajoutées"
+                }
+            ]
+        }
+    ]
+}

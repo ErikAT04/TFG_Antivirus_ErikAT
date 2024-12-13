@@ -1,0 +1,9 @@
+{
+    "isUserRegistered":false,
+    "userName":"",
+    "userPass":"",
+
+    "chosenLang":"esES",
+    "isAutoThemeMode":false,
+    "themeMode":"dark"
+}

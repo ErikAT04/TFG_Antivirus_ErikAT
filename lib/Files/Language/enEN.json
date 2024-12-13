@@ -1,0 +1,62 @@
+{
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "userOrEmail":"User or Email",
+    "pass":"Password",
+    "putCredentials":"Insert your data",
+
+
+    "analyse":"Analyse",
+    "mainPage":"Main Page",
+
+    "vault":"File Vault",
+    "vaultLow":"Vault",
+    "vaultDesc":"Here you'll have sour device's files which has been put under quarantine in order to protect your data",
+    "fileRoute":"File Route:",
+    "malType":"Malware Type:",
+    "confDate":"Quarantine Date:",
+    "restFile":"Restore File",
+
+    "myDevices":"My Devices",
+    "devicesLow":"Devices",
+    "lastAnalysis":"Last Analysis:",
+    "regDate":"Registered in:",
+
+    "drawerFFolders":"Forbidden Folders",
+    "drawerTranslate":"Translate",
+    "drawerDarkMode":"Dark Mode",
+    "drawerAppVer":"App Version",
+
+    "fFoldersInfo":"The different folders in this page won't be scanned by the app",
+    "fFoldersAddFolder":"Add Folder",
+    "fFoldersFolder":"Folders:",
+
+    "user":"User",
+    "userMemSince":"Member since:",
+    "userNumDevices":"Total connected devices:",
+    "userTotalScans":"Total scans:",
+    "userCName":"Change Name",
+    "userCPass":"Change Password",
+    "userLOut":"Log out",
+    "userErase":"Erase Account",
+
+    "appVer":"App Version",
+    "appLastFix":"Version Alpha 0.1 - Flutter",
+    "appFixes":[
+        {
+            "content":"Added language Support"
+        }
+    ],
+
+    "appOtherVersions":"Other Versions",
+    "formerFixes":[
+        {
+            "version":"Version Alpha 0.0 - Flutter",
+            "appFixes":[
+                {
+                    "content":"Created main classes"
+                }
+            ]
+        }
+    ]
+}
