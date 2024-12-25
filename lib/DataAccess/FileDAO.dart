@@ -1,33 +1,33 @@
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
-import 'package:magik_antivirus/model/Device.dart';
+import 'package:magik_antivirus/model/File.dart';
 
-class DeviceDAO implements DAOInterface<Device, int>{
+class FileDAO implements DAOInterface<SysFile, int>{
   @override
-  Future<bool> delete(Device item) async {
+  Future<bool> delete(SysFile item) async {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
-  Future<Device?> get(int value) async {
+  Future<SysFile?> get(int value) async {
     // TODO: implement get
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> insert(Device item) async {
+  Future<bool> insert(SysFile item) async {
     // TODO: implement insert
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Device>> list() async {
+  Future<List<SysFile>> list() async {
     // TODO: implement list
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> update(Device item) async {
+  Future<bool> update(SysFile item) async {
     // TODO: implement update
     throw UnimplementedError();
   }

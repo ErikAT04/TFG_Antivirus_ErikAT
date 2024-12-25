@@ -7,10 +7,16 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  country_flags: ^3.1.0
+  properties: ^2.1.1
   mysql_client: ^0.0.27
+  sqflite_common_ffi: ^2.3.4+4
   flutter:
     sdk: flutter
   provider: ^6.1.2
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +25,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
+  assets:
+   - assets/Files/data.properties
