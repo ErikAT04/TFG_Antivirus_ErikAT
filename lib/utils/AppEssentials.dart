@@ -1,10 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/User.dart';
+import 'package:path_provider/path_provider.dart';
 
-/// App Essentials: El contenido del pc
+///App Essentials: El conjunto de objetos y métodos que la aplicación necesita acceder de forma estática desde todos lados
 class AppEssentials {
   static late User user;
 
@@ -36,8 +39,8 @@ class AppEssentials {
     dialogBackgroundColor: colorsMap["appDarkBlue"],
     dividerColor: colorsMap["appMainLightBlue"],
     focusColor: colorsMap["appMainLightBlue"],
-    highlightColor: colorsMap["appMainLightBlue"],
-    hoverColor: colorsMap["appMainLightBlue"],
+    highlightColor: colorsMap["appMainBlue"],
+    hoverColor: colorsMap["appMainBlue"],
     //primaryColor: colorsMap["appMainBlue"],
     primaryColorDark: colorsMap["appDarkBlue"],
     primaryColorLight: colorsMap["appMainLightBlue"],
@@ -50,7 +53,7 @@ class AppEssentials {
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith<Color?>( //Fondo
                   (Set<WidgetState> states) {
-                    if (states.contains(WidgetState.hovered)) {
+                    if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
                       return colorsMap["appMainLightBlue"]; 
                     }
                     return colorsMap["appDarkBlue"]; 
@@ -58,7 +61,7 @@ class AppEssentials {
                 ),
         foregroundColor: WidgetStateProperty.resolveWith<Color?>( //Texto
           (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered)) {
+            if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
               return colorsMap["white"];
             }
             return colorsMap["appMainLightBlue"];
@@ -66,7 +69,7 @@ class AppEssentials {
         ),
         side: WidgetStateProperty.resolveWith<BorderSide?>( //Fondo
           (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered)) {
+            if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
               return BorderSide(color: colorsMap["white"]!);
             }
             return BorderSide(color: colorsMap["appMainLightBlue"]!);
@@ -82,7 +85,7 @@ class AppEssentials {
       unselectedLabelStyle: TextStyle(color: colorsMap["appMainLightBlue"]),
     ),
     appBarTheme: AppBarTheme(
-      color: colorsMap["appDarkBlue"],
+      backgroundColor: colorsMap["appDarkBlue"],
       titleTextStyle: TextStyle(color: colorsMap["white"], fontSize: 20)
     ),
     textTheme: Typography.whiteCupertino,
@@ -99,6 +102,13 @@ class AppEssentials {
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: colorsMap["appMainLightBlue"]!),
       ),
+    ),
+    iconTheme: IconThemeData(
+      color: colorsMap["appMainLightBlue"]
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: colorsMap["appDarkBlue"],
+      surfaceTintColor: colorsMap["appMainLightBlue"],
     ),
   );
 
@@ -125,7 +135,7 @@ class AppEssentials {
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.resolveWith<Color?>( //Fondo
                   (Set<WidgetState> states) {
-                    if (states.contains(WidgetState.hovered)) {
+                    if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
                       return colorsMap["appDarkBlue"];
                     }
                     return colorsMap["white"];
@@ -133,7 +143,7 @@ class AppEssentials {
                 ),
         foregroundColor: WidgetStateProperty.resolveWith<Color?>( //Texto
           (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered)) {
+            if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
               return colorsMap["white"]; 
             }
             return colorsMap["black"];
@@ -141,7 +151,7 @@ class AppEssentials {
         ),
         side: WidgetStateProperty.resolveWith<BorderSide?>( //Borde
           (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered)) {
+            if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
               return BorderSide(color: colorsMap["appDarkBlue"]!); 
             }
             return BorderSide(color: colorsMap["appMainBlue"]!);
@@ -157,7 +167,7 @@ class AppEssentials {
       unselectedLabelStyle: TextStyle(color: colorsMap["appDarkBlue"]),
     ),
     appBarTheme: AppBarTheme(
-      color: colorsMap["white"],
+      backgroundColor: colorsMap["white"],
       titleTextStyle: TextStyle(color: colorsMap["appMainBlue"], fontSize: 20)
     ),
     textTheme: Typography.blackCupertino,
@@ -174,6 +184,13 @@ class AppEssentials {
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: colorsMap["appMainBlue"]!),
       ),
+    ),
+    iconTheme: IconThemeData(
+      color: colorsMap["appMainBlue"]
+    ),
+    drawerTheme: DrawerThemeData(
+      backgroundColor: colorsMap["white"],
+      surfaceTintColor: colorsMap["black"]
     ),
   );
 
@@ -210,4 +227,26 @@ class AppEssentials {
   Color? splashColor,
   Color? unselectedWidgetColor,
   */
+  static Future<void> pruebaAnalisisArchivos() async{
+    if(Platform.isWindows){
+      scanDir(Directory("C:"));
+    } else {
+      scanDir(Directory("/storage/emulated/0"));
+    }
+  }
+
+  static void scanDir(Directory d) async{
+    await for(var f in d.list(recursive: false, followLinks: false)){
+      print(f.path);
+      if(f.statSync().type == FileSystemEntityType.directory){
+        scanDir((Directory(f.path)));
+      } 
+    }
+  }
+}
+
+extension StringExtension on String {
+    String capitalize() {
+      return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    }
 }

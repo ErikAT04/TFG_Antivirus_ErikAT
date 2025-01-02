@@ -10,13 +10,18 @@ dependencies:
   country_flags: ^3.1.0
   properties: ^2.1.1
   mysql_client: ^0.0.27
+  sqflite: ^2.0.0
   sqflite_common_ffi: ^2.3.4+4
+  flutter_svg: ^2.0.16
   flutter:
     sdk: flutter
   provider: ^6.1.2
   flutter_localizations:
     sdk: flutter
   intl: any
+  path_provider: ^2.1.5
+  permission_handler: ^11.3.1
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -27,4 +32,6 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-   - assets/Files/data.properties
+   - assets/icons/linux.svg
+   - assets/icons/macos.svg
+   - assets/icons/windows.svg

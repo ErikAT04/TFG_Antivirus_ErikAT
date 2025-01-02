@@ -42,21 +42,5 @@
 
     "appVer":"Versión de la Aplicación",
     "appLastFix":"Versión Alpha 0.1 - Flutter",
-    "appFixes":[
-        {
-            "content":"Añadidos distintos idiomas"
-        }
-    ],
-
-    "appOtherVersions":"Otras Versiones",
-    "formerFixes":[
-        {
-            "version":"Version Alpha 0.0 - Flutter",
-            "appFixes":[
-                {
-                    "content":"Clases principales añadidas"
-                }
-            ]
-        }
-    ]
+    "appFixesContent":"Idiomas añadidos"
 }

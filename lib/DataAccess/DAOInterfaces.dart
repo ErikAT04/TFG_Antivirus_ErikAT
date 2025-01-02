@@ -17,11 +17,11 @@ abstract class DAOInterface<T, V>{
   Future<T?> get(V value) async{
     return null;
   }
-  //Función de listado en BD
+  ///Función de listado en BD
   Future<List<T>> list() async{
     return List.empty();
   }
-  //Función de borrado en BD
+  ///Función de borrado en BD
   Future<bool> delete(T item) async{
     return true;
   }

@@ -1,7 +1,8 @@
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
-
+///Clase que lleva todo lo relacionado a las operaciones CRUD de las preferencias del usuario
+///La información de esta se hace por medio de la base de datos de SQLite, ya que se guarda en local
 class PrefsDAO implements DAOInterface<Preferences, String>{
   final db = SQLiteUtils.db;
   @override

@@ -8,10 +8,14 @@ import 'package:magik_antivirus/utils/AppEssentials.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await MySQLUtils.loadSQLDB();
+  //await MySQLUtils.loadSQLDB();
   await SQLiteUtils.cargardb();
-
+  try{
   await AppEssentials.getProperties();
+  }catch(e){
+    await SQLiteUtils.startDB();
+    await AppEssentials.getProperties();
+  }
   runApp(ChangeNotifierProvider(
     create: (context) => MainAppProvider(),
     child: MainApp(),
