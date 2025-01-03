@@ -1,8 +1,10 @@
-import 'package:country_flags/country_flags.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:get_mac_address/get_mac_address.dart';
 import 'package:magik_antivirus/main.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
@@ -17,6 +19,7 @@ class Mainview extends StatefulWidget {
 }
 
 class _MainviewState extends State<Mainview> {
+
   int actualPage = 0;
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,7 @@ class _MainviewState extends State<Mainview> {
               SizedBox(width: 10,),
               GestureDetector(
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                      "https://i.redd.it/happy-birthday-kinich-v0-elooz82x370e1.jpg?width=3000&format=pjpg&auto=webp&s=2f4218a8a48cc9adb4d0ce52f1ce7894f584c7b5")),
+              backgroundImage: (context.watch<MainAppProvider>().thisUser!=null && context.watch<MainAppProvider>().thisUser!.userIMGData!=null)?NetworkImage(context.watch<MainAppProvider>().thisUser!.userIMGData!):null,),
             onTap: () {
               Scaffold.of(context).openDrawer();
             },

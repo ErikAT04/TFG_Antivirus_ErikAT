@@ -1,10 +1,23 @@
 {
+    "cancel":"Cancelar",
+
     "logIn": "Iniciar Sesión",
     "signUp": "Registrarse",
     "userOrEmail":"Usuario o Correo Electrónico",
     "pass":"Contraseña",
     "putCredentials":"Introduzca sus credenciales",
+    "errorEmptyField":"No puedes dejar el campo vacío",
+    "errorNotFound":"No se ha encontrado ningún usuario con ese nombre o correo",
+    "errorWrongPass":"Contraseña incorrecta",
 
+    "uname":"Nombre de Usuario",
+    "repPass":"Repetir Contraseña",
+    "email":"Correo Electrónico",
+    "unameUnavaliable":"Nombre de usuario no disponible",
+    "passwordNotValid":"La contraseña no cumple los requisitos",
+    "diffPasswords":"Las contraseñas no coinciden",
+    "emailNotValid":"El correo no cumple los requisitos",
+    "emailUnavaliable":"Este correo ya está registrado",
 
     "analyse":"Analizar",
     "mainPage":"Página Principal",
@@ -39,6 +52,7 @@
     "userCPass":"Cambiar Contraseña",
     "userLOut":"Cerrar Sesión",
     "userErase":"Borrar Cuenta",
+    "userAskErase":"¿Estás seguro de que quieres borrar tu cuenta? Esta acción no se puede deshacer",
 
     "appVer":"Versión de la Aplicación",
     "appLastFix":"Versión Alpha 0.1 - Flutter",

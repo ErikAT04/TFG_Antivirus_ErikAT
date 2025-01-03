@@ -1,10 +1,23 @@
 {
+    "cancel":"Annuler",
+
     "logIn": "Se connecter",
     "signUp": "S'inscrire",
     "userOrEmail": "Utilisateur ou E-mail",
     "pass": "Mot de passe",
     "putCredentials": "Veuillez entrer vos identifiants",
+    "errorEmptyField":"Vous ne pouvez pas laisser le champ vide",
+    "errorNotFound":"Aucun utilisateur trouvé avec ce nom ou cette adresse",
+    "errorWrongPass":"Passe incorrect",
 
+    "uname":"Nom d'utilisateur",
+    "repPass":"Répetez le mot de Passe",
+    "email":"E-mail",
+    "unameUnavaliable":"Nom d'utilisateur non disponible",
+    "passwordNotValid":"Le mot de passe ne répond pas aux exigences",
+    "diffPasswords":"Les mots de passe ne correspondent pas",
+    "emailNotValid":"L'e-mail ne répond pas aux exigences",
+    "emailUnavaliable":"Cet e-mail est déjà enregistré",
     
     "analyse": "Analyser",
     "mainPage": "Page principale",
@@ -39,6 +52,7 @@
     "userCPass": "Changer de mot de passe",
     "userLOut": "Se déconnecter",
     "userErase": "Supprimer le compte",
+    "userAskErase":"Êtes-vous sûr de vouloir supprimer votre compte? Cette action ne peut pas être annulée",
 
     "appVer": "Version de l'application",
     "appLastFix": "Version Alpha 0.1 - Flutter",

@@ -1,10 +1,23 @@
 {
+    "cancel":"Cancel",
+
     "logIn": "Log in",
     "signUp": "Sign up",
     "userOrEmail":"User or Email",
     "pass":"Password",
     "putCredentials":"Insert your data",
+    "errorEmptyField":"You can't leave this field empty",
+    "errorNotFound":"Couldn't find any user with that username or email",
+    "errorWrongPass":"Wrong password",
 
+    "uname":"Username",
+    "repPass":"Repeat password",
+    "email":"Email",
+    "unameUnavaliable":"Username unavaliable",
+    "passwordNotValid":"The password does not meet the requirements",
+    "diffPasswords":"Passwords do not match",
+    "emailNotValid":"The email does not meet the requirements",
+    "emailUnavaliable":"This email has already been registered",
 
     "analyse":"Analyse",
     "mainPage":"Main Page",
@@ -39,6 +52,7 @@
     "userCPass":"Change Password",
     "userLOut":"Log out",
     "userErase":"Erase Account",
+    "userAskErase":"Are you sure you want to delete your account? This action cannot be undone",
 
     "appVer":"App Version",
     "appLastFix":"Version Alpha 0.1 - Flutter",

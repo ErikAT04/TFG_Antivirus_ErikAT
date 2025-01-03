@@ -1,7 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
+import 'package:get_mac_address/get_mac_address.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
+import 'package:magik_antivirus/DataAccess/UserDAO.dart';
+import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/User.dart';
@@ -9,17 +13,21 @@ import 'package:path_provider/path_provider.dart';
 
 ///App Essentials: El conjunto de objetos y métodos que la aplicación necesita acceder de forma estática desde todos lados
 class AppEssentials {
-  static late User user;
+  static User? user;
 
   static late Preferences preferences;
 
   static Future<void> getProperties() async {
     preferences = (await PrefsDAO().get(""))!;
+    if(preferences.isUserRegistered){
+      user = await UserDAO().get(preferences.uname);
+      print('pasa por aqui');
+    }
   }
 
-  static void changeLang(String lang) {
+  static void changeLang(String lang) async {
     preferences.lang = lang;
-    chosenLocale = lang;
+    await PrefsDAO().update(preferences);
   }
 
   static Map<String, Color> colorsMap = {
@@ -110,6 +118,9 @@ class AppEssentials {
       backgroundColor: colorsMap["appDarkBlue"],
       surfaceTintColor: colorsMap["appMainLightBlue"],
     ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: colorsMap["appDarkBlue"],
+    )
   );
 
 
@@ -192,6 +203,9 @@ class AppEssentials {
       backgroundColor: colorsMap["white"],
       surfaceTintColor: colorsMap["black"]
     ),
+    dialogTheme: DialogThemeData(
+      backgroundColor: colorsMap["white"],
+    )
   );
 
   static List<Locale> listLocales = [
@@ -201,6 +215,19 @@ class AppEssentials {
     Locale('fr')
   ];
 
+  static Device? dev;
+
+  static void registerThisDevice() async{
+    Device thisdev = Device(name: Platform.localHostname, type: Platform.operatingSystem, join_in: DateTime.now(), last_scan: DateTime.now());
+    thisdev.id = await GetMacAddress().getMacAddress();
+    Device? devDB = await DeviceDAO().get(thisdev.id!);
+    if(devDB!=null){
+      dev = devDB;
+    } else {
+      DeviceDAO().insert(thisdev);
+      dev = thisdev;
+    }
+  }
   static String chosenLocale = preferences.lang;
 
   static ThemeData theme = (preferences.isAutoTheme)?darkMode:(preferences.themeMode=="Dark")?darkMode:lightMode;
@@ -243,6 +270,20 @@ class AppEssentials {
       } 
     }
   }
+
+  static void changeTheme(bool isDark) async {
+    preferences.themeMode = isDark?"darkMode":"lightMode";
+    await PrefsDAO().update(preferences);
+  }
+
+  static void putUser(User user) async{
+    preferences.isUserRegistered = true;
+    preferences.uname = user.email;
+    preferences.upass = user.pass;
+    await PrefsDAO().update(preferences);
+  }
+
+  static RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9]+@[a-z]+\.[a-z]{3}$');
 }
 
 extension StringExtension on String {

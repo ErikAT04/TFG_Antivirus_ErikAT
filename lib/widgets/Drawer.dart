@@ -2,6 +2,8 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
+import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -14,21 +16,21 @@ class AppDrawer extends StatelessWidget{
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>UserView()));
+              },
               child: DrawerHeader(
                 margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage(
-                              "https://i.redd.it/happy-birthday-kinich-v0-elooz82x370e1.jpg?width=3000&format=pjpg&auto=webp&s=2f4218a8a48cc9adb4d0ce52f1ce7894f584c7b5"),
-                    ),
+              backgroundImage: (context.watch<MainAppProvider>().thisUser!=null && context.watch<MainAppProvider>().thisUser!.userIMGData!=null)?NetworkImage(context.watch<MainAppProvider>().thisUser!.userIMGData!):null,),
                     Expanded(child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Usuario de prueba"),
-                        Text("usu@usu.com")
+                        Text((context.watch<MainAppProvider>().thisUser!=null)?context.watch<MainAppProvider>().thisUser!.uname:"No user"),
+                        Text((context.watch<MainAppProvider>().thisUser!=null)?context.watch<MainAppProvider>().thisUser!.email:"No user")
                       ],
                     ),),
                     
@@ -38,7 +40,9 @@ class AppDrawer extends StatelessWidget{
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ForbFoldersView()));
+              },
               child: ListTile(
                 leading: Icon(Icons.folder, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
                 title: Text(AppLocalizations.of(context)!.drawerFFolders , style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),

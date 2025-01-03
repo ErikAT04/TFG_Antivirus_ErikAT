@@ -1,10 +1,23 @@
 {
+    "cancel":"Stornieren",
+
     "logIn":"Anmelden",
     "signUp":"Registrieren",
-    "userOrEmail":"Benutzer oder E-Mail",
+    "userOrEmail":"Benutzername oder E-Mail",
     "pass":"Passwort",
     "putCredentials":"Geben Sie Ihre Anmeldeinformationen ein",
+    "errorEmptyField":"Sie können das Feld nicht leer lassen",
+    "errorNotFound":"Benutzer mit diesem Namen oder dieser E-Mail-Adresse nicht gefunden",
+    "errorWrongPass":"Falsches Passwort",
 
+    "uname":"Benutzername",
+    "repPass":"Passwort wiederholen",
+    "email":"E-Mail",
+    "unameUnavaliable":"Benutzername nicht verfügbar",
+    "passwordNotValid":"Passwort entspricht nicht der Anforderungen",
+    "diffPasswords":"Passwörter stimmen nicht überein",
+    "emailNotValid":"E-Mail entspricht nicht den Anforderungen",
+    "emailUnavaliable":"Diese E-Mail ist bereits registriert",
 
     "analyse":"Analysieren",
     "mainPage":"Hauptseite",
@@ -39,6 +52,7 @@
     "userCPass":"Passwort Ändern",
     "userLOut":"Abmelden",
     "userErase":"Konto Löschen",
+    "userAskErase":"Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden",
 
     "appVer":"App-Version",
     "appLastFix":"Alpha-Version 0.1 - Flutter",
