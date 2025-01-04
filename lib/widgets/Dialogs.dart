@@ -81,6 +81,7 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
               labelText: AppLocalizations.of(context)!.pass,
               errorText: errorPass,
             ),
+            obscureText: true,
           ),
           TextField(
             controller: repPassController,
@@ -88,6 +89,7 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
               labelText: AppLocalizations.of(context)!.repPass,
               errorText: errorRepPass,
             ),
+            obscureText: true,
           ),
           ElevatedButton(
               onPressed: () async {

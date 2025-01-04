@@ -10,11 +10,11 @@ class MySQLUtils {
 
   static Future<void> loadSQLDB() async {
     connection = await MySQLConnection.createConnection(
-        host: '192.168.1.74',
+        host: 'sql.freedb.tech',
         port: 3306,
-        userName: 'root',
-        password: 'toor',
-        databaseName: 'antivirus_globaldata',
+        userName: 'freedb_AT_Root',
+        password: 'RR5xHVqx2J#uVN?',
+        databaseName: 'freedb_PruebasAndroid',
         secure: true);
     if (!connection.connected) {
       //En caso de que en algún dispositivo no se conecte directamente a la base de datos
@@ -26,10 +26,11 @@ class MySQLUtils {
 //Utils del gestor de SQLite
 class SQLiteUtils {
   static Future<void> startDB() async {
+    var databaseFactory;
     if (!(Platform.isAndroid || Platform.isIOS)) {
       sqfliteFfiInit();
       //Llamo a la base de datos de databaseFactoryFfi para crear la BD
-      final databaseFactory = databaseFactoryFfi;
+       databaseFactory = databaseFactoryFfi;
     }
 
     //Creo el path a la base de datos
@@ -97,7 +98,7 @@ class SQLiteUtils {
     //Creo el path a la base de datos
     final dbPath = join(await dbfact.getDatabasesPath(), "localdb.db");
 
-    db = await databaseFactory.openDatabase(dbPath);
+    db = await dbfact.openDatabase(dbPath);
   }
 }
 
