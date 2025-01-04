@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get_mac_address/get_mac_address.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';

@@ -11,6 +11,8 @@ class Device {
   ///Última fecha en la que el dispositivo ha realizado un escaneo
   DateTime last_scan;
 
+  String? user;
+
   ///Constructor
-  Device({this.id, required this.name, required this.type, required this.join_in, required this.last_scan});
+  Device({this.id, required this.name, required this.type, required this.join_in, required this.last_scan, this.user});
 }

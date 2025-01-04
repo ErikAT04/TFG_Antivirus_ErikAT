@@ -24,7 +24,7 @@ dependencies:
   logger: ^2.5.0
   crypto: ^3.0.1
   file_picker: ^8.1.7
-  get_mac_address: ^0.0.2
+  device_info_plus: ^11.2.0
 
 dev_dependencies:
   flutter_test:

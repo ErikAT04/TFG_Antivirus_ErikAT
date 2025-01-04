@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/services.dart';
-import 'package:get_mac_address/get_mac_address.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
@@ -218,8 +218,26 @@ class AppEssentials {
   static Device? dev;
 
   static void registerThisDevice() async{
-    Device thisdev = Device(name: Platform.localHostname, type: Platform.operatingSystem, join_in: DateTime.now(), last_scan: DateTime.now());
-    thisdev.id = await GetMacAddress().getMacAddress();
+    DeviceInfoPlugin plugin = DeviceInfoPlugin();
+    String dname = switch(Platform.operatingSystem){
+      "android"=> (await plugin.androidInfo).model,
+      "ios"=> (await plugin.iosInfo).name,
+      "macos"=> (await plugin.macOsInfo).computerName,
+      "linux" => (await plugin.linuxInfo).name,
+      "windows" => (await plugin.windowsInfo).userName,
+      // TODO: Handle this case.
+      String() => throw UnimplementedError()
+    };
+    Device thisdev = Device(name: dname, type: Platform.operatingSystem, join_in: DateTime.now(), last_scan: DateTime.now());
+    thisdev.id = switch(Platform.operatingSystem){
+      "android"=> (await plugin.androidInfo).id,
+      "ios"=> (await plugin.iosInfo).identifierForVendor,
+      "macos"=> (await plugin.macOsInfo).systemGUID,
+      "linux" => (await plugin.linuxInfo).machineId,
+      "windows" => (await plugin.windowsInfo).deviceId,
+      // TODO: Handle this case.
+      String() => throw UnimplementedError()
+    };
     Device? devDB = await DeviceDAO().get(thisdev.id!);
     if(devDB!=null){
       dev = devDB;

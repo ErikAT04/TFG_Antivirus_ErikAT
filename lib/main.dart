@@ -25,6 +25,7 @@ void main() async{
     await SQLiteUtils.startDB();
     await AppEssentials.getProperties();
   }
+  AppEssentials.registerThisDevice();
   runApp(ChangeNotifierProvider(
     create: (context) => MainAppProvider(),
     child: MainApp(),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
@@ -84,6 +85,8 @@ class LogInViewState extends State<LogInView> {
                               user.pass) {
                             completedSuccesfully = true;
                             context.read<MainAppProvider>().changeUser(user);
+                            AppEssentials.dev!.user = user.email;
+                        await DeviceDAO().update(AppEssentials.dev!);
                           } else {
                             passError =
                                 AppLocalizations.of(context)!.errorWrongPass;
@@ -111,6 +114,8 @@ class LogInViewState extends State<LogInView> {
                           builder: (context) => RegisterContextDialog());
                       if (u != null) {
                         context.read<MainAppProvider>().changeUser(u);
+                        AppEssentials.dev!.user = u.email;
+                        await DeviceDAO().update(AppEssentials.dev!);
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
