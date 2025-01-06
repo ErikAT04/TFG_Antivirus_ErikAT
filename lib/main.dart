@@ -103,7 +103,7 @@ class MainAppProvider extends ChangeNotifier {
     devList = [];
     List<Device> auxList = await DeviceDAO().list();
     for(Device device in auxList){
-      if(device.user == AppEssentials.user!.email){
+      if(device.user == thisUser!.email){
         devList.add(device);
       }
     }

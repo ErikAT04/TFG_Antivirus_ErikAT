@@ -24,11 +24,11 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
       isAutoThemeMode BOOLEAN,
       themeMode TEXT */
       prefs = Preferences(
-          isUserRegistered:map['isUserRegistered'].toString().toLowerCase() == "1",
+          isUserRegistered:map['isUserRegistered'].toString() == "1",
           uname: map['userName'].toString(),
           upass: map['userPass'].toString(),
           lang: map['chosenLang'].toString(),
-          isAutoTheme:map['isAutoThemeMode'].toString().toLowerCase() == "true",
+          isAutoTheme:map['isAutoThemeMode'].toString() == "1",
           themeMode: map["themeMode"].toString());
     } catch (e) {
       print(e);
@@ -52,11 +52,11 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
   Future<bool> update(Preferences item) async {
     try {
       var res = await db.update('preferences', {
-        "isUserRegistered": item.isUserRegistered,
+        "isUserRegistered": (item.isUserRegistered)? 1:0,
         "userName": item.uname,
         "userPass": item.upass,
         "chosenLang": item.lang,
-        "isAutoThemeMode" : item.isAutoTheme,
+        "isAutoThemeMode" : (item.isAutoTheme)?1:0,
         "themeMode" : item.themeMode
       });
       return res == 1;

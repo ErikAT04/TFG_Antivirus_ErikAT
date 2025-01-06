@@ -87,16 +87,16 @@ class UserView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(onPressed: (){
-                context.read<MainAppProvider>().logout();
                 Navigator.pop(context);
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LogInView()));
+                context.read<MainAppProvider>().logout();
               }, child: Text(AppLocalizations.of(context)!.userLOut)),
               ElevatedButton(onPressed: () async{
                 bool? res = await showDialog<bool>(context: context, builder: (context) => EraseContextDialog());
                 if(res!=null && res){
-                  context.read<MainAppProvider>().erase();
                   Navigator.pop(context);
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LogInView()));
+                  context.read<MainAppProvider>().erase();
                 }
               }, child: Text(AppLocalizations.of(context)!.userErase)),
             ],
