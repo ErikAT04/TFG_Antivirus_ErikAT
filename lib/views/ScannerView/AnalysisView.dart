@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class AnalysisView extends StatefulWidget {
   const AnalysisView({super.key});
@@ -32,6 +35,8 @@ class _AnalysisViewState extends State<AnalysisView> {
               // Permiso ya concedido
               Logger().d("Permiso concedido");
               await AppEssentials.pruebaAnalisisArchivos();
+              AppEssentials.dev!.last_scan = DateTime.now();
+              await DeviceDAO().update(AppEssentials.dev!);
             } else {
               // Solicitar permiso
               print("Solicitando permiso de almacenamiento...");
@@ -39,6 +44,8 @@ class _AnalysisViewState extends State<AnalysisView> {
                 // Permiso concedido
                 Logger().d("Permiso concedido");
                 await AppEssentials.pruebaAnalisisArchivos();
+                AppEssentials.dev!.last_scan = DateTime.now();
+                await DeviceDAO().update(AppEssentials.dev!);
               } else {
                 // Permiso denegado
                 Logger().d("Permiso denegado");

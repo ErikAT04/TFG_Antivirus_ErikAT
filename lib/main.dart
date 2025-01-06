@@ -1,8 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
@@ -98,5 +97,15 @@ class MainAppProvider extends ChangeNotifier {
   void erase() async{
     await UserDAO().delete(thisUser!);
     logout();
+  }
+
+  void getList() async{
+    devList = [];
+    List<Device> auxList = await DeviceDAO().list();
+    for(Device device in auxList){
+      if(device.user == AppEssentials.user!.email){
+        devList.add(device);
+      }
+    }
   }
 }

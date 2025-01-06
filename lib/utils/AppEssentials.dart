@@ -93,6 +93,8 @@ class AppEssentials {
       unselectedLabelStyle: TextStyle(color: colorsMap["appMainLightBlue"]),
     ),
     appBarTheme: AppBarTheme(
+      foregroundColor: colorsMap["white"],
+      centerTitle: true,
       backgroundColor: colorsMap["appDarkBlue"],
       titleTextStyle: TextStyle(color: colorsMap["white"], fontSize: 20)
     ),
@@ -178,6 +180,8 @@ class AppEssentials {
       unselectedLabelStyle: TextStyle(color: colorsMap["appDarkBlue"]),
     ),
     appBarTheme: AppBarTheme(
+      centerTitle: true,
+      foregroundColor: colorsMap["appMainBlue"],
       backgroundColor: colorsMap["white"],
       titleTextStyle: TextStyle(color: colorsMap["appMainBlue"], fontSize: 20)
     ),

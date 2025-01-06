@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/Device.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
@@ -20,16 +22,22 @@ class Mainview extends StatefulWidget {
 class _MainviewState extends State<Mainview> {
 
   int actualPage = 0;
+
+  @override void initState() {
+    super.initState();
+    context.read<MainAppProvider>().getList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child:Text(switch (actualPage) {
+        title: Text(switch (actualPage) {
           0 => AppLocalizations.of(context)!.mainPage,
           1 => AppLocalizations.of(context)!.vault,
           2 => AppLocalizations.of(context)!.myDevices,
           int() => throw UnimplementedError(),
-        })),
+        }),
         leading: Builder(builder: (context) {
           return Row(
             children: [

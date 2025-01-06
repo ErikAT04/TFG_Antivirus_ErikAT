@@ -1,11 +1,9 @@
-import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/User.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:provider/provider.dart';
@@ -20,18 +18,24 @@ class UserView extends StatelessWidget {
     User u = context.watch<MainAppProvider>().thisUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text(u.uname)),
+        title: Text(u.uname),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
+          Container(
+            padding: EdgeInsets.all(10),
+            color: AppEssentials.colorsMap["appMainLightBlue"],
+            child:Row(
+              spacing: 10,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-              ),
               GestureDetector(
-                child: Positioned(child: CircleAvatar(
-                  backgroundImage: (u.userIMGData!=null)?NetworkImage(u.userIMGData!):null,
-                )),
+                child: CircleAvatar(
+                    backgroundImage: (u.userIMGData!=null)?NetworkImage(u.userIMGData!):null,
+                    radius: 60,
+                  ), 
                 onTap:() async{
                   String? res = await showDialog(context: context, builder: (context){
                     TextEditingController linkController = TextEditingController();
@@ -58,12 +62,20 @@ class UserView extends StatelessWidget {
                     context.read<MainAppProvider>().changeUser(u);
                   }
                 }
-              )
+              ),
+              Expanded(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(u.uname, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+                  Text(u.email),
+                  Text("${AppLocalizations.of(context)!.userNumDevices} ${context.watch<MainAppProvider>().devList.length}"),
+                ],
+              ))
             ],
           ),
-          Text(u.uname),
-          Text(u.email),
-          Text("${AppLocalizations.of(context)!.userNumDevices}: ${context.watch<MainAppProvider>().devList.length}"),
+          ),
+          
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
