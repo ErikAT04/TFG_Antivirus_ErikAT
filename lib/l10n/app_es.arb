@@ -54,6 +54,17 @@
     "userErase":"Borrar Cuenta",
     "userAskErase":"¿Estás seguro de que quieres borrar tu cuenta? Esta acción no se puede deshacer",
 
+    "formerPassword":"Escriba su anterior contraseña",
+    "newPassword":"Escriba la nueva contraseña",
+    "repeatNewPass":"Repita la nueva contraseña",
+    "errorSamePass":"La nueva contraseña no puede ser como la anterior",
+    "newUserName":"Escriba su nuevo nombre de usuario",
+    "passConfirm":"Confirme escribiendo su contraseña",
+
+    "linkput":"Pegue el enlace a su imagen",
+    "loadImg":"Cargar imagen",
+    "sizePassed":"Se excedió el límite de caracteres",
+
     "appVer":"Versión de la Aplicación",
     "appLastFix":"Versión Alpha 0.1 - Flutter",
     "appFixesContent":"Idiomas añadidos"

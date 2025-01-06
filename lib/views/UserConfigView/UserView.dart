@@ -37,24 +37,7 @@ class UserView extends StatelessWidget {
                     radius: 60,
                   ), 
                 onTap:() async{
-                  String? res = await showDialog(context: context, builder: (context){
-                    TextEditingController linkController = TextEditingController();
-                    return Dialog(
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
-                        children: [
-                          TextField(
-                            controller: linkController,
-                          ),
-                          ElevatedButton(onPressed: (){
-                            if(linkController.text.length>0 && linkController.text.length<256){
-                              Navigator.pop(context, linkController.text);
-                            }
-                          }, child: Text(""))
-                        ],
-                      ),
-                    );
-                  });
+                  String? res = await showDialog(context: context, builder: (context)=>ImageUploadContextDialog());
 
                   if(res!=null){
                     u.userIMGData = res;
@@ -79,24 +62,36 @@ class UserView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(onPressed: (){}, child: Text(AppLocalizations.of(context)!.userCName)),
-              ElevatedButton(onPressed: (){}, child: Text(AppLocalizations.of(context)!.userCPass)),
+              ElevatedButton(onPressed: () async{
+                String? newName = await showDialog<String>(context: context, builder: (context)=>ChangeUserNameContextDialog());
+                if(newName!=null){
+                  context.read<MainAppProvider>().thisUser!.uname = newName;
+                  await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+                }
+              }, child: Text(AppLocalizations.of(context)!.userCName)),
+              ElevatedButton(onPressed: ()async{
+                String? newPass = await showDialog<String>(context: context, builder: (context)=>ChangePasswordContextDialog());
+                if(newPass!=null){
+                  context.read<MainAppProvider>().thisUser!.pass = newPass;
+                  await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+                }
+              }, child: Text(AppLocalizations.of(context)!.userCPass)),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(onPressed: (){
-                context.read<MainAppProvider>().logout();
                 Navigator.pop(context);
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LogInView()));
+                context.read<MainAppProvider>().logout();
               }, child: Text(AppLocalizations.of(context)!.userLOut)),
               ElevatedButton(onPressed: () async{
                 bool? res = await showDialog<bool>(context: context, builder: (context) => EraseContextDialog());
                 if(res!=null && res){
-                  context.read<MainAppProvider>().erase();
                   Navigator.pop(context);
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LogInView()));
+                  context.read<MainAppProvider>().erase();
                 }
               }, child: Text(AppLocalizations.of(context)!.userErase)),
             ],
@@ -106,3 +101,4 @@ class UserView extends StatelessWidget {
     );
   }
 }
+

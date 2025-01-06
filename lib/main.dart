@@ -91,6 +91,8 @@ class MainAppProvider extends ChangeNotifier {
     thisUser = null;
     AppEssentials.preferences.isUserRegistered = false;
     await PrefsDAO().update(AppEssentials.preferences);
+    AppEssentials.dev!.user = null;
+    await DeviceDAO().update(AppEssentials.dev!);
     notifyListeners();
   }
 
@@ -99,13 +101,17 @@ class MainAppProvider extends ChangeNotifier {
     logout();
   }
 
-  void getList() async{
+  void getDevicesList() async{
     devList = [];
     List<Device> auxList = await DeviceDAO().list();
     for(Device device in auxList){
-      if(device.user == AppEssentials.user!.email){
+      if(device.user == thisUser!.email){
         devList.add(device);
       }
     }
+  }
+
+  void reloadFFolders() async{
+    fFoldersList = await ForbFolderDAO().list();
   }
 }

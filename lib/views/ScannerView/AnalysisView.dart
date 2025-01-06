@@ -60,7 +60,7 @@ class _AnalysisViewState extends State<AnalysisView> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(Icons.shield, size: 30),
-              Text('Analizar'), // Cambia esto según tu localización
+              Text(AppLocalizations.of(context)!.analyse),
             ],
           ),
         ),

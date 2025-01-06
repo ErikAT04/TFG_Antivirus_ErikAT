@@ -56,7 +56,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
   @override
   Future<bool> update(Device item) async {
     try{
-      var res = await MySQLUtils.connection.execute("UPDATE device SET dev_name='${item.name}', dev_type='${item.type}', last_scan='${item.last_scan}', user='${item.user}' WHERE id='${item.id}'");
+      var res = await MySQLUtils.connection.execute("UPDATE device SET dev_name='${item.name}', dev_type='${item.type}', last_scan='${item.last_scan}', user=${(item.user!=null)?"'${item.user}'":"NULL"} WHERE id='${item.id}'");
       return res.affectedRows.toInt()==1;
     }catch(e){
       print(e);

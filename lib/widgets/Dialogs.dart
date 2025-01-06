@@ -57,8 +57,10 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+        child: Container(
+      padding: EdgeInsets.all(10),
       child: Wrap(
-        
+        spacing: 10,
         alignment: WrapAlignment.center,
         children: [
           TextField(
@@ -66,6 +68,8 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.email,
               errorText: errorEmail,
+              labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+              errorStyle: TextStyle(fontSize: 10)
             ),
           ),
           TextField(
@@ -73,6 +77,8 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.uname,
               errorText: errorUname,
+              labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+              errorStyle: TextStyle(fontSize: 10)
             ),
           ),
           TextField(
@@ -80,6 +86,8 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.pass,
               errorText: errorPass,
+              labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+              errorStyle: TextStyle(fontSize: 10)
             ),
             obscureText: true,
           ),
@@ -88,6 +96,8 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
             decoration: InputDecoration(
               labelText: AppLocalizations.of(context)!.repPass,
               errorText: errorRepPass,
+              labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+              errorStyle: TextStyle(fontSize: 10)
             ),
             obscureText: true,
           ),
@@ -148,26 +158,301 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
                   }
                 }
                 if (resultSuccess) {
-                    User u = User(
-                        uname: unameController.text,
-                        pass: crypto.sha256
-                            .convert(utf8.encode(passController.text))
-                            .toString(),
-                        email: emailController.text);
-                    await UserDAO().insert(u);
-                    Navigator.pop(context, u);
-                  } else {
-                    setState(() {
-                      errorUname = errorUnameText;
-                      errorPass = errorPassText;
-                      errorEmail = errorEmailText;
-                      errorRepPass = errorRepPassText;
-                    });
-                  }
+                  User u = User(
+                      uname: unameController.text,
+                      pass: crypto.sha256
+                          .convert(utf8.encode(passController.text))
+                          .toString(),
+                      email: emailController.text);
+                  await UserDAO().insert(u);
+                  Navigator.pop(context, u);
+                } else {
+                  setState(() {
+                    errorUname = errorUnameText;
+                    errorPass = errorPassText;
+                    errorEmail = errorEmailText;
+                    errorRepPass = errorRepPassText;
+                  });
+                }
               },
               child: Text(AppLocalizations.of(context)!.signUp))
         ],
       ),
+    ));
+  }
+}
+
+class ChangeUserNameContextDialog extends StatefulWidget {
+  const ChangeUserNameContextDialog({super.key});
+
+  @override
+  State<ChangeUserNameContextDialog> createState() =>
+      _ChangeUserNameContextDialogState();
+}
+
+class _ChangeUserNameContextDialogState
+    extends State<ChangeUserNameContextDialog> {
+  TextEditingController unameController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  String? unameError;
+  String? passError;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+          padding: EdgeInsets.all(10),
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 10,
+            children: [
+              TextField(
+                controller: unameController,
+                decoration: InputDecoration(
+                    errorText: unameError,
+                    labelText: AppLocalizations.of(context)!.newUserName,
+                    labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
+              TextField(
+                obscureText: true,
+                controller: passController,
+                decoration: InputDecoration(
+                    errorText: passError,
+                    labelText: AppLocalizations.of(context)!.passConfirm,
+                    labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
+              Wrap(
+                children: [
+                  ElevatedButton(
+                      onPressed: () async {
+                        bool allCorrect = false;
+                        String? errorNameText;
+                        String? errorPassText;
+
+                        if (unameController.text.isEmpty ||
+                            passController.text.isEmpty) {
+                          errorNameText = (unameController.text.isEmpty)
+                              ? AppLocalizations.of(context)!.errorEmptyField
+                              : null;
+                          errorPassText = (passController.text.isEmpty)
+                              ? AppLocalizations.of(context)!.errorEmptyField
+                              : null;
+                        } else {
+                          if (unameController.text ==
+                              context.read<MainAppProvider>().thisUser!.uname) {
+                            errorNameText =
+                                AppLocalizations.of(context)!.unameUnavaliable;
+                          } else {
+                            User? u = await UserDAO().get(unameController.text);
+                            if (u != null) {
+                              errorNameText = AppLocalizations.of(context)!
+                                  .unameUnavaliable;
+                            } else {
+                              if (crypto.sha256
+                                      .convert(utf8.encode(passController.text))
+                                      .toString() !=
+                                  context
+                                      .read<MainAppProvider>()
+                                      .thisUser!
+                                      .pass) {
+                                errorPassText = AppLocalizations.of(context)!
+                                    .errorWrongPass;
+                              } else {
+                                allCorrect = true;
+                              }
+                            }
+                          }
+                        }
+
+                        if (allCorrect) {
+                          Navigator.pop(context, unameController.text);
+                        } else {
+                          setState(() {
+                            unameError = errorNameText;
+                            passError = errorPassText;
+                          });
+                        }
+                      },
+                      child: Text(AppLocalizations.of(context)!.userCName)),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context, null);
+                      },
+                      child: Text(AppLocalizations.of(context)!.cancel))
+                ],
+              )
+            ],
+          )),
     );
+  }
+}
+
+class ChangePasswordContextDialog extends StatefulWidget {
+  const ChangePasswordContextDialog({super.key});
+
+  @override
+  State<ChangePasswordContextDialog> createState() =>
+      _ChangePasswordContextDialogState();
+}
+
+class _ChangePasswordContextDialogState
+    extends State<ChangePasswordContextDialog> {
+  TextEditingController oldPassController = TextEditingController();
+  TextEditingController newPassController = TextEditingController();
+  TextEditingController repNewPassController = TextEditingController();
+
+  String? errorOld;
+  String? errorNew;
+  String? errorRep;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 10,
+          children: [
+            TextField(
+              controller: oldPassController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.formerPassword,
+                  errorText: errorOld,
+                  labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
+            TextField(
+              controller: newPassController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.newPassword,
+                  errorText: errorNew,
+                  labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
+            TextField(
+              controller: repNewPassController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.repeatNewPass,
+                  errorText: errorRep,
+                  labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  bool allCorrect = false;
+                  String? errorOldText;
+                  String? errorNewText;
+                  String? errorRepText;
+
+                  if (oldPassController.text.isEmpty ||
+                      newPassController.text.isEmpty ||
+                      repNewPassController.text.isEmpty) {
+                    errorOldText = (oldPassController.text.isEmpty)
+                        ? AppLocalizations.of(context)!.errorEmptyField
+                        : null;
+                    errorNewText = (newPassController.text.isEmpty)
+                        ? AppLocalizations.of(context)!.errorEmptyField
+                        : null;
+                    errorRepText = (repNewPassController.text.isEmpty)
+                        ? AppLocalizations.of(context)!.errorEmptyField
+                        : null;
+                  } else {
+                    if (crypto.sha256
+                            .convert(utf8.encode(oldPassController.text))
+                            .toString() !=
+                        context.read<MainAppProvider>().thisUser!.pass) {
+                      errorOldText =
+                          AppLocalizations.of(context)!.errorWrongPass;
+                    } else {
+                      if (oldPassController.text == newPassController.text) {
+                        errorNewText =
+                            AppLocalizations.of(context)!.errorSamePass;
+                      } else {
+                        if (newPassController.text.length < 8) {
+                          errorNewText =
+                              AppLocalizations.of(context)!.passwordNotValid;
+                        } else {
+                          if (newPassController.text !=
+                              repNewPassController.text) {
+                            errorRepText =
+                                AppLocalizations.of(context)!.diffPasswords;
+                          } else {
+                            allCorrect = true;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  if (allCorrect) {
+                    Navigator.pop(
+                        context,
+                        crypto.sha256
+                            .convert(utf8.encode(newPassController.text)));
+                  } else {
+                    setState(() {
+                      errorOld = errorOldText;
+                      errorNew = errorNewText;
+                      errorRep = errorRepText;
+                    });
+                  }
+                },
+                child: Text(AppLocalizations.of(context)!.userCPass)),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context, null);
+                },
+                child: Text(AppLocalizations.of(context)!.cancel))
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ImageUploadContextDialog extends StatefulWidget {
+  const ImageUploadContextDialog({super.key});
+
+  @override
+  State<ImageUploadContextDialog> createState() => _ImageUploadContextDialogState();
+}
+
+class _ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
+  TextEditingController linkController = TextEditingController();
+  String? errorTxt;
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+                      child:Container(
+                        padding: EdgeInsets.all(10),
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 10,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          TextField(
+                            controller: linkController,
+                            decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.linkput,
+                              errorText: errorTxt,
+                              labelStyle: TextStyle(fontSize: 10, color: (context.watch<MainAppProvider>().theme == AppEssentials.darkMode)? AppEssentials.colorsMap["appMainLightBlue"]:AppEssentials.colorsMap["appMainBlue"]),
+                              errorStyle: TextStyle(fontSize: 10)
+                            ),
+                          ),
+                          ElevatedButton(onPressed: (){
+                            if(linkController.text.length>0 && linkController.text.length<256){
+                              Navigator.pop(context, linkController.text);
+                            } else {
+                              setState(() {
+                                errorTxt = "${AppLocalizations.of(context)!.sizePassed} (1-254)";
+                              });
+                            }
+                          }, child: Text(AppLocalizations.of(context)!.loadImg))
+                        ],
+                      ),
+                    ));
   }
 }

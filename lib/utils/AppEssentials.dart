@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/model/Device.dart';
@@ -122,7 +123,12 @@ class AppEssentials {
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: colorsMap["appDarkBlue"],
-    )
+    ),
+    listTileTheme: ListTileThemeData(
+      iconColor: colorsMap["appMainLightBlue"],
+      textColor: colorsMap["appMainLightBlue"],
+      subtitleTextStyle: TextStyle(color: colorsMap["white"])
+    ),
   );
 
 
@@ -209,7 +215,12 @@ class AppEssentials {
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: colorsMap["white"],
-    )
+    ),
+    listTileTheme: ListTileThemeData(
+      iconColor: colorsMap["appMainBlue"],
+      textColor: colorsMap["appMainBlue"],
+      subtitleTextStyle: TextStyle(color: colorsMap["appMainBlue"])
+    ),
   );
 
   static List<Locale> listLocales = [
@@ -277,18 +288,19 @@ class AppEssentials {
   Color? unselectedWidgetColor,
   */
   static Future<void> pruebaAnalisisArchivos() async{
+    List<String> forbiddenPaths = (await ForbFolderDAO().list()).map((folder) => folder.route).toList();
     if(Platform.isWindows){
-      scanDir(Directory("C:"));
+      scanDir(Directory("C:"), forbiddenPaths);
     } else {
-      scanDir(Directory("/storage/emulated/0"));
+      scanDir(Directory("/storage/emulated/0"), forbiddenPaths);
     }
   }
 
-  static void scanDir(Directory d) async{
+  static void scanDir(Directory d, List<String> forbiddenPaths) async{
     await for(var f in d.list(recursive: false, followLinks: false)){
       print(f.path);
-      if(f.statSync().type == FileSystemEntityType.directory){
-        scanDir((Directory(f.path)));
+      if(f.statSync().type == FileSystemEntityType.directory && !forbiddenPaths.contains(f.path)){
+        scanDir((Directory(f.path)), forbiddenPaths);
       } 
     }
   }

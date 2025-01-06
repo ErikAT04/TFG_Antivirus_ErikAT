@@ -54,6 +54,17 @@
     "userErase": "Supprimer le compte",
     "userAskErase":"Êtes-vous sûr de vouloir supprimer votre compte? Cette action ne peut pas être annulée",
 
+    "formerPassword":"Écrivez vous votre ancient mot de passe",
+    "newPassword":"Écrivez vous le neu mot de passe",
+    "repeatNewPass":"Répetez vous le neu mot de passe",
+    "errorSamePass":"Le neu mot de passe ne peut pas être comme l'ancient",
+    "newUserName":"Écrivez vous le neu nom d'utilisateur ",
+    "passConfirm":"Confirmer en tapant votre mot de passe",
+
+    "linkput":"Collez le lien vers votre image.",
+    "loadImg":"Télécharger l'image",
+    "sizePassed":"Limite de caractères dépassée",
+
     "appVer": "Version de l'application",
     "appLastFix": "Version Alpha 0.1 - Flutter",
     "appFixesContent":"Ajout de différentes langues"

@@ -89,7 +89,7 @@ class AppDrawer extends StatelessWidget{
               onTap: () {},
               child: ListTile(
                 leading: Icon(Icons.info, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-                title: Text(AppLocalizations.of(context)!.appVer, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+                title: Text("${AppLocalizations.of(context)!.appVer} (WIP)", style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               ),
             ),
           ],
