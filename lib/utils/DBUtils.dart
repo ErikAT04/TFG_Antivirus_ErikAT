@@ -26,6 +26,19 @@ class MySQLUtils {
 //Utils del gestor de SQLite
 class SQLiteUtils {
   static Future<void> startDB() async {
+    var databaseFactory;
+    if (!(Platform.isAndroid || Platform.isIOS)) {
+      sqfliteFfiInit();
+      //Llamo a la base de datos de databaseFactoryFfi para crear la BD
+       databaseFactory = databaseFactoryFfi;
+    }
+
+    //Creo el path a la base de datos
+    final dbPath = (!(Platform.isAndroid || Platform.isIOS))
+        ? join(await databaseFactory.getDatabasesPath(), "localdb.db")
+        : join(await getDatabasesPath(), 'localdb.db');
+
+    db = await databaseFactory.openDatabase(dbPath);
     print("Database opened");
     await db.execute("""
     CREATE TABLE IF NOT EXISTS preferences(
@@ -59,11 +72,11 @@ class SQLiteUtils {
   """);
     print("Table folders created");
     await db.insert('preferences', {
-      "isUserRegistered": 'false',
+      "isUserRegistered": 0,
       "userName": "",
       "userPass": "",
       "chosenLang": "es",
-      "isAutoThemeMode": 'false',
+      "isAutoThemeMode": 0,
       "themeMode": "dark"
     });
     print("preferences inserted");

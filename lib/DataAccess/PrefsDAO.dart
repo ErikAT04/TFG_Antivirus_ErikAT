@@ -24,11 +24,11 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
       isAutoThemeMode BOOLEAN,
       themeMode TEXT */
       prefs = Preferences(
-          isUserRegistered:map['isUserRegistered'].toString().toLowerCase() == "1",
+          isUserRegistered:map['isUserRegistered'].toString() == "1",
           uname: map['userName'].toString(),
           upass: map['userPass'].toString(),
           lang: map['chosenLang'].toString(),
-          isAutoTheme:map['isAutoThemeMode'].toString().toLowerCase() == "1",
+          isAutoTheme:map['isAutoThemeMode'].toString().toLowerCase() == "true",
           themeMode: map["themeMode"].toString());
     } catch (e) {
       print(e);
