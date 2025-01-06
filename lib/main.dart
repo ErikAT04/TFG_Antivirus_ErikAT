@@ -97,8 +97,13 @@ class MainAppProvider extends ChangeNotifier {
   }
 
   void erase() async{
-    await UserDAO().delete(thisUser!);
+    User u = thisUser!;
+    for(Device d in devList){
+      d.user = null;
+      await DeviceDAO().update(d);
+    }
     logout();
+    await UserDAO().delete(u);
   }
 
   void getDevicesList() async{
