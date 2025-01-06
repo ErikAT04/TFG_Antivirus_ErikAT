@@ -58,7 +58,7 @@ class _RegisterContextDialogState extends State<RegisterContextDialog> {
   Widget build(BuildContext context) {
     return Dialog(
         child: Container(
-      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.all(10),
       child: Wrap(
         spacing: 10,
         alignment: WrapAlignment.center,
@@ -202,7 +202,7 @@ class _ChangeUserNameContextDialogState
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.all(10),
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             spacing: 10,
@@ -312,7 +312,7 @@ class _ChangePasswordContextDialogState
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.all(10),
         child: Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 10,
@@ -430,7 +430,7 @@ class _ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   Widget build(BuildContext context) {
     return Dialog(
                       child:Container(
-                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(10),
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         spacing: 10,
