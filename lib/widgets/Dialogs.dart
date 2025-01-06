@@ -319,6 +319,7 @@ class _ChangePasswordContextDialogState
           children: [
             TextField(
               controller: oldPassController,
+              obscureText: true,
               decoration: InputDecoration(
                   labelText: AppLocalizations.of(context)!.formerPassword,
                   errorText: errorOld,
@@ -327,6 +328,7 @@ class _ChangePasswordContextDialogState
             ),
             TextField(
               controller: newPassController,
+              obscureText: true,
               decoration: InputDecoration(
                   labelText: AppLocalizations.of(context)!.newPassword,
                   errorText: errorNew,
@@ -334,6 +336,7 @@ class _ChangePasswordContextDialogState
                   errorStyle: TextStyle(fontSize: 10)),
             ),
             TextField(
+              obscureText: true,
               controller: repNewPassController,
               decoration: InputDecoration(
                   labelText: AppLocalizations.of(context)!.repeatNewPass,
@@ -391,7 +394,7 @@ class _ChangePasswordContextDialogState
                     Navigator.pop(
                         context,
                         crypto.sha256
-                            .convert(utf8.encode(newPassController.text)));
+                            .convert(utf8.encode(newPassController.text)).toString());
                   } else {
                     setState(() {
                       errorOld = errorOldText;
