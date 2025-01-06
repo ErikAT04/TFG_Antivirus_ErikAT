@@ -54,6 +54,17 @@
     "userErase":"Konto Löschen",
     "userAskErase":"Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden",
 
+    "formerPassword":"Geben Sie Ihr altes Passwort ein",
+    "newPassword":"Geben Sie das neue Passwort ein",
+    "repeatNewPass":"Wiederholen Sie das neue Passwort",
+    "errorSamePass":"Das neue Passwort darf nicht mit dem vorherigen identisch sein",
+    "newUserName":"Geben Sie Ihren neuen Benutzernamen ein",
+    "passConfirm":"Bestätigen Sie, indem Sie Ihr Passwort eingeben",
+
+    "linkput":"Fügen Sie den Link zu Ihrem Bild ein",
+    "loadImg":"Bild hochladen",
+    "sizePassed":"Zeichenbeschränkung überschritten",
+
     "appVer":"App-Version",
     "appLastFix":"Alpha-Version 0.1 - Flutter",
     "appFixesContent":"Verschiedene Sprachen hinzugefügt"

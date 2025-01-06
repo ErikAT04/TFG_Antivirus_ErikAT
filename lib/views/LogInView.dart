@@ -84,9 +84,10 @@ class LogInViewState extends State<LogInView> {
                                   .toString() ==
                               user.pass) {
                             completedSuccesfully = true;
-                            context.read<MainAppProvider>().changeUser(user);
                             AppEssentials.dev!.user = user.email;
-                        await DeviceDAO().update(AppEssentials.dev!);
+                            await DeviceDAO().update(AppEssentials.dev!);
+                            context.read<MainAppProvider>().changeUser(user);
+                            
                           } else {
                             passError =
                                 AppLocalizations.of(context)!.errorWrongPass;
@@ -113,9 +114,9 @@ class LogInViewState extends State<LogInView> {
                           context: context,
                           builder: (context) => RegisterContextDialog());
                       if (u != null) {
-                        context.read<MainAppProvider>().changeUser(u);
                         AppEssentials.dev!.user = u.email;
                         await DeviceDAO().update(AppEssentials.dev!);
+                        context.read<MainAppProvider>().changeUser(u);
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

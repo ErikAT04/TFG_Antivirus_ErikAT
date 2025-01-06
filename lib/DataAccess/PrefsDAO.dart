@@ -28,7 +28,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
           uname: map['userName'].toString(),
           upass: map['userPass'].toString(),
           lang: map['chosenLang'].toString(),
-          isAutoTheme:map['isAutoThemeMode'].toString() == "1",
+          isAutoTheme:map['isAutoThemeMode'].toString().toLowerCase() == "true",
           themeMode: map["themeMode"].toString());
     } catch (e) {
       print(e);

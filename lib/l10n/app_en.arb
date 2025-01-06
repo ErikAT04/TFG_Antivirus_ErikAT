@@ -54,6 +54,17 @@
     "userErase":"Erase Account",
     "userAskErase":"Are you sure you want to delete your account? This action cannot be undone",
 
+    "formerPassword":"Write your former password",
+    "newPassword":"Write the new password",
+    "repeatNewPass":"Repeat the new password",
+    "errorSamePass":"The new password can't be like the old one",
+    "newUserName":"Write your new username",
+    "passConfirm":"Confirm by writing your password",
+
+    "linkput":"Paste here your image link",
+    "loadImg":"Load Image",
+    "sizePassed":"Character limit exceeded",
+
     "appVer":"App Version",
     "appLastFix":"Version Alpha 0.1 - Flutter",
     "appFixesContent":"Added Language Support"

@@ -25,7 +25,8 @@ class _MainviewState extends State<Mainview> {
 
   @override void initState() {
     super.initState();
-    context.read<MainAppProvider>().getList();
+    context.read<MainAppProvider>().getDevicesList(); //Precarga de los dispositivos vinculados
+    context.read<MainAppProvider>().reloadFFolders(); //Precarga de los archivos prohibidos
   }
 
   @override
