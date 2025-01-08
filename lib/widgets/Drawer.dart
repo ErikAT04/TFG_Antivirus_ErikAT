@@ -1,12 +1,19 @@
-import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/main.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
-import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
-import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
 import 'package:provider/provider.dart';
+import 'package:magik_antivirus/main.dart';
+import 'package:country_flags/country_flags.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
+import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
 
+///Drawer de la aplicación
+///En la barra superior del menú principal, aparece un icono con la imagen del perfil del usuario. Si se pulsa ahí, aparecerá el Drawer con distintos widgets:
+/// -	El primero es la cabecera del Drawer, que muestra la foto de perfil del usuario, su nombre y su correo. Si el usuario pulsa en el widget, accederá al menú de usuario
+/// -	El segundo apartado es un tile con la imagen y el texto de carpetas prohibidas. Si se pulsa, el programa navegará hacia la vista de carpetas prohibidas
+/// -	El tercero es un tile con una imagen y un texto de “Traducir”, al final del tile aparecerá un DropDown que mostrará distintos idiomas a traducir. Cuando el usuario elija un idioma, todos los textos del programa cambiarán al idioma elegido
+/// -	El cuarto es un tile para cambiar el modo de claro a oscuro y viceversa. Con el switch que hay al final del tile, el usuario puede alternar entre los modos claro y oscuro
+/// -	El quinto es un tile que, si el usuario lo pulsa, accederá a una ventana con toda la información de la versión actual del programa
 
 class AppDrawer extends StatelessWidget{
   @override

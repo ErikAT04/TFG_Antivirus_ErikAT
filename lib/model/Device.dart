@@ -1,10 +1,10 @@
 ///La clase Device guarda los dispositivos de los usuarios
 class Device {
-  ///Identificador de cada dispositivo en la base de datos (Su dirección MAC)
+  ///Identificador de cada dispositivo en la base de datos (El identificador dependerá del dispositivo)
   String? id;
   ///Nombre con el que se registró
   String name;
-  ///El tipo se refiere al sistema operativo que corre el dispositivo (Android, iOS, macOS, Windows o Linux)
+  ///El tipo se refiere al sistema operativo que corre el dispositivo (android, ios, macos, windows o linux)
   String type;
   ///Fecha en la que se registró el dispositivo
   DateTime join_in;

@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+
 
 class DevicesAdd extends StatefulWidget {
   const DevicesAdd({super.key});
@@ -13,14 +12,14 @@ class DevicesAdd extends StatefulWidget {
 
 class _DevicesAddState extends State<DevicesAdd> {
   TextEditingController devNameController = TextEditingController();
-  String dev = (Platform.operatingSystem).capitalize();
+  String dev = (Platform.operatingSystem);
   @override
   Widget build(BuildContext context) {
     
     String? errorText;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Añadir Dispositivos (Just ES Lang)"),
+        title: Text("Añadir Dispositivos (Just ES Lang)", softWrap: true,),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

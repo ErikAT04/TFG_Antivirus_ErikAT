@@ -1,25 +1,28 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
-import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/widgets/Drawer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
-import 'package:magik_antivirus/widgets/Drawer.dart';
-import 'package:provider/provider.dart';
 
+
+
+
+///Vista de la pantalla principal
 class Mainview extends StatefulWidget {
   const Mainview({super.key});
 
   @override
-  State<Mainview> createState() => _MainviewState();
+  State<Mainview> createState() => MainviewState();
 }
 
-class _MainviewState extends State<Mainview> {
+///Estado de la vista principal:
+///El usuario verá de forma constante el título de la pestaña en la que se encuentra y una barra de navegación inferior con la que puede ir a distintas páginas de la aplicación.
+///Dependiendo de qué pestaña esté seleccionada en el menú inferior, el contenido del cuerpo (body) de la vista será distinta
+///En la barra superior del menú principal, aparece un icono con la imagen del perfil del usuario. Si se pulsa ahí, aparecerá el Drawer.
+class MainviewState extends State<Mainview> {
 
   int actualPage = 0;
 

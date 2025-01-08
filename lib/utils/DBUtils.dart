@@ -1,13 +1,15 @@
 import 'dart:io';
-
+import 'package:path/path.dart';
 import 'package:mysql_client/mysql_client.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:path/path.dart';
+
 
 ///Utils del gestor de MySQL
 class MySQLUtils {
+  ///Conexión a la BD de MySQL
   static late MySQLConnection connection;
 
+  ///Función de carga de la BD de MySQL
   static Future<void> loadSQLDB() async {
     connection = await MySQLConnection.createConnection(
         host: 'sql.freedb.tech',
@@ -23,8 +25,9 @@ class MySQLUtils {
   }
 }
 
-//Utils del gestor de SQLite
+///Utils del gestor de SQLite
 class SQLiteUtils {
+  ///Función de creación de la BD (Saldrá la primera vez que se inicie la app)
   static Future<void> startDB() async {
     print("Database opened");
     await db.execute("""
@@ -69,8 +72,10 @@ class SQLiteUtils {
     print("preferences inserted");
   }
 
+  ///Base de datos de SQLite
   static late Database db;
 
+  ///Función de carga de la BD de SQLite
   static Future<void> cargardb() async {
     var dbfact;
     sqfliteFfiInit();

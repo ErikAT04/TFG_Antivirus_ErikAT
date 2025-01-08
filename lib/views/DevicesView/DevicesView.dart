@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 
-
-class AppDevicesView extends StatefulWidget {
+///Vista de dispostivos:
+///Muestra al usuario todos los dispositivos que tiene vinculados a su cuenta.
+///Puede ver el tipo de sistema operativo que tiene, el nombre del dispositivo y tanto la fecha de su último escaneo como la fecha de registro en esta cuenta
+class AppDevicesView extends StatelessWidget {
   const AppDevicesView({super.key});
-
-  @override
-  State<AppDevicesView> createState() => _AppDevicesViewState();
-}
-
-class _AppDevicesViewState extends State<AppDevicesView> {
-  
 
   @override
   Widget build(BuildContext context) {

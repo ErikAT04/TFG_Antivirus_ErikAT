@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/DataAccess/FileDAO.dart';
 import 'package:magik_antivirus/model/File.dart';
+import 'package:magik_antivirus/DataAccess/FileDAO.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+///Vista del baúl de archivos en cuarentena
 class AppVault extends StatefulWidget {
   const AppVault({super.key});
 
   @override
-  State<AppVault> createState() => _AppVaultState();
+  State<AppVault> createState() => AppVaultState();
 }
-
-class _AppVaultState extends State<AppVault> {
+///Estado de la app:
+///El usuario verá una lista de ficheros con nombre y ruta. Estos ficheros son los que, tras analizar el equipo, no han pasado por los requisitos de seguridad del programa y, para proteger al usuario, los ha puesto en cuarentena
+///Si el usuario pulsa sobre uno de ellos, aparecerá un pop up con información del archivo, como la ruta en la que se encontraba, el malware detectado y otros. Si pulsa al botón de Restaurar archivo, este desaparecerá de la lista y el programa lo sacará de su cuarentena
+class AppVaultState extends State<AppVault> {
   List<SysFile> list = [];
 
   FileDAO dao = FileDAO();
@@ -51,7 +54,8 @@ class _AppVaultState extends State<AppVault> {
     ),
     );
   }
-  
+
+  ///Función de carga de la lista de archivos
   void loadList() async{
     List<SysFile> listres = await dao.list();
     setState(() {
