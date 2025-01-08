@@ -1,6 +1,6 @@
-import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
-import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
+import 'package:magik_antivirus/model/ForbFolder.dart';
+import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los ficheros a los que no se tiene acceso
 ///La información de esta se hace por medio de la base de datos de SQLite, ya que se guarda en local
 class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
@@ -17,7 +17,6 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
 
   @override
   Future<ForbFolder?> get(int value) async {
-    List<ForbFolder> list = [];
     try{
       var res = await SQLiteUtils.db.query('forbFolders', where: 'id=?', whereArgs: [value]);
       var line = res.first;
