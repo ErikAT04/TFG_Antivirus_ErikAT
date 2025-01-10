@@ -4,7 +4,9 @@ import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los dispositivos
 ///La información de esta se hace por medio de la base de datos de MySQL, ya que se guarda en un servidor en red que gestiona a cada usuario y sus dispositivos
 class UserDAO implements DAOInterface<User, String>{
-  ///Función de borrado: Recibe un usuario y lo borra por su email
+  ///Función de borrado
+  ///
+  ///Recibe un usuario y lo borra por su email
   @override
   Future<bool> delete(User item) async {
     try{
@@ -15,7 +17,9 @@ class UserDAO implements DAOInterface<User, String>{
       return false;
     }
   }
-  ///Función de obtención: Recibe un email y busca el usuario que tenga dicho email
+  ///Función de obtención
+  ///
+  ///Recibe un email y busca el usuario que tenga dicho email
   @override
   Future<User?> get(String value) async {
     User? user = null;
@@ -29,7 +33,9 @@ class UserDAO implements DAOInterface<User, String>{
     }
     return user;
   }
-  ///Función de inserción: Recibe un usuario y lo inserta en la base de datos
+  ///Función de inserción
+  ///
+  ///Recibe un usuario y lo inserta en la base de datos
   @override
   Future<bool> insert(User item) async {
     try{
@@ -40,7 +46,9 @@ class UserDAO implements DAOInterface<User, String>{
       return false;
     }
   }
-  ///Función de listado: Devuelve todos los usuarios de la base de datos (Sin uso actualmente)
+  ///Función de listado
+  ///
+  ///Devuelve todos los usuarios de la base de datos (Sin uso actualmente)
   @override
   Future<List<User>> list() async {
     List<User> users = [];
@@ -54,7 +62,10 @@ class UserDAO implements DAOInterface<User, String>{
     }
     return users;
   }
-  ///Función de actualización: Recibe un usuario por parámetros y modifica sus datos en función del email.
+  ///Función de actualización
+  ///
+  ///Recibe un usuario por parámetros y modifica sus datos en función del email.
+  ///
   ///Si la imagen del usuario es nula (No tiene imagen), no se intenta añadir ese parámetro
   @override
   Future<bool> update(User item) async {
@@ -69,10 +80,10 @@ class UserDAO implements DAOInterface<User, String>{
 
 }
 /*
-CREATE TABLE user{
+CREATE TABLE user(
   email VARCHAR(255) PRIMARY KEY,
   username VARCHAR(255) UNIQUE,
   pass VARCHAR(255) NOT NULL,
-  image LONGBLOB,
-}
+  image VARCHAR(255)
+);
 */

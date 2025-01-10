@@ -1,4 +1,5 @@
 ///La clase SysFile hace referencia a los archivos del sistema que se registran en la base de datos.
+///
 ///Son todos aquellos que, por algún motivo de seguridad, han sido puestos en cuarentena
 class SysFile{
   ///Identificador del archivo

@@ -1,5 +1,6 @@
-///La clase ForbFolder o ForbiddenFolder hace referencia a los llamados 'Directorios Prohibidos' de la App
-///Son aquellos que el usuario ha negado acceso por diversos motivos. La aplicación no pasará por estas carpetas
+///La clase ForbFolder o ForbiddenFolder hace referencia a los llamados 'Directorios Prohibidos' de la App.
+///
+///Son aquellos que el usuario ha negado acceso por diversos motivos. La aplicación no pasará por estas carpetas.
 class ForbFolder {
   ///Identificador
   int? id;

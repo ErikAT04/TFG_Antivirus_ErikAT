@@ -10,7 +10,9 @@ class Device {
   DateTime join_in;
   ///Última fecha en la que el dispositivo ha realizado un escaneo
   DateTime last_scan;
-
+  ///Correo electrónico del usuario del dispositivo
+  ///
+  ///Es posible que el dispositivo no tenga un usuario asignado
   String? user;
 
   ///Constructor

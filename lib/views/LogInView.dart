@@ -20,13 +20,17 @@ class LogInView extends StatefulWidget {
 }
 
 ///Estado de la vista de inicio de sesión:
-///El usuario verá una Card con distintos campos: Dos TextFields y dos botones, uno para iniciar sesión y otro para registrarse
 class LogInViewState extends State<LogInView> {
+  ///Controller del texto de la contraseña
   TextEditingController passController = TextEditingController();
+  ///Controller del texto del correo electrónico
   TextEditingController emailController = TextEditingController();
+  ///String nullable del error de la contraseña
   String? passErrorText;
+  ///String nullable del error del email
   String? emailErrorText;
 
+  ///El usuario verá una Card con distintos campos: Dos TextFields y dos botones, uno para iniciar sesión y otro para registrarse
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,13 +82,20 @@ class LogInViewState extends State<LogInView> {
         ]));
   }
 
-  ///Método de inicio de sesión:
+  ///Método de inicio de sesión
+  ///
   ///El programa verificará los campos de usuario y contraseña
+  ///
   ///-	Si están vacíos, dará error
+  ///
   ///-	Si tienen datos, buscarán un usuario en la base de datos que coincida con el email o el nombre dado.
+  ///
   /// -	Si no hay ocurrencias en la base de datos, mostrará un error de que el usuario no existe
+  /// 
   /// -	Si hay ocurrencias, mira a ver si la contraseña es correcta
+  /// 
   ///  - Si no es correcta, mostrará un error de contraseña
+  /// 
   ///  - Si es correcta, enviará al usuario a la próxima página: La Vista Principal
   void logIn(BuildContext context) async {
     User? user;
@@ -128,8 +139,10 @@ class LogInViewState extends State<LogInView> {
     }
   }
   
-  ///Función de registro:
+  ///Función de registro
+  ///
   ///Abre un pop up para hacer el formulario de registro.
+  ///
   ///Si recibe el usuario del registro (Es decir, se ha hecho todo correctamente), se crea la cuenta y se pasa a la pantalla principal
   void signUp(BuildContext context) async {
     User? u = await showDialog<User>(

@@ -12,11 +12,11 @@ class MySQLUtils {
   ///Función de carga de la BD de MySQL
   static Future<void> loadSQLDB() async {
     connection = await MySQLConnection.createConnection(
-        host: 'sql.freedb.tech',
+        host: 'localhost',
         port: 3306,
-        userName: 'freedb_AT_Root',
-        password: 'RR5xHVqx2J#uVN?',
-        databaseName: 'freedb_PruebasAndroid',
+        userName: 'root',
+        password: 'toor',
+        databaseName: 'm_antivirus_db',
         secure: true);
     if (!connection.connected) {
       //En caso de que en algún dispositivo no se conecte directamente a la base de datos

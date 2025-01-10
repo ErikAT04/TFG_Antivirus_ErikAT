@@ -10,12 +10,13 @@ class AppVault extends StatefulWidget {
   @override
   State<AppVault> createState() => AppVaultState();
 }
-///Estado de la app:
-///El usuario verá una lista de ficheros con nombre y ruta. Estos ficheros son los que, tras analizar el equipo, no han pasado por los requisitos de seguridad del programa y, para proteger al usuario, los ha puesto en cuarentena
-///Si el usuario pulsa sobre uno de ellos, aparecerá un pop up con información del archivo, como la ruta en la que se encontraba, el malware detectado y otros. Si pulsa al botón de Restaurar archivo, este desaparecerá de la lista y el programa lo sacará de su cuarentena
+
+///Estado de la vista del baúl de archivos
 class AppVaultState extends State<AppVault> {
+  ///Lista de los archivos del sistema
   List<SysFile> list = [];
 
+  ///Objeto de Acceso a Datos de SysFile
   FileDAO dao = FileDAO();
 
   @override
@@ -24,39 +25,41 @@ class AppVaultState extends State<AppVault> {
     loadList();
   }
 
+  ///El usuario verá una lista de ficheros con nombre y ruta. Estos ficheros son los que, tras analizar el equipo, no han pasado por los requisitos de seguridad del programa y, para proteger al usuario, los ha puesto en cuarentena.
+  ///
+  ///Si el usuario pulsa sobre uno de ellos, aparecerá un pop up con información del archivo, como la ruta en la que se encontraba, el malware detectado y otros. Si pulsa al botón de Restaurar archivo, este desaparecerá de la lista y el programa lo sacará de su cuarentena.
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-      children: [
-        Text(AppLocalizations.of(context)!.vaultDesc),
-        (list.length==0)?
-        Text("No data yet"):
-        Expanded(
-          child: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, index){
-              SysFile file = list[index];
-              return GestureDetector(
-                onTap: (){},
-                child: Card(
-                  margin: EdgeInsets.all(5),
-                  child: ListTile(
-                    leading: Icon(Icons.file_open),
-                    title: Text(file.name),
-                    subtitle: Text(file.route),
-                  ),
-                ),
-              );
-            })
-        )
-      ],
-    ),
+        children: [
+          Text(AppLocalizations.of(context)!.vaultDesc),
+          (list.length == 0)
+              ? Text("No data yet")
+              : Expanded(
+                  child: ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) {
+                        SysFile file = list[index];
+                        return GestureDetector(
+                          onTap: () {},
+                          child: Card(
+                            margin: EdgeInsets.all(5),
+                            child: ListTile(
+                              leading: Icon(Icons.file_open),
+                              title: Text(file.name),
+                              subtitle: Text(file.route),
+                            ),
+                          ),
+                        );
+                      }))
+        ],
+      ),
     );
   }
 
   ///Función de carga de la lista de archivos
-  void loadList() async{
+  void loadList() async {
     List<SysFile> listres = await dao.list();
     setState(() {
       list = listres;

@@ -2,8 +2,12 @@ import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los ficheros a los que no se tiene acceso
+///
 ///La información de esta se hace por medio de la base de datos de SQLite, ya que se guarda en local
 class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
+  ///Función de borrado:
+  ///
+  ///Recibe un directorio y lo elimina de la BD
   @override
   Future<bool> delete(ForbFolder item) async {
     try{
@@ -15,6 +19,9 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
     }
   }
 
+  ///Función de obtención (Actualmente sin uso)
+  ///
+  ///Recibe un entero por parámetro y devuelve el directorio con ese id 
   @override
   Future<ForbFolder?> get(int value) async {
     try{
@@ -27,6 +34,9 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
     }
   }
 
+  ///Función de inserción
+  ///
+  ///Recibe un directorio por parámetros y lo añade a la BD
   @override
   Future<bool> insert(ForbFolder item) async {
     try{
@@ -41,6 +51,9 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
     }
   }
 
+  ///Función de listado
+  ///
+  ///Devuelve la lista de directorios prohibidos de la BD
   @override
   Future<List<ForbFolder>> list() async {
     List<ForbFolder> list = [];
@@ -55,6 +68,9 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
     return list;
   }
 
+  ///Función de actualización (Actualmente sin uso)
+  ///
+  ///Recibe un directorio por parámetro y actualiza sus valores en la BD en función de su id
   @override
   Future<bool> update(ForbFolder item) async {
     try{

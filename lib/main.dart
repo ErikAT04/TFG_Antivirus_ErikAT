@@ -1,3 +1,4 @@
+import 'dart:isolate';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/model/User.dart';
@@ -14,10 +15,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+
 ///Función principal - Inicio de la aplicación.
+///
 ///Primero, comienza con la inicialización del binding de los widgets para evitar problemas.
+///
 ///Después, carga las bases de datos, se accede a las propiedades y registra el dispositivo en la BD.
+///
 /// - Si salta un error porque no encuentra la tabla de las propiedades, inicia todas las tablas y reintenta esa acción.
+/// 
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -75,7 +81,24 @@ class MainAppProvider extends ChangeNotifier {
   ///Lista de dispositivos
   List<Device> devList = [];
 
+  bool isIsolateActive = false;
+
+  String estado = "";
+
+  void prueba()async{
+    isIsolateActive = true;
+    notifyListeners();
+    for(var i=0; i<10; i++){
+      estado = "Espera ${10-i} segundo${(10-i!=1)?"s":""}";
+      notifyListeners();
+      await Future.delayed(Duration(seconds: 1));
+    }
+    isIsolateActive = false;
+    notifyListeners();
+  }
+
   ///Función que sirve para cambiar el idioma de la aplicación
+  ///
   ///Además de cambiar el idioma, guarda en las preferencias el idioma elegido
   void changeLang(String lang) {
     language = Locale(lang);
@@ -84,6 +107,7 @@ class MainAppProvider extends ChangeNotifier {
   }
   
   ///Función que sirve para cambiar el tema de la aplicación
+  ///
   ///Además de cambiar el tema, guarda en las preferencias el tema actual
   void changeTheme(bool val){
     theme = val?AppEssentials.darkMode:AppEssentials.lightMode;
@@ -92,6 +116,7 @@ class MainAppProvider extends ChangeNotifier {
   }
 
   ///Función de cambio de usuario
+  ///
   ///Además, guarda el email de usuario y una booleana que marca que se inicie sesión de forma automática 
   void changeUser(User user) {
     this.thisUser = user;
@@ -100,6 +125,7 @@ class MainAppProvider extends ChangeNotifier {
   }
 
   ///Función de borrado de directorios prohibidos
+  ///
   ///Borra el archivo tanto de la lista actual como de la base de datos local
   void deleteThisFolder(ForbFolder folder) async {
     fFoldersList.remove(folder);
@@ -108,6 +134,7 @@ class MainAppProvider extends ChangeNotifier {
   }
 
   ///Función de cierre de sesión
+  ///
   ///Además de cerrar sesión poniendo al usuario nulo, desmarca la booleana de auto registro y quita el usuario del dispositivo (Por si se va a usar más tarde)
   void logout() async{
     thisUser = null;
@@ -119,6 +146,7 @@ class MainAppProvider extends ChangeNotifier {
   }
 
   ///Función de borrado de cuenta
+  ///
   ///Se borra al usuario de la base de datos en red y luego se procede como en el cierre de sesión
   void erase() async{
     User u = thisUser!;

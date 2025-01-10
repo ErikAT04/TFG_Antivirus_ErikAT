@@ -14,14 +14,17 @@ import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 ///App Essentials: El conjunto de objetos y métodos que la aplicación necesita acceder de forma estática desde todos lados
 class AppEssentials {
   ///Usuario estático
+  ///
   ///Este usuario se guardará para, cuando se inicialice el programa, pasar su información al provider
   static User? user;
 
   ///Preferencias de la aplicación
+  ///
   ///Guardará y gestionará las preferencias de la aplicación, haciendo las operaciones CRUD de las bases de datos
   static late Preferences preferences;
 
   ///Función de obtención de preferencias
+  ///
   ///Obtiene las preferencias del usuario de la base de datos
   static Future<void> getProperties() async {
     preferences = (await PrefsDAO().get(""))!;
@@ -32,6 +35,7 @@ class AppEssentials {
   }
 
   ///Función de cambio de lenguaje
+  ///
   ///Cambia el lenguaje de estas preferencias y actualiza la BD con ello
   static void changeLang(String lang) async {
     preferences.lang = lang;
@@ -39,6 +43,7 @@ class AppEssentials {
   }
 
   ///Mapa de colores
+  ///
   ///Este mapa servirá para guardar todos los colores de la aplicación, de modo que se accede a ellas de forma sencilla.
   static Map<String, Color> colorsMap = {
     "appMainLightBlue": Color.fromARGB(255, 40, 184, 221),
@@ -246,8 +251,11 @@ class AppEssentials {
   static Device? dev;
 
   ///Función de registro y guardado de dispositivos
+  ///
   ///La función recoge el identificador del dispositivo en función de su SO y lo utiliza para buscar en la BD una ocurrencia existente
+  ///
   ///- Si existe, guarda en el dispositivo estático la ocurrencia
+  ///
   ///- Si no existe, la crea con todos los datos necesarios 
   static void registerThisDevice() async{
     DeviceInfoPlugin plugin = DeviceInfoPlugin();
@@ -309,19 +317,25 @@ class AppEssentials {
   */
 
   ///Función de prueba de análisis:
+  ///
   ///Si el dispositivo es Windows, comienza una búsqueda de archivos en C:\, mientras que en android (sin rootear) comienza en la raíz a la que tiene acceso
   static Future<void> pruebaAnalisisArchivos() async{
     List<String> forbiddenPaths = (await ForbFolderDAO().list()).map((folder) => folder.route).toList();
     if(Platform.isWindows){
       scanDir(Directory("C:"), forbiddenPaths);
-    } else {
+    } else if (Platform.isAndroid){
       scanDir(Directory("/storage/emulated/0"), forbiddenPaths);
+    } else {
+      scanDir(Directory('/'), forbiddenPaths);
     }
   }
 
   ///Función de escaneo de directorios:
+  ///
   ///Mira si el File que está mirando es un directorio y si su acceso está o no prohibido
+  ///
   ///Si es un archivo, imprime su path (esto es solo de prueba de momento)
+  ///
   ///Si es un directorio y tiene acceso a él, llama otra vez a su función, esta vez desde este nuevo directorio
   static void scanDir(Directory d, List<String> forbiddenPaths) async{
     await for(var f in d.list(recursive: false, followLinks: false)){
@@ -333,6 +347,7 @@ class AppEssentials {
   }
 
   ///Función de cambio de tema:
+  ///
   ///Cambia el tema de las preferencias y actualiza estas en la BD
   static void changeTheme(bool isDark) async {
     preferences.themeMode = isDark?"darkMode":"lightMode";
@@ -340,6 +355,7 @@ class AppEssentials {
   }
 
   ///Función de adición de usuarios a la BD
+  ///
   ///Introduce el email y la contraseña en las preferencias, actualizando la BD con ello
   static void putUser(User user) async{
     preferences.isUserRegistered = true;
@@ -349,6 +365,7 @@ class AppEssentials {
   }
 
   ///Expresión regular de corrección del email:
+  ///
   ///El correo electrónico puede tener 
   static RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9]+@[a-z]+\.[a-z]{3}$');
 }

@@ -8,11 +8,13 @@ import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-///Dialog de borrado de cuenta
-///El usuario verá un mensaje diciendo las consecuencias de borrar la cuenta, un botón de cancelar y uno de aceptas
-///Si el usuario pulsa aceptar, se cierra y manda una señal afirmativa
-///Si el usuario pulsa cancelar, se cierra y manda una señal negativa
+///Dialog de borrado de cuenta.
 class EraseContextDialog extends StatelessWidget {
+  ///El usuario verá un mensaje diciendo las consecuencias de borrar la cuenta, un botón de cancelar y uno de aceptas
+  ///
+  ///Si el usuario pulsa aceptar, se cierra y manda una señal afirmativa
+  ///
+  ///Si el usuario pulsa cancelar, se cierra y manda una señal negativa
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -48,18 +50,32 @@ class RegisterContextDialog extends StatefulWidget {
 }
 
 ///Estado del dialog del registro:
-///El usuario verá un pop up con 4 bloques de texto a rellenar y un botón de registro.
 class RegisterContextDialogState extends State<RegisterContextDialog> {
+  ///Controller del texto del nombre de usuario
   TextEditingController unameController = TextEditingController();
+
+  ///Controller del texto del email
   TextEditingController emailController = TextEditingController();
+
+  ///Controller del texto de la contraseña
   TextEditingController passController = TextEditingController();
+
+  ///Controller del campo para repetir la contraseña
   TextEditingController repPassController = TextEditingController();
 
+  ///String nullable del error del nombre
   String? errorUname;
+
+  ///String nullable del error del email
   String? errorEmail;
+
+  ///String nullable del error de la contraseña
   String? errorPass;
+
+  ///String nullable del error de la repetición de la contraseña
   String? errorRepPass;
 
+  ///El usuario verá un pop up con 4 bloques de texto a rellenar y un botón de registro.
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -134,12 +150,19 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
   }
 
   ///Función de registro de usuario:
+  ///
   ///Al rellenar los datos, empezará a hacer los controles de las siguientes condiciones:
+  ///
   /// - No puede haber campos vacíos
+  ///
   /// - Ni el nombre de usuario ni la contraseña pueden aparecer ya en la BD
+  ///
   /// - El correo tiene que cumplir los caracteres del correo
+  ///
   /// - La contraseña tiene que ser de, como mínimo, 8 caracteres
+  ///
   /// - El texto de los campos de contraseña y repetición de contraseña deben ser iguales
+  ///
   ///Una vez se tiene todo eso, se cierra el pop up
   void register(BuildContext context) async {
     bool resultSuccess = false;
@@ -220,15 +243,18 @@ class ChangeUserNameContextDialog extends StatefulWidget {
 }
 
 ///Estado del dialog de cambio de nombre de usuario
-///Aparecerá un pop up con dos textos: Uno para introducir un nombre de usuario nuevo y para confirmar con la contraseña, además de un botón para cambiar el nombre
-class ChangeUserNameContextDialogState
-    extends State<ChangeUserNameContextDialog> {
+class ChangeUserNameContextDialogState extends State<ChangeUserNameContextDialog> {
+  ///Controller del texto del nombre de usuario
   TextEditingController unameController = TextEditingController();
+  ///Controller del texto de la contraseña
   TextEditingController passController = TextEditingController();
 
+  ///String nullable del error de nombre de usuario
   String? unameError;
+  ///String nullable del error de contraseña
   String? passError;
 
+  ///Aparecerá un pop up con dos textos: Uno para introducir un nombre de usuario nuevo y para confirmar con la contraseña, además de un botón para cambiar el nombre
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -285,11 +311,17 @@ class ChangeUserNameContextDialogState
   }
 
   ///Función de cambio de nombre de usuario:
+  ///
   ///Al rellenar los datos, empezará a hacer los controles de las siguientes condiciones:
+  ///
   /// - Todos los campos deben estar rellenados
+  ///
   /// - El nombre de usuario no es el mismo
+  ///
   /// - El nombre de usuario no aparece ya en la base de datos
+  ///
   /// - La contraseña está bien puesta
+  ///
   ///Si pasa todos los controles, cierra el pop up y envía el nuevo nombre de usuario como señal positiva.
   void changeName(BuildContext context) async {
     bool allCorrect = false;
@@ -345,17 +377,22 @@ class ChangePasswordContextDialog extends StatefulWidget {
 }
 
 ///Estado del Dialog de cambio de contraseña:
-///El usuario ve 3 campos de texto para cambiar la contraseña y un botón para confirmar el cambio
-class ChangePasswordContextDialogState
-    extends State<ChangePasswordContextDialog> {
+class ChangePasswordContextDialogState extends State<ChangePasswordContextDialog> {
+  ///Controller del texto de la antigua contraseña
   TextEditingController oldPassController = TextEditingController();
+  ///Controller del texto de la nueva contraseña
   TextEditingController newPassController = TextEditingController();
+  ///Controller del texto de la repetición de la nueva contraseña
   TextEditingController repNewPassController = TextEditingController();
 
+  ///String nullable del error de la antigua contraseña
   String? errorOld;
+  ///String nullable del error de la nueva contraseña
   String? errorNew;
+  ///String nullable del error de la repetición de la nueva contraseña
   String? errorRep;
 
+  ///El usuario ve 3 campos de texto para cambiar la contraseña y un botón para confirmar el cambio
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -424,12 +461,19 @@ class ChangePasswordContextDialogState
   }
 
   ///Función de cambio de contraseña:
+  ///
   ///Al rellenar los datos, empezará a hacer los controles de las siguientes condiciones:
+  ///
   /// - Todos los campos deben estar rellenados
+  ///
   /// - La contraseña antigua tiene que estar puesta correctamente
+  ///
   /// - La contraseña nueva no puede ser igual a la antigua
+  ///
   /// - La contraseña nueva debe tener como minimo 8 caracteres
+  ///
   /// - La contraseña nueva y el texto del campo de repetición de contraseña han de ser iguales
+  ///
   ///Si todos los campos están correctamente rellenados, se envía la nueva contraseña como señal positiva y se cierra el pop up
   void changePass(BuildContext context) {
     bool allCorrect = false;
@@ -497,10 +541,13 @@ class ImageUploadContextDialog extends StatefulWidget {
 }
 
 ///Estado del Dialog del cambio de url de imagen
-///Aparece un pop up con un bloque de texto para introducir la URL de la imagen y un botón para aceptar
 class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
+  ///Controller del bloque de texto del enlace
   TextEditingController linkController = TextEditingController();
+  ///String nullable del error del bloque de texto
   String? errorTxt;
+
+  ///Aparece un pop up con un bloque de texto para introducir la URL de la imagen y un botón para aceptar
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -535,8 +582,11 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   }
 
   ///Función de cambio de imagen
+  ///
   ///Al rellenar los datos, empezará a hacer los controles de la siguiente condicion:
+  ///
   /// - El campo del enlace debe estar relleno y no puede exceder los 255 caracteres
+  ///
   ///Una vez completado
   void changeUserImage(BuildContext context) {
     if (linkController.text.isNotEmpty && linkController.text.length < 256) {

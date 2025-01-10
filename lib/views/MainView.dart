@@ -7,9 +7,6 @@ import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
 
-
-
-
 ///Vista de la pantalla principal
 class Mainview extends StatefulWidget {
   const Mainview({super.key});
@@ -19,19 +16,29 @@ class Mainview extends StatefulWidget {
 }
 
 ///Estado de la vista principal:
-///El usuario verá de forma constante el título de la pestaña en la que se encuentra y una barra de navegación inferior con la que puede ir a distintas páginas de la aplicación.
-///Dependiendo de qué pestaña esté seleccionada en el menú inferior, el contenido del cuerpo (body) de la vista será distinta
-///En la barra superior del menú principal, aparece un icono con la imagen del perfil del usuario. Si se pulsa ahí, aparecerá el Drawer.
 class MainviewState extends State<Mainview> {
-
+  ///Indice de la pagina (Guía al menú de navegación inferior)
   int actualPage = 0;
 
-  @override void initState() {
+  AnalysisView aView = AnalysisView();
+
+  ///En este caso, se precargan los distintos dispositivos y carpetas ocultas
+  @override
+  void initState() {
     super.initState();
-    context.read<MainAppProvider>().getDevicesList(); //Precarga de los dispositivos vinculados
-    context.read<MainAppProvider>().reloadFFolders(); //Precarga de los archivos prohibidos
+    context
+        .read<MainAppProvider>()
+        .getDevicesList(); //Precarga de los dispositivos vinculados
+    context
+        .read<MainAppProvider>()
+        .reloadFFolders(); //Precarga de los archivos prohibidos
   }
 
+  ///El usuario verá de forma constante el título de la pestaña en la que se encuentra y una barra de navegación inferior con la que puede ir a distintas páginas de la aplicación.
+  ///
+  ///Dependiendo de qué pestaña esté seleccionada en el menú inferior, el contenido del cuerpo (body) de la vista será distinta.
+  ///
+  ///En la barra superior del menú principal, aparece un icono con la imagen del perfil del usuario. Si se pulsa ahí, aparecerá el Drawer.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,34 +50,52 @@ class MainviewState extends State<Mainview> {
           int() => throw UnimplementedError(),
         }),
         leading: Builder(builder: (context) {
-          return Row(
-            children: [
-              SizedBox(width: 10,),
-              GestureDetector(
-            child: CircleAvatar(
-              backgroundImage: (context.watch<MainAppProvider>().thisUser!=null && context.watch<MainAppProvider>().thisUser!.userIMGData!=null)?NetworkImage(context.watch<MainAppProvider>().thisUser!.userIMGData!):null,),
-            onTap: () {
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-          ]
-          );
+          return Row(children: [
+            SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: (context.watch<MainAppProvider>().thisUser !=
+                            null &&
+                        context
+                                .watch<MainAppProvider>()
+                                .thisUser!
+                                .userIMGData !=
+                            null)
+                    ? NetworkImage(
+                        context.watch<MainAppProvider>().thisUser!.userIMGData!)
+                    : null,
+              ),
+              onTap: () {
+                Scaffold.of(context).openDrawer();
+              },
+            ),
+          ]);
         }),
       ),
       drawer: AppDrawer(),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: AppLocalizations.of(context)!.mainPage),
-        BottomNavigationBarItem(icon: Icon(Icons.file_open), label: AppLocalizations.of(context)!.vaultLow),
-        BottomNavigationBarItem(icon: Icon(Icons.device_hub), label: AppLocalizations.of(context)!.devicesLow)
-      ],
-      currentIndex: actualPage,
-      onTap: (value){
-        setState(() {
-          actualPage = value;
-        });
-      },),
-      body: switch(actualPage){
-        0 => AnalysisView(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: AppLocalizations.of(context)!.mainPage),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.file_open),
+              label: AppLocalizations.of(context)!.vaultLow),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.device_hub),
+              label: AppLocalizations.of(context)!.devicesLow)
+        ],
+        currentIndex: actualPage,
+        onTap: (value) {
+          setState(() {
+            actualPage = value;
+          });
+        },
+      ),
+      body: switch (actualPage) {
+        0 => aView,
         1 => AppVault(),
         2 => AppDevicesView(),
         int() => throw UnimplementedError(),

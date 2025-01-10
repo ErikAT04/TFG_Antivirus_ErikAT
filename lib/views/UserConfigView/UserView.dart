@@ -8,9 +8,12 @@ import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-///Vista de la gestión del usuario
-///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados
+///Vista de la gestión del usuario.
+///
+///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados.
+///
 ///Aparte de esto, tiene una selección de botones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
+///
 ///Además de esos cambios, se puede cerrar sesión y borrar la cuenta con otros botones que se ven a continuación.
 class UserView extends StatelessWidget {
   const UserView({super.key});
@@ -94,8 +97,10 @@ class UserView extends StatelessWidget {
     );
   }
 
-  ///Función de cambio de imagen:
+  ///Función de cambio de imagen
+  ///
   ///Abre un pop up con un textfield donde poner el url de la imagen
+  ///
   ///Si recibe un url, cambia la imagen del usuario y de la aplicación
   void changeIMG(BuildContext context, User u) async {
     String? res = await showDialog(
@@ -107,8 +112,10 @@ class UserView extends StatelessWidget {
     }
   }
 
-  ///Función de cambio de nombre de usuario:
+  ///Función de cambio de nombre de usuario
+  ///
   ///Abre un pop up con bloques de texto para confirmar el nuevo nombre de usuario.
+  ///
   ///Si recibe del pop up el nombre de usuario correctamente, cambia los parámetros de éste.
   void changeUserPass(BuildContext context) async {
     String? newPass = await showDialog<String>(
@@ -119,8 +126,10 @@ class UserView extends StatelessWidget {
     }
   }
 
-  ///Función de cambio de contraseña:
+  ///Función de cambio de contraseña
+  ///
   ///Abre un pop up con bloques de texto para confirmar la nueva contraseña.
+  ///
   ///Si recibe del pop up la nueva contraseña correctamente, cambia los parámetros del usuario
   void changeUserName(BuildContext context) async {
     String? newName = await showDialog<String>(
@@ -131,8 +140,10 @@ class UserView extends StatelessWidget {
     }
   }
 
-  ///Función de borrado de usuario:
+  ///Función de borrado de usuario
+  ///
   ///Abre un pop up donde el usuario elige si quiere o no borrar su cuenta
+  ///
   ///Si elige que sí, se realizan las operaciones de borrado de cuenta
   void eraseUser(BuildContext context) async {
     bool? res = await showDialog<bool>(
@@ -146,6 +157,7 @@ class UserView extends StatelessWidget {
   }
 
   ///Función de cierre de sesión
+  ///
   ///Es más simple que el resto, simplemente cambia los parámetros de las preferencias y vuelve al login (sin vuelta atrás)
   void logOut(BuildContext context) {
     Navigator.pop(context);
