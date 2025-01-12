@@ -33,10 +33,12 @@ class AppVaultState extends State<AppVault> {
     return Center(
       child: Column(
         children: [
-          Text(AppLocalizations.of(context)!.vaultDesc),
+          ExcludeSemantics( child: Text(AppLocalizations.of(context)!.vaultDesc)),
           (list.length == 0)
               ? Text("No data yet")
-              : Expanded(
+              : Semantics(
+                label: AppLocalizations.of(context)!.fileList,
+                child: Expanded(
                   child: ListView.builder(
                       itemCount: list.length,
                       itemBuilder: (context, index) {
@@ -52,7 +54,8 @@ class AppVaultState extends State<AppVault> {
                             ),
                           ),
                         );
-                      }))
+                      })),
+              )
         ],
       ),
     );

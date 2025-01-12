@@ -28,7 +28,8 @@ class UserView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          MergeSemantics(
+              child: Container(
             padding: EdgeInsets.all(10),
             color: AppEssentials.colorsMap["appMainLightBlue"],
             child: Row(
@@ -36,16 +37,19 @@ class UserView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                GestureDetector(
-                    child: CircleAvatar(
-                      backgroundImage: (u.userIMGData != null)
-                          ? NetworkImage(u.userIMGData!)
-                          : null,
-                      radius: 60,
-                    ),
-                    onTap: () {
-                      changeIMG(context, u);
-                    }),
+                Semantics(
+                    label: AppLocalizations.of(context)!.userImg,
+                    hint: AppLocalizations.of(context)!.userImgContext,
+                    child: GestureDetector(
+                        child: CircleAvatar(
+                          backgroundImage: (u.userIMGData != null)
+                              ? NetworkImage(u.userIMGData!)
+                              : null,
+                          radius: 60,
+                        ),
+                        onTap: () {
+                          changeIMG(context, u);
+                        })),
                 Expanded(
                     child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -61,35 +65,50 @@ class UserView extends StatelessWidget {
                 ))
               ],
             ),
-          ),
+          )),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    changeUserName(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.userCName)),
-              ElevatedButton(
-                  onPressed: () {
-                    changeUserPass(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.userCPass)),
+              Semantics(
+                label: AppLocalizations.of(context)!.userCName,
+                hint: AppLocalizations.of(context)!.userCNameContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      changeUserName(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.userCName)),
+              ),
+              Semantics(
+                label: AppLocalizations.of(context)!.userCPass,
+                hint: AppLocalizations.of(context)!.userCPassContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      changeUserPass(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.userCPass)),
+              )
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    logOut(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.userLOut)),
-              ElevatedButton(
+              Semantics(
+                label: AppLocalizations.of(context)!.userLOut,
+                hint: AppLocalizations.of(context)!.userLOutContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      logOut(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.userLOut)),
+              ),
+              Semantics(
+                label: AppLocalizations.of(context)!.userErase,
+                hint: AppLocalizations.of(context)!.userEraseContext,
+                child: ElevatedButton(
                   onPressed: () {
                     eraseUser(context);
                   },
-                  child: Text(AppLocalizations.of(context)!.userErase)),
+                  child: Text(AppLocalizations.of(context)!.userErase)),)
             ],
           )
         ],

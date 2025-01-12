@@ -1,4 +1,4 @@
-{
+{"@@locale":"es",
     "cancel":"Cancelar",
 
     "logIn": "Iniciar Sesión",
@@ -10,6 +10,11 @@
     "errorNotFound":"No se ha encontrado ningún usuario con ese nombre o correo",
     "errorWrongPass":"Contraseña incorrecta",
 
+    "logInContext":"Pulse aquí para iniciar sesión",
+    "registerContext":"Pulse aquí para registrarse",
+    "userOrEmailContext":"Introduzca su nombre de usuario o correo electrónico",
+    "passContext":"Introduzca su contraseña",
+
     "uname":"Nombre de Usuario",
     "repPass":"Repetir Contraseña",
     "email":"Correo Electrónico",
@@ -19,8 +24,18 @@
     "emailNotValid":"El correo no cumple los requisitos",
     "emailUnavaliable":"Este correo ya está registrado",
 
+    "unameContext":"Introduzca aquí su nombre de usuario",
+    "emailContext":"Introduzca aquí su correo electrónico",
+    "repPassContext":"Repita su contraseña",
+
+    "mainPageContext":"Pulse aquí para ir al menú de análisis",
+    "vaultContext":"Pulse aquí para ir al menú de archivos bloqueados",
+    "deviceContext":"Pulse aquí para ir al menú de dispositivos",
+
     "analyse":"Analizar",
     "mainPage":"Página Principal",
+
+    "analyseBttContext":"Pulse aquí para analizar el dispositivo",
 
     "vault":"Baúl de Archivos",
     "vaultLow":"Baúl",
@@ -29,6 +44,9 @@
     "malType":"Tipo de Malware:",
     "confDate":"Fecha de Confinamiento:",
     "restFile":"Restaurar Archivo",
+
+    "fileList":"Lista de archivos",
+    "devlist":"Lista de dispositivos",
 
     "myDevices":"Mis Dispositivos",
     "devicesLow":"Dispositivos",
@@ -40,10 +58,21 @@
     "drawerDarkMode":"Modo Oscuro",
     "drawerAppVer":"Versión de la Aplicación",
 
+    "userTile":"Perfil de usuario",
+    "userContext":"Pulse aquí para ir al menú de usuario",
+    "ffoldersContext":"Pulse aquí para ir al menú de carpetas prohibidas",
+    "translate":"Pulse en la bandera para cambiar idioma",
+    "drawerAppVerContext":"Pulse aquí para ver los datos de las versiones de la aplicación",
+    "darkModeContext":"Cambie aquí el modo claro y oscuro",
+
     "fFoldersInfo":"Aquí aparecerán las carpetas a las que no se desea que el antivirus analice ",
     "fFoldersAddFolder":"Añadir Carpeta",
     "fFoldersFolder":"Carpeta:",
+    "fFoldersAlreadyError":"Esta carpeta ya estaba en la lista",
 
+    "ffolderBttContext":"Pulse aquí para añadir una nueva carpeta",
+    "ffolderList":"Lista de carpetas prohibidas, puedes eliminarlas dando al icono de borrar",
+    
     "user":"Usuario",
     "userMemSince":"Miembro desde:",
     "userNumDevices":"Dispositivos conectados:",
@@ -53,6 +82,15 @@
     "userLOut":"Cerrar Sesión",
     "userErase":"Borrar Cuenta",
     "userAskErase":"¿Estás seguro de que quieres borrar tu cuenta? Esta acción no se puede deshacer",
+
+    "userImg":"Imagen del usuario",
+    "userImgContext":"Pulse sobre ella para cambiar la imagen",
+    "userCNameContext":"Pulse aquí para cambiar su nombre de usuario",
+    "userCPassContext":"Pulse aquí para cambiar su contraseña",
+    "userLOutContext":"Pulse aquí para cerrar su sesión",
+    "userEraseContext":"Pulse aquí para borrar su cuenta",
+    "confirmContext":"Pulse para confirmar su acción",
+    "cancelContext":"Pulse para cancelar su acción",
 
     "formerPassword":"Escriba su anterior contraseña",
     "newPassword":"Escriba la nueva contraseña",

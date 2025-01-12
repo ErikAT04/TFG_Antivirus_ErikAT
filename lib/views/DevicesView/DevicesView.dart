@@ -22,7 +22,9 @@ class AppDevicesView extends StatelessWidget {
         ? Center(
             child: CircularProgressIndicator(),
           )
-        : ListView.builder(
+        : Semantics(
+          label: AppLocalizations.of(context)!.devlist,
+          child: ListView.builder(
             itemCount: myDevices.length,
             itemBuilder: (context, index) {
               Device dev = myDevices[index];
@@ -98,6 +100,7 @@ class AppDevicesView extends StatelessWidget {
                               "${AppLocalizations.of(context)!.regDate} ${dev.join_in}")
                         ],
                       )));
-            });
+            }),
+        );
   }
 }

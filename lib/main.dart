@@ -1,5 +1,6 @@
-import 'dart:isolate';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/model/Device.dart';
@@ -85,13 +86,29 @@ class MainAppProvider extends ChangeNotifier {
 
   String estado = "";
 
-  void prueba()async{
+  void analizarArchivos()async{
     isIsolateActive = true;
     notifyListeners();
-    for(var i=0; i<10; i++){
-      estado = "Espera ${10-i} segundo${(10-i!=1)?"s":""}";
-      notifyListeners();
-      await Future.delayed(Duration(seconds: 1));
+    // Verificar el estado del permiso
+    if (await Permission.manageExternalStorage.status.isGranted) {
+      // Permiso ya concedido
+      Logger().d("Permiso concedido");
+      await AppEssentials.pruebaAnalisisArchivos();
+      AppEssentials.dev!.last_scan = DateTime.now();
+      await DeviceDAO().update(AppEssentials.dev!);
+    } else {
+      // Solicitar permiso
+      print("Solicitando permiso de almacenamiento...");
+      if (await Permission.manageExternalStorage.request().isGranted) {
+        // Permiso concedido
+        Logger().d("Permiso concedido");
+        await AppEssentials.pruebaAnalisisArchivos();
+        AppEssentials.dev!.last_scan = DateTime.now();
+        await DeviceDAO().update(AppEssentials.dev!);
+      } else {
+        // Permiso denegado
+        Logger().d("Permiso denegado");
+      }
     }
     isIsolateActive = false;
     notifyListeners();

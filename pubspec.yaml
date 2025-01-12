@@ -23,6 +23,8 @@ dependencies:
   permission_handler: ^11.3.1
   logger: ^2.5.0
   crypto: ^3.0.1
+  fluttertoast: ^8.2.10
+  flutter_markdown: ^0.7.5
   file_picker: ^8.1.7
   device_info_plus: ^11.2.0
 
@@ -38,3 +40,4 @@ flutter:
    - assets/icons/linux.svg
    - assets/icons/macos.svg
    - assets/icons/windows.svg
+   - assets/changelogs/

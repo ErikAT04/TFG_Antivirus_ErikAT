@@ -42,64 +42,127 @@ class MainviewState extends State<Mainview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(switch (actualPage) {
-          0 => AppLocalizations.of(context)!.mainPage,
-          1 => AppLocalizations.of(context)!.vault,
-          2 => AppLocalizations.of(context)!.myDevices,
-          int() => throw UnimplementedError(),
-        }),
-        leading: Builder(builder: (context) {
-          return Row(children: [
-            SizedBox(
-              width: 10,
-            ),
-            GestureDetector(
-              child: CircleAvatar(
-                backgroundImage: (context.watch<MainAppProvider>().thisUser !=
-                            null &&
-                        context
-                                .watch<MainAppProvider>()
-                                .thisUser!
-                                .userIMGData !=
-                            null)
-                    ? NetworkImage(
-                        context.watch<MainAppProvider>().thisUser!.userIMGData!)
-                    : null,
+        appBar: AppBar(
+          title: ExcludeSemantics(child: Text(switch (actualPage) {
+            0 => AppLocalizations.of(context)!.mainPage,
+            1 => AppLocalizations.of(context)!.vault,
+            2 => AppLocalizations.of(context)!.myDevices,
+            int() => throw UnimplementedError(),
+          })),
+          leading: Builder(builder: (context) {
+            return Row(children: [
+              SizedBox(
+                width: 10,
               ),
-              onTap: () {
-                Scaffold.of(context).openDrawer();
+              GestureDetector(
+                child: CircleAvatar(
+                  backgroundImage:
+                      (context.watch<MainAppProvider>().thisUser != null &&
+                              context
+                                      .watch<MainAppProvider>()
+                                      .thisUser!
+                                      .userIMGData !=
+                                  null)
+                          ? NetworkImage(context
+                              .watch<MainAppProvider>()
+                              .thisUser!
+                              .userIMGData!)
+                          : null,
+                ),
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+            ]);
+          }),
+        ),
+        drawer: AppDrawer(),
+        bottomNavigationBar: (MediaQuery.sizeOf(context).width > 720 ||
+                MediaQuery.sizeOf(context).width < 300)
+            ? null
+            : BottomNavigationBar(
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Semantics(
+                        child: Icon(Icons.home),
+                        label: AppLocalizations.of(context)!.mainPage,
+                        hint: AppLocalizations.of(context)!.mainPageContext,
+                      ),
+                      label: AppLocalizations.of(context)!.mainPage),
+                  BottomNavigationBarItem(
+                      icon: Semantics(
+                        child: Icon(Icons.file_open),
+                        label: AppLocalizations.of(context)!.vaultLow,
+                        hint: AppLocalizations.of(context)!.vaultContext,
+                      ),
+                      label: AppLocalizations.of(context)!.vaultLow),
+                  BottomNavigationBarItem(
+                      icon: Semantics(
+                        child: Icon(Icons.device_hub),
+                        label: AppLocalizations.of(context)!.devicesLow,
+                        hint: AppLocalizations.of(context)!.deviceContext,
+                      ),
+                      label: AppLocalizations.of(context)!.devicesLow)
+                ],
+                currentIndex: actualPage,
+                onTap: (value) {
+                  setState(() {
+                    actualPage = value;
+                  });
+                },
+              ),
+        body: Row(
+          children: [
+            (MediaQuery.sizeOf(context).width > 720 ||
+                    MediaQuery.sizeOf(context).width < 300)
+                ? NavigationRail(
+                    extended: MediaQuery.sizeOf(context).width > 720,
+                    destinations: [
+                      NavigationRailDestination(
+                          icon: Semantics(
+                            child: Icon(Icons.home),
+                            label: AppLocalizations.of(context)!.mainPage,
+                            hint: AppLocalizations.of(context)!.mainPageContext,
+                          ),
+                          label: ExcludeSemantics(
+                              child: Text(
+                                  AppLocalizations.of(context)!.mainPage))),
+                      NavigationRailDestination(
+                          icon: Semantics(
+                            child: Icon(Icons.file_open),
+                            label: AppLocalizations.of(context)!.vaultLow,
+                            hint: AppLocalizations.of(context)!.vaultContext,
+                          ),
+                          label: ExcludeSemantics(
+                              child: Text(
+                                  AppLocalizations.of(context)!.vaultLow))),
+                      NavigationRailDestination(
+                          icon: Semantics(
+                            child: Icon(Icons.device_hub),
+                            label: AppLocalizations.of(context)!.devicesLow,
+                            hint: AppLocalizations.of(context)!.deviceContext,
+                          ),
+                          label: ExcludeSemantics(
+                              child: Text(
+                                  AppLocalizations.of(context)!.devicesLow)))
+                    ],
+                    selectedIndex: actualPage,
+                    onDestinationSelected: (value) {
+                      setState(() {
+                        actualPage = value;
+                      });
+                    },
+                  )
+                : Padding(padding: EdgeInsets.all(0)),
+            Expanded(
+              child: switch (actualPage) {
+                0 => aView,
+                1 => AppVault(),
+                2 => AppDevicesView(),
+                int() => throw UnimplementedError(),
               },
-            ),
-          ]);
-        }),
-      ),
-      drawer: AppDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: AppLocalizations.of(context)!.mainPage),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.file_open),
-              label: AppLocalizations.of(context)!.vaultLow),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.device_hub),
-              label: AppLocalizations.of(context)!.devicesLow)
-        ],
-        currentIndex: actualPage,
-        onTap: (value) {
-          setState(() {
-            actualPage = value;
-          });
-        },
-      ),
-      body: switch (actualPage) {
-        0 => aView,
-        1 => AppVault(),
-        2 => AppDevicesView(),
-        int() => throw UnimplementedError(),
-      },
-    );
+            )
+          ],
+        ));
   }
 }

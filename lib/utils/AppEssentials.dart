@@ -51,7 +51,8 @@ class AppEssentials {
     "appDarkBlue": Color.fromARGB(255, 10, 32, 64),
     "white": Colors.white,
     "black": Colors.black,
-    "transpBlack": Color.fromARGB(25, 0, 0, 0)
+    "transpBlack": Color.fromARGB(25, 0, 0, 0),
+    "grey": Color.fromARGB(255, 233, 233, 233)
   };
 
   ///Tema del modo oscuro
@@ -144,6 +145,17 @@ class AppEssentials {
       textColor: colorsMap["appMainLightBlue"],
       subtitleTextStyle: TextStyle(color: colorsMap["white"])
     ),
+    navigationRailTheme: NavigationRailThemeData(
+      backgroundColor: colorsMap["appDarkBlue"],
+      unselectedIconTheme: IconThemeData(
+        color: colorsMap["appMainLightBlue"],
+      ),
+      selectedIconTheme: IconThemeData(
+        color: colorsMap["appMainLightBlue"]
+      ),
+      selectedLabelTextStyle: TextStyle(color: colorsMap["appMainLightBlue"]),
+      unselectedLabelTextStyle: TextStyle(color: colorsMap["appMainLightBlue"])
+    )
   );
 
   ///Tema del modo claro
@@ -194,7 +206,7 @@ class AppEssentials {
       )
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: colorsMap["white"],
+      backgroundColor: colorsMap["grey"],
       selectedItemColor: colorsMap["appDarkBlue"],
       unselectedItemColor: colorsMap["appDarkBlue"],
       selectedLabelStyle: TextStyle(color: colorsMap["appDarkBlue"]),
@@ -204,7 +216,7 @@ class AppEssentials {
       shadowColor: colorsMap["appMainBlue"],
       centerTitle: true,
       foregroundColor: colorsMap["appMainBlue"],
-      backgroundColor: colorsMap["white"],
+      backgroundColor: colorsMap["grey"],
       titleTextStyle: TextStyle(color: colorsMap["appMainBlue"], fontSize: 20)
     ),
     textTheme: Typography.blackCupertino,
@@ -237,6 +249,17 @@ class AppEssentials {
       textColor: colorsMap["appMainBlue"],
       subtitleTextStyle: TextStyle(color: colorsMap["appMainBlue"])
     ),
+    navigationRailTheme: NavigationRailThemeData(
+      backgroundColor: colorsMap["grey"],
+      unselectedIconTheme: IconThemeData(
+        color: colorsMap["appMainBlue"],
+      ),
+      selectedIconTheme: IconThemeData(
+        color: colorsMap["appMainBlue"]
+      ),
+      selectedLabelTextStyle: TextStyle(color: colorsMap["appMainBlue"]),
+      unselectedLabelTextStyle: TextStyle(color: colorsMap["appMainBlue"])
+    )
   );
 
   ///Lista de idiomas que se pueden usar

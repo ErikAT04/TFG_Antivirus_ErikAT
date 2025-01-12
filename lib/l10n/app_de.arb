@@ -1,4 +1,4 @@
-{
+{"@@locale":"de",
     "cancel":"Stornieren",
 
     "logIn":"Anmelden",
@@ -10,6 +10,11 @@
     "errorNotFound":"Benutzer mit diesem Namen oder dieser E-Mail-Adresse nicht gefunden",
     "errorWrongPass":"Falsches Passwort",
 
+    "logInContext":"Klicken Sie hier, um sich anzumelden",
+    "registerContext":"Klicken Sie hier, um sich zu registrieren",
+    "userOrEmailContext":"Geben Sie Ihren Benutzernamen oder Ihre E-Mail-Adresse ein",
+    "passContext":"Geben Sie Ihr Passwort ein",
+
     "uname":"Benutzername",
     "repPass":"Passwort wiederholen",
     "email":"E-Mail",
@@ -19,8 +24,18 @@
     "emailNotValid":"E-Mail entspricht nicht den Anforderungen",
     "emailUnavaliable":"Diese E-Mail ist bereits registriert",
 
+    "unameContext":"Geben Sie hier Ihren Benutzernamen ein",
+    "emailContext":"Geben Sie hier Ihre E-Mail-Adresse ein",
+    "repPassContext":"Wiederholen Sie Ihr Passwort",
+
+    "mainPageContext":"Klicken Sie hier, um zum Analysemenü zu gelangen",
+    "vaultContext":"Klicken Sie hier, um zum Menü 'Gesperrte Dateien' zu gelangen",
+    "deviceContext":"Klicken Sie hier, um zum Gerätemenü zu gelangen",
+
     "analyse":"Analysieren",
     "mainPage":"Hauptseite",
+
+    "analyseBttContext":"Klicken Sie hier, um das Gerät zu analysieren",
 
     "vault":"Dateispeicher",
     "vaultLow":"Speicher",
@@ -29,6 +44,9 @@
     "malType":"Malware-Typ:",
     "confDate":"Quarantänedatum:",
     "restFile":"Datei Wiederherstellen",
+
+    "fileList":"Dateiliste",
+    "devlist":"Geräteliste",
 
     "myDevices":"Meine Geräte",
     "devicesLow":"Geräte",
@@ -40,9 +58,20 @@
     "drawerDarkMode":"Dunkelmodus",
     "drawerAppVer":"App-Version",
 
+    "userTile":"Benutzerprofil",
+    "userContext":"Klicken Sie hier, um zum Benutzermenü zu gelangen",
+    "ffoldersContext":"Klicken Sie hier, um zum Menü'Verbotene Ordner' zu gelangen",
+    "translate":"Klicken Sie auf die Flagge, um die Sprache zu ändern",
+    "drawerAppVerContext":"Klicken Sie hier, um Daten zur Anwendungsversion anzuzeigen",
+    "darkModeContext":"Wechseln Sie hier zwischen Hell- und Dunkelmodus",
+
     "fFoldersInfo":"Hier erscheinen die Ordner, die der Antivirus nicht scannen soll",
     "fFoldersAddFolder":"Ordner Hinzufügen",
     "fFoldersFolder":"Ordner:",
+    "fFoldersAlreadyError":"Dieser Ordner war bereits in der Liste",
+
+    "ffolderBttContext":"Klicken Sie hier, um einen neuen Ordner hinzuzufügen",
+    "ffolderList":"Liste der verbotenen Ordner. Sie können sie löschen, indem Sie auf das Löschsymbol klicken",
 
     "user":"Benutzer",
     "userMemSince":"Mitglied seit:",
@@ -53,6 +82,15 @@
     "userLOut":"Abmelden",
     "userErase":"Konto Löschen",
     "userAskErase":"Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden",
+
+    "userImg":"Benutzerbild",
+    "userImgContext":"Klicken Sie darauf, um das Bild zu ändern",
+    "userCNameContext":"Klicken Sie hier, um Ihren Benutzernamen zu ändern",
+    "userCPassContext":"Klicken Sie hier, um Ihr Passwort zu ändern",
+    "userLOutContext":"Klicken Sie hier, um sich abzumelden",
+    "userEraseContext":"Klicken Sie hier, um Ihr Konto zu löschen",
+    "confirmContext":"Drücken Sie , um Ihre Aktion zu bestätigen",
+    "cancelContext":"Drücken Sie , um Ihre Aktion abzubrechen",
 
     "formerPassword":"Geben Sie Ihr altes Passwort ein",
     "newPassword":"Geben Sie das neue Passwort ein",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/views/AboutView.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:country_flags/country_flags.dart';
@@ -27,7 +28,10 @@ class AppDrawer extends StatelessWidget{
     return Drawer(
         child: Column(
           children: [
-            GestureDetector(
+            Semantics(
+              label: AppLocalizations.of(context)!.userTile,
+              hint: AppLocalizations.of(context)!.userContext,
+              child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>UserView()));
               },
@@ -51,7 +55,11 @@ class AppDrawer extends StatelessWidget{
                 ),
               ),
             ),
-            GestureDetector(
+            ),
+            Semantics(
+              label: AppLocalizations.of(context)!.drawerFFolders,
+              hint: AppLocalizations.of(context)!.ffoldersContext,
+              child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ForbFoldersView()));
               },
@@ -59,8 +67,11 @@ class AppDrawer extends StatelessWidget{
                 leading: Icon(Icons.folder, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
                 title: Text(AppLocalizations.of(context)!.drawerFFolders , style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               ),
-            ),
-            ListTile(
+            ),),
+            Semantics(
+              label: AppLocalizations.of(context)!.drawerTranslate,
+              hint: AppLocalizations.of(context)!.translate,
+              child: ListTile(
               leading: Icon(Icons.translate, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
               title: Text(AppLocalizations.of(context)!.drawerTranslate, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               trailing: DropdownButton(
@@ -87,7 +98,11 @@ class AppDrawer extends StatelessWidget{
                     context.read<MainAppProvider>().changeLang(value!);
                   }),
             ),
-            ListTile(
+            ),
+            Semantics(
+              label: AppLocalizations.of(context)!.drawerDarkMode,
+              hint: AppLocalizations.of(context)!.darkModeContext,
+              child: ListTile(
               leading: Icon(Icons.dark_mode, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
               title: Text(AppLocalizations.of(context)!.drawerDarkMode, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               trailing: Switch(
@@ -97,13 +112,20 @@ class AppDrawer extends StatelessWidget{
                     context.read<MainAppProvider>().changeTheme(value);
                   }),
             ),
-            GestureDetector(
-              onTap: () {},
+            ),
+            Semantics(
+              label: AppLocalizations.of(context)!.drawerAppVer,
+              hint: AppLocalizations.of(context)!.drawerAppVerContext,
+              child:GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutView(language: context.watch<MainAppProvider>().language.languageCode,)));
+              },
               child: ListTile(
                 leading: Icon(Icons.info, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-                title: Text("${AppLocalizations.of(context)!.appVer} (WIP)", style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+                title: Text(AppLocalizations.of(context)!.appVer, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               ),
             ),
+            )
           ],
         ),
       );

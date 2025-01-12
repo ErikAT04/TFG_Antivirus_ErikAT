@@ -21,20 +21,28 @@ class EraseContextDialog extends StatelessWidget {
       child: Wrap(
         alignment: WrapAlignment.center,
         children: [
-          Text(
-            AppLocalizations.of(context)!.userAskErase,
-            softWrap: true,
+          ExcludeSemantics(
+            child: Text(
+              AppLocalizations.of(context)!.userAskErase,
+              softWrap: true,
+            ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, true);
-              },
-              child: Text(AppLocalizations.of(context)!.userErase)),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, false);
-              },
-              child: Text(AppLocalizations.of(context)!.cancel)),
+          Semantics(
+              label: AppLocalizations.of(context)!.userErase,
+              hint: AppLocalizations.of(context)!.confirmContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: Text(AppLocalizations.of(context)!.userErase))),
+          Semantics(
+              label: AppLocalizations.of(context)!.cancel,
+              hint: AppLocalizations.of(context)!.cancelContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: Text(AppLocalizations.of(context)!.cancel))),
         ],
       ),
     );
@@ -85,65 +93,83 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
         spacing: 10,
         alignment: WrapAlignment.center,
         children: [
-          TextField(
-            controller: emailController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.email,
-                errorText: errorEmail,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch<MainAppProvider>().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap["appMainLightBlue"]
-                        : AppEssentials.colorsMap["appMainBlue"]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+              label: AppLocalizations.of(context)!.email,
+              hint: AppLocalizations.of(context)!.emailContext,
+              child: TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.email,
+                    errorText: errorEmail,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch<MainAppProvider>().theme ==
+                                AppEssentials.darkMode)
+                            ? AppEssentials.colorsMap["appMainLightBlue"]
+                            : AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              )),
+          Semantics(
+            label: AppLocalizations.of(context)!.uname,
+            hint: AppLocalizations.of(context)!.unameContext,
+            child: TextField(
+              controller: unameController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.uname,
+                  errorText: errorUname,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch<MainAppProvider>().theme ==
+                              AppEssentials.darkMode)
+                          ? AppEssentials.colorsMap["appMainLightBlue"]
+                          : AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
           ),
-          TextField(
-            controller: unameController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.uname,
-                errorText: errorUname,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch<MainAppProvider>().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap["appMainLightBlue"]
-                        : AppEssentials.colorsMap["appMainBlue"]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+            label: AppLocalizations.of(context)!.pass,
+            hint: AppLocalizations.of(context)!.passContext,
+            child: TextField(
+              controller: passController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.pass,
+                  errorText: errorPass,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch<MainAppProvider>().theme ==
+                              AppEssentials.darkMode)
+                          ? AppEssentials.colorsMap["appMainLightBlue"]
+                          : AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+              obscureText: true,
+            ),
           ),
-          TextField(
-            controller: passController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.pass,
-                errorText: errorPass,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch<MainAppProvider>().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap["appMainLightBlue"]
-                        : AppEssentials.colorsMap["appMainBlue"]),
-                errorStyle: TextStyle(fontSize: 10)),
-            obscureText: true,
-          ),
-          TextField(
-            controller: repPassController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.repPass,
-                errorText: errorRepPass,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch<MainAppProvider>().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap["appMainLightBlue"]
-                        : AppEssentials.colorsMap["appMainBlue"]),
-                errorStyle: TextStyle(fontSize: 10)),
-            obscureText: true,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                register(context);
-              },
-              child: Text(AppLocalizations.of(context)!.signUp))
+          Semantics(
+              label: AppLocalizations.of(context)!.repPass,
+              hint: AppLocalizations.of(context)!.repPassContext,
+              child: TextField(
+                controller: repPassController,
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.repPass,
+                    errorText: errorRepPass,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch<MainAppProvider>().theme ==
+                                AppEssentials.darkMode)
+                            ? AppEssentials.colorsMap["appMainLightBlue"]
+                            : AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+                obscureText: true,
+              )),
+          Semantics(
+            label: AppLocalizations.of(context)!.signUp,
+            hint: AppLocalizations.of(context)!.registerContext,
+            child: ElevatedButton(
+                onPressed: () {
+                  register(context);
+                },
+                child: Text(AppLocalizations.of(context)!.signUp)),
+          )
         ],
       ),
     ));
@@ -243,14 +269,17 @@ class ChangeUserNameContextDialog extends StatefulWidget {
 }
 
 ///Estado del dialog de cambio de nombre de usuario
-class ChangeUserNameContextDialogState extends State<ChangeUserNameContextDialog> {
+class ChangeUserNameContextDialogState
+    extends State<ChangeUserNameContextDialog> {
   ///Controller del texto del nombre de usuario
   TextEditingController unameController = TextEditingController();
+
   ///Controller del texto de la contraseña
   TextEditingController passController = TextEditingController();
 
   ///String nullable del error de nombre de usuario
   String? unameError;
+
   ///String nullable del error de contraseña
   String? passError;
 
@@ -264,45 +293,61 @@ class ChangeUserNameContextDialogState extends State<ChangeUserNameContextDialog
             crossAxisAlignment: WrapCrossAlignment.center,
             spacing: 10,
             children: [
-              TextField(
-                controller: unameController,
-                decoration: InputDecoration(
-                    errorText: unameError,
-                    labelText: AppLocalizations.of(context)!.newUserName,
-                    labelStyle: TextStyle(
-                        fontSize: 10,
-                        color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
-                    errorStyle: TextStyle(fontSize: 10)),
+              Semantics(
+                label: AppLocalizations.of(context)!.newUserName,
+                hint: AppLocalizations.of(context)!.unameContext,
+                child: TextField(
+                  controller: unameController,
+                  decoration: InputDecoration(
+                      errorText: unameError,
+                      labelText: AppLocalizations.of(context)!.newUserName,
+                      labelStyle: TextStyle(
+                          fontSize: 10,
+                          color: (context.watch<MainAppProvider>().theme ==
+                                  AppEssentials.darkMode)
+                              ? AppEssentials.colorsMap["appMainLightBlue"]
+                              : AppEssentials.colorsMap["appMainBlue"]),
+                      errorStyle: TextStyle(fontSize: 10)),
+                ),
               ),
-              TextField(
-                obscureText: true,
-                controller: passController,
-                decoration: InputDecoration(
-                    errorText: passError,
-                    labelText: AppLocalizations.of(context)!.passConfirm,
-                    labelStyle: TextStyle(
-                        fontSize: 10,
-                        color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
-                    errorStyle: TextStyle(fontSize: 10)),
+              Semantics(
+                label: AppLocalizations.of(context)!.passConfirm,
+                hint: AppLocalizations.of(context)!.passContext,
+                child: TextField(
+                  obscureText: true,
+                  controller: passController,
+                  decoration: InputDecoration(
+                      errorText: passError,
+                      labelText: AppLocalizations.of(context)!.passConfirm,
+                      labelStyle: TextStyle(
+                          fontSize: 10,
+                          color: (context.watch<MainAppProvider>().theme ==
+                                  AppEssentials.darkMode)
+                              ? AppEssentials.colorsMap["appMainLightBlue"]
+                              : AppEssentials.colorsMap["appMainBlue"]),
+                      errorStyle: TextStyle(fontSize: 10)),
+                ),
               ),
               Wrap(
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        changeName(context);
-                      },
-                      child: Text(AppLocalizations.of(context)!.userCName)),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context, null);
-                      },
-                      child: Text(AppLocalizations.of(context)!.cancel))
+                  Semantics(
+                    label: AppLocalizations.of(context)!.userCName,
+                    hint: AppLocalizations.of(context)!.userCNameContext,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          changeName(context);
+                        },
+                        child: Text(AppLocalizations.of(context)!.userCName)),
+                  ),
+                  Semantics(
+                    label: AppLocalizations.of(context)!.cancel,
+                    hint: AppLocalizations.of(context)!.cancelContext,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context, null);
+                        },
+                        child: Text(AppLocalizations.of(context)!.cancel)),
+                  )
                 ],
               )
             ],
@@ -377,18 +422,23 @@ class ChangePasswordContextDialog extends StatefulWidget {
 }
 
 ///Estado del Dialog de cambio de contraseña:
-class ChangePasswordContextDialogState extends State<ChangePasswordContextDialog> {
+class ChangePasswordContextDialogState
+    extends State<ChangePasswordContextDialog> {
   ///Controller del texto de la antigua contraseña
   TextEditingController oldPassController = TextEditingController();
+
   ///Controller del texto de la nueva contraseña
   TextEditingController newPassController = TextEditingController();
+
   ///Controller del texto de la repetición de la nueva contraseña
   TextEditingController repNewPassController = TextEditingController();
 
   ///String nullable del error de la antigua contraseña
   String? errorOld;
+
   ///String nullable del error de la nueva contraseña
   String? errorNew;
+
   ///String nullable del error de la repetición de la nueva contraseña
   String? errorRep;
 
@@ -402,58 +452,74 @@ class ChangePasswordContextDialogState extends State<ChangePasswordContextDialog
           crossAxisAlignment: WrapCrossAlignment.center,
           spacing: 10,
           children: [
-            TextField(
-              controller: oldPassController,
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.formerPassword,
-                  errorText: errorOld,
-                  labelStyle: TextStyle(
-                      fontSize: 10,
-                      color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
-                  errorStyle: TextStyle(fontSize: 10)),
+            Semantics(
+              label: AppLocalizations.of(context)!.formerPassword,
+              child: TextField(
+                controller: oldPassController,
+                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.formerPassword,
+                    errorText: errorOld,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch<MainAppProvider>().theme ==
+                                AppEssentials.darkMode)
+                            ? AppEssentials.colorsMap["appMainLightBlue"]
+                            : AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
             ),
-            TextField(
-              controller: newPassController,
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.newPassword,
-                  errorText: errorNew,
-                  labelStyle: TextStyle(
-                      fontSize: 10,
-                      color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
-                  errorStyle: TextStyle(fontSize: 10)),
+            Semantics(
+              label: AppLocalizations.of(context)!.newPassword,
+              child: TextField(
+                controller: newPassController,
+                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.newPassword,
+                    errorText: errorNew,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch<MainAppProvider>().theme ==
+                                AppEssentials.darkMode)
+                            ? AppEssentials.colorsMap["appMainLightBlue"]
+                            : AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
             ),
-            TextField(
-              obscureText: true,
-              controller: repNewPassController,
-              decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.repeatNewPass,
-                  errorText: errorRep,
-                  labelStyle: TextStyle(
-                      fontSize: 10,
-                      color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
-                  errorStyle: TextStyle(fontSize: 10)),
+            Semantics(
+              label: AppLocalizations.of(context)!.repeatNewPass,
+              child: TextField(
+                obscureText: true,
+                controller: repNewPassController,
+                decoration: InputDecoration(
+                    labelText: AppLocalizations.of(context)!.repeatNewPass,
+                    errorText: errorRep,
+                    labelStyle: TextStyle(
+                        fontSize: 10,
+                        color: (context.watch<MainAppProvider>().theme ==
+                                AppEssentials.darkMode)
+                            ? AppEssentials.colorsMap["appMainLightBlue"]
+                            : AppEssentials.colorsMap["appMainBlue"]),
+                    errorStyle: TextStyle(fontSize: 10)),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  changePass(context);
-                },
-                child: Text(AppLocalizations.of(context)!.userCPass)),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context, null);
-                },
-                child: Text(AppLocalizations.of(context)!.cancel))
+            Semantics(
+              label: AppLocalizations.of(context)!.userCPass,
+              hint: AppLocalizations.of(context)!.userCPassContext,
+              child: ElevatedButton(
+                  onPressed: () {
+                    changePass(context);
+                  },
+                  child: Text(AppLocalizations.of(context)!.userCPass)),
+            ),
+            Semantics(
+                label: AppLocalizations.of(context)!.cancel,
+                hint: AppLocalizations.of(context)!.cancelContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context, null);
+                    },
+                    child: Text(AppLocalizations.of(context)!.cancel)))
           ],
         ),
       ),
@@ -544,6 +610,7 @@ class ImageUploadContextDialog extends StatefulWidget {
 class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   ///Controller del bloque de texto del enlace
   TextEditingController linkController = TextEditingController();
+
   ///String nullable del error del bloque de texto
   String? errorTxt;
 
@@ -558,24 +625,29 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
         spacing: 10,
         alignment: WrapAlignment.center,
         children: [
-          TextField(
-            controller: linkController,
-            decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.linkput,
-                errorText: errorTxt,
-                labelStyle: TextStyle(
-                    fontSize: 10,
-                    color: (context.watch<MainAppProvider>().theme ==
-                            AppEssentials.darkMode)
-                        ? AppEssentials.colorsMap["appMainLightBlue"]
-                        : AppEssentials.colorsMap["appMainBlue"]),
-                errorStyle: TextStyle(fontSize: 10)),
+          Semantics(
+            label: AppLocalizations.of(context)!.linkput,
+            child: TextField(
+              controller: linkController,
+              decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.linkput,
+                  errorText: errorTxt,
+                  labelStyle: TextStyle(
+                      fontSize: 10,
+                      color: (context.watch<MainAppProvider>().theme ==
+                              AppEssentials.darkMode)
+                          ? AppEssentials.colorsMap["appMainLightBlue"]
+                          : AppEssentials.colorsMap["appMainBlue"]),
+                  errorStyle: TextStyle(fontSize: 10)),
+            ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                changeUserImage(context);
-              },
-              child: Text(AppLocalizations.of(context)!.loadImg))
+          Semantics(
+              label: AppLocalizations.of(context)!.loadImg,
+              child: ElevatedButton(
+                  onPressed: () {
+                    changeUserImage(context);
+                  },
+                  child: Text(AppLocalizations.of(context)!.loadImg)))
         ],
       ),
     ));

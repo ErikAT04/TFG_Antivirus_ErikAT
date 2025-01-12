@@ -1,4 +1,5 @@
-{
+{"@@locale":"fr",
+    
     "cancel":"Annuler",
 
     "logIn": "Se connecter",
@@ -10,6 +11,11 @@
     "errorNotFound":"Aucun utilisateur trouvé avec ce nom ou cette adresse",
     "errorWrongPass":"Passe incorrect",
 
+    "logInContext":"Cliquez ici pour vous connecter",
+    "registerContext":"Cliquez ici pour vous inscrire",
+    "userOrEmailContext":"Entrez votre nom d'utilisateur ou votre email",
+    "passContext":"Entrez votre mot de passe",
+
     "uname":"Nom d'utilisateur",
     "repPass":"Répetez le mot de Passe",
     "email":"E-mail",
@@ -18,9 +24,19 @@
     "diffPasswords":"Les mots de passe ne correspondent pas",
     "emailNotValid":"L'e-mail ne répond pas aux exigences",
     "emailUnavaliable":"Cet e-mail est déjà enregistré",
+
+    "unameContext":"Entrez votre nom d'utilisateur ici",
+    "emailContext":"Entrez votre email ici",
+    "repPassContext":"Répétez votre mot de passe",
+
+    "mainPageContext":"Cliquez ici pour accéder au menu d'analyse",
+    "vaultContext":"Cliquez ici pour accéder au menu des fichiers verrouillés",
+    "deviceContext":"Cliquez ici pour accéder au menu des appareils",
     
     "analyse": "Analyser",
     "mainPage": "Page principale",
+
+    "analyseBttContext":"Cliquez ici pour analyser l'appareil",
 
     "vault": "Coffre de fichiers",
     "vaultLow": "Coffre",
@@ -29,6 +45,9 @@
     "malType": "Type de malware :",
     "confDate": "Date de confinement :",
     "restFile": "Restaurer le fichier",
+
+    "fileList":"Liste des fichiers",
+    "devlist":"Liste des appareils",
 
     "myDevices": "Mes appareils",
     "devicesLow": "Appareils",
@@ -40,9 +59,20 @@
     "drawerDarkMode": "Mode sombre",
     "drawerAppVer": "Version de l'application",
 
+    "userTile":"Profil utilisateur",
+    "userContext":"Cliquez ici pour accéder au menu utilisateur",
+    "ffoldersContext":"Cliquez ici pour accéder au menu des dossiers interdits",
+    "translate":"Cliquez sur le drapeau pour changer de langue",
+    "drawerAppVerContext":"Cliquez ici pour voir les données de version de l'application",
+    "darkModeContext":"Basculez entre les modes clair et sombre ici",
+
     "fFoldersInfo": "Ici apparaîtront les dossiers que l'antivirus ne doit pas analyser",
     "fFoldersAddFolder": "Ajouter un dossier",
     "fFoldersFolder": "Dossier :",
+    "fFoldersAlreadyError":"Ce dossier était déjà dans la liste",
+
+    "ffolderBttContext":"Cliquez ici pour ajouter un nouveau dossier",
+    "ffolderList":"Liste des dossiers interdits, vous pouvez les supprimer en cliquant sur l'icône Supprimer",
 
     "user": "Utilisateur",
     "userMemSince": "Membre depuis :",
@@ -53,6 +83,15 @@
     "userLOut": "Se déconnecter",
     "userErase": "Supprimer le compte",
     "userAskErase":"Êtes-vous sûr de vouloir supprimer votre compte? Cette action ne peut pas être annulée",
+
+    "userImg":"Image de l'utilisateur",
+    "userImgContext":"Cliquez dessus pour changer l'image",
+    "userCNameContext":"Cliquez ici pour changer votre nom d'utilisateur",
+    "userCPassContext":"Cliquez ici pour changer votre mot de passe",
+    "userLOutContext":"Cliquez ici pour vous déconnecter",
+    "userEraseContext":"Cliquez ici pour supprimer votre compte",
+    "confirmContext":"Appuyez pour confirmer votre action",
+    "cancelContext":"Appuyez pour annuler votre action",
 
     "formerPassword":"Écrivez vous votre ancient mot de passe",
     "newPassword":"Écrivez vous le neu mot de passe",

@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,19 +27,25 @@ class ForbFoldersView extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              Text(AppLocalizations.of(context)!.fFoldersInfo),
-              ElevatedButton(
+              ExcludeSemantics(child: Text(AppLocalizations.of(context)!.fFoldersInfo)),
+              Semantics(
+                label: AppLocalizations.of(context)!.fFoldersAddFolder,
+                hint: AppLocalizations.of(context)!.ffolderBttContext,
+                child: ElevatedButton(
                   onPressed: () {
                     addFolder(context);
                   },
-                  child: Text(AppLocalizations.of(context)!.fFoldersAddFolder)),
-              Text(AppLocalizations.of(context)!.fFoldersFolder),
+                  child: Text(AppLocalizations.of(context)!.fFoldersAddFolder)),),
+              ExcludeSemantics(child:Text(AppLocalizations.of(context)!.fFoldersFolder)),
               Expanded(
-                  child: ListView.builder(
+                  child: Semantics(
+                    label: AppLocalizations.of(context)!.ffolderList,
+                    hint: AppLocalizations.of(context)!.ffolderList,
+                    child: ListView.builder(
                       itemCount: ffolders.length,
                       itemBuilder: (context, index) {
                         ForbFolder folder = ffolders[index];
-                        return ListTile(
+                        return MergeSemantics( child: ListTile(
                           leading: Icon(Icons.folder),
                           title: Text(folder.name),
                           subtitle: Text(folder.route),
@@ -49,8 +56,8 @@ class ForbFoldersView extends StatelessWidget {
                                     .read<MainAppProvider>()
                                     .deleteThisFolder(folder);
                               }),
-                        );
-                      }))
+                        ));
+                      })))
             ],
           ),
         ));
@@ -64,9 +71,20 @@ class ForbFoldersView extends StatelessWidget {
   void addFolder(BuildContext context) async {
     String? dirPath = await FilePicker.platform.getDirectoryPath();
     if (dirPath != null) {
+      bool b = false;
+
+      for(ForbFolder fb in context.read<MainAppProvider>().fFoldersList){
+        if(fb.route == dirPath){
+          b = true;
+        }
+      }
+      if(b){
+        Fluttertoast.showToast(msg: AppLocalizations.of(context)!.fFoldersAlreadyError);
+      } else{
       await ForbFolderDAO()
           .insert(ForbFolder(name: basename(dirPath), route: dirPath));
       context.read<MainAppProvider>().reloadFFolders();
+      }
     }
   }
 }

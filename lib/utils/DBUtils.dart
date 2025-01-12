@@ -12,7 +12,7 @@ class MySQLUtils {
   ///Función de carga de la BD de MySQL
   static Future<void> loadSQLDB() async {
     connection = await MySQLConnection.createConnection(
-        host: 'localhost',
+        host: '192.168.1.74',
         port: 3306,
         userName: 'root',
         password: 'toor',

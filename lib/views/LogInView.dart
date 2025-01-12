@@ -23,10 +23,13 @@ class LogInView extends StatefulWidget {
 class LogInViewState extends State<LogInView> {
   ///Controller del texto de la contraseña
   TextEditingController passController = TextEditingController();
+
   ///Controller del texto del correo electrónico
   TextEditingController emailController = TextEditingController();
+
   ///String nullable del error de la contraseña
   String? passErrorText;
+
   ///String nullable del error del email
   String? emailErrorText;
 
@@ -48,33 +51,46 @@ class LogInViewState extends State<LogInView> {
                   AppLocalizations.of(context)!.putCredentials,
                   style: TextStyle(fontSize: 16),
                 ),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: TextField(
-                        controller: emailController,
-                        decoration: InputDecoration(
-                            labelText: AppLocalizations.of(context)!.user,
-                            errorText: emailErrorText))),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: TextField(
-                      controller: passController,
-                      decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context)!.pass,
-                          errorText: passErrorText),
-                      obscureText: true,
-                    )),
-                ElevatedButton(
-                    onPressed: () {
-                      logIn(context);
-                    },
-                    child: Text(AppLocalizations.of(context)!.logIn)),
+                Semantics(
+                    label: AppLocalizations.of(context)!.user,
+                    hint: AppLocalizations.of(context)!.userOrEmailContext,
+                    child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: TextField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                                labelText: AppLocalizations.of(context)!.user,
+                                errorText: emailErrorText)))),
+                Semantics(
+                    label: AppLocalizations.of(context)!.pass,
+                    hint: AppLocalizations.of(context)!.passContext,
+                    child: Container(
+                        margin: EdgeInsets.all(10),
+                        child: TextField(
+                          controller: passController,
+                          decoration: InputDecoration(
+                              labelText: AppLocalizations.of(context)!.pass,
+                              errorText: passErrorText),
+                          obscureText: true,
+                        ))),
+                Semantics(
+                    label: AppLocalizations.of(context)!.logIn,
+                    hint: AppLocalizations.of(context)!.logInContext,
+                    child: ElevatedButton(
+                        onPressed: () {
+                          logIn(context);
+                        },
+                        child: Text(AppLocalizations.of(context)!.logIn))),
                 Padding(padding: EdgeInsets.all(5)),
-                ElevatedButton(
-                    onPressed: () {
-                      signUp(context);
-                    },
-                    child: Text(AppLocalizations.of(context)!.signUp)),
+                Semantics(
+                  label: AppLocalizations.of(context)!.signUp,
+                  hint: AppLocalizations.of(context)!.registerContext,
+                    child: ElevatedButton(
+                  onPressed: () {
+                    signUp(context);
+                  },
+                  child: Text(AppLocalizations.of(context)!.signUp),
+                )),
                 Padding(padding: EdgeInsets.all(5)),
               ],
             ),
@@ -91,11 +107,11 @@ class LogInViewState extends State<LogInView> {
   ///-	Si tienen datos, buscarán un usuario en la base de datos que coincida con el email o el nombre dado.
   ///
   /// -	Si no hay ocurrencias en la base de datos, mostrará un error de que el usuario no existe
-  /// 
+  ///
   /// -	Si hay ocurrencias, mira a ver si la contraseña es correcta
-  /// 
+  ///
   ///  - Si no es correcta, mostrará un error de contraseña
-  /// 
+  ///
   ///  - Si es correcta, enviará al usuario a la próxima página: La Vista Principal
   void logIn(BuildContext context) async {
     User? user;
@@ -138,7 +154,7 @@ class LogInViewState extends State<LogInView> {
       });
     }
   }
-  
+
   ///Función de registro
   ///
   ///Abre un pop up para hacer el formulario de registro.

@@ -1,4 +1,4 @@
-{
+{"@@locale":"en",
     "cancel":"Cancel",
 
     "logIn": "Log in",
@@ -10,6 +10,11 @@
     "errorNotFound":"Couldn't find any user with that username or email",
     "errorWrongPass":"Wrong password",
 
+    "logInContext":"Press here to log in",
+    "registerContext":"Press here to sign up",
+    "userOrEmailContext":"Write your username or email here",
+    "passContext":"Write your password here",
+
     "uname":"Username",
     "repPass":"Repeat password",
     "email":"Email",
@@ -19,8 +24,18 @@
     "emailNotValid":"The email does not meet the requirements",
     "emailUnavaliable":"This email has already been registered",
 
+    "unameContext":"Write here your username",
+    "emailContext":"Write here your email",
+    "repPassContext":"Repeat your password",
+
+    "mainPageContext":"Click here to go to the analysis menu",
+    "vaultContext":"Click here to go to the locked files menu",
+    "deviceContext":"Click here to go to the devices menu",
+
     "analyse":"Analyse",
     "mainPage":"Main Page",
+
+    "analyseBttContext":"Press here to analyse your device",
 
     "vault":"File Vault",
     "vaultLow":"Vault",
@@ -29,6 +44,9 @@
     "malType":"Malware Type:",
     "confDate":"Quarantine Date:",
     "restFile":"Restore File",
+
+    "fileList":"File list",
+    "devlist":"Device list",
 
     "myDevices":"My Devices",
     "devicesLow":"Devices",
@@ -40,9 +58,20 @@
     "drawerDarkMode":"Dark Mode",
     "drawerAppVer":"App Version",
 
+    "userTile":"User profile",
+    "userContext":"Click here to go to the user menu",
+    "ffoldersContext":"Click here to go to the prohibited folders menu",
+    "translate":"Click on the flag to change language",
+    "drawerAppVerContext":"Click here to see application version data",
+    "darkModeContext":"Switch between light and dark mode here",
+
     "fFoldersInfo":"The different folders in this page won't be scanned by the app",
     "fFoldersAddFolder":"Add Folder",
     "fFoldersFolder":"Folders:",
+    "fFoldersAlreadyError":"Esta carpeta ya estaba en la lista",
+
+    "ffolderBttContext":"Pulse aquí para añadir una nueva carpeta",
+    "ffolderList":"Lista de carpetas prohibidas, puedes eliminarlas dando al icono de borrar",
 
     "user":"User",
     "userMemSince":"Member since:",
@@ -53,6 +82,15 @@
     "userLOut":"Log out",
     "userErase":"Erase Account",
     "userAskErase":"Are you sure you want to delete your account? This action cannot be undone",
+
+    "userImg":"User Image",
+    "userImgContext":"Click on it to change the image",
+    "userCNameContext":"Click here to change your username",
+    "userCPassContext":"Click here to change your password",
+    "userLOutContext":"Click here to log out",
+    "userEraseContext":"Click here to delete your account",
+    "confirmContext":"Press to confirm your action",
+    "cancelContext":"Press to cancel your action",
 
     "formerPassword":"Write your former password",
     "newPassword":"Write the new password",
