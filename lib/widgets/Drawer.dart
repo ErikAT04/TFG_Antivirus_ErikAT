@@ -26,7 +26,8 @@ class AppDrawer extends StatelessWidget{
   Widget build(BuildContext context) {
     bool modoClaro = (context.watch<MainAppProvider>().theme==AppEssentials.lightMode);
     return Drawer(
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
           children: [
             Semantics(
               label: AppLocalizations.of(context)!.userTile,
@@ -128,6 +129,7 @@ class AppDrawer extends StatelessWidget{
             )
           ],
         ),
+        )
       );
   }
 

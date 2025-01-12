@@ -113,7 +113,8 @@ class AppEssentials {
       foregroundColor: colorsMap["white"],
       centerTitle: true,
       backgroundColor: colorsMap["appDarkBlue"],
-      titleTextStyle: TextStyle(color: colorsMap["white"], fontSize: 20)
+      titleTextStyle: TextStyle(color: colorsMap["white"], fontSize: 20),
+      
     ),
     textTheme: Typography.whiteCupertino,
     inputDecorationTheme: InputDecorationTheme(

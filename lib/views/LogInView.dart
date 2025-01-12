@@ -39,6 +39,7 @@ class LogInViewState extends State<LogInView> {
     return Scaffold(
         backgroundColor: AppEssentials.colorsMap["appMainBlue"],
         appBar: AppBar(
+          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: AppEssentials.colorsMap[(context.watch<MainAppProvider>().theme == AppEssentials.lightMode)?"appMainBlue":"appMainLightBlue"],height: 1,)),
             title: Center(
           child: Text(AppLocalizations.of(context)!.logIn),
         )),

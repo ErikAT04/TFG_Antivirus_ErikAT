@@ -82,10 +82,18 @@ class MainAppProvider extends ChangeNotifier {
   ///Lista de dispositivos
   List<Device> devList = [];
 
+  ///Estado del "hilo"
   bool isIsolateActive = false;
+  ///Mensaje de estado que ve el usuario
+  String estado = "Espere unos segundos...";
 
-  String estado = "";
-
+  ///Función de análisis de archivosç
+  ///
+  ///En esta versión de prueba, comienza con pedir el permiso de acceder a los ficheros al usuario si fuera necesario
+  ///
+  ///Si este acepta, recorrerá los archivos del dispositivo.
+  ///
+  ///Al estar en el notifier y ser una función asíncrona, es posible hacer otras tareas en el equipo mientras esta se lleva a cabo
   void analizarArchivos()async{
     isIsolateActive = true;
     notifyListeners();
