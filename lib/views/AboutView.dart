@@ -24,7 +24,6 @@ class AboutViewState extends State<AboutView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     rootBundle.loadString("assets/changelogs/log_$language.md").then((value){
       setState(() {
