@@ -6,12 +6,12 @@
 - A change in the navigation menu has been implemented on the main screen:
 	- If the screen is the size of a mobile phone, it will be seen at the bottom
 	- If the screen is excessively small or larger than that of a mobile phone, it will be seen on the left side.
-- Analysis function in progress: Added background tour with MacOS
+- Analysis function in progress: Added background tour with MacOS\
 **Fixes**:
 - The user can no longer enter a prohibited file more than once
 ## Old versions
 ### Version 0.1
-***Application Start***
+***Application Start***\
 **New additions***:
 - The operation of local and network databases has been implemented
 - Login and registration has been implemented

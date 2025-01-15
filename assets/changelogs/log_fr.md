@@ -6,12 +6,12 @@
 - Un changement dans le menu de navigation a été implémenté sur l'écran principal :
 	- Si l'écran a la taille d'un téléphone portable, il sera visible en bas
 	- Si l'écran est trop petit ou plus grand que celui d'un téléphone portable, il sera visible sur le côté gauche.
-- Analyse en cours : Ajout d'une visite en arrière-plan avec MacOS
+- Analyse en cours : Ajout d'une visite en arrière-plan avec MacOS\
 **Corrections** :
 - L'utilisateur ne peut plus saisir plus d'une fois un fichier interdit
 ## Anciennes versions
 ### Version 0.1
-***Début de l' app***
+***Début de l' app***\
 **Nouveaux ajouts*** :
 - L'exploitation des bases de données locales et réseau a été mise en place
 - La connexion et l'inscription ont été mises en œuvre

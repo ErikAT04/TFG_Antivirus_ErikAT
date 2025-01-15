@@ -6,12 +6,12 @@
 - Se ha implementado en la pantalla principal un cambio en el menú de navegación:
 	- Si la pantalla es del tamaño de un móvil, se verá en la parte inferior
 	- Si la pantalla es excesivamente pequeña o más grande que la de un móvil, se verá en el lado izquierdo.
-	- Análisis en progreso: Añadido recorrido en segundo plano con MacOS
+	- Análisis en progreso: Añadido recorrido en segundo plano con MacOS\
 **Arreglos**:
 - El usuario ya no puede introducir más de una vez un archivo prohibido
 ## Antiguas versiones
 ### Versión 0.1
-***Inicio de la Aplicación***
+***Inicio de la Aplicación***\
 **Nuevas adiciones***:
 - Se ha implementado el funcionamiento de las bases de datos local y en red
 - Se ha implementado el inicio de sesión y registro

@@ -1,20 +1,26 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:path/path.dart';
 import 'package:logger/logger.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/model/User.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/views/MainView.dart';
+import 'package:magik_antivirus/model/Signature.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/DataAccess/MalwareDAO.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 
 
 ///Función principal - Inicio de la aplicación.
@@ -30,6 +36,11 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await MySQLUtils.loadSQLDB();
   await SQLiteUtils.cargardb();
+  Directory dir = Directory(join((Platform.isAndroid)?(await getApplicationDocumentsDirectory()).path:(await getLibraryDirectory()).path, "MagikAV", "MyFiles"));
+  if(!dir.existsSync()){
+    dir.createSync(recursive: true);
+  }
+  AppEssentials.quarantineDirectory = dir;
   try{
   await AppEssentials.getProperties();
   }catch(e){
@@ -99,6 +110,11 @@ class MainAppProvider extends ChangeNotifier {
     notifyListeners();
     // Verificar el estado del permiso
     if (await Permission.manageExternalStorage.status.isGranted) {
+      List<Signature> sigs = await SignatureDAO().getSigs();
+      //Prueba de que cargan los ficheros
+      for(var sig in sigs){
+        print(sig);
+      }
       // Permiso ya concedido
       Logger().d("Permiso concedido");
       await AppEssentials.pruebaAnalisisArchivos();

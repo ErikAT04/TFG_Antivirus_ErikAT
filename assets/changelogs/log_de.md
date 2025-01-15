@@ -6,12 +6,12 @@
 - Auf dem Hauptbildschirm wurde eine Änderung im Navigationsmenü implementiert:
 	- Wenn der Bildschirm die Größe eines Mobiltelefons hat, wird er unten angezeigt
 	- Wenn der Bildschirm übermäßig klein oder größer als der eines Mobiltelefons ist, wird er auf der linken Seite angezeigt.
-- Analyse läuft: Hintergrundtour mit MacOS hinzugefügt
+- Analyse läuft: Hintergrundtour mit MacOS hinzugefügt\
 **Korrekturen**:
 - Der Benutzer kann eine verbotene Datei nicht mehr als einmal eingeben
 ## Alte Versionen
 ### Version 0.1
-***Bewerbungsstart***
+***Bewerbungsstart***\
 **Neuzugänge***:
 - Der Betrieb von lokalen und Netzwerkdatenbanken wurde implementiert
 - Login und Registrierung wurden implementiert

@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:path/path.dart';
+import 'package:http/http.dart' as http;
 import 'package:mysql_client/mysql_client.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-
+import 'package:magik_antivirus/model/Signature.dart';
 
 ///Utils del gestor de MySQL
 class MySQLUtils {
@@ -80,9 +81,8 @@ class SQLiteUtils {
     var dbfact;
     sqfliteFfiInit();
     if (!(Platform.isAndroid || Platform.isIOS)) {
-      
       //Llamo a la base de datos de databaseFactoryFfi para crear la BD
-       dbfact = databaseFactoryFfi;
+      dbfact = databaseFactoryFfi;
     } else {
       dbfact = databaseFactory;
     }
@@ -95,4 +95,18 @@ class SQLiteUtils {
 }
 
 //Utils del API que se vaya a leer
-class APIReaderUtils {}
+class APIReaderUtils {
+  static String apiRESTLink = "localhost:8000/api";
+
+  static Future<String> getData(Uri url) async {
+    //Función que recibe una url y devuelve el cuerpo del API
+    var response = await http.get(url); //Busca la url pasada
+    if (response.statusCode == 200) {
+      //Si el statusCode es 200 (Conexión realizada correctamente)
+      return response.body; //Devuelve el body de la búsqueda
+    } else {
+      //Si no, devuelve simplemente noBody
+      return "noBody";
+    }
+  }
+}
