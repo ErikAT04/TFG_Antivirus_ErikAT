@@ -1,5 +1,5 @@
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +23,7 @@ class ForbFoldersView extends StatelessWidget {
     List<ForbFolder> ffolders = context.watch<MainAppProvider>().fFoldersList;
     return Scaffold(
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: AppEssentials.colorsMap[(context.watch<MainAppProvider>().theme == AppEssentials.lightMode)?"appMainBlue":"appMainLightBlue"],height: 1,)),
+          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch<MainAppProvider>().theme == StyleEssentials.lightMode)?"appMainBlue":"appMainLightBlue"],height: 1,)),
           title: ExcludeSemantics(child: Text(AppLocalizations.of(context)!.drawerFFolders)),
         ),
         body: Center(

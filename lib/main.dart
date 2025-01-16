@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
@@ -8,20 +9,16 @@ import 'package:path_provider/path_provider.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/views/MainView.dart';
-import 'package:magik_antivirus/model/Signature.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/DataAccess/MalwareDAO.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-
 
 ///Función principal - Inicio de la aplicación.
 ///
@@ -30,20 +27,26 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///Después, carga las bases de datos, se accede a las propiedades y registra el dispositivo en la BD.
 ///
 /// - Si salta un error porque no encuentra la tabla de las propiedades, inicia todas las tablas y reintenta esa acción.
-/// 
+///
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MySQLUtils.loadSQLDB();
   await SQLiteUtils.cargardb();
-  Directory dir = Directory(join((Platform.isAndroid)?(await getApplicationDocumentsDirectory()).path:(await getLibraryDirectory()).path, "MagikAV", "MyFiles"));
-  if(!dir.existsSync()){
+  await AppEssentials.loadSigs();
+  Directory dir = Directory(join(
+      (Platform.isAndroid)
+          ? (await getApplicationDocumentsDirectory()).path
+          : (await getLibraryDirectory()).path,
+      "MagikAV",
+      "MyFiles"));
+  if (!dir.existsSync()) {
     dir.createSync(recursive: true);
   }
   AppEssentials.quarantineDirectory = dir;
-  try{
-  await AppEssentials.getProperties();
-  }catch(e){
+  try {
+    await AppEssentials.getProperties();
+  } catch (e) {
     await SQLiteUtils.startDB();
     await AppEssentials.getProperties();
   }
@@ -71,7 +74,9 @@ class MainApp extends StatelessWidget {
       supportedLocales: AppEssentials.listLocales,
       locale: context.watch<MainAppProvider>().language,
       theme: context.watch<MainAppProvider>().theme,
-      home: (context.watch<MainAppProvider>().thisUser==null)?LogInView():Mainview(), //Si no se carga un usuario por defecto, se va al inicio de sesión.
+      home: (context.watch<MainAppProvider>().thisUser == null)
+          ? LogInView()
+          : Mainview(), //Si no se carga un usuario por defecto, se va al inicio de sesión.
     );
   }
 }
@@ -82,19 +87,19 @@ class MainAppProvider extends ChangeNotifier {
   Locale language = Locale(AppEssentials.chosenLocale);
 
   ///Tema de la aplicación, empezando con el tema guardado en las preferencias
-  ThemeData theme = (AppEssentials.preferences.themeMode=="darkMode")?AppEssentials.darkMode:AppEssentials.lightMode;
-  
+  ThemeData theme = (AppEssentials.preferences.themeMode == "darkMode")
+      ? StyleEssentials.darkMode
+      : StyleEssentials.lightMode;
+
   ///Usuario de la aplicación, empezando por el usuario guardado en las preferencias
   User? thisUser = AppEssentials.user;
 
   ///Lista de directorios prohibidos
   List<ForbFolder> fFoldersList = [];
 
-  ///Lista de dispositivos
-  List<Device> devList = [];
-
   ///Estado del "hilo"
   bool isIsolateActive = false;
+
   ///Mensaje de estado que ve el usuario
   String estado = "Espere unos segundos...";
 
@@ -105,37 +110,42 @@ class MainAppProvider extends ChangeNotifier {
   ///Si este acepta, recorrerá los archivos del dispositivo.
   ///
   ///Al estar en el notifier y ser una función asíncrona, es posible hacer otras tareas en el equipo mientras esta se lleva a cabo
-  void analizarArchivos()async{
+  void analizarArchivos() async {
     isIsolateActive = true;
     notifyListeners();
     // Verificar el estado del permiso
     if (await Permission.manageExternalStorage.status.isGranted) {
-      List<Signature> sigs = await SignatureDAO().getSigs();
-      //Prueba de que cargan los ficheros
-      for(var sig in sigs){
-        print(sig);
-      }
       // Permiso ya concedido
-      Logger().d("Permiso concedido");
-      await AppEssentials.pruebaAnalisisArchivos();
+      Logger().d("Permiso ya concedido");
+      Set<String> folders =
+          (await ForbFolderDAO().list()).map((folder) => folder.route).toSet();
+
+      String mainDirectory = (Platform.isAndroid)
+          ? "/storage/emulated/0"
+          : (Platform.isWindows)
+              ? "C:\\"
+              : "/";
+
+      await AppEssentials.scanDir(Directory(mainDirectory), folders);
+
       AppEssentials.dev!.last_scan = DateTime.now();
       await DeviceDAO().update(AppEssentials.dev!);
+      isIsolateActive = false;
+      notifyListeners();
     } else {
       // Solicitar permiso
       print("Solicitando permiso de almacenamiento...");
       if (await Permission.manageExternalStorage.request().isGranted) {
         // Permiso concedido
         Logger().d("Permiso concedido");
-        await AppEssentials.pruebaAnalisisArchivos();
-        AppEssentials.dev!.last_scan = DateTime.now();
-        await DeviceDAO().update(AppEssentials.dev!);
+        analizarArchivos();
       } else {
         // Permiso denegado
         Logger().d("Permiso denegado");
+        isIsolateActive = false;
+        notifyListeners();
       }
     }
-    isIsolateActive = false;
-    notifyListeners();
   }
 
   ///Función que sirve para cambiar el idioma de la aplicación
@@ -146,19 +156,19 @@ class MainAppProvider extends ChangeNotifier {
     notifyListeners();
     AppEssentials.changeLang(lang);
   }
-  
+
   ///Función que sirve para cambiar el tema de la aplicación
   ///
   ///Además de cambiar el tema, guarda en las preferencias el tema actual
-  void changeTheme(bool val){
-    theme = val?AppEssentials.darkMode:AppEssentials.lightMode;
+  void changeTheme(bool val) {
+    theme = val ? StyleEssentials.darkMode : StyleEssentials.lightMode;
     AppEssentials.changeTheme(val);
     notifyListeners();
   }
 
   ///Función de cambio de usuario
   ///
-  ///Además, guarda el email de usuario y una booleana que marca que se inicie sesión de forma automática 
+  ///Además, guarda el email de usuario y una booleana que marca que se inicie sesión de forma automática
   void changeUser(User user) {
     this.thisUser = user;
     AppEssentials.putUser(user);
@@ -177,7 +187,7 @@ class MainAppProvider extends ChangeNotifier {
   ///Función de cierre de sesión
   ///
   ///Además de cerrar sesión poniendo al usuario nulo, desmarca la booleana de auto registro y quita el usuario del dispositivo (Por si se va a usar más tarde)
-  void logout() async{
+  void logout() async {
     thisUser = null;
     AppEssentials.preferences.isUserRegistered = false;
     await PrefsDAO().update(AppEssentials.preferences);
@@ -189,10 +199,10 @@ class MainAppProvider extends ChangeNotifier {
   ///Función de borrado de cuenta
   ///
   ///Se borra al usuario de la base de datos en red y luego se procede como en el cierre de sesión
-  void erase() async{
+  void erase() async {
     User u = thisUser!;
-    //Todos los dispositivos asignados a este usuario tendrán un usuario nulo al borrar el usuario. 
-    for(Device d in devList){
+    //Todos los dispositivos asignados a este usuario tendrán un usuario nulo al borrar el usuario.
+    for (Device d in await AppEssentials.getDevicesList()) {
       d.user = null;
       await DeviceDAO().update(d);
     }
@@ -200,20 +210,8 @@ class MainAppProvider extends ChangeNotifier {
     await UserDAO().delete(u);
   }
 
-  ///Función de obtención de la lista de dispositivos del usuario
-  void getDevicesList() async{
-    devList = [];
-    List<Device> auxList = await DeviceDAO().list();
-    for(Device device in auxList){
-      if(device.user == thisUser!.email){
-        devList.add(device);
-      }
-    }
-    notifyListeners();
-  }
-
   ///Función de recarga de los directorios prohibidos
-  void reloadFFolders() async{
+  void reloadFFolders() async {
     fFoldersList = await ForbFolderDAO().list();
     notifyListeners();
   }

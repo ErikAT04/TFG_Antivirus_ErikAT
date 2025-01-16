@@ -1,23 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/model/Device.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.
-///
-///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados.
-///
-///Aparte de esto, tiene una selección de botones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
-///
-///Además de esos cambios, se puede cerrar sesión y borrar la cuenta con otros botones que se ven a continuación.
-class UserView extends StatelessWidget {
+class UserView extends StatefulWidget {
   const UserView({super.key});
 
+  @override
+  State<UserView> createState() => UserViewState();
+}
+
+class UserViewState extends State<UserView> {
+  List<Device> devs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    AppEssentials.getDevicesList().then((value) {
+      devs = value;
+    });
+  }
+
+
+  ///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados.
+  ///
+  ///Aparte de esto, tiene una selección de botones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
+  ///
+  ///Además de esos cambios, se puede cerrar sesión y borrar la cuenta con otros botones que se ven a continuación.
   @override
   Widget build(BuildContext context) {
     User u = context.watch<MainAppProvider>().thisUser!;
@@ -31,7 +48,7 @@ class UserView extends StatelessWidget {
           MergeSemantics(
               child: Container(
             padding: EdgeInsets.all(10),
-            color: AppEssentials.colorsMap["appMainLightBlue"],
+            color: StyleEssentials.colorsMap["appMainLightBlue"],
             child: Row(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +77,7 @@ class UserView extends StatelessWidget {
                             fontSize: 25, fontWeight: FontWeight.bold)),
                     Text(u.email),
                     Text(
-                        "${AppLocalizations.of(context)!.userNumDevices} ${context.watch<MainAppProvider>().devList.length}"),
+                        "${AppLocalizations.of(context)!.userNumDevices} ${devs.length}"),
                   ],
                 ))
               ],
@@ -105,10 +122,11 @@ class UserView extends StatelessWidget {
                 label: AppLocalizations.of(context)!.userErase,
                 hint: AppLocalizations.of(context)!.userEraseContext,
                 child: ElevatedButton(
-                  onPressed: () {
-                    eraseUser(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.userErase)),)
+                    onPressed: () {
+                      eraseUser(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.userErase)),
+              )
             ],
           )
         ],

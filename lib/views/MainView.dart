@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/widgets/Drawer.dart';
@@ -29,9 +29,6 @@ class MainviewState extends State<Mainview> {
     super.initState();
     context
         .read<MainAppProvider>()
-        .getDevicesList(); //Precarga de los dispositivos vinculados
-    context
-        .read<MainAppProvider>()
         .reloadFFolders(); //Precarga de los archivos prohibidos
   }
 
@@ -44,7 +41,7 @@ class MainviewState extends State<Mainview> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: AppEssentials.colorsMap[(context.watch<MainAppProvider>().theme == AppEssentials.lightMode)?"appMainBlue":"appMainLightBlue"], height: 1,)),
+          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch<MainAppProvider>().theme == StyleEssentials.lightMode)?"appMainBlue":"appMainLightBlue"], height: 1,)),
           title: ExcludeSemantics(child: Text(switch (actualPage) {
             0 => AppLocalizations.of(context)!.mainPage,
             1 => AppLocalizations.of(context)!.vault,

@@ -3,7 +3,6 @@ import 'package:path/path.dart';
 import 'package:http/http.dart' as http;
 import 'package:mysql_client/mysql_client.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:magik_antivirus/model/Signature.dart';
 
 ///Utils del gestor de MySQL
 class MySQLUtils {
@@ -13,11 +12,11 @@ class MySQLUtils {
   ///Función de carga de la BD de MySQL
   static Future<void> loadSQLDB() async {
     connection = await MySQLConnection.createConnection(
-        host: 'localhost',
+        host: 'sql.freedb.tech',
         port: 3306,
-        userName: 'root',
-        password: 'toor',
-        databaseName: 'm_antivirus_db',
+        userName: 'freedb_AT_Root',
+        password: 'RR5xHVqx2J#uVN?',
+        databaseName: 'freedb_PruebasAndroid',
         secure: true);
     if (!connection.connected) {
       //En caso de que en algún dispositivo no se conecte directamente a la base de datos
@@ -78,7 +77,7 @@ class SQLiteUtils {
 
   ///Función de carga de la BD de SQLite
   static Future<void> cargardb() async {
-    var dbfact;
+    DatabaseFactory dbfact;
     sqfliteFfiInit();
     if (!(Platform.isAndroid || Platform.isIOS)) {
       //Llamo a la base de datos de databaseFactoryFfi para crear la BD
@@ -96,9 +95,10 @@ class SQLiteUtils {
 
 //Utils del API que se vaya a leer
 class APIReaderUtils {
-  static String apiRESTLink = "localhost:8000/api";
+  static String apiRESTLink = "tfg-antivirus-erik-at-api.vercel.app";
 
   static Future<String> getData(Uri url) async {
+    print(url);
     //Función que recibe una url y devuelve el cuerpo del API
     var response = await http.get(url); //Busca la url pasada
     if (response.statusCode == 200) {

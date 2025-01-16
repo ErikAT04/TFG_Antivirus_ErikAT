@@ -3,7 +3,7 @@
 ///Son todos aquellos que, por algún motivo de seguridad, han sido puestos en cuarentena
 class SysFile{
   ///Identificador del archivo
-  int id;
+  int? id;
   ///Nombre del archivo antes de ser puesto en cuarentena
   String name;
   ///Ruta del archivo antes de ser puesto en cuarentena
@@ -18,7 +18,7 @@ class SysFile{
   DateTime quarantineDate;
 
   ///Constructor
-  SysFile({required this.id, required this.name, required this.route, required this.newName, required this.newRoute, required this.malwareType, required this.quarantineDate});
+  SysFile({this.id, required this.name, required this.route, required this.newName, required this.newRoute, required this.malwareType, required this.quarantineDate});
 }
 
 /*

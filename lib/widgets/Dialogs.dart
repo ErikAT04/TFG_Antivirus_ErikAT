@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Dialog de borrado de cuenta.
@@ -104,9 +105,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap["appMainLightBlue"]
+                            : StyleEssentials.colorsMap["appMainBlue"]),
                     errorStyle: TextStyle(fontSize: 10)),
               )),
           Semantics(
@@ -120,9 +121,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                   labelStyle: TextStyle(
                       fontSize: 10,
                       color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap["appMainLightBlue"]
+                          : StyleEssentials.colorsMap["appMainBlue"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),
@@ -137,9 +138,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                   labelStyle: TextStyle(
                       fontSize: 10,
                       color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap["appMainLightBlue"]
+                          : StyleEssentials.colorsMap["appMainBlue"]),
                   errorStyle: TextStyle(fontSize: 10)),
               obscureText: true,
             ),
@@ -155,9 +156,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap["appMainLightBlue"]
+                            : StyleEssentials.colorsMap["appMainBlue"]),
                     errorStyle: TextStyle(fontSize: 10)),
                 obscureText: true,
               )),
@@ -304,9 +305,9 @@ class ChangeUserNameContextDialogState
                       labelStyle: TextStyle(
                           fontSize: 10,
                           color: (context.watch<MainAppProvider>().theme ==
-                                  AppEssentials.darkMode)
-                              ? AppEssentials.colorsMap["appMainLightBlue"]
-                              : AppEssentials.colorsMap["appMainBlue"]),
+                                  StyleEssentials.darkMode)
+                              ? StyleEssentials.colorsMap["appMainLightBlue"]
+                              : StyleEssentials.colorsMap["appMainBlue"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
@@ -322,9 +323,9 @@ class ChangeUserNameContextDialogState
                       labelStyle: TextStyle(
                           fontSize: 10,
                           color: (context.watch<MainAppProvider>().theme ==
-                                  AppEssentials.darkMode)
-                              ? AppEssentials.colorsMap["appMainLightBlue"]
-                              : AppEssentials.colorsMap["appMainBlue"]),
+                                  StyleEssentials.darkMode)
+                              ? StyleEssentials.colorsMap["appMainLightBlue"]
+                              : StyleEssentials.colorsMap["appMainBlue"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
@@ -463,9 +464,9 @@ class ChangePasswordContextDialogState
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap["appMainLightBlue"]
+                            : StyleEssentials.colorsMap["appMainBlue"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -480,9 +481,9 @@ class ChangePasswordContextDialogState
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap["appMainLightBlue"]
+                            : StyleEssentials.colorsMap["appMainBlue"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -497,9 +498,9 @@ class ChangePasswordContextDialogState
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<MainAppProvider>().theme ==
-                                AppEssentials.darkMode)
-                            ? AppEssentials.colorsMap["appMainLightBlue"]
-                            : AppEssentials.colorsMap["appMainBlue"]),
+                                StyleEssentials.darkMode)
+                            ? StyleEssentials.colorsMap["appMainLightBlue"]
+                            : StyleEssentials.colorsMap["appMainBlue"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -635,9 +636,9 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
                   labelStyle: TextStyle(
                       fontSize: 10,
                       color: (context.watch<MainAppProvider>().theme ==
-                              AppEssentials.darkMode)
-                          ? AppEssentials.colorsMap["appMainLightBlue"]
-                          : AppEssentials.colorsMap["appMainBlue"]),
+                              StyleEssentials.darkMode)
+                          ? StyleEssentials.colorsMap["appMainLightBlue"]
+                          : StyleEssentials.colorsMap["appMainBlue"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),

@@ -1,7 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
-import 'dart:convert' as convert;
-import 'package:flutter/services.dart';
+import 'package:magik_antivirus/DataAccess/FileDAO.dart';
+import 'package:path/path.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
+import 'package:magik_antivirus/model/File.dart';
+import 'package:magik_antivirus/model/Signature.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:magik_antivirus/model/Device.dart';
@@ -9,9 +14,14 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
+import 'package:crypto/crypto.dart' as crypto;
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 
-///App Essentials: El conjunto de objetos y métodos que la aplicación necesita acceder de forma estática desde todos lados
+///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
+///
+///Todos los objetos y funciones de la clase están configurados de forma estática para poder acceder desde cualquier lado
+///
+///El motivo por el que están aquí es o para ayudar al Provider antes de cargarlo y durante su uso.
 class AppEssentials {
   ///Usuario estático
   ///
@@ -22,6 +32,42 @@ class AppEssentials {
   ///
   ///Guardará y gestionará las preferencias de la aplicación, haciendo las operaciones CRUD de las bases de datos
   static late Preferences preferences;
+
+  ///Expresión regular de corrección del email:
+  ///
+  ///El correo electrónico puede tener
+  static RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9]+@[a-z]+\.[a-z]{3}$');
+
+  ///Directorio en cuarentena
+  ///
+  ///Guardará el directorio donde se guardan todos los archivos del dispositivo
+  static late Directory quarantineDirectory;
+
+  ///Lista de Firmas
+  ///
+  ///Al estar siendo cargado de una API que, de primeras, no cambia de forma constante, es innecesario meter esta información en el Provider
+  static late List<Signature> sigs;
+
+  ///Lenguaje elegido
+  static String chosenLocale = preferences.lang;
+
+  ///Tema elegido
+  static ThemeData theme = (preferences.isAutoTheme)
+      ? StyleEssentials.darkMode
+      : (preferences.themeMode == "Dark")
+          ? StyleEssentials.darkMode
+          : StyleEssentials.lightMode;
+
+  ///Lista de idiomas que se pueden usar
+  static List<Locale> listLocales = [
+    Locale('es'),
+    Locale('en'),
+    Locale('de'),
+    Locale('fr')
+  ];
+
+  ///Dispositivo actual
+  static Device? dev;
 
   ///Función de obtención de preferencias
   ///
@@ -41,232 +87,6 @@ class AppEssentials {
     preferences.lang = lang;
     await PrefsDAO().update(preferences);
   }
-
-  ///Mapa de colores
-  ///
-  ///Este mapa servirá para guardar todos los colores de la aplicación, de modo que se accede a ellas de forma sencilla.
-  static Map<String, Color> colorsMap = {
-    "appMainLightBlue": Color.fromARGB(255, 40, 184, 221),
-    "appMainBlue": Color.fromARGB(255, 14, 54, 111),
-    "appDarkBlue": Color.fromARGB(255, 10, 32, 64),
-    "white": Colors.white,
-    "black": Colors.black,
-    "transpBlack": Color.fromARGB(25, 0, 0, 0),
-    "grey": Color.fromARGB(255, 233, 233, 233)
-  };
-
-  ///Tema del modo oscuro
-  static ThemeData darkMode = ThemeData(
-      fontFamily: "Roboto",
-      colorSchemeSeed: colorsMap["appMainBlue"],
-      canvasColor: colorsMap["appDarkBlue"],
-      cardColor: colorsMap["appDarkBlue"],
-      dialogBackgroundColor: colorsMap["appDarkBlue"],
-      dividerColor: colorsMap["appMainLightBlue"],
-      focusColor: colorsMap["appMainLightBlue"],
-      highlightColor: colorsMap["appMainBlue"],
-      hoverColor: colorsMap["appMainBlue"],
-      //primaryColor: colorsMap["appMainBlue"],
-      primaryColorDark: colorsMap["appDarkBlue"],
-      primaryColorLight: colorsMap["appMainLightBlue"],
-      scaffoldBackgroundColor: colorsMap["appMainBlue"],
-      secondaryHeaderColor: colorsMap["appMainBlue"],
-      cardTheme: CardThemeData(
-        color: colorsMap["appDarkBlue"],
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-          //Fondo
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return colorsMap["appMainLightBlue"];
-            }
-            return colorsMap["appDarkBlue"];
-          },
-        ),
-        foregroundColor: WidgetStateProperty.resolveWith<Color?>(
-          //Texto
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return colorsMap["white"];
-            }
-            return colorsMap["appMainLightBlue"];
-          },
-        ),
-        side: WidgetStateProperty.resolveWith<BorderSide?>(
-          //Fondo
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return BorderSide(color: colorsMap["white"]!);
-            }
-            return BorderSide(color: colorsMap["appMainLightBlue"]!);
-          },
-        ),
-      )),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: colorsMap["appDarkBlue"],
-        selectedItemColor: colorsMap["appMainLightBlue"],
-        unselectedItemColor: colorsMap["appMainLightBlue"],
-        selectedLabelStyle: TextStyle(color: colorsMap["appMainLightBlue"]),
-        unselectedLabelStyle: TextStyle(color: colorsMap["appMainLightBlue"]),
-      ),
-      appBarTheme: AppBarTheme(
-        foregroundColor: colorsMap["white"],
-        centerTitle: true,
-        backgroundColor: colorsMap["appDarkBlue"],
-        titleTextStyle: TextStyle(color: colorsMap["white"], fontSize: 20),
-      ),
-      textTheme: Typography.whiteCupertino,
-      inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(
-          color: colorsMap["appMainLightBlue"],
-        ),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: colorsMap["appMainLightBlue"]!)),
-        errorBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: colorsMap["appMainLightBlue"]!),
-        ),
-      ),
-      iconTheme: IconThemeData(color: colorsMap["appMainLightBlue"]),
-      drawerTheme: DrawerThemeData(
-        backgroundColor: colorsMap["appDarkBlue"],
-        surfaceTintColor: colorsMap["appMainLightBlue"],
-      ),
-      dialogTheme: DialogThemeData(
-        backgroundColor: colorsMap["appDarkBlue"],
-      ),
-      listTileTheme: ListTileThemeData(
-          iconColor: colorsMap["appMainLightBlue"],
-          textColor: colorsMap["appMainLightBlue"],
-          subtitleTextStyle: TextStyle(color: colorsMap["white"])),
-      navigationRailTheme: NavigationRailThemeData(
-          backgroundColor: colorsMap["appDarkBlue"],
-          unselectedIconTheme: IconThemeData(
-            color: colorsMap["appMainLightBlue"],
-          ),
-          selectedIconTheme:
-              IconThemeData(color: colorsMap["appMainLightBlue"]),
-          selectedLabelTextStyle:
-              TextStyle(color: colorsMap["appMainLightBlue"]),
-          unselectedLabelTextStyle:
-              TextStyle(color: colorsMap["appMainLightBlue"])));
-
-  ///Tema del modo claro
-  static ThemeData lightMode = ThemeData(
-      fontFamily: "Roboto",
-      colorSchemeSeed: colorsMap["white"],
-      canvasColor: colorsMap["appMainBlue"],
-      cardColor: colorsMap["appMainBlue"],
-      dialogBackgroundColor: colorsMap["appMainBlue"],
-      dividerColor: colorsMap["appMainLightBlue"],
-      focusColor: colorsMap["appMainLightBlue"],
-      highlightColor: colorsMap["appMainLightBlue"],
-      hoverColor: colorsMap["appMainLightBlue"],
-      //primaryColor: colorsMap["appMainBlue"],
-      primaryColorDark: colorsMap["appDarkBlue"],
-      primaryColorLight: colorsMap["appMainLightBlue"],
-      scaffoldBackgroundColor: colorsMap["white"],
-      secondaryHeaderColor: colorsMap["appMainBlue"],
-      cardTheme: CardThemeData(
-        color: colorsMap["white"],
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
-          //Fondo
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return colorsMap["appDarkBlue"];
-            }
-            return colorsMap["white"];
-          },
-        ),
-        foregroundColor: WidgetStateProperty.resolveWith<Color?>(
-          //Texto
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return colorsMap["white"];
-            }
-            return colorsMap["black"];
-          },
-        ),
-        side: WidgetStateProperty.resolveWith<BorderSide?>(
-          //Borde
-          (Set<WidgetState> states) {
-            if (states.contains(WidgetState.hovered) ||
-                states.contains(WidgetState.pressed)) {
-              return BorderSide(color: colorsMap["appDarkBlue"]!);
-            }
-            return BorderSide(color: colorsMap["appMainBlue"]!);
-          },
-        ),
-      )),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: colorsMap["grey"],
-        selectedItemColor: colorsMap["appDarkBlue"],
-        unselectedItemColor: colorsMap["appDarkBlue"],
-        selectedLabelStyle: TextStyle(color: colorsMap["appDarkBlue"]),
-        unselectedLabelStyle: TextStyle(color: colorsMap["appDarkBlue"]),
-      ),
-      appBarTheme: AppBarTheme(
-          shadowColor: colorsMap["appMainBlue"],
-          centerTitle: true,
-          foregroundColor: colorsMap["appMainBlue"],
-          backgroundColor: colorsMap["grey"],
-          titleTextStyle:
-              TextStyle(color: colorsMap["appMainBlue"], fontSize: 20)),
-      textTheme: Typography.blackCupertino,
-      inputDecorationTheme: InputDecorationTheme(
-        labelStyle: TextStyle(
-          color: colorsMap["appMainBlue"],
-        ),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: colorsMap["appMainBlue"]!)),
-        errorBorder:
-            OutlineInputBorder(borderSide: BorderSide(color: Colors.red)),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: colorsMap["appMainBlue"]!),
-        ),
-      ),
-      iconTheme: IconThemeData(color: colorsMap["appMainBlue"]),
-      drawerTheme: DrawerThemeData(
-          backgroundColor: colorsMap["white"],
-          surfaceTintColor: colorsMap["black"]),
-      dialogTheme: DialogThemeData(
-        backgroundColor: colorsMap["white"],
-      ),
-      listTileTheme: ListTileThemeData(
-          iconColor: colorsMap["appMainBlue"],
-          textColor: colorsMap["appMainBlue"],
-          subtitleTextStyle: TextStyle(color: colorsMap["appMainBlue"])),
-      navigationRailTheme: NavigationRailThemeData(
-          backgroundColor: colorsMap["grey"],
-          unselectedIconTheme: IconThemeData(
-            color: colorsMap["appMainBlue"],
-          ),
-          selectedIconTheme: IconThemeData(color: colorsMap["appMainBlue"]),
-          selectedLabelTextStyle: TextStyle(color: colorsMap["appMainBlue"]),
-          unselectedLabelTextStyle:
-              TextStyle(color: colorsMap["appMainBlue"])));
-
-  ///Lista de idiomas que se pueden usar
-  static List<Locale> listLocales = [
-    Locale('es'),
-    Locale('en'),
-    Locale('de'),
-    Locale('fr')
-  ];
-
-  ///Dispositivo actual
-  static Device? dev;
 
   ///Función de registro y guardado de dispositivos
   ///
@@ -309,54 +129,6 @@ class AppEssentials {
     }
   }
 
-  ///Lenguaje elegido
-  static String chosenLocale = preferences.lang;
-
-  ///Tema elegido
-  static ThemeData theme = (preferences.isAutoTheme)
-      ? darkMode
-      : (preferences.themeMode == "Dark")
-          ? darkMode
-          : lightMode;
-
-  /*
-  Color? colorSchemeSeed,
-  Color? canvasColor,
-  Color? cardColor,
-  Color? dialogBackgroundColor,
-  Color? disabledColor,
-  Color? dividerColor,
-  Color? focusColor,
-  Color? highlightColor,
-  Color? hintColor,
-  Color? hoverColor,
-  Color? indicatorColor,
-  Color? primaryColor,
-  Color? primaryColorDark,
-  Color? primaryColorLight,
-  MaterialColor? primarySwatch,
-  Color? scaffoldBackgroundColor,
-  Color? secondaryHeaderColor,
-  Color? shadowColor,
-  Color? splashColor,
-  Color? unselectedWidgetColor,
-  */
-
-  ///Función de prueba de análisis:
-  ///
-  ///Si el dispositivo es Windows, comienza una búsqueda de archivos en C:\, mientras que en android (sin rootear) comienza en la raíz a la que tiene acceso
-  static Future<void> pruebaAnalisisArchivos() async {
-    List<String> forbiddenPaths =
-        (await ForbFolderDAO().list()).map((folder) => folder.route).toList();
-    if (Platform.isWindows) {
-      scanDir(Directory("C:"), forbiddenPaths);
-    } else if (Platform.isAndroid) {
-      scanDir(Directory("/storage/emulated/0"), forbiddenPaths);
-    } else {
-      scanDir(Directory('/'), forbiddenPaths);
-    }
-  }
-
   ///Función de escaneo de directorios:
   ///
   ///Mira si el File que está mirando es un directorio y si su acceso está o no prohibido
@@ -364,15 +136,29 @@ class AppEssentials {
   ///Si es un archivo, imprime su path (esto es solo de prueba de momento)
   ///
   ///Si es un directorio y tiene acceso a él, llama otra vez a su función, esta vez desde este nuevo directorio
-  static void scanDir(Directory d, List<String> forbiddenPaths) async {
-    await for (var f in d.list(recursive: false, followLinks: false)) {
-      if (f.statSync().type == FileSystemEntityType.directory &&
-          !forbiddenPaths.contains(f.path)) {
-        scanDir((Directory(f.path)), forbiddenPaths);
-      } else if (f.statSync() == FileSystemEntityType.file) {
-        File file = File(f.path);
-        String s = convert.base64Encode(file.readAsBytesSync());
+  static Future<void> scanDir(Directory d, Set<String> forbiddenPaths) async {
+    await for (var f in d.list(recursive: false)) {
+      if (f is File) {
+        var bytes = await f.readAsBytes();
+        String s = md5.convert(bytes).toString();
+        if (sigs.map((sig) => sig.signature).toList().contains(s)) {
+          Signature? signature = null;
+          for (var sig in sigs) {
+            if (sig.signature == s) {
+              signature = sig;
+            }
+          }
+          putInQuarantine(
+            f, signature!
+          );
+        }
         print("${f.path} : $s");
+      } else if (f is Directory && !forbiddenPaths.contains(f.path)) {
+        try {
+          await scanDir((Directory(f.path)), forbiddenPaths);
+        } catch (e) {
+          print("Error de directorio");
+        }
       }
     }
   }
@@ -395,10 +181,54 @@ class AppEssentials {
     await PrefsDAO().update(preferences);
   }
 
-  ///Expresión regular de corrección del email:
-  ///
-  ///El correo electrónico puede tener
-  static RegExp emailRegExp = RegExp(r'^[a-zA-Z0-9]+@[a-z]+\.[a-z]{3}$');
+  static Future<void> loadSigs() async {
+    sigs = await SignatureDAO().getSigs();
+  }
 
-  static late Directory quarantineDirectory;
+  ///Función de obtención de la lista de dispositivos del usuario
+  static Future<List<Device>> getDevicesList() async {
+    List<Device> devList = [];
+    List<Device> auxList = await DeviceDAO().list();
+    for (Device device in auxList) {
+      if (device.user == user!.email) {
+        devList.add(device);
+      }
+    }
+    return devList;
+  }
+
+  static void putInQuarantine(File f, Signature sig) async {
+    String pathSHA =
+        crypto.sha256.convert(utf8.encode(basename(f.path))).toString();
+    File file = await File(join(quarantineDirectory.path, pathSHA));
+    var fileInside = await f.readAsBytes();
+    file = await file.writeAsString(fileInside.toString());
+    await file.create();
+
+    SysFile sysFile = SysFile(
+        name: basename(f.path),
+        route: f.path,
+        newName: pathSHA,
+        newRoute: file.path,
+        malwareType: sig.type,
+        quarantineDate: DateTime.now());
+
+    await FileDAO().insert(sysFile);
+
+    await f.delete();
+  }
+
+  static void getOutOfQuarantine(SysFile s) async {
+    File file = File(s.route);
+    File quarantined = File(s.newRoute);
+
+    var bytes = await quarantined.readAsString();
+
+    file = await file.writeAsBytes(utf8.encode(bytes));
+    await file.create();
+
+    await quarantined.delete();
+
+    await FileDAO().delete(s);
+  }
 }

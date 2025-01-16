@@ -27,6 +27,7 @@ dependencies:
   flutter_markdown: ^0.7.5
   file_picker: ^8.1.7
   device_info_plus: ^11.2.0
+  flutter_background_service: ^5.1.0
 
 dev_dependencies:
   flutter_test:

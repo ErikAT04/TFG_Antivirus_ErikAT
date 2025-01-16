@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:magik_antivirus/views/AboutView.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
 import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
@@ -24,7 +24,7 @@ import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
 class AppDrawer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    bool modoClaro = (context.watch<MainAppProvider>().theme==AppEssentials.lightMode);
+    bool modoClaro = (context.watch<MainAppProvider>().theme==StyleEssentials.lightMode);
     return Drawer(
         child: SingleChildScrollView(
           child: Column(
@@ -65,16 +65,16 @@ class AppDrawer extends StatelessWidget{
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ForbFoldersView()));
               },
               child: ListTile(
-                leading: Icon(Icons.folder, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-                title: Text(AppLocalizations.of(context)!.drawerFFolders , style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+                leading: Icon(Icons.folder, color: StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
+                title: Text(AppLocalizations.of(context)!.drawerFFolders , style: TextStyle(color: (StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               ),
             ),),
             Semantics(
               label: AppLocalizations.of(context)!.drawerTranslate,
               hint: AppLocalizations.of(context)!.translate,
               child: ListTile(
-              leading: Icon(Icons.translate, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-              title: Text(AppLocalizations.of(context)!.drawerTranslate, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+              leading: Icon(Icons.translate, color: StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
+              title: Text(AppLocalizations.of(context)!.drawerTranslate, style: TextStyle(color: (StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               trailing: DropdownButton(
                   items: [
                     DropdownMenuItem(
@@ -104,11 +104,11 @@ class AppDrawer extends StatelessWidget{
               label: AppLocalizations.of(context)!.drawerDarkMode,
               hint: AppLocalizations.of(context)!.darkModeContext,
               child: ListTile(
-              leading: Icon(Icons.dark_mode, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-              title: Text(AppLocalizations.of(context)!.drawerDarkMode, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+              leading: Icon(Icons.dark_mode, color: StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
+              title: Text(AppLocalizations.of(context)!.drawerDarkMode, style: TextStyle(color: (StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               trailing: Switch(
                   value: context.watch<MainAppProvider>().theme ==
-                      AppEssentials.darkMode,
+                      StyleEssentials.darkMode,
                   onChanged: (value) {
                     context.read<MainAppProvider>().changeTheme(value);
                   }),
@@ -122,8 +122,8 @@ class AppDrawer extends StatelessWidget{
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>AboutView(language: context.watch<MainAppProvider>().language.languageCode,)));
               },
               child: ListTile(
-                leading: Icon(Icons.info, color: AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
-                title: Text(AppLocalizations.of(context)!.appVer, style: TextStyle(color: (AppEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
+                leading: Icon(Icons.info, color: StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),
+                title: Text(AppLocalizations.of(context)!.appVer, style: TextStyle(color: (StyleEssentials.colorsMap[(modoClaro)?"appMainBlue":"appMainLightBlue"]),),),
               ),
             ),
             )
