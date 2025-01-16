@@ -33,29 +33,30 @@ class AppVaultState extends State<AppVault> {
     return Center(
       child: Column(
         children: [
-          ExcludeSemantics( child: Text(AppLocalizations.of(context)!.vaultDesc)),
+          ExcludeSemantics(
+              child: Text(AppLocalizations.of(context)!.vaultDesc)),
           (list.length == 0)
               ? Text("No data yet")
-              : Semantics(
-                label: AppLocalizations.of(context)!.fileList,
-                child: Expanded(
-                  child: ListView.builder(
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        SysFile file = list[index];
-                        return GestureDetector(
-                          onTap: () {},
-                          child: Card(
-                            margin: EdgeInsets.all(5),
-                            child: ListTile(
-                              leading: Icon(Icons.file_open),
-                              title: Text(file.name),
-                              subtitle: Text(file.route),
-                            ),
-                          ),
-                        );
-                      })),
-              )
+              : Expanded(
+                child: Semantics(
+                  label: AppLocalizations.of(context)!.fileList,
+                      child: ListView.builder(
+                          itemCount: list.length,
+                          itemBuilder: (context, index) {
+                            SysFile file = list[index];
+                            return GestureDetector(
+                              onTap: () {},
+                              child: Card(
+                                margin: EdgeInsets.all(5),
+                                child: ListTile(
+                                  leading: Icon(Icons.file_open),
+                                  title: Text(file.name),
+                                  subtitle: Text(file.route),
+                                ),
+                              ),
+                            );
+                          })),
+                )
         ],
       ),
     );
@@ -64,6 +65,7 @@ class AppVaultState extends State<AppVault> {
   ///Función de carga de la lista de archivos
   void loadList() async {
     List<SysFile> listres = await dao.list();
+    print("lista");
     setState(() {
       list = listres;
     });

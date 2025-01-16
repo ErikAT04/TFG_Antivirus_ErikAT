@@ -45,7 +45,7 @@ class FileDAO implements DAOInterface<SysFile, int>{
         'newName': item.newName,
         'newRoute': item.newRoute,
         'malwareType': item.malwareType,
-        'quarantineDate': item.quarantineDate
+        'quarantineDate': item.quarantineDate.toString().substring(0, 10)
       });
       return res!=0;
     }catch(e){

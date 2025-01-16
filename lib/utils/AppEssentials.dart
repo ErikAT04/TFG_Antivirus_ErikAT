@@ -139,20 +139,22 @@ class AppEssentials {
   static Future<void> scanDir(Directory d, Set<String> forbiddenPaths) async {
     await for (var f in d.list(recursive: false)) {
       if (f is File) {
-        var bytes = await f.readAsBytes();
-        String s = md5.convert(bytes).toString();
-        if (sigs.map((sig) => sig.signature).toList().contains(s)) {
-          Signature? signature = null;
-          for (var sig in sigs) {
-            if (sig.signature == s) {
-              signature = sig;
+        try {
+          var bytes = await f.readAsBytes();
+          String s = md5.convert(bytes).toString();
+          if (sigs.map((sig) => sig.signature).toList().contains(s)) {
+            Signature? signature = null;
+            for (var sig in sigs) {
+              if (sig.signature == s) {
+                signature = sig;
+              }
             }
+            putInQuarantine(f, signature!);
           }
-          putInQuarantine(
-            f, signature!
-          );
+          print("${f.path} : $s");
+        } catch (e) {
+          print("Error de Fichero en Uso");
         }
-        print("${f.path} : $s");
       } else if (f is Directory && !forbiddenPaths.contains(f.path)) {
         try {
           await scanDir((Directory(f.path)), forbiddenPaths);

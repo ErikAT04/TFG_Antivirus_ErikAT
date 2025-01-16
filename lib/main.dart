@@ -37,7 +37,7 @@ void main() async {
   Directory dir = Directory(join(
       (Platform.isAndroid)
           ? (await getApplicationDocumentsDirectory()).path
-          : (await getLibraryDirectory()).path,
+          : (await getApplicationDocumentsDirectory())!.path,
       "MagikAV",
       "MyFiles"));
   if (!dir.existsSync()) {
