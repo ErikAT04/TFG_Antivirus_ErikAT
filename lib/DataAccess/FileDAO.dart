@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/File.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
@@ -15,7 +16,7 @@ class FileDAO implements DAOInterface<SysFile, int>{
     var res = await SQLiteUtils.db.delete('files', where: 'id = ?', whereArgs: [item.id]);
     return res==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -29,7 +30,7 @@ class FileDAO implements DAOInterface<SysFile, int>{
       var line = (await SQLiteUtils.db.query('files', where: 'id=?', whereArgs: [value])).first;
       return SysFile(id: int.parse(line["id"].toString()), name: line["name"].toString(), route: line["route"].toString(), newName: line["newName"].toString(), newRoute: line["newRoute"].toString(), malwareType: line["malwareType"].toString(), quarantineDate: DateTime.parse(line["quarantineDate"].toString().substring(0, 10)));
     }catch(e){
-      print(e);
+      Logger().e(e);
       return null;
     }
   }
@@ -49,7 +50,7 @@ class FileDAO implements DAOInterface<SysFile, int>{
       });
       return res!=0;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -94,7 +95,7 @@ CREATE TABLE IF NOT EXISTS files(
       }, where: "id=?", whereArgs: [item.id]);
       return res!=0;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }

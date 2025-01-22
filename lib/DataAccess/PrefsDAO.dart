@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
@@ -15,7 +16,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
       var res = await SQLiteUtils.db.delete('preferences');
       return res == 1;
     } catch (e) {
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -37,7 +38,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
               map['isAutoThemeMode'].toString().toLowerCase() == "true",
           themeMode: map["themeMode"].toString());
     } catch (e) {
-      print(e);
+      Logger().e(e);
     }
     return prefs;
   }
@@ -58,7 +59,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
       });
       return res == 1;
     } catch (e) {
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -81,7 +82,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
             themeMode: map["themeMode"].toString()));
       });
     } catch (e) {
-      print(e);
+      Logger().e(e);
     }
     return prefs;
   }
@@ -102,7 +103,7 @@ class PrefsDAO implements DAOInterface<Preferences, String> {
       });
       return res == 1;
     } catch (e) {
-      print(e);
+      Logger().e(e);
       return false;
     }
   }

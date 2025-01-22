@@ -1,21 +1,22 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:magik_antivirus/DataAccess/FileDAO.dart';
+import 'dart:convert';
 import 'package:path/path.dart';
+import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
+import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/model/File.dart';
-import 'package:magik_antivirus/model/Signature.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/model/Prefs.dart';
 import 'package:magik_antivirus/model/Device.dart';
+import 'package:magik_antivirus/model/Signature.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:magik_antivirus/DataAccess/FileDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
+import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
 ///
@@ -76,7 +77,6 @@ class AppEssentials {
     preferences = (await PrefsDAO().get(""))!;
     if (preferences.isUserRegistered) {
       user = await UserDAO().get(preferences.uname);
-      print('pasa por aqui');
     }
   }
 
@@ -151,15 +151,15 @@ class AppEssentials {
             }
             putInQuarantine(f, signature!);
           }
-          print("${f.path} : $s");
+          Logger().d("${f.path} : $s");
         } catch (e) {
-          print("Error de Fichero en Uso");
+          Logger().e("Error de Fichero en Uso: $e");
         }
       } else if (f is Directory && !forbiddenPaths.contains(f.path)) {
         try {
           await scanDir((Directory(f.path)), forbiddenPaths);
         } catch (e) {
-          print("Error de directorio");
+          Logger().e("Error de directorio: $e");
         }
       }
     }
