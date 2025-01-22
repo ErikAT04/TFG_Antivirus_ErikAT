@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
@@ -14,7 +15,7 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
       var res = await SQLiteUtils.db.delete('forbFolders', where: 'id=?', whereArgs: [item.id]);
       return res==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -29,7 +30,7 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
       var line = res.first;
       return ForbFolder(id: int.parse(line["id"].toString()), name: line["name"].toString(), route: line["route"].toString());
     }catch(e){
-      print(e);
+      Logger().e(e);
       return null;
     }
   }
@@ -46,7 +47,7 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
       });
       return res==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -63,7 +64,7 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
         list.add(ForbFolder(id: int.parse(line["id"].toString()), name: line["name"].toString(), route: line["route"].toString()));
       }
     }catch(e){
-      print(e);
+      Logger().e(e);
     }
     return list;
   }
@@ -81,7 +82,7 @@ class ForbFolderDAO implements DAOInterface<ForbFolder, int>{
       where: 'id=?', whereArgs: [item.id]);
       return res == 1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }

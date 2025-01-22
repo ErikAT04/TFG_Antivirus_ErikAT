@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
@@ -13,7 +14,7 @@ class UserDAO implements DAOInterface<User, String>{
       var res = await MySQLUtils.connection.execute('DELETE FROM user WHERE email LIKE "${item.email}"');
       return res.affectedRows.toInt() == 1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -26,10 +27,9 @@ class UserDAO implements DAOInterface<User, String>{
     try{
       var res = await MySQLUtils.connection.execute("SELECT * FROM user WHERE email LIKE '${value}' OR username LIKE '${value}'");
       var line = res.rows.first;
-      print(line.colAt(3));
       user = User(uname: line.colAt(1)!, pass: line.colAt(2)!, email: line.colAt(0)!, userIMGData: (line.colAt(3)!=null)? (line.colAt(3)!) : null);
     }catch(e){
-      print(e);
+      Logger().e(e);
     }
     return user;
   }
@@ -42,7 +42,7 @@ class UserDAO implements DAOInterface<User, String>{
       var res = await MySQLUtils.connection.execute('INSERT INTO user(email, pass, username) VALUES ("${item.email}", "${item.pass}", "${item.uname}")');
       return res.affectedRows.toInt() == 1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -58,7 +58,7 @@ class UserDAO implements DAOInterface<User, String>{
         users.add(User(uname: line.colAt(1)!, pass: line.colAt(2)!, email: line.colAt(0)!, userIMGData: (line.colAt(3)!=null)? line.colAt(3) : null));
       }
     }catch(e){
-      print(e);
+      Logger().e(e);
     }
     return users;
   }
@@ -73,7 +73,7 @@ class UserDAO implements DAOInterface<User, String>{
       var res = await MySQLUtils.connection.execute('UPDATE user SET username = "${item.uname}", pass = "${item.pass}"${(item.userIMGData!=null)? ', image = "${item.userIMGData}"' : ""} where email LIKE "${item.email}"');
       return res.affectedRows.toInt() == 1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }

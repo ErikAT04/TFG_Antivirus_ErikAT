@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

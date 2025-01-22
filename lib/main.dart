@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +14,7 @@ import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
@@ -37,7 +37,7 @@ void main() async {
   Directory dir = Directory(join(
       (Platform.isAndroid)
           ? (await getApplicationDocumentsDirectory()).path
-          : (await getApplicationDocumentsDirectory())!.path,
+          : (await getApplicationDocumentsDirectory()).path,
       "MagikAV",
       "MyFiles"));
   if (!dir.existsSync()) {
@@ -141,7 +141,7 @@ class MainAppProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       // Solicitar permiso
-      print("Solicitando permiso de almacenamiento...");
+      Logger().d("Solicitando permiso de almacenamiento...");
       if (await Permission.manageExternalStorage.request().isGranted) {
         // Permiso concedido
         Logger().d("Permiso concedido");

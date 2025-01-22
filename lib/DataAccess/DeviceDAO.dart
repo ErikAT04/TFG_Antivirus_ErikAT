@@ -1,3 +1,4 @@
+import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
@@ -14,7 +15,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
       var res =  await MySQLUtils.connection.execute("DELETE FROM device WHERE id LIKE '${item.id}'");
       return res.affectedRows.toInt()==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -29,7 +30,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
       var line = res.rows.first;
       return Device(name: line.colAt(1)!, type: line.colAt(2)!, join_in: DateTime.parse(line.colAt(4)!), last_scan: DateTime.parse(line.colAt(3)!), id: line.colAt(0), user: line.colAt(5));
     }catch(e){
-      print(e);
+      Logger().e(e);
       return null;
     }
   }
@@ -43,7 +44,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
       var res = await MySQLUtils.connection.execute("INSERT INTO device(id, dev_name, dev_type, join_in, last_scan) values ('${item.id}', '${item.name}', '${item.type}', '${item.join_in}', '${item.last_scan}')");
       return res.affectedRows.toInt()==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }
@@ -60,7 +61,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
        list.add(Device(name: line.colAt(1)!, type: line.colAt(2)!, join_in: DateTime.parse(line.colAt(4)!), last_scan: DateTime.parse(line.colAt(3)!), id: line.colAt(0), user: line.colAt(5)));
       }
     }catch(e){
-      print(e);
+      Logger().e(e);
     }
     return list;
   }
@@ -74,7 +75,7 @@ class DeviceDAO implements DAOInterface<Device, String>{
       var res = await MySQLUtils.connection.execute("UPDATE device SET dev_name='${item.name}', dev_type='${item.type}', last_scan='${item.last_scan}', user=${(item.user!=null)?"'${item.user}'":"NULL"} WHERE id='${item.id}'");
       return res.affectedRows.toInt()==1;
     }catch(e){
-      print(e);
+      Logger().e(e);
       return false;
     }
   }

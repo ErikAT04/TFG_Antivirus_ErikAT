@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:path/path.dart';
+import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:mysql_client/mysql_client.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -12,11 +13,11 @@ class MySQLUtils {
   ///Función de carga de la BD de MySQL
 static Future<void> loadSQLDB() async {
   connection = await MySQLConnection.createConnection(
-      host: 'sql.freedb.tech',
+      host: 'localhost',
       port: 3306,
-      userName: 'freedb_AT_Root',
-      password: 'RR5xHVqx2J#uVN?',
-      databaseName: 'freedb_PruebasAndroid',
+      userName: 'root',
+      password: 'toor',
+      databaseName: 'm_antivirus_db',
       secure: true);
   if (!connection.connected) {
     //En caso de que en algún dispositivo no se conecte directamente a la base de datos
@@ -29,7 +30,7 @@ static Future<void> loadSQLDB() async {
 class SQLiteUtils {
   ///Función de creación de la BD (Saldrá la primera vez que se inicie la app)
   static Future<void> startDB() async {
-    print("Database opened");
+    Logger().i("Database opened");
     await db.execute("""
     CREATE TABLE IF NOT EXISTS preferences(
       isUserRegistered BOOLEAN,
@@ -40,7 +41,7 @@ class SQLiteUtils {
       themeMode TEXT
     );
     """);
-    print("Table preferences created");
+    Logger().i("Table preferences created");
     await db.execute("""
     CREATE TABLE IF NOT EXISTS files(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,7 +53,7 @@ class SQLiteUtils {
       quarantineDate DATE
     );
   """);
-    print("Table files created");
+    Logger().i("Table files created");
     await db.execute("""
     CREATE TABLE IF NOT EXISTS forbFolders(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -60,7 +61,7 @@ class SQLiteUtils {
       route TEXT
     );
   """);
-    print("Table folders created");
+    Logger().i("Table folders created");
     await db.insert('preferences', {
       "isUserRegistered": 0,
       "userName": "",
@@ -69,7 +70,7 @@ class SQLiteUtils {
       "isAutoThemeMode": 0,
       "themeMode": "dark"
     });
-    print("preferences inserted");
+    Logger().i("preferences inserted");
   }
 
   ///Base de datos de SQLite
@@ -98,7 +99,7 @@ class APIReaderUtils {
   static String apiRESTLink = "tfg-antivirus-erik-at-api.vercel.app";
 
   static Future<String> getData(Uri url) async {
-    print(url);
+    Logger().d(url);
     //Función que recibe una url y devuelve el cuerpo del API
     var response = await http.get(url); //Busca la url pasada
     if (response.statusCode == 200) {

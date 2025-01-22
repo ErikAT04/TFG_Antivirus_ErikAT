@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/File.dart';
+import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:magik_antivirus/DataAccess/FileDAO.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -45,7 +46,10 @@ class AppVaultState extends State<AppVault> {
                           itemBuilder: (context, index) {
                             SysFile file = list[index];
                             return GestureDetector(
-                              onTap: () {},
+                              onTap: () async{
+                                await showDialog(context: context, builder: (context)=>FileContext(file: file));
+                                loadList();
+                              },
                               child: Card(
                                 margin: EdgeInsets.all(5),
                                 child: ListTile(
@@ -65,7 +69,6 @@ class AppVaultState extends State<AppVault> {
   ///Función de carga de la lista de archivos
   void loadList() async {
     List<SysFile> listres = await dao.list();
-    print("lista");
     setState(() {
       list = listres;
     });

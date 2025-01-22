@@ -676,7 +676,7 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
 }
 
 class FileContext extends StatelessWidget{
-  SysFile file;
+  final SysFile file;
   FileContext({super.key, required this.file});
   
   @override
