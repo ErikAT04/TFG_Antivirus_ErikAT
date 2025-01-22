@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/User.dart';
+import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.
@@ -24,9 +25,7 @@ class UserViewState extends State<UserView> {
   @override
   void initState() {
     super.initState();
-    AppEssentials.getDevicesList().then((value) {
-      devs = value;
-    });
+    loadList();
   }
 
 
@@ -201,5 +200,12 @@ class UserViewState extends State<UserView> {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LogInView()));
     context.read<MainAppProvider>().logout();
+  }
+  
+  void loadList() async{
+    List<Device> auxList = await DeviceDAO().list();
+    setState((){
+      devs = auxList;
+    });
   }
 }

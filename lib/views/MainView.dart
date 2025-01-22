@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/widgets/Drawer.dart';
+import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
+
 
 ///Vista de la pantalla principal
 class Mainview extends StatefulWidget {
@@ -54,6 +55,7 @@ class MainviewState extends State<Mainview> {
                 width: 10,
               ),
               GestureDetector(
+                
                 child: CircleAvatar(
                   backgroundImage:
                       (context.watch<MainAppProvider>().thisUser != null &&

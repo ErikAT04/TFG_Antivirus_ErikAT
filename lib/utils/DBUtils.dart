@@ -10,19 +10,19 @@ class MySQLUtils {
   static late MySQLConnection connection;
 
   ///Función de carga de la BD de MySQL
-  static Future<void> loadSQLDB() async {
-    connection = await MySQLConnection.createConnection(
-        host: 'sql.freedb.tech',
-        port: 3306,
-        userName: 'freedb_AT_Root',
-        password: 'RR5xHVqx2J#uVN?',
-        databaseName: 'freedb_PruebasAndroid',
-        secure: true);
-    if (!connection.connected) {
-      //En caso de que en algún dispositivo no se conecte directamente a la base de datos
-      await connection.connect();
-    }
+static Future<void> loadSQLDB() async {
+  connection = await MySQLConnection.createConnection(
+      host: 'sql.freedb.tech',
+      port: 3306,
+      userName: 'freedb_AT_Root',
+      password: 'RR5xHVqx2J#uVN?',
+      databaseName: 'freedb_PruebasAndroid',
+      secure: true);
+  if (!connection.connected) {
+    //En caso de que en algún dispositivo no se conecte directamente a la base de datos
+    await connection.connect();
   }
+}
 }
 
 ///Utils del gestor de SQLite

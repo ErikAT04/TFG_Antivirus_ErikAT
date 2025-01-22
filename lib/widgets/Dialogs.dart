@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/main.dart';
 import 'package:crypto/crypto.dart' as crypto;
+import 'package:magik_antivirus/model/File.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
+import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -671,5 +672,49 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
             : "${AppLocalizations.of(context)!.sizePassed} (1-254)";
       });
     }
+  }
+}
+
+class FileContext extends StatelessWidget{
+  SysFile file;
+  FileContext({super.key, required this.file});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Wrap(
+          direction: Axis.vertical,
+          children: [
+            Wrap(
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text(file.name),
+                Expanded(child: Container()),
+                Icon(Icons.file_open)
+              ],
+            ),
+            Text("${AppLocalizations.of(context)!.fileRoute}: ${file.route}"),
+            Text("${AppLocalizations.of(context)!.malType}: ${file.malwareType}"),
+            Text("${AppLocalizations.of(context)!.confDate}: ${file.quarantineDate}"),
+            Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                ElevatedButton(onPressed: (){restoreFile(context, file);}, child: Text(AppLocalizations.of(context)!.restFile))
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  
+  void restoreFile(BuildContext context, SysFile file) async{
+    AppEssentials.getOutOfQuarantine(file);
+    Navigator.pop(context, true);
   }
 }

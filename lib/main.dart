@@ -71,8 +71,15 @@ class MainApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      supportedLocales: AppEssentials.listLocales,
-      locale: context.watch<MainAppProvider>().language,
+      supportedLocales: [
+        Locale('es'),
+        Locale('en'),
+        Locale('de'),
+        Locale('fr')
+      ],
+      locale: //Controlar el lenguaje formato Locale('codigo')
+      //El resto de los controles:
+      context.watch<MainAppProvider>().language,
       theme: context.watch<MainAppProvider>().theme,
       home: (context.watch<MainAppProvider>().thisUser == null)
           ? LogInView()
