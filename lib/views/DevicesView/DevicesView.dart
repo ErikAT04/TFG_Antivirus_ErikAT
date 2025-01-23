@@ -64,7 +64,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: Text(dev.name,
+                                    child: Text(dev.dev_name,
                                         style: TextStyle(
                                             color: StyleEssentials.colorsMap[
                                                 (modoClaro)
@@ -73,7 +73,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             fontSize: 40),
                                         overflow: TextOverflow.ellipsis),
                                   ),
-                                  switch (dev.type) {
+                                  switch (dev.dev_type) {
                                     "android" => Icon(Icons.android,
                                         size: 100,
                                         color: StyleEssentials.colorsMap[
@@ -114,7 +114,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                   }
                                 ],
                               ),
-                              Text(dev.type),
+                              Text(dev.dev_type),
                               Text(
                                 "${AppLocalizations.of(context)!.lastAnalysis} ${dev.last_scan}",
                               ),
@@ -125,10 +125,10 @@ class AppDevicesViewState extends State<AppDevicesView> {
                 }),
           );
   }
-  
-  void loadList() async{
+
+  void loadList() async {
     List<Device> auxList = await DeviceDAO().list();
-    setState((){
+    setState(() {
       devs = auxList;
     });
   }

@@ -107,8 +107,8 @@ class AppEssentials {
       String() => throw UnimplementedError()
     };
     Device thisdev = Device(
-        name: dname,
-        type: Platform.operatingSystem,
+        dev_name: dname,
+        dev_type: Platform.operatingSystem,
         join_in: DateTime.now(),
         last_scan: DateTime.now());
     thisdev.id = switch (Platform.operatingSystem) {
@@ -179,7 +179,7 @@ class AppEssentials {
   static void putUser(User user) async {
     preferences.isUserRegistered = true;
     preferences.uname = user.email;
-    preferences.upass = user.pass;
+    preferences.upass = user.passwd;
     await PrefsDAO().update(preferences);
   }
 
@@ -204,7 +204,7 @@ class AppEssentials {
         crypto.sha256.convert(utf8.encode(basename(f.path))).toString();
     File file = await File(join(quarantineDirectory.path, pathSHA));
     var fileInside = await f.readAsBytes();
-    file = await file.writeAsString(fileInside.toString());
+    file = await file.writeAsString(base64Encode(fileInside));
     await file.create();
 
     SysFile sysFile = SysFile(
@@ -226,7 +226,7 @@ class AppEssentials {
 
     var bytes = await quarantined.readAsString();
 
-    file = await file.writeAsBytes(utf8.encode(bytes));
+    file = await file.writeAsBytes(base64Decode(bytes));
     await file.create();
 
     await quarantined.delete();

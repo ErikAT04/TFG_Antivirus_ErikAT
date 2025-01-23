@@ -6,7 +6,6 @@ import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,7 +27,6 @@ class UserViewState extends State<UserView> {
     loadList();
   }
 
-
   ///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados.
   ///
   ///Aparte de esto, tiene una selección de botones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
@@ -39,7 +37,7 @@ class UserViewState extends State<UserView> {
     User u = context.watch<MainAppProvider>().thisUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(u.uname),
+        title: Text(u.username),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +56,8 @@ class UserViewState extends State<UserView> {
                     hint: AppLocalizations.of(context)!.userImgContext,
                     child: GestureDetector(
                         child: CircleAvatar(
-                          backgroundImage: (u.userIMGData != null)
-                              ? NetworkImage(u.userIMGData!)
-                              : null,
+                          backgroundImage:
+                              (u.image != null) ? NetworkImage(u.image!) : null,
                           radius: 60,
                         ),
                         onTap: () {
@@ -71,7 +68,7 @@ class UserViewState extends State<UserView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(u.uname,
+                    Text(u.username,
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold)),
                     Text(u.email),
@@ -142,7 +139,7 @@ class UserViewState extends State<UserView> {
     String? res = await showDialog(
         context: context, builder: (context) => ImageUploadContextDialog());
     if (res != null) {
-      u.userIMGData = res;
+      u.image = res;
       await UserDAO().update(u);
       context.read<MainAppProvider>().changeUser(u);
     }
@@ -157,7 +154,7 @@ class UserViewState extends State<UserView> {
     String? newPass = await showDialog<String>(
         context: context, builder: (context) => ChangePasswordContextDialog());
     if (newPass != null) {
-      context.read<MainAppProvider>().thisUser!.pass = newPass;
+      context.read<MainAppProvider>().thisUser!.passwd = newPass;
       await UserDAO().update(context.read<MainAppProvider>().thisUser!);
     }
   }
@@ -171,7 +168,7 @@ class UserViewState extends State<UserView> {
     String? newName = await showDialog<String>(
         context: context, builder: (context) => ChangeUserNameContextDialog());
     if (newName != null) {
-      context.read<MainAppProvider>().thisUser!.uname = newName;
+      context.read<MainAppProvider>().thisUser!.username = newName;
       await UserDAO().update(context.read<MainAppProvider>().thisUser!);
     }
   }
@@ -201,10 +198,10 @@ class UserViewState extends State<UserView> {
         context, MaterialPageRoute(builder: (context) => LogInView()));
     context.read<MainAppProvider>().logout();
   }
-  
-  void loadList() async{
+
+  void loadList() async {
     List<Device> auxList = await DeviceDAO().list();
-    setState((){
+    setState(() {
       devs = auxList;
     });
   }

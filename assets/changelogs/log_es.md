@@ -1,5 +1,20 @@
-## Versión actual (0.2)
+## Versión actual (0.3) - 23/01/2025
+**Nuevas Adiciones**:
+- Se ha implementado el **análisis de archivos**, probado en Windows y Android.
+- El usuario también puede **restaurar los archivos en cuarentena**\
+*"Me parecía raro que el usuario pudiera ver los archivos eliminados pero no pudiera hacer nada a respecto, por lo que ahora puede restaurarlos bajo su propio riesgo"*
+- Cuando el equipo detecta un archivo con un virus, envía una notificación a la pantalla del usuario para avisar que ha puesto en cuarentena dicho fichero
 
+**Arreglos**
+- Se ha cambiado el acceso de los usuarios y dispositivos\
+*"Encontramos varios problemas con las bases de datos, por lo que, de momento, se trabajará con un servicio API para que los usuarios puedan acceder a sus cuentas y dispositivos"*
+
+Para hacer las pruebas que se vean necesarias, se proporciona una emulación de un archivo malicioso [aquí](google.es)
+
+Se lamenta la posible mala experiencia en el análisis de ficheros, aún hace falta mejorar ciertos aspectos.
+
+## Antiguas versiones
+### Versión 0.2 - 15/01/2025
 **Nuevas adiciones**:
 - Se ha añadido el apartado de "Versión de Aplicación"
 - Se ha implementado funciones de accesibilidad del usuario
@@ -9,8 +24,8 @@
 	- Análisis en progreso: Añadido recorrido en segundo plano con MacOS\
 **Arreglos**:
 - El usuario ya no puede introducir más de una vez un archivo prohibido
-## Antiguas versiones
-### Versión 0.1
+
+### Versión 0.1 - 05/01/2025
 ***Inicio de la Aplicación***\
 **Nuevas adiciones***:
 - Se ha implementado el funcionamiento de las bases de datos local y en red

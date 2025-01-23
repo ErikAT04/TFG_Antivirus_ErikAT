@@ -136,7 +136,7 @@ class LogInViewState extends State<LogInView> {
         if (crypto.sha256
                 .convert(utf8.encode(passController.text))
                 .toString() ==
-            user.pass) {
+            user.passwd) {
           completedSuccesfully = true;
           AppEssentials.dev!.user = user.email;
           await DeviceDAO().update(AppEssentials.dev!);

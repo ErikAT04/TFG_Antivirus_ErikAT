@@ -243,8 +243,8 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
     }
     if (resultSuccess) {
       User u = User(
-          uname: unameController.text,
-          pass: crypto.sha256
+          username: unameController.text,
+          passwd: crypto.sha256
               .convert(utf8.encode(passController.text))
               .toString(),
           email: emailController.text);
@@ -384,7 +384,7 @@ class ChangeUserNameContextDialogState
           : null;
     } else {
       if (unameController.text ==
-          context.read<MainAppProvider>().thisUser!.uname) {
+          context.read<MainAppProvider>().thisUser!.username) {
         errorNameText = AppLocalizations.of(context)!.unameUnavaliable;
       } else {
         User? u = await UserDAO().get(unameController.text);
@@ -394,7 +394,7 @@ class ChangeUserNameContextDialogState
           if (crypto.sha256
                   .convert(utf8.encode(passController.text))
                   .toString() !=
-              context.read<MainAppProvider>().thisUser!.pass) {
+              context.read<MainAppProvider>().thisUser!.passwd) {
             errorPassText = AppLocalizations.of(context)!.errorWrongPass;
           } else {
             allCorrect = true;
@@ -565,7 +565,7 @@ class ChangePasswordContextDialogState
       if (crypto.sha256
               .convert(utf8.encode(oldPassController.text))
               .toString() !=
-          context.read<MainAppProvider>().thisUser!.pass) {
+          context.read<MainAppProvider>().thisUser!.passwd) {
         errorOldText = AppLocalizations.of(context)!.errorWrongPass;
       } else {
         if (oldPassController.text == newPassController.text) {
@@ -675,10 +675,10 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   }
 }
 
-class FileContext extends StatelessWidget{
+class FileContext extends StatelessWidget {
   final SysFile file;
   FileContext({super.key, required this.file});
-  
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -697,14 +697,20 @@ class FileContext extends StatelessWidget{
                 Icon(Icons.file_open)
               ],
             ),
-            Text("${AppLocalizations.of(context)!.fileRoute}: ${file.route}"),
-            Text("${AppLocalizations.of(context)!.malType}: ${file.malwareType}"),
-            Text("${AppLocalizations.of(context)!.confDate}: ${file.quarantineDate}"),
+            Text("${AppLocalizations.of(context)!.fileRoute} ${file.route}", softWrap: true,),
+            Text(
+                "${AppLocalizations.of(context)!.malType} ${file.malwareType}", softWrap: true,),
+            Text(
+                "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}", softWrap: true,),
             Wrap(
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                ElevatedButton(onPressed: (){restoreFile(context, file);}, child: Text(AppLocalizations.of(context)!.restFile))
+                ElevatedButton(
+                    onPressed: () {
+                      restoreFile(context, file);
+                    },
+                    child: Text(AppLocalizations.of(context)!.restFile))
               ],
             )
           ],
@@ -712,8 +718,8 @@ class FileContext extends StatelessWidget{
       ),
     );
   }
-  
-  void restoreFile(BuildContext context, SysFile file) async{
+
+  void restoreFile(BuildContext context, SysFile file) async {
     AppEssentials.getOutOfQuarantine(file);
     Navigator.pop(context, true);
   }

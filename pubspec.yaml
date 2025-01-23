@@ -1,7 +1,7 @@
 name: magik_antivirus
 description: "Trabajo de Fin de Grado de Erik Amo"
 publish_to: 'none'
-version: 0.0.2
+version: 0.0.3
 
 environment:
   sdk: ^3.5.4

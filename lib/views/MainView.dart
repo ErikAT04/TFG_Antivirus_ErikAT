@@ -8,7 +8,6 @@ import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
 import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
 
-
 ///Vista de la pantalla principal
 class Mainview extends StatefulWidget {
   const Mainview({super.key});
@@ -42,8 +41,18 @@ class MainviewState extends State<Mainview> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch<MainAppProvider>().theme == StyleEssentials.lightMode)?"appMainBlue":"appMainLightBlue"], height: 1,)),
-          title: ExcludeSemantics(child: Text(switch (actualPage) {
+          bottom: PreferredSize(
+              preferredSize: Size.fromHeight(4),
+              child: Container(
+                color: StyleEssentials.colorsMap[
+                    (context.watch<MainAppProvider>().theme ==
+                            StyleEssentials.lightMode)
+                        ? "appMainBlue"
+                        : "appMainLightBlue"],
+                height: 1,
+              )),
+          title: ExcludeSemantics(
+              child: Text(switch (actualPage) {
             0 => AppLocalizations.of(context)!.mainPage,
             1 => AppLocalizations.of(context)!.vault,
             2 => AppLocalizations.of(context)!.myDevices,
@@ -55,20 +64,14 @@ class MainviewState extends State<Mainview> {
                 width: 10,
               ),
               GestureDetector(
-                
                 child: CircleAvatar(
-                  backgroundImage:
-                      (context.watch<MainAppProvider>().thisUser != null &&
-                              context
-                                      .watch<MainAppProvider>()
-                                      .thisUser!
-                                      .userIMGData !=
-                                  null)
-                          ? NetworkImage(context
-                              .watch<MainAppProvider>()
-                              .thisUser!
-                              .userIMGData!)
-                          : null,
+                  backgroundImage: (context.watch<MainAppProvider>().thisUser !=
+                              null &&
+                          context.watch<MainAppProvider>().thisUser!.image !=
+                              null)
+                      ? NetworkImage(
+                          context.watch<MainAppProvider>().thisUser!.image!)
+                      : null,
                 ),
                 onTap: () {
                   Scaffold.of(context).openDrawer();

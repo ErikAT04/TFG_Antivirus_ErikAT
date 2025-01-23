@@ -2,29 +2,10 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
-import 'package:mysql_client/mysql_client.dart';
+import 'dart:convert' as convert;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 ///Utils del gestor de MySQL
-class MySQLUtils {
-  ///Conexión a la BD de MySQL
-  static late MySQLConnection connection;
-
-  ///Función de carga de la BD de MySQL
-static Future<void> loadSQLDB() async {
-  connection = await MySQLConnection.createConnection(
-      host: 'localhost',
-      port: 3306,
-      userName: 'root',
-      password: 'toor',
-      databaseName: 'm_antivirus_db',
-      secure: true);
-  if (!connection.connected) {
-    //En caso de que en algún dispositivo no se conecte directamente a la base de datos
-    await connection.connect();
-  }
-}
-}
 
 ///Utils del gestor de SQLite
 class SQLiteUtils {
@@ -109,5 +90,20 @@ class APIReaderUtils {
       //Si no, devuelve simplemente noBody
       return "noBody";
     }
+  }
+
+  static Future<String> postData(Uri url, Object item) async {
+    var response = await http.post(url, body: convert.jsonEncode(item));
+    return response.body;
+  }
+
+  static Future<String> putData(Uri url, Object item) async {
+    var response = await http.put(url, body: convert.jsonEncode(item));
+    return response.body;
+  }
+
+  static Future<String> deleteData(Uri url) async {
+    var response = await http.delete(url);
+    return response.body;
   }
 }

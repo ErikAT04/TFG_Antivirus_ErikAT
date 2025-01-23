@@ -31,7 +31,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await MySQLUtils.loadSQLDB();
   await SQLiteUtils.cargardb();
   await AppEssentials.loadSigs();
   Directory dir = Directory(join(
