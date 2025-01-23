@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
@@ -17,6 +18,8 @@ import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
+import 'package:windows_notification/notification_message.dart';
+import 'package:windows_notification/windows_notification.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
 ///
@@ -218,7 +221,32 @@ class AppEssentials {
     await FileDAO().insert(sysFile);
 
     await f.delete();
+    if (!Platform.isWindows) {
+      Notificationessentials().showNotification(
+          title: quarantine[chosenLocale],
+          body: (quarantinedFile(basename(f.path))[chosenLocale]));
+    } else {
+      NotificationMessage message = NotificationMessage.fromPluginTemplate(
+          "Magik_AV_Virus",
+          quarantine[chosenLocale]!,
+          (quarantinedFile(basename(f.path))[chosenLocale])!);
+      WindowsNotification(applicationId: Platform.packageConfig).showNotificationPluginTemplate(message);
+    }
   }
+
+  static Map<String, String> quarantinedFile(String filename) => {
+        "es": "El archivo '$filename' ha sido puesto en cuarentena",
+        "en": "File '$filename' has been quarantined",
+        "de": "Die Datei „$filename“ wurde unter Quarantäne gestellt",
+        "fr": "Le fichier '$filename' a été mis en quarantaine"
+      };
+
+  static Map<String, String> quarantine = {
+    "es": "Archivo en cuarentena",
+    "en": "File quarantined",
+    "de": "Datei under Quarantäne",
+    "fr": "Ficher en quarantaine"
+  };
 
   static void getOutOfQuarantine(SysFile s) async {
     File file = File(s.route);

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (!Platform.isWindows) {
+    Notificationessentials().iniciarNotificacion();
+  }
   await SQLiteUtils.cargardb();
   await AppEssentials.loadSigs();
   Directory dir = Directory(join(
@@ -77,8 +81,8 @@ class MainApp extends StatelessWidget {
         Locale('fr')
       ],
       locale: //Controlar el lenguaje formato Locale('codigo')
-      //El resto de los controles:
-      context.watch<MainAppProvider>().language,
+          //El resto de los controles:
+          context.watch<MainAppProvider>().language,
       theme: context.watch<MainAppProvider>().theme,
       home: (context.watch<MainAppProvider>().thisUser == null)
           ? LogInView()
