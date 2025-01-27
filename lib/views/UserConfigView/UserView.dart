@@ -37,7 +37,7 @@ class UserViewState extends State<UserView> {
     User u = context.watch<MainAppProvider>().thisUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ajustes de Perfil"),
+        title: Text(AppLocalizations.of(context)!.userTile),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,6 +177,8 @@ class UserViewState extends State<UserView> {
     if (newPass != null) {
       context.read<MainAppProvider>().thisUser!.passwd = newPass;
       await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Contraseña actualizada correctamente")));
     }
   }
 
@@ -191,6 +193,11 @@ class UserViewState extends State<UserView> {
     if (newName != null) {
       context.read<MainAppProvider>().thisUser!.username = newName;
       await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+      context
+          .read<MainAppProvider>()
+          .changeUser(context.read<MainAppProvider>().thisUser!);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Nombre actualizado correctamente")));
     }
   }
 

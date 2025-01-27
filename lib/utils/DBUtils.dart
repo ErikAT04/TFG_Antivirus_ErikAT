@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
@@ -11,19 +10,7 @@ import 'package:magik_antivirus/model/ApiContent.dart';
 class SQLiteUtils {
   ///Función de creación de la BD (Saldrá la primera vez que se inicie la app)
   static Future<void> startDB() async {
-    Logger().i("Database opened");
-    await db.execute("""
-    CREATE TABLE IF NOT EXISTS preferences(
-      isUserRegistered BOOLEAN,
-      userName TEXT,
-      userPass TEXT,
-      chosenLang TEXT,
-      isAutoThemeMode BOOLEAN,
-      themeMode TEXT
-    );
-    """);
-    Logger().i("Table preferences created");
-    await db.execute("""
+        await db.execute("""
     CREATE TABLE IF NOT EXISTS files(
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
@@ -42,16 +29,6 @@ class SQLiteUtils {
       route TEXT
     );
   """);
-    Logger().i("Table folders created");
-    await db.insert('preferences', {
-      "isUserRegistered": 0,
-      "userName": "",
-      "userPass": "",
-      "chosenLang": "es",
-      "isAutoThemeMode": 0,
-      "themeMode": "dark"
-    });
-    Logger().i("preferences inserted");
   }
 
   ///Base de datos de SQLite
@@ -80,13 +57,39 @@ class APIReaderUtils {
   ///Enlace estático al API Rest
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
-  static String apiRESTLink = "localhost:8000";
+  static String apiRESTLink = "192.168.1.135:8000";
   //static String apiRESTLink = "192.168.1.56:8000";
+
+  ///Token de la API
+  ///
+  ///La API está protegida de modo que solo pueden acceder a ella los usuarios registrados en la aplicación
+  static String apiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIn0.qyKzvQjkFkTwZTcic364RKcujkmGO3-2i2G-PV8Q4n8";
+
+  static void getToken(String username, String password) async {
+    Uri url = Uri.http(apiRESTLink, "api/token");
+
+    var response = await http.post(url, headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }, body: {
+      'username': username,
+      'password': password,
+    });
+
+    if (response.statusCode == 200) {
+      apiToken = convert.json.decode(response.body)["access_token"];
+    } else {
+      Logger().e("Error de entrega de Token");
+    }
+  }
+
   ///Recibe un enlace a un endpoint y devuelve el resultado de la búsqueda del API
   static Future<String> getData(Uri url) async {
     Logger().d(url);
     //Función que recibe una url y devuelve el cuerpo del API
-    var response = await http.get(url); //Busca la url pasada
+    var response = await http.get(url, headers: {
+          'Authorization' : 'bearer $apiToken',
+          'Content-Type': 'application/json',
+        },); //Busca la url pasada
     if (response.statusCode == 200) {
       //Si el statusCode es 200 (Conexión realizada correctamente)
       return response.body; //Devuelve el body de la búsqueda
@@ -99,24 +102,32 @@ class APIReaderUtils {
   ///Recibe un enlace y un objeto y envía una petición POST del objeto como JSON
   static Future<String> postData(Uri url, APIContent item) async {
     print(convert.jsonEncode(item.toAPI()));
-    var response = await Dio().post(url.toString(),
-        data: convert.jsonEncode(item.toAPI()));
-    return response.data;
+    var response = await http
+        .post(url, headers: {
+          'Authorization' : 'bearer $apiToken',
+          'Content-Type': 'application/json',
+        }, body: convert.jsonEncode(item.toAPI()));
+    return response.body;
   }
 
   ///Recibe un enlace y un objeto y envía una petición PUT del objeto como JSON
   static Future<String> putData(Uri url, APIContent item) async {
     print(convert.jsonEncode(item.toAPI()));
-    var response = await Dio().put(url.toString(),
-        data: convert.jsonEncode(item.toAPI()));
+    var response =
+        await http.put(url, headers: {
+          'Authorization' : 'bearer $apiToken',
+          'Content-Type': 'application/json',
+        }, body: convert.jsonEncode(item.toAPI()));
     Logger().d(
         "El put del item ${item.toAPI()} ha dado el codigo ${response.statusCode}");
-    return response.data;
+    return response.body;
   }
 
   ///Recibe un enlace y un objeto y envía una petición DELETE del objeto como JSON
   static Future<String> deleteData(Uri url) async {
-    var response = await http.delete(url);
+    var response = await http.delete(url, headers: {
+          'Authorization' : 'bearer $apiToken'
+        },);
     return response.body;
   }
 }

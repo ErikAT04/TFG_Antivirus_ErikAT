@@ -37,7 +37,7 @@ class AppVaultState extends State<AppVault> {
           ExcludeSemantics(
               child: Text(AppLocalizations.of(context)!.vaultDesc)),
           (list.length == 0)
-              ? Text("No data yet")
+              ? Text(AppLocalizations.of(context)!.noDataYet)
               : Expanded(
                   child: Semantics(
                       label: AppLocalizations.of(context)!.fileList,

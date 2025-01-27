@@ -31,9 +31,12 @@
     "mainPageContext":"Klicken Sie hier, um zum Analysemenü zu gelangen",
     "vaultContext":"Klicken Sie hier, um zum Menü 'Gesperrte Dateien' zu gelangen",
     "deviceContext":"Klicken Sie hier, um zum Gerätemenü zu gelangen",
+    "noDataYet":"Noch keine Daten",
 
     "analyse":"Analysieren",
     "mainPage":"Hauptseite",
+    "pleaseWait":"Bitte warten Sie, bis das Programm beendet ist",
+    "mightTakeaWhile":"Es kann eine Weile dauern",
 
     "analyseBttContext":"Klicken Sie hier, um das Gerät zu analysieren",
 
@@ -58,7 +61,7 @@
     "drawerDarkMode":"Dunkelmodus",
     "drawerAppVer":"App-Version",
 
-    "userTile":"Benutzerprofil",
+    "userTile":"Profileinstellungen",
     "userContext":"Klicken Sie hier, um zum Benutzermenü zu gelangen",
     "ffoldersContext":"Klicken Sie hier, um zum Menü'Verbotene Ordner' zu gelangen",
     "translate":"Klicken Sie auf die Flagge, um die Sprache zu ändern",

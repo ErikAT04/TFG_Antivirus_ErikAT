@@ -27,7 +27,6 @@ class AnalysisViewState extends State<AnalysisView> {
   @override
   Widget build(BuildContext context) {
     bool isActive = context.watch<MainAppProvider>().isIsolateActive;
-    String state = context.watch<MainAppProvider>().estado;
     if (!isActive) {
       return Center(
           child: Container(
@@ -53,7 +52,7 @@ class AnalysisViewState extends State<AnalysisView> {
         child: ExcludeSemantics(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [CircularProgressIndicator(), Text(state)],
+          children: [CircularProgressIndicator(), Text("${AppLocalizations.of(context)!.pleaseWait}\n${AppLocalizations.of(context)!.mightTakeaWhile}")],
         )),
       );
     }

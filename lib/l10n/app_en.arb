@@ -31,9 +31,12 @@
     "mainPageContext":"Click here to go to the analysis menu",
     "vaultContext":"Click here to go to the locked files menu",
     "deviceContext":"Click here to go to the devices menu",
+    "noDataYet":"No data yet",
 
     "analyse":"Analyse",
     "mainPage":"Main Page",
+    "pleaseWait":"Please wait for the program to finish.",
+    "mightTakeaWhile":"It might take a while",
 
     "analyseBttContext":"Press here to analyse your device",
 
@@ -58,7 +61,7 @@
     "drawerDarkMode":"Dark Mode",
     "drawerAppVer":"App Version",
 
-    "userTile":"User profile",
+    "userTile":"Profile Settings",
     "userContext":"Click here to go to the user menu",
     "ffoldersContext":"Click here to go to the prohibited folders menu",
     "translate":"Click on the flag to change language",

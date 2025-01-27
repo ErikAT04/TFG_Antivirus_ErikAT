@@ -32,9 +32,12 @@
     "mainPageContext":"Cliquez ici pour accéder au menu d'analyse",
     "vaultContext":"Cliquez ici pour accéder au menu des fichiers verrouillés",
     "deviceContext":"Cliquez ici pour accéder au menu des appareils",
+    "noDataYet":"Pas encore de données",
     
     "analyse": "Analyser",
     "mainPage": "Page principale",
+    "pleaseWait":"Veuillez attendre la fin du programme.",
+    "mightTakeaWhile":"Cela pourrait prendre un certain temps",
 
     "analyseBttContext":"Cliquez ici pour analyser l'appareil",
 
@@ -59,7 +62,7 @@
     "drawerDarkMode": "Mode sombre",
     "drawerAppVer": "Version de l'application",
 
-    "userTile":"Profil utilisateur",
+    "userTile":"Paramètres du profil",
     "userContext":"Cliquez ici pour accéder au menu utilisateur",
     "ffoldersContext":"Cliquez ici pour accéder au menu des dossiers interdits",
     "translate":"Cliquez sur le drapeau pour changer de langue",

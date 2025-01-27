@@ -11,7 +11,6 @@ import 'package:magik_antivirus/views/MainView.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/DataAccess/PrefsDAO.dart';
 import 'package:magik_antivirus/utils/AppEssentials.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
 import 'package:magik_antivirus/utils/StyleEssentials.dart';
@@ -47,12 +46,8 @@ void main() async {
     dir.createSync(recursive: true);
   }
   AppEssentials.quarantineDirectory = dir;
-  try {
-    await AppEssentials.getProperties();
-  } catch (e) {
-    await SQLiteUtils.startDB();
-    await AppEssentials.getProperties();
-  }
+  await AppEssentials.getProperties();
+  await SQLiteUtils.startDB();
   AppEssentials.registerThisDevice();
   runApp(ChangeNotifierProvider(
     create: (context) => MainAppProvider(),
@@ -97,7 +92,7 @@ class MainAppProvider extends ChangeNotifier {
   Locale language = Locale(AppEssentials.chosenLocale);
 
   ///Tema de la aplicación, empezando con el tema guardado en las preferencias
-  ThemeData theme = (AppEssentials.preferences.themeMode == "darkMode")
+  ThemeData theme = (AppEssentials.prefs.getString("themeMode") == "Dark")
       ? StyleEssentials.darkMode
       : StyleEssentials.lightMode;
 
@@ -110,10 +105,7 @@ class MainAppProvider extends ChangeNotifier {
   ///Estado del "hilo"
   bool isIsolateActive = false;
 
-  ///Mensaje de estado que ve el usuario
-  String estado = "Espere unos segundos...";
-
-  ///Función de análisis de archivosç
+  ///Función de análisis de archivos
   ///
   ///En esta versión de prueba, comienza con pedir el permiso de acceder a los ficheros al usuario si fuera necesario
   ///
@@ -180,7 +172,7 @@ class MainAppProvider extends ChangeNotifier {
   ///
   ///Además, guarda el email de usuario y una booleana que marca que se inicie sesión de forma automática
   void changeUser(User user) {
-    this.thisUser = user;
+    thisUser = user;
     notifyListeners();
     AppEssentials.putUser(user);
   }
@@ -199,8 +191,7 @@ class MainAppProvider extends ChangeNotifier {
   ///Además de cerrar sesión poniendo al usuario nulo, desmarca la booleana de auto registro y quita el usuario del dispositivo (Por si se va a usar más tarde)
   void logout() async {
     thisUser = null;
-    AppEssentials.preferences.isUserRegistered = false;
-    await PrefsDAO().update(AppEssentials.preferences);
+    AppEssentials.prefs.setBool("isUserRegistered", false);
     AppEssentials.dev!.user = null;
     await DeviceDAO().update(AppEssentials.dev!);
     notifyListeners();

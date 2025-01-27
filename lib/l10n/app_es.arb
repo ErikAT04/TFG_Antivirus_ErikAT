@@ -31,9 +31,12 @@
     "mainPageContext":"Pulse aquí para ir al menú de análisis",
     "vaultContext":"Pulse aquí para ir al menú de archivos bloqueados",
     "deviceContext":"Pulse aquí para ir al menú de dispositivos",
+    "noDataYet":"No hay archivos en cuarentena",
 
     "analyse":"Analizar",
     "mainPage":"Página Principal",
+    "pleaseWait":"Por favor, espere a que el análisis finalice.",
+    "mightTakeaWhile":"Puede tardar un rato",
 
     "analyseBttContext":"Pulse aquí para analizar el dispositivo",
 
@@ -58,7 +61,7 @@
     "drawerDarkMode":"Modo Oscuro",
     "drawerAppVer":"Versión de la Aplicación",
 
-    "userTile":"Perfil de usuario",
+    "userTile":"Ajustes del Perfil",
     "userContext":"Pulse aquí para ir al menú de usuario",
     "ffoldersContext":"Pulse aquí para ir al menú de carpetas prohibidas",
     "translate":"Pulse en la bandera para cambiar idioma",
