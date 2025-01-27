@@ -14,7 +14,8 @@ class StyleEssentials{
     "white": Colors.white,
     "black": Colors.black,
     "transpBlack": Color.fromARGB(25, 0, 0, 0),
-    "grey": Color.fromARGB(255, 233, 233, 233)
+    "grey": Color.fromARGB(255, 233, 233, 233),
+    "red": Color.fromARGB(255, 151, 13, 13)
   };
 
   ///Tema del modo oscuro

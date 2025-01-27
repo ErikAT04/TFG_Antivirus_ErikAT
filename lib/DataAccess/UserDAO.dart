@@ -1,8 +1,8 @@
+import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
-import 'dart:convert' as convert;
 
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los dispositivos
 ///
@@ -58,7 +58,7 @@ class UserDAO implements DAOInterface<User, String> {
     try {
       var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
       var body = await APIReaderUtils.postData(uri, item);
-      return body == convert.jsonEncode(item);
+      return body == convert.jsonEncode(item.toAPI());
     } catch (e) {
       Logger().e(e);
       return false;
@@ -98,8 +98,10 @@ class UserDAO implements DAOInterface<User, String> {
     try {
       var uri = Uri.http(
           APIReaderUtils.apiRESTLink, "$routerUrl/${item.email}/update");
+      Logger().d(uri.toString());
       var body = await APIReaderUtils.putData(uri, item);
-      return body == convert.jsonEncode(item);
+      
+      return body == convert.jsonEncode(item.toAPI());
     } catch (e) {
       Logger().e(e);
       return false;

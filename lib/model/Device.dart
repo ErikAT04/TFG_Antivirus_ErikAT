@@ -1,5 +1,7 @@
+import 'package:magik_antivirus/model/ApiContent.dart';
+
 ///La clase Device guarda los dispositivos de los usuarios
-class Device {
+class Device implements APIContent {
   ///Identificador de cada dispositivo en la base de datos (El identificador dependerá del dispositivo)
   String? id;
 
@@ -29,15 +31,25 @@ class Device {
       required this.last_scan,
       this.user});
 
-  ///Mapeo de objeto a JSON
-  Map<String, dynamic> toJson() {
+  @override
+  Map<String, String?> toAPI() {
     return {
-      'id': id,
+      'id': id.toString(),
       'dev_name': dev_name,
       'dev_type': dev_type,
-      'join_in': join_in.toString(), 
+      'join_in': join_in.toString(),
       'last_scan': last_scan.toString(),
       'user': user,
     };
+  }
+
+  @override
+  void toItem(Map<String, String> map) {
+        this.id = map["id"];
+        this.dev_name = map["dev_name"]!;
+        this.dev_type = map["dev_type"]!;
+        this.join_in = DateTime.parse(map["join_in"]!);
+        this.last_scan = DateTime.parse(map["last_scan"]!);
+        this.user = map["user"];
   }
 }

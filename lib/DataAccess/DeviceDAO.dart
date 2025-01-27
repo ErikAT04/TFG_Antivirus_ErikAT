@@ -1,8 +1,8 @@
+import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/utils/DBUtils.dart';
 import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
-import 'dart:convert' as convert;
 
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los dispositivos
 ///
@@ -33,6 +33,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
   Future<Device?> get(String value) async {
     try {
       var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/${value}");
+      print(uri);
       var body = await APIReaderUtils.getData(uri);
       if (body != "Dispositivo no encontrado") {
         var map = convert.jsonDecode(body);
@@ -60,8 +61,8 @@ class DeviceDAO implements DAOInterface<Device, String> {
     try {
       var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
       var body = await APIReaderUtils.postData(uri, item);
-      return body == convert.jsonEncode(item);
-    } catch (e) {
+      return body == convert.jsonEncode(item.toAPI());    
+      } catch (e) {
       Logger().e(e);
       return false;
     }
@@ -101,7 +102,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
       var uri =
           Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/${item.id!}/update");
       var body = await APIReaderUtils.putData(uri, item);
-      return body == convert.jsonEncode(item);
+      return body == convert.jsonEncode(item.toAPI());
     } catch (e) {
       Logger().e(e);
       return false;

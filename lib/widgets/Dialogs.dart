@@ -247,6 +247,7 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
           passwd: crypto.sha256
               .convert(utf8.encode(passController.text))
               .toString(),
+          image: "https://media.istockphoto.com/id/1147544807/es/vector/no-imagen-en-miniatura-gr%C3%A1fico-vectorial.jpg?s=612x612&w=0&k=20&c=Bb7KlSXJXh3oSDlyFjIaCiB9llfXsgS7mHFZs6qUgVk=", //Placeholder
           email: emailController.text);
       await UserDAO().insert(u);
       Navigator.pop(context, u);
@@ -293,7 +294,6 @@ class ChangeUserNameContextDialogState
           margin: EdgeInsets.all(10),
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 10,
             children: [
               Semantics(
                 label: AppLocalizations.of(context)!.newUserName,
@@ -312,6 +312,7 @@ class ChangeUserNameContextDialogState
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
+              Padding(padding: EdgeInsets.all(10)),
               Semantics(
                 label: AppLocalizations.of(context)!.passConfirm,
                 hint: AppLocalizations.of(context)!.passContext,
@@ -330,7 +331,11 @@ class ChangeUserNameContextDialogState
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
+              Padding(padding: EdgeInsets.all(10)),
+              Center(child: 
               Wrap(
+                runAlignment: WrapAlignment.center,
+                alignment: WrapAlignment.center,
                 children: [
                   Semantics(
                     label: AppLocalizations.of(context)!.userCName,
@@ -341,6 +346,7 @@ class ChangeUserNameContextDialogState
                         },
                         child: Text(AppLocalizations.of(context)!.userCName)),
                   ),
+              Padding(padding: EdgeInsets.all(10)),
                   Semantics(
                     label: AppLocalizations.of(context)!.cancel,
                     hint: AppLocalizations.of(context)!.cancelContext,
@@ -351,7 +357,7 @@ class ChangeUserNameContextDialogState
                         child: Text(AppLocalizations.of(context)!.cancel)),
                   )
                 ],
-              )
+              ))
             ],
           )),
     );
@@ -675,10 +681,13 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   }
 }
 
+///Dialogo del contexto de ficheros
 class FileContext extends StatelessWidget {
+  ///Archivo que recibe por parámetro
   final SysFile file;
   FileContext({super.key, required this.file});
 
+  ///Muestra los distintos datos del fichero, junto un botón para 
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -688,9 +697,6 @@ class FileContext extends StatelessWidget {
           direction: Axis.vertical,
           children: [
             Wrap(
-              direction: Axis.horizontal,
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 Text(file.name),
                 Expanded(child: Container()),
@@ -700,27 +706,23 @@ class FileContext extends StatelessWidget {
             Text("${AppLocalizations.of(context)!.fileRoute} ${file.route}", softWrap: true,),
             Text(
                 "${AppLocalizations.of(context)!.malType} ${file.malwareType}", softWrap: true,),
-            Text(
+            
+                Text(
                 "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}", softWrap: true,),
-            Wrap(
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
+            
                 ElevatedButton(
                     onPressed: () {
                       restoreFile(context, file);
                     },
                     child: Text(AppLocalizations.of(context)!.restFile))
-              ],
-            )
           ],
         ),
       ),
     );
   }
-
+  ///Función de restauración de archivos
   void restoreFile(BuildContext context, SysFile file) async {
-    AppEssentials.getOutOfQuarantine(file);
+    await AppEssentials.getOutOfQuarantine(file);
     Navigator.pop(context, true);
   }
 }

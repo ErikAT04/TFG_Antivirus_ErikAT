@@ -1,11 +1,11 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:path/path.dart';
+import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-
-///Utils del gestor de MySQL
+import 'package:magik_antivirus/model/ApiContent.dart';
 
 ///Utils del gestor de SQLite
 class SQLiteUtils {
@@ -75,10 +75,14 @@ class SQLiteUtils {
   }
 }
 
-//Utils del API que se vaya a leer
+///Utils del API que se vaya a leer
 class APIReaderUtils {
-  static String apiRESTLink = "tfg-antivirus-erik-at-api.vercel.app";
-
+  ///Enlace estático al API Rest
+  ///
+  ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
+  static String apiRESTLink = "localhost:8000";
+  //static String apiRESTLink = "192.168.1.56:8000";
+  ///Recibe un enlace a un endpoint y devuelve el resultado de la búsqueda del API
   static Future<String> getData(Uri url) async {
     Logger().d(url);
     //Función que recibe una url y devuelve el cuerpo del API
@@ -92,16 +96,25 @@ class APIReaderUtils {
     }
   }
 
-  static Future<String> postData(Uri url, Object item) async {
-    var response = await http.post(url, body: convert.jsonEncode(item));
-    return response.body;
+  ///Recibe un enlace y un objeto y envía una petición POST del objeto como JSON
+  static Future<String> postData(Uri url, APIContent item) async {
+    print(convert.jsonEncode(item.toAPI()));
+    var response = await Dio().post(url.toString(),
+        data: convert.jsonEncode(item.toAPI()));
+    return response.data;
   }
 
-  static Future<String> putData(Uri url, Object item) async {
-    var response = await http.put(url, body: convert.jsonEncode(item));
-    return response.body;
+  ///Recibe un enlace y un objeto y envía una petición PUT del objeto como JSON
+  static Future<String> putData(Uri url, APIContent item) async {
+    print(convert.jsonEncode(item.toAPI()));
+    var response = await Dio().put(url.toString(),
+        data: convert.jsonEncode(item.toAPI()));
+    Logger().d(
+        "El put del item ${item.toAPI()} ha dado el codigo ${response.statusCode}");
+    return response.data;
   }
 
+  ///Recibe un enlace y un objeto y envía una petición DELETE del objeto como JSON
   static Future<String> deleteData(Uri url) async {
     var response = await http.delete(url);
     return response.body;

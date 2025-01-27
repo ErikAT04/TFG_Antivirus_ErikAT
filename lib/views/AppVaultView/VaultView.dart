@@ -39,15 +39,21 @@ class AppVaultState extends State<AppVault> {
           (list.length == 0)
               ? Text("No data yet")
               : Expanded(
-                child: Semantics(
-                  label: AppLocalizations.of(context)!.fileList,
+                  child: Semantics(
+                      label: AppLocalizations.of(context)!.fileList,
                       child: ListView.builder(
                           itemCount: list.length,
                           itemBuilder: (context, index) {
                             SysFile file = list[index];
                             return GestureDetector(
-                              onTap: () async{
-                                await showDialog(context: context, builder: (context)=>FileContext(file: file));
+                              onTap: () async {
+                                await showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        FileContext(file: file));
+                                setState(() {
+                                  list = [];
+                                });
                                 loadList();
                               },
                               child: Card(

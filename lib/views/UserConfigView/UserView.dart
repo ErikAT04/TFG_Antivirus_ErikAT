@@ -37,7 +37,7 @@ class UserViewState extends State<UserView> {
     User u = context.watch<MainAppProvider>().thisUser!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(u.username),
+        title: Text("Ajustes de Perfil"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,10 @@ class UserViewState extends State<UserView> {
           MergeSemantics(
               child: Container(
             padding: EdgeInsets.all(10),
-            color: StyleEssentials.colorsMap["appMainLightBlue"],
+            color: (context.watch<MainAppProvider>().theme ==
+                    StyleEssentials.darkMode)
+                ? StyleEssentials.colorsMap["appDarkBlue"]
+                : StyleEssentials.colorsMap["grey"],
             child: Row(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -79,52 +82,70 @@ class UserViewState extends State<UserView> {
               ],
             ),
           )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Expanded(
+              child: ListView(
             children: [
               Semantics(
                 label: AppLocalizations.of(context)!.userCName,
                 hint: AppLocalizations.of(context)!.userCNameContext,
-                child: ElevatedButton(
-                    onPressed: () {
+                child: GestureDetector(
+                    onTap: () {
                       changeUserName(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.userCName)),
+                    child: ListTile(
+                      leading: Icon(Icons.text_format),
+                      title: Text(AppLocalizations.of(context)!.userCName),
+                      subtitle:
+                          Text(AppLocalizations.of(context)!.userCNameContext),
+                    )),
               ),
               Semantics(
                 label: AppLocalizations.of(context)!.userCPass,
                 hint: AppLocalizations.of(context)!.userCPassContext,
-                child: ElevatedButton(
-                    onPressed: () {
+                child: GestureDetector(
+                    onTap: () {
                       changeUserPass(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.userCPass)),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+                    child: ListTile(
+                      leading: Icon(Icons.password),
+                      title: Text(AppLocalizations.of(context)!.userCPass),
+                      subtitle:
+                          Text(AppLocalizations.of(context)!.userCPassContext),
+                    )),
+              ),
               Semantics(
                 label: AppLocalizations.of(context)!.userLOut,
                 hint: AppLocalizations.of(context)!.userLOutContext,
-                child: ElevatedButton(
-                    onPressed: () {
+                child: GestureDetector(
+                    onTap: () {
                       logOut(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.userLOut)),
+                    child: ListTile(
+                      leading: Icon(Icons.logout),
+                      title: Text(AppLocalizations.of(context)!.userLOut),
+                      subtitle:
+                          Text(AppLocalizations.of(context)!.userLOutContext),
+                    )),
               ),
               Semantics(
                 label: AppLocalizations.of(context)!.userErase,
                 hint: AppLocalizations.of(context)!.userEraseContext,
-                child: ElevatedButton(
-                    onPressed: () {
+                child: GestureDetector(
+                    onTap: () {
                       eraseUser(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.userErase)),
+                    child: ListTile(
+                      iconColor: Colors.white,
+                      leading: Icon(Icons.remove),
+                      textColor: StyleEssentials.colorsMap["white"],
+                      tileColor: StyleEssentials.colorsMap["red"],
+                      title: Text(AppLocalizations.of(context)!.userErase),
+                      subtitle:
+                          Text(AppLocalizations.of(context)!.userEraseContext),
+                    )),
               )
             ],
-          )
+          ))
         ],
       ),
     );
@@ -141,8 +162,8 @@ class UserViewState extends State<UserView> {
     if (res != null) {
       u.image = res;
       await UserDAO().update(u);
-      context.read<MainAppProvider>().changeUser(u);
     }
+    context.read<MainAppProvider>().changeUser(u);
   }
 
   ///Función de cambio de nombre de usuario

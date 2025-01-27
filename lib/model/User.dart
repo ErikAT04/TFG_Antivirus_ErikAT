@@ -1,5 +1,7 @@
+import 'package:magik_antivirus/model/ApiContent.dart';
+
 ///Clase de Usuario: Guarda la información de inicio de sesión
-class User {
+class User implements APIContent{
   ///Nombre de usuario
   String username;
 
@@ -17,14 +19,22 @@ class User {
       required this.passwd,
       required this.email,
       this.image});
-
-  ///Mapeo de objeto a JSON
-  Map<String, dynamic> toJson() {
+  
+  @override
+  Map<String, String?> toAPI() {
     return {
       "email": this.email,
       "username": this.username,
       "passwd": this.passwd,
       "image": this.image
     };
+  }
+  
+  @override
+  void toItem(Map<String, String> map) {
+    this.email = map["email"]!;
+    this.passwd = map["passwd"]!;
+    this.image = map["image"];
+    this.username = map["username"]!;
   }
 }

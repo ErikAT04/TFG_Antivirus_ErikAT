@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/DataAccess/ForbFolderDAO.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 
 ///Función principal - Inicio de la aplicación.
 ///
@@ -181,8 +181,8 @@ class MainAppProvider extends ChangeNotifier {
   ///Además, guarda el email de usuario y una booleana que marca que se inicie sesión de forma automática
   void changeUser(User user) {
     this.thisUser = user;
-    AppEssentials.putUser(user);
     notifyListeners();
+    AppEssentials.putUser(user);
   }
 
   ///Función de borrado de directorios prohibidos

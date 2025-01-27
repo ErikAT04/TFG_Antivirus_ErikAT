@@ -9,22 +9,23 @@ class Notificationessentials {
 
   //Inicializar servicio de notificaciones
   Future<void> iniciarNotificacion() async {
-      if (_isInitialized) return;
+    if (_isInitialized) return;
 
-      //Preparar ajustes de android
-      const androidSettings =
-          AndroidInitializationSettings("@mipmap/ic_launcher");
+    //Preparar ajustes de android
+    const androidSettings =
+        AndroidInitializationSettings("@mipmap/ic_launcher");
 
-      const initSettings = InitializationSettings(
-          android: androidSettings, macOS: DarwinInitializationSettings());
+    const initSettings = InitializationSettings(
+        android: androidSettings, macOS: DarwinInitializationSettings());
 
-      await notificationsPlugin.initialize(initSettings);
+    await notificationsPlugin.initialize(initSettings);
+    _isInitialized = true;
   }
 
   NotificationDetails notificationDetails() {
     return const NotificationDetails(
         android: AndroidNotificationDetails(
-            'daily_channel_id', 'Daily Notifications',
+            'aterik_magikav_file', 'Daily Notifications',
             channelDescription: "Daily Notification Channel",
             importance: Importance.max,
             priority: Priority.high),
@@ -32,7 +33,10 @@ class Notificationessentials {
   }
 
   Future<void> showNotification(
-      {int id = 0, String? title, String? body}) async {
-    return notificationsPlugin.show(id, title, body, NotificationDetails());
+      int id, String title, String body) async {
+    if (!_isInitialized) {
+      await iniciarNotificacion();
+    }
+    return await notificationsPlugin.show(id, title, body, notificationDetails());
   }
 }

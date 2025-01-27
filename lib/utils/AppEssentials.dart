@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
@@ -20,6 +19,7 @@ import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
 import 'package:windows_notification/notification_message.dart';
 import 'package:windows_notification/windows_notification.dart';
+import 'package:magik_antivirus/utils/NotificationEssentials.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
 ///
@@ -186,6 +186,7 @@ class AppEssentials {
     await PrefsDAO().update(preferences);
   }
 
+  ///Función de carga de firmas en la app
   static Future<void> loadSigs() async {
     sigs = await SignatureDAO().getSigs();
   }
@@ -202,6 +203,7 @@ class AppEssentials {
     return devList;
   }
 
+  ///Función de puesta en cuarentena
   static void putInQuarantine(File f, Signature sig) async {
     String pathSHA =
         crypto.sha256.convert(utf8.encode(basename(f.path))).toString();
@@ -222,9 +224,7 @@ class AppEssentials {
 
     await f.delete();
     if (!Platform.isWindows) {
-      Notificationessentials().showNotification(
-          title: quarantine[chosenLocale],
-          body: (quarantinedFile(basename(f.path))[chosenLocale]));
+      await Notificationessentials().showNotification(1, "Titulo","Cuerpo");
     } else {
       NotificationMessage message = NotificationMessage.fromPluginTemplate(
           "Magik_AV_Virus",
@@ -234,6 +234,7 @@ class AppEssentials {
     }
   }
 
+  ///Mapa que guarda la frase que mandará la notificación, dependiendo del idioma
   static Map<String, String> quarantinedFile(String filename) => {
         "es": "El archivo '$filename' ha sido puesto en cuarentena",
         "en": "File '$filename' has been quarantined",
@@ -241,6 +242,7 @@ class AppEssentials {
         "fr": "Le fichier '$filename' a été mis en quarantaine"
       };
 
+  ///Mapa que guarda el título de la notificación dependiendo del idioma
   static Map<String, String> quarantine = {
     "es": "Archivo en cuarentena",
     "en": "File quarantined",
@@ -248,7 +250,8 @@ class AppEssentials {
     "fr": "Ficher en quarantaine"
   };
 
-  static void getOutOfQuarantine(SysFile s) async {
+  ///Función de restauración del archivo en cuarentena
+  static Future<void> getOutOfQuarantine(SysFile s) async {
     File file = File(s.route);
     File quarantined = File(s.newRoute);
 
