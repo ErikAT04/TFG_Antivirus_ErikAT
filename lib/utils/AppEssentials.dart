@@ -14,7 +14,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/DataAccess/FileDAO.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -54,9 +53,7 @@ class AppEssentials {
   static String chosenLocale = prefs.getString("chosenLang") ?? "es";
 
   ///Tema elegido
-  static ThemeData theme = ((prefs.getString("themeMode") ?? "Dark") == "Dark")
-      ? StyleEssentials.darkMode
-      : StyleEssentials.lightMode;
+  static bool isLightMode = ((prefs.getString("themeMode") ?? "Dark") != "Dark");
 
   ///Lista de idiomas que se pueden usar
   static List<Locale> listLocales = [
@@ -69,6 +66,8 @@ class AppEssentials {
   ///Dispositivo actual
   static Device? dev;
 
+  static late Color color;
+
   ///Función de obtención de preferencias
   ///
   ///Obtiene las preferencias del usuario de la base de datos
@@ -80,6 +79,17 @@ class AppEssentials {
     if (prefs.getBool("isUserRegistered") != null &&
         prefs.getBool("isUserRegistered")!) {
       user = await UserDAO().get(prefs.getString("userName")!);
+    }
+    if (await prefs.getInt("colorR") == null) {
+      color = Color.fromARGB(255, 14, 54, 111);
+      await prefs.setInt("colorR", 14);
+      await prefs.setInt("colorG", 54);
+      await prefs.setInt("colorB", 111);
+    } else {
+      int r = prefs.getInt("colorR")!;
+      int g = prefs.getInt("colorG")!;
+      int b = prefs.getInt("colorB")!;
+      color = Color.fromARGB(255, r, g, b);
     }
   }
 
@@ -95,7 +105,13 @@ class AppEssentials {
   ///
   ///Cambia el lenguaje de estas preferencias y actualiza la BD con ello
   static void changeLang(String lang) async {
-    prefs.setString("chosenLang", lang);
+    await prefs.setString("chosenLang", lang);
+  }
+
+  static void saveColorPreferences(Color color) async {
+    await AppEssentials.prefs.setInt("colorR", color.red);
+    await AppEssentials.prefs.setInt("colorG", color.green);
+    await AppEssentials.prefs.setInt("colorB", color.blue);
   }
 
   ///Función de registro y guardado de dispositivos
@@ -178,8 +194,8 @@ class AppEssentials {
   ///Función de cambio de tema:
   ///
   ///Cambia el tema de las preferencias y actualiza estas en la BD
-  static void changeTheme(bool isDark) async {
-    prefs.setString("themeMode", isDark ? "Dark" : "Light");
+  static void changeTheme(bool isLight) async {
+    prefs.setString("themeMode", isLight ? "Light" : "Dark");
   }
 
   ///Función de adición de usuarios a la BD

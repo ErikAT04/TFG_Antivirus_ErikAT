@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
+import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:magik_antivirus/views/AboutView.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
@@ -24,8 +24,7 @@ import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    bool modoClaro =
-        (context.watch<MainAppProvider>().theme == StyleEssentials.lightMode);
+    bool modoClaro = context.watch<StyleProvider>().isLightModeActive;
     return Drawer(
         child: SingleChildScrollView(
       child: Column(
@@ -91,13 +90,15 @@ class AppDrawer extends StatelessWidget {
               },
               child: ListTile(
                 leading: Icon(Icons.folder,
-                    color: StyleEssentials.colorsMap[
-                        (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                    color: context
+                        .watch<StyleProvider>()
+                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                 title: Text(
                   AppLocalizations.of(context)!.drawerFFolders,
                   style: TextStyle(
-                    color: (StyleEssentials.colorsMap[
-                        (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                    color: (context
+                        .watch<StyleProvider>()
+                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                   ),
                 ),
               ),
@@ -108,13 +109,15 @@ class AppDrawer extends StatelessWidget {
             hint: AppLocalizations.of(context)!.translate,
             child: ListTile(
               leading: Icon(Icons.translate,
-                  color: StyleEssentials.colorsMap[
-                      (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                  color: context
+                      .watch<StyleProvider>()
+                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
               title: Text(
                 AppLocalizations.of(context)!.drawerTranslate,
                 style: TextStyle(
-                  color: (StyleEssentials.colorsMap[
-                      (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                  color: (context
+                      .watch<StyleProvider>()
+                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                 ),
               ),
               trailing: DropdownButton(
@@ -147,20 +150,21 @@ class AppDrawer extends StatelessWidget {
             hint: AppLocalizations.of(context)!.darkModeContext,
             child: ListTile(
               leading: Icon(Icons.dark_mode,
-                  color: StyleEssentials.colorsMap[
-                      (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                  color: context
+                      .watch<StyleProvider>()
+                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
               title: Text(
                 AppLocalizations.of(context)!.drawerDarkMode,
                 style: TextStyle(
-                  color: (StyleEssentials.colorsMap[
-                      (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                  color: (context
+                      .watch<StyleProvider>()
+                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                 ),
               ),
               trailing: Switch(
-                  value: context.watch<MainAppProvider>().theme ==
-                      StyleEssentials.darkMode,
+                  value: !context.watch<StyleProvider>().isLightModeActive,
                   onChanged: (value) {
-                    context.read<MainAppProvider>().changeTheme(value);
+                    context.read<StyleProvider>().changeThemeMode();
                   }),
             ),
           ),
@@ -181,18 +185,85 @@ class AppDrawer extends StatelessWidget {
               },
               child: ListTile(
                 leading: Icon(Icons.info,
-                    color: StyleEssentials.colorsMap[
-                        (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                    color: context
+                        .watch<StyleProvider>()
+                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                 title: Text(
                   AppLocalizations.of(context)!.appVer,
                   style: TextStyle(
-                    color: (StyleEssentials.colorsMap[
-                        (modoClaro) ? "appMainBlue" : "appMainLightBlue"]),
+                    color: (context
+                        .watch<StyleProvider>()
+                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
                   ),
                 ),
               ),
             ),
-          )
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.brush,
+              color: context
+                  .watch<StyleProvider>()
+                  .colorsMap[(modoClaro) ? "appMain" : "appLight"],
+            ),
+            title: Text("Prueba: Cambiar Color"),
+            trailing: DropdownButton<Color>(
+                items: [
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 14, 54, 111)),
+                    value: Color.fromARGB(255, 14, 54, 111),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 14, 111, 14)),
+                    value: Color.fromARGB(255, 14, 111, 14),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 199, 199, 61)),
+                    value: Color.fromARGB(255, 199, 199, 61),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 0, 0, 0)),
+                    value: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 111, 17, 14)),
+                    value: Color.fromARGB(255, 111, 17, 14),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 14, 111, 111)),
+                    value: Color.fromARGB(255, 14, 111, 111),
+                  ),
+                  DropdownMenuItem(
+                    child: Container(
+                        width: 20,
+                        height: 20,
+                        color: Color.fromARGB(255, 88, 14, 111)),
+                    value: Color.fromARGB(255, 88, 14, 111),
+                  ),
+                ],
+                onChanged: (value) {
+                  context.read<StyleProvider>().changeThemeColor(value!);
+                },
+                value: context.watch<StyleProvider>().mainColor),
+          ),
         ],
       ),
     ));

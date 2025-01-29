@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:magik_antivirus/main.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:provider/provider.dart';
 
 ///Vista de la versión de la aplicación
@@ -41,11 +40,10 @@ class AboutViewState extends State<AboutView> {
         bottom: PreferredSize(
             preferredSize: Size.fromHeight(4),
             child: Container(
-              color: StyleEssentials.colorsMap[
-                  (context.watch<MainAppProvider>().theme ==
-                          StyleEssentials.lightMode)
-                      ? "appMainBlue"
-                      : "appMainLightBlue"],
+              color: context.watch<StyleProvider>().colorsMap[
+                  (context.watch<StyleProvider>().isLightModeActive)
+                      ? "appMain"
+                      : "appLight"],
               height: 1,
             )),
         title:

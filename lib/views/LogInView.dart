@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
+import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/views/MainView.dart';
@@ -38,9 +38,9 @@ class LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: StyleEssentials.colorsMap["appMainBlue"],
+        backgroundColor: context.watch<StyleProvider>().colorsMap["appMainBlue"],
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch<MainAppProvider>().theme == StyleEssentials.lightMode)?"appMainBlue":"appMainLightBlue"],height: 1,)),
+          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: context.watch<StyleProvider>().colorsMap[(context.watch<StyleProvider>().isLightModeActive)?"appMain":"appLight"],height: 1,)),
             title: Center(
           child: Text(AppLocalizations.of(context)!.logIn),
         )),

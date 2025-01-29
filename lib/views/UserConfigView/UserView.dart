@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/model/User.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/views/LogInView.dart';
 import 'package:magik_antivirus/widgets/Dialogs.dart';
 import 'package:magik_antivirus/DataAccess/UserDAO.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.
@@ -45,10 +45,9 @@ class UserViewState extends State<UserView> {
           MergeSemantics(
               child: Container(
             padding: EdgeInsets.all(10),
-            color: (context.watch<MainAppProvider>().theme ==
-                    StyleEssentials.darkMode)
-                ? StyleEssentials.colorsMap["appDarkBlue"]
-                : StyleEssentials.colorsMap["grey"],
+            color: (context.watch<StyleProvider>().isLightModeActive)
+                ? context.watch<StyleProvider>().colorsMap["grey"]
+                : context.watch<StyleProvider>().colorsMap["appDark"],
             child: Row(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,8 +136,8 @@ class UserViewState extends State<UserView> {
                     child: ListTile(
                       iconColor: Colors.white,
                       leading: Icon(Icons.remove),
-                      textColor: StyleEssentials.colorsMap["white"],
-                      tileColor: StyleEssentials.colorsMap["red"],
+                      textColor: context.watch<StyleProvider>().colorsMap["white"],
+                      tileColor: context.watch<StyleProvider>().colorsMap["red"],
                       title: Text(AppLocalizations.of(context)!.userErase),
                       subtitle:
                           Text(AppLocalizations.of(context)!.userEraseContext),

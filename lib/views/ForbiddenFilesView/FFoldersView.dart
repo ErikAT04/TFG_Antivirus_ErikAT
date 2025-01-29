@@ -1,9 +1,9 @@
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
+import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:magik_antivirus/model/ForbFolder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,7 +23,7 @@ class ForbFoldersView extends StatelessWidget {
     List<ForbFolder> ffolders = context.watch<MainAppProvider>().fFoldersList;
     return Scaffold(
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: StyleEssentials.colorsMap[(context.watch<MainAppProvider>().theme == StyleEssentials.lightMode)?"appMainBlue":"appMainLightBlue"],height: 1,)),
+          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: context.watch<StyleProvider>().colorsMap[(context.watch<StyleProvider>().isLightModeActive)?"appMain":"appLight"],height: 1,)),
           title: ExcludeSemantics(child: Text(AppLocalizations.of(context)!.drawerFFolders)),
         ),
         body: Center(

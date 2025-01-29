@@ -57,7 +57,7 @@ class APIReaderUtils {
   ///Enlace estático al API Rest
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
-  static String apiRESTLink = "192.168.1.135:8000";
+  static String apiRESTLink = "192.168.1.132:8000";
   //static String apiRESTLink = "192.168.1.56:8000";
 
   ///Token de la API

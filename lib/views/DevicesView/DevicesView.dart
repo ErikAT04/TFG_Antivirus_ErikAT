@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:magik_antivirus/model/Device.dart';
 import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de dispostivos
@@ -34,7 +33,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
   @override
   Widget build(BuildContext context) {
     bool modoClaro =
-        context.watch<MainAppProvider>().theme == StyleEssentials.lightMode;
+        context.watch<StyleProvider>().isLightModeActive;
     return (devs.length == 0)
         ? Center(
             child: CircularProgressIndicator(),
@@ -50,12 +49,12 @@ class AppDevicesViewState extends State<AppDevicesView> {
                       child: Container(
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: StyleEssentials.colorsMap[
-                                  (modoClaro) ? "white" : "appMainBlue"],
+                              color: context.watch<StyleProvider>().colorsMap[
+                                  (modoClaro) ? "white" : "appMain"],
                               border: Border.all(
-                                  color: StyleEssentials.colorsMap[(modoClaro)
-                                      ? "appMainBlue"
-                                      : "appMainLightBlue"]!,
+                                  color: context.watch<StyleProvider>().colorsMap[(modoClaro)
+                                      ? "appMain"
+                                      : "appLight"]!,
                                   width: 3),
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
@@ -66,50 +65,50 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                   Expanded(
                                     child: Text(dev.dev_name,
                                         style: TextStyle(
-                                            color: StyleEssentials.colorsMap[
+                                            color: context.watch<StyleProvider>().colorsMap[
                                                 (modoClaro)
-                                                    ? "appMainBlue"
-                                                    : "appMainLightBlue"],
+                                                    ? "appMain"
+                                                    : "appLight"],
                                             fontSize: 40),
                                         overflow: TextOverflow.ellipsis),
                                   ),
                                   switch (dev.dev_type) {
                                     "android" => Icon(Icons.android,
                                         size: 100,
-                                        color: StyleEssentials.colorsMap[
+                                        color: context.watch<StyleProvider>().colorsMap[
                                             (modoClaro)
-                                                ? "appMainBlue"
-                                                : "appMainLightBlue"]),
+                                                ? "appMain"
+                                                : "appLight"]),
                                     "ios" => Icon(Icons.apple,
                                         size: 100,
-                                        color: StyleEssentials.colorsMap[
+                                        color: context.watch<StyleProvider>().colorsMap[
                                             (modoClaro)
-                                                ? "appMainBlue"
-                                                : "appMainLightBlue"]),
+                                                ? "appMain"
+                                                : "appLight"]),
                                     "macos" => SvgPicture.asset(
                                         "assets/icons/macos.svg",
                                         width: 100,
                                         height: 100,
-                                        color: StyleEssentials.colorsMap[
+                                        color: context.watch<StyleProvider>().colorsMap[
                                             (modoClaro)
-                                                ? "appMainBlue"
-                                                : "appMainLightBlue"]),
+                                                ? "appMain"
+                                                : "appLight"]),
                                     "linux" => SvgPicture.asset(
                                         "assets/icons/linux.svg",
                                         width: 100,
                                         height: 100,
-                                        color: StyleEssentials.colorsMap[
+                                        color: context.watch<StyleProvider>().colorsMap[
                                             (modoClaro)
-                                                ? "appMainBlue"
-                                                : "appMainLightBlue"]),
+                                                ? "appMain"
+                                                : "appLight"]),
                                     "windows" => SvgPicture.asset(
                                         "assets/icons/windows.svg",
                                         width: 100,
                                         height: 100,
-                                        color: StyleEssentials.colorsMap[
+                                        color: context.watch<StyleProvider>().colorsMap[
                                             (modoClaro)
-                                                ? "appMainBlue"
-                                                : "appMainLightBlue"]),
+                                                ? "appMain"
+                                                : "appLight"]),
                                     String() => throw UnimplementedError(),
                                   }
                                 ],

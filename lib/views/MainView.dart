@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/main.dart';
 import 'package:magik_antivirus/widgets/Drawer.dart';
-import 'package:magik_antivirus/utils/StyleEssentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
 import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
@@ -44,11 +44,10 @@ class MainviewState extends State<Mainview> {
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(4),
               child: Container(
-                color: StyleEssentials.colorsMap[
-                    (context.watch<MainAppProvider>().theme ==
-                            StyleEssentials.lightMode)
-                        ? "appMainBlue"
-                        : "appMainLightBlue"],
+                color: context.watch<StyleProvider>().colorsMap[
+                    (context.watch<StyleProvider>().isLightModeActive)
+                        ? "appMain"
+                        : "appLight"],
                 height: 1,
               )),
           title: ExcludeSemantics(
