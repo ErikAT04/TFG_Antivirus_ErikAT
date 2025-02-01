@@ -30,18 +30,17 @@ Para el desarrollo de este trabajo, he utilizado lo siguiente:
 	- **Country-Flags:** Dependencia utilizada de forma estética en el menú de hamburguesa (Drawer) para, a la hora de cambiar el idioma, mostrar las banderas de éstos
 	- **SQFlite:** Para acceder a la base de datos local, SQFlite (Dispositivos móviles) y SQFlite_commons_ffi (Dispositivos de sobremesa) permite generar bases de datos en un archivo local y manipular sus datos de forma sencilla.
 	- **Flutter_SVG:** Permite utilizar archivos de vectores (SVG) como iconos
-	- **Provider:**
+	- **Provider:** Añade la funcionalidad MVVM a Flutter, pudiendo crear ViewModels que facilitan la actualización de estado de las vistas
 	- **INTL - l10n:** Facilita la ***internacionalización*** de la aplicación.
-	- **Path_Provider:** 
+	- **Path_Provider:** Dependencia que permite acceder a distintos directorios de diferentes sistemas operativos utilizando una misma línea de código
 	- **Logger:** Durante el desarrollo de la aplicación, el usuario puede hacer comentarios de líneas de código para que aparezcan en la línea de comandos cuando se recorra su respectivo bloque 
 	- **Crypto:** Quizá una de las dependencias más importantes para esta aplicación, permite encriptar un archivo en todo tipo de métodos de encripción. Se utiliza para la encripción de contraseñas de usuario en sha256 y la encripción del código de los ficheros en base64.
-	- **FlutterToast:** Permite generar mensajes emergentes en los dispositivos. Su nombre viene al objeto Toast de Android Studio
 	- **Flutter_Markdown:** Permite utilizar el widget Markdown para leer un bloque de texto en dicho lenguaje de marcas y aplicar su texto al contenedor. Se utiliza en las ventanas de las versiones de la aplicación.
 	- **File_Picker:** Permite al usuario elegir archivos de su sistema operativo, independientemente de cuál sea éste.
 	- **Device_Info_Plus:** Saca información del dispositivo que está ejecutando la aplicación actualmente, información a la que Flutter de forma normal le cuesta acceder (dirección MAC, el identificador del dispositivo...)
 	- **Background_Service:** Permite ejecutar acciones de la aplicación mientras ésta está en segundo plano.
 	- **Shared_Preferences:** Guarda datos de la aplicación cuando esta se cierra, pudiendo acceder a ellos de vuelta cuando se vuelva a abrir. 
-- **Lenguaje de Programación de la API - Python:**
+- **Lenguaje de Programación de la API - Python:** Un lenguaje tan anárquico como rápido y sencillo de programar, con una curva de aprendizaje muy tranquila y con gran capacidad de realizar tareas de todo tipo gracias a sus amplias librerías.
   Dependencias utilizadas:
 	- **FastAPI:** Permite al usuario generar una API, configurando sus distintos endpoints por medio de funciones. 
 	- **MySQL Connector:** Conector a la base de datos de MySQL
@@ -49,9 +48,7 @@ Para el desarrollo de este trabajo, he utilizado lo siguiente:
 	- **PyJWT:** Seguridad de APIs con Python. Genera JWTs (JSON Web Tokens), tokens que permiten acceder a los endpoints bloqueados por autenticación.
 	- **Uvicorn:** Permite probar la API en el host local.
 	- **Python-Jose:** Encripción de datos con Python, utilizado para la encripción SHA256.
-- **Entorno de Desarrollo - Visual Studio Code:**
-- **Base de datos Local - SQLite:**
-- **Base de datos 'En red' - MySQL:**
-
-## Estructura de la Interfaz
+- **Entorno de Desarrollo - Visual Studio Code** Entorno de desarrollo que permite trabajar con múltiples lenguajes de programación y con gran variedad de extensiones que permiten facilitar la programación en cualquier lenguaje.
+- **Base de datos Local - SQLite:** Gestor de Bases de Datos Relacionales que permite guardar toda su información en un archivo local. Muy ágil para guardar datos de forma local en dispositivos móviles y de escritorio
+- **Base de datos 'En red' - MySQL:** Gestor de Bases de Datos Relacionales de Oracle que permite su acceso desde dispositivos de forma remota, bastante útil para acceder a bases de datos en red.
 

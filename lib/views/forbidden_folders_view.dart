@@ -1,4 +1,3 @@
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:path/path.dart';
@@ -7,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:magik_antivirus/model/forbidden_folder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/DataAccess/forbidden_folders_dao.dart';
+import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
 
 ///Vista de las carpetas prohibidas.
 class ForbFoldersView extends StatelessWidget {
@@ -95,8 +94,8 @@ class ForbFoldersView extends StatelessWidget {
         }
       }
       if (b) {
-        Fluttertoast.showToast(
-            msg: AppLocalizations.of(context)!.fFoldersAlreadyError);
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(AppLocalizations.of(context)!.fFoldersAlreadyError), backgroundColor: Colors.red,));
       } else {
         await ForbFolderDAO()
             .insert(ForbFolder(name: basename(dirPath), route: dirPath));

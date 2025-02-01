@@ -28,11 +28,7 @@ void main() async {
   await SQLiteUtils.cargardb();
   await AppEssentials.loadSigs();
   Directory dir = Directory(join(
-      (Platform.isAndroid)
-          ? (await getApplicationDocumentsDirectory()).path
-          : (await getApplicationDocumentsDirectory()).path,
-      "MagikAV",
-      "MyFiles"));
+      (await getApplicationDocumentsDirectory()).path, "MagikAV", "MyFiles"));
   if (!dir.existsSync()) {
     dir.createSync(recursive: true);
   }

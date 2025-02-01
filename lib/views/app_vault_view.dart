@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/file.dart';
 import 'package:magik_antivirus/widgets/dialogs.dart';
-import 'package:magik_antivirus/DataAccess/file_dao.dart';
+import 'package:magik_antivirus/data_access/file_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista del baúl de archivos en cuarentena

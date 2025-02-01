@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/DataAccess/device_dao.dart';
-import 'package:magik_antivirus/DataAccess/forbidden_folders_dao.dart';
-import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/data_access/device_dao.dart';
+import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
+import 'package:magik_antivirus/data_access/user_dao.dart';
 import 'package:magik_antivirus/model/device.dart';
 import 'package:magik_antivirus/model/forbidden_folder.dart';
 import 'package:magik_antivirus/model/user.dart';

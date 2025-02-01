@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 class AboutView extends StatefulWidget {
   const AboutView({super.key, required this.language});
 
+  ///Idioma a cargar
   final String language;
 
   @override
@@ -18,7 +19,7 @@ class AboutView extends StatefulWidget {
 class AboutViewState extends State<AboutView> {
   ///Constructor de la vista
   ///
-  ///Recibe el lenguaje a cargar por parámetro
+  ///Recibe el idioma a cargar por parámetro
   AboutViewState({required this.language});
 
   ///Todo lo que es la pantalla principal carga de un archivo Markdown que cambia según el idioma

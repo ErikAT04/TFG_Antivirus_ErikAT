@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
@@ -11,10 +10,10 @@ import 'package:magik_antivirus/model/user.dart';
 import 'package:magik_antivirus/model/device.dart';
 import 'package:magik_antivirus/model/signature.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:magik_antivirus/DataAccess/file_dao.dart';
-import 'package:magik_antivirus/DataAccess/user_dao.dart';
-import 'package:magik_antivirus/DataAccess/device_dao.dart';
-import 'package:magik_antivirus/DataAccess/signature_dao.dart';
+import 'package:magik_antivirus/data_access/file_dao.dart';
+import 'package:magik_antivirus/data_access/user_dao.dart';
+import 'package:magik_antivirus/data_access/device_dao.dart';
+import 'package:magik_antivirus/data_access/signature_dao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
@@ -242,9 +241,6 @@ class AppEssentials {
     await FileDAO().insert(sysFile);
 
     await f.delete();
-
-    await Fluttertoast.showToast(
-        msg: quarantinedFile(basename(f.path))[chosenLocale]!);
   }
 
   ///Mapa que guarda la frase que mandará la notificación, dependiendo del idioma
@@ -278,6 +274,7 @@ class AppEssentials {
     await FileDAO().delete(s);
   }
 
+  ///Función encargada de borrar un archivo del sistema
   static Future<void> eraseFile(SysFile s) async {
     File file = File(s.newRoute);
 

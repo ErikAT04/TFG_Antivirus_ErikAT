@@ -7,8 +7,8 @@ import 'package:magik_antivirus/widgets/dropdown_color_menu_item.dart';
 import 'package:provider/provider.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/views/UserConfigView/user_data_view.dart';
-import 'package:magik_antivirus/views/ForbiddenFoldersView/forbidden_folders_view.dart';
+import 'package:magik_antivirus/views/user_data_view.dart';
+import 'package:magik_antivirus/views/forbidden_folders_view.dart';
 
 ///Drawer de la aplicación
 ///

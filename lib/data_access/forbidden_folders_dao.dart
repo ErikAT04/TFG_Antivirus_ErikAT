@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:magik_antivirus/utils/database_utils.dart';
 import 'package:magik_antivirus/model/forbidden_folder.dart';
-import 'package:magik_antivirus/DataAccess/dao_interfaces.dart';
+import 'package:magik_antivirus/data_access/dao_interfaces.dart';
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los ficheros a los que no se tiene acceso
 ///
 ///La información de esta se hace por medio de la base de datos de SQLite, ya que se guarda en local

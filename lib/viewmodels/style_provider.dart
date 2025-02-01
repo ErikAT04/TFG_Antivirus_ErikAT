@@ -3,8 +3,6 @@ import 'package:magik_antivirus/utils/app_essentials.dart';
 
 ///Provider que controla los estilos de la aplicación
 ///
-///Debido a buscar algo más de orden en la aplicación y no sobrecargar la clase UserDataNotifier, este archivo guarda la información de los temas y colores, se encarga de la estética principalmente
-///
 ///Ya que el color principal puede mutar en la aplicación, se debe poder cambiar en todo momento el color de los mapas y de los temas en función de dicho color
 class StyleProvider extends ChangeNotifier {
   ///Color principal, precargado por el color guardado en las preferencias

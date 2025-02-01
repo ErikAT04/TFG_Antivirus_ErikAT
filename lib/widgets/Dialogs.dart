@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/model/file.dart';
 import 'package:magik_antivirus/model/user.dart';
-import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/data_access/user_dao.dart';
 import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
