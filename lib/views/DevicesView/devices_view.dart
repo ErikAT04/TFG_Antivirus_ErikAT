@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/model/device.dart';
+import 'package:magik_antivirus/DataAccess/device_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de dispostivos

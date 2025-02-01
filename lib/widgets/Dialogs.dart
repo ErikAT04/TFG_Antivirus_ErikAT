@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:magik_antivirus/model/File.dart';
-import 'package:magik_antivirus/model/User.dart';
-import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/model/file.dart';
+import 'package:magik_antivirus/model/user.dart';
+import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Dialog de borrado de cuenta.
@@ -105,9 +105,14 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                     errorText: errorEmail,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch<StyleProvider>().isLightModeActive)
-                            ? context.watch<StyleProvider>().colorsMap["appMain"]
-                            : context.watch<StyleProvider>().colorsMap["appLight"]),
+                        color:
+                            (context.watch<StyleProvider>().isLightModeActive)
+                                ? context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appMain"]
+                                : context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               )),
           Semantics(
@@ -122,7 +127,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                       fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
                           ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context.watch<StyleProvider>().colorsMap["appLight"]),
+                          : context
+                              .watch<StyleProvider>()
+                              .colorsMap["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),
@@ -138,7 +145,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                       fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
                           ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context.watch<StyleProvider>().colorsMap["appLight"]),
+                          : context
+                              .watch<StyleProvider>()
+                              .colorsMap["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
               obscureText: true,
             ),
@@ -153,9 +162,14 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                     errorText: errorRepPass,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch<StyleProvider>().isLightModeActive)
-                            ? context.watch<StyleProvider>().colorsMap["appMain"]
-                            : context.watch<StyleProvider>().colorsMap["appLight"]),
+                        color:
+                            (context.watch<StyleProvider>().isLightModeActive)
+                                ? context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appMain"]
+                                : context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
                 obscureText: true,
               )),
@@ -243,7 +257,8 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
           passwd: crypto.sha256
               .convert(utf8.encode(passController.text))
               .toString(),
-          image: "https://media.istockphoto.com/id/1147544807/es/vector/no-imagen-en-miniatura-gr%C3%A1fico-vectorial.jpg?s=612x612&w=0&k=20&c=Bb7KlSXJXh3oSDlyFjIaCiB9llfXsgS7mHFZs6qUgVk=", //Placeholder
+          image:
+              "https://media.istockphoto.com/id/1147544807/es/vector/no-imagen-en-miniatura-gr%C3%A1fico-vectorial.jpg?s=612x612&w=0&k=20&c=Bb7KlSXJXh3oSDlyFjIaCiB9llfXsgS7mHFZs6qUgVk=", //Placeholder
           email: emailController.text);
       await UserDAO().insert(u);
       Navigator.pop(context, u);
@@ -301,9 +316,14 @@ class ChangeUserNameContextDialogState
                       labelText: AppLocalizations.of(context)!.newUserName,
                       labelStyle: TextStyle(
                           fontSize: 10,
-                          color: (context.watch<StyleProvider>().isLightModeActive)
-                              ? context.watch<StyleProvider>().colorsMap["appMain"]
-                              : context.watch<StyleProvider>().colorsMap["appLight"]),
+                          color:
+                              (context.watch<StyleProvider>().isLightModeActive)
+                                  ? context
+                                      .watch<StyleProvider>()
+                                      .colorsMap["appMain"]
+                                  : context
+                                      .watch<StyleProvider>()
+                                      .colorsMap["appLight"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
@@ -319,15 +339,20 @@ class ChangeUserNameContextDialogState
                       labelText: AppLocalizations.of(context)!.passConfirm,
                       labelStyle: TextStyle(
                           fontSize: 10,
-                          color: (context.watch<StyleProvider>().isLightModeActive)
-                              ? context.watch<StyleProvider>().colorsMap["appMain"]
-                              : context.watch<StyleProvider>().colorsMap["appLight"]),
+                          color:
+                              (context.watch<StyleProvider>().isLightModeActive)
+                                  ? context
+                                      .watch<StyleProvider>()
+                                      .colorsMap["appMain"]
+                                  : context
+                                      .watch<StyleProvider>()
+                                      .colorsMap["appLight"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
               Padding(padding: EdgeInsets.all(10)),
-              Center(child: 
-              Wrap(
+              Center(
+                  child: Wrap(
                 runAlignment: WrapAlignment.center,
                 alignment: WrapAlignment.center,
                 children: [
@@ -340,7 +365,7 @@ class ChangeUserNameContextDialogState
                         },
                         child: Text(AppLocalizations.of(context)!.userCName)),
                   ),
-              Padding(padding: EdgeInsets.all(10)),
+                  Padding(padding: EdgeInsets.all(10)),
                   Semantics(
                     label: AppLocalizations.of(context)!.cancel,
                     hint: AppLocalizations.of(context)!.cancelContext,
@@ -384,7 +409,7 @@ class ChangeUserNameContextDialogState
           : null;
     } else {
       if (unameController.text ==
-          context.read<MainAppProvider>().thisUser!.username) {
+          context.read<UserDataProvider>().thisUser!.username) {
         errorNameText = AppLocalizations.of(context)!.unameUnavaliable;
       } else {
         User? u = await UserDAO().get(unameController.text);
@@ -394,7 +419,7 @@ class ChangeUserNameContextDialogState
           if (crypto.sha256
                   .convert(utf8.encode(passController.text))
                   .toString() !=
-              context.read<MainAppProvider>().thisUser!.passwd) {
+              context.read<UserDataProvider>().thisUser!.passwd) {
             errorPassText = AppLocalizations.of(context)!.errorWrongPass;
           } else {
             allCorrect = true;
@@ -464,9 +489,14 @@ class ChangePasswordContextDialogState
                     errorText: errorOld,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch<StyleProvider>().isLightModeActive)
-                            ? context.watch<StyleProvider>().colorsMap["appMain"]
-                            : context.watch<StyleProvider>().colorsMap["appLight"]),
+                        color:
+                            (context.watch<StyleProvider>().isLightModeActive)
+                                ? context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appMain"]
+                                : context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -480,9 +510,14 @@ class ChangePasswordContextDialogState
                     errorText: errorNew,
                     labelStyle: TextStyle(
                         fontSize: 10,
-                        color: (context.watch<StyleProvider>().isLightModeActive)
-                            ? context.watch<StyleProvider>().colorsMap["appMain"]
-                            : context.watch<StyleProvider>().colorsMap["appLight"]),
+                        color:
+                            (context.watch<StyleProvider>().isLightModeActive)
+                                ? context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appMain"]
+                                : context
+                                    .watch<StyleProvider>()
+                                    .colorsMap["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -497,8 +532,12 @@ class ChangePasswordContextDialogState
                     labelStyle: TextStyle(
                         fontSize: 10,
                         color: (context.watch<StyleProvider>().isLightModeActive
-                            ? context.watch<StyleProvider>().colorsMap["appMain"]
-                            : context.watch<StyleProvider>().colorsMap["appLight"])),
+                            ? context
+                                .watch<StyleProvider>()
+                                .colorsMap["appMain"]
+                            : context
+                                .watch<StyleProvider>()
+                                .colorsMap["appLight"])),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -562,7 +601,7 @@ class ChangePasswordContextDialogState
       if (crypto.sha256
               .convert(utf8.encode(oldPassController.text))
               .toString() !=
-          context.read<MainAppProvider>().thisUser!.passwd) {
+          context.read<UserDataProvider>().thisUser!.passwd) {
         errorOldText = AppLocalizations.of(context)!.errorWrongPass;
       } else {
         if (oldPassController.text == newPassController.text) {
@@ -635,7 +674,9 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
                       fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
                           ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context.watch<StyleProvider>().colorsMap["appLight"]),
+                          : context
+                              .watch<StyleProvider>()
+                              .colorsMap["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),
@@ -677,7 +718,7 @@ class FileContext extends StatelessWidget {
   final SysFile file;
   FileContext({super.key, required this.file});
 
-  ///Muestra los distintos datos del fichero, junto un botón para 
+  ///Muestra los distintos datos del fichero, junto un botón para
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -693,23 +734,29 @@ class FileContext extends StatelessWidget {
                 Icon(Icons.file_open)
               ],
             ),
-            Text("${AppLocalizations.of(context)!.fileRoute} ${file.route}", softWrap: true,),
             Text(
-                "${AppLocalizations.of(context)!.malType} ${file.malwareType}", softWrap: true,),
-            
-                Text(
-                "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}", softWrap: true,),
-            
-                ElevatedButton(
-                    onPressed: () {
-                      restoreFile(context, file);
-                    },
-                    child: Text(AppLocalizations.of(context)!.restFile))
+              "${AppLocalizations.of(context)!.fileRoute} ${file.route}",
+              softWrap: true,
+            ),
+            Text(
+              "${AppLocalizations.of(context)!.malType} ${file.malwareType}",
+              softWrap: true,
+            ),
+            Text(
+              "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}",
+              softWrap: true,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  restoreFile(context, file);
+                },
+                child: Text(AppLocalizations.of(context)!.restFile))
           ],
         ),
       ),
     );
   }
+
   ///Función de restauración de archivos
   void restoreFile(BuildContext context, SysFile file) async {
     await AppEssentials.getOutOfQuarantine(file);

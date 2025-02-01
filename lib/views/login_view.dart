@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:magik_antivirus/model/User.dart';
-import 'package:magik_antivirus/views/MainView.dart';
-import 'package:magik_antivirus/widgets/Dialogs.dart';
-import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/model/user.dart';
+import 'package:magik_antivirus/views/main_view.dart';
+import 'package:magik_antivirus/widgets/dialogs.dart';
+import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/utils/app_essentials.dart';
+import 'package:magik_antivirus/DataAccess/device_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de inicio de sesión
@@ -38,12 +38,21 @@ class LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: context.watch<StyleProvider>().colorsMap["appMainBlue"],
+        backgroundColor:
+            context.watch<StyleProvider>().colorsMap["appMainBlue"],
         appBar: AppBar(
-          bottom: PreferredSize(preferredSize: Size.fromHeight(4), child: Container(color: context.watch<StyleProvider>().colorsMap[(context.watch<StyleProvider>().isLightModeActive)?"appMain":"appLight"],height: 1,)),
+            bottom: PreferredSize(
+                preferredSize: Size.fromHeight(4),
+                child: Container(
+                  color: context.watch<StyleProvider>().colorsMap[
+                      (context.watch<StyleProvider>().isLightModeActive)
+                          ? "appMain"
+                          : "appLight"],
+                  height: 1,
+                )),
             title: Center(
-          child: Text(AppLocalizations.of(context)!.logIn),
-        )),
+              child: Text(AppLocalizations.of(context)!.logIn),
+            )),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Card(
             child: Column(
@@ -59,6 +68,7 @@ class LogInViewState extends State<LogInView> {
                     child: Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
+                          key: Key("user"),
                             controller: emailController,
                             decoration: InputDecoration(
                                 labelText: AppLocalizations.of(context)!.user,
@@ -69,6 +79,7 @@ class LogInViewState extends State<LogInView> {
                     child: Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
+                          key: Key("pass"),
                           controller: passController,
                           decoration: InputDecoration(
                               labelText: AppLocalizations.of(context)!.pass,
@@ -85,14 +96,14 @@ class LogInViewState extends State<LogInView> {
                         child: Text(AppLocalizations.of(context)!.logIn))),
                 Padding(padding: EdgeInsets.all(5)),
                 Semantics(
-                  label: AppLocalizations.of(context)!.signUp,
-                  hint: AppLocalizations.of(context)!.registerContext,
+                    label: AppLocalizations.of(context)!.signUp,
+                    hint: AppLocalizations.of(context)!.registerContext,
                     child: ElevatedButton(
-                  onPressed: () {
-                    signUp(context);
-                  },
-                  child: Text(AppLocalizations.of(context)!.signUp),
-                )),
+                      onPressed: () {
+                        signUp(context);
+                      },
+                      child: Text(AppLocalizations.of(context)!.signUp),
+                    )),
                 Padding(padding: EdgeInsets.all(5)),
               ],
             ),
@@ -140,7 +151,7 @@ class LogInViewState extends State<LogInView> {
           completedSuccesfully = true;
           AppEssentials.dev!.user = user.email;
           await DeviceDAO().update(AppEssentials.dev!);
-          context.read<MainAppProvider>().changeUser(user);
+          context.read<UserDataProvider>().changeUser(user);
         } else {
           passError = AppLocalizations.of(context)!.errorWrongPass;
         }
@@ -168,7 +179,7 @@ class LogInViewState extends State<LogInView> {
     if (u != null) {
       AppEssentials.dev!.user = u.email;
       await DeviceDAO().update(AppEssentials.dev!);
-      context.read<MainAppProvider>().changeUser(u);
+      context.read<UserDataProvider>().changeUser(u);
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Mainview()));
     }

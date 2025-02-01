@@ -1,4 +1,4 @@
-import 'package:magik_antivirus/model/ApiContent.dart';
+import 'package:magik_antivirus/model/api_content.dart';
 
 class Signature implements APIContent{
   String type;

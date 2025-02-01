@@ -67,6 +67,8 @@
     "translate":"Klicken Sie auf die Flagge, um die Sprache zu ändern",
     "drawerAppVerContext":"Klicken Sie hier, um Daten zur Anwendungsversion anzuzeigen",
     "darkModeContext":"Wechseln Sie hier zwischen Hell- und Dunkelmodus",
+    "changeColor":"Farbe ändern",
+    "changeColorContext":"Wählen Sie die Farbe aus, die Ihnen in der Anwendung am besten gefällt",
 
     "fFoldersInfo":"Hier erscheinen die Ordner, die der Antivirus nicht scannen soll",
     "fFoldersAddFolder":"Ordner Hinzufügen",

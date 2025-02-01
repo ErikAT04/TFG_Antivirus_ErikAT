@@ -68,6 +68,8 @@
     "translate":"Cliquez sur le drapeau pour changer de langue",
     "drawerAppVerContext":"Cliquez ici pour voir les données de version de l'application",
     "darkModeContext":"Basculez entre les modes clair et sombre ici",
+    "changeColor":"Changer la Couleur",
+    "changeColorContext":"Sélectionnez la couleur que vous préférez utiliser dans l'application",
 
     "fFoldersInfo": "Ici apparaîtront les dossiers que l'antivirus ne doit pas analyser",
     "fFoldersAddFolder": "Ajouter un dossier",

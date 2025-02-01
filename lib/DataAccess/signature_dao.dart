@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
-import 'package:magik_antivirus/utils/DBUtils.dart';
-import 'package:magik_antivirus/model/Signature.dart';
+import 'package:magik_antivirus/utils/database_utils.dart';
+import 'package:magik_antivirus/model/signature.dart';
 
 class SignatureDAO {
   Future<List<Signature>> getSigs() async {

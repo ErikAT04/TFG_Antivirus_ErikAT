@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:magik_antivirus/model/ApiContent.dart';
+import 'package:magik_antivirus/model/api_content.dart';
 
 ///Utils del gestor de SQLite
 class SQLiteUtils {
@@ -57,7 +57,7 @@ class APIReaderUtils {
   ///Enlace estático al API Rest
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
-  static String apiRESTLink = "192.168.1.132:8000";
+  static String apiRESTLink = "192.168.1.134:8000";
   //static String apiRESTLink = "192.168.1.56:8000";
 
   ///Token de la API

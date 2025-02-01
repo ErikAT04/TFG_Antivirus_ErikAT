@@ -6,22 +6,22 @@ import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:magik_antivirus/model/File.dart';
-import 'package:magik_antivirus/model/User.dart';
-import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/model/Signature.dart';
+import 'package:magik_antivirus/model/file.dart';
+import 'package:magik_antivirus/model/user.dart';
+import 'package:magik_antivirus/model/device.dart';
+import 'package:magik_antivirus/model/signature.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:magik_antivirus/DataAccess/FileDAO.dart';
-import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
-import 'package:magik_antivirus/DataAccess/SignatureDAO.dart';
+import 'package:magik_antivirus/DataAccess/file_dao.dart';
+import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/DataAccess/device_dao.dart';
+import 'package:magik_antivirus/DataAccess/signature_dao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
 ///
 ///Todos los objetos y funciones de la clase están configurados de forma estática para poder acceder desde cualquier lado
 ///
-///El motivo por el que están aquí es o para ayudar al Provider antes de cargarlo y durante su uso.
+///El motivo por el que están aquí es o para ayudar a los Provider antes de cargarlo y durante su uso.
 class AppEssentials {
   ///Usuario estático
   ///
@@ -31,7 +31,6 @@ class AppEssentials {
   ///Preferencias de la aplicación
   ///
   ///Guardará y gestionará las preferencias de la aplicación, haciendo las operaciones CRUD de las bases de datos
-
   static late SharedPreferences prefs;
 
   ///Expresión regular de corrección del email:
@@ -53,7 +52,8 @@ class AppEssentials {
   static String chosenLocale = prefs.getString("chosenLang") ?? "es";
 
   ///Tema elegido
-  static bool isLightMode = ((prefs.getString("themeMode") ?? "Dark") != "Dark");
+  static bool isLightMode =
+      ((prefs.getString("themeMode") ?? "Dark") != "Dark");
 
   ///Lista de idiomas que se pueden usar
   static List<Locale> listLocales = [
@@ -66,6 +66,7 @@ class AppEssentials {
   ///Dispositivo actual
   static Device? dev;
 
+  ///Color principal actual
   static late Color color;
 
   ///Función de obtención de preferencias
@@ -73,32 +74,28 @@ class AppEssentials {
   ///Obtiene las preferencias del usuario de la base de datos
   static Future<void> getProperties() async {
     prefs = await SharedPreferences.getInstance();
-    if (prefs.getKeys().length == 0) {
-      newPreferences();
+    if (!prefs.containsKey("colorR")) {
+      await newPreferences();
     }
     if (prefs.getBool("isUserRegistered") != null &&
         prefs.getBool("isUserRegistered")!) {
       user = await UserDAO().get(prefs.getString("userName")!);
     }
-    if (await prefs.getInt("colorR") == null) {
-      color = Color.fromARGB(255, 14, 54, 111);
-      await prefs.setInt("colorR", 14);
-      await prefs.setInt("colorG", 54);
-      await prefs.setInt("colorB", 111);
-    } else {
-      int r = prefs.getInt("colorR")!;
-      int g = prefs.getInt("colorG")!;
-      int b = prefs.getInt("colorB")!;
-      color = Color.fromARGB(255, r, g, b);
-    }
+    int r = prefs.getInt("colorR")??14;
+    int g = prefs.getInt("colorG")??54;
+    int b = prefs.getInt("colorB")??111;
+    color = Color.fromARGB(255, r, g, b);
   }
 
-  static void newPreferences() {
-    prefs.setBool("isUserRegistered", false);
-    prefs.setString("userName", "");
-    prefs.setString("userPass", "");
-    prefs.setString("chosenLang", "es");
-    prefs.setString("themeMode", "light");
+  static Future<void> newPreferences() async {
+    await prefs.setBool("isUserRegistered", false);
+    await prefs.setString("userName", "");
+    await prefs.setString("userPass", "");
+    await prefs.setString("chosenLang", "es");
+    await prefs.setString("themeMode", "light");
+    await prefs.setInt("colorR", 14);
+    await prefs.setInt("colorG", 54);
+    await prefs.setInt("colorB", 111);
   }
 
   ///Función de cambio de lenguaje

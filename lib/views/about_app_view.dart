@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:provider/provider.dart';
 
 ///Vista de la versión de la aplicación
@@ -16,13 +16,20 @@ class AboutView extends StatefulWidget {
 }
 
 class AboutViewState extends State<AboutView> {
+  ///Constructor de la vista
+  ///
+  ///Recibe el lenguaje a cargar por parámetro
   AboutViewState({required this.language});
 
   ///Todo lo que es la pantalla principal carga de un archivo Markdown que cambia según el idioma
   String language;
 
+  ///String que guarda toda la información del archivo markdown a cargar
   String? data;
 
+  ///Inicio del estado de la vista
+  ///
+  ///Por medio de la clase rootbundle, accede a los assets y carga la información del markdown con el idioma elegido
   @override
   void initState() {
     super.initState();
@@ -33,6 +40,11 @@ class AboutViewState extends State<AboutView> {
     });
   }
 
+  ///Construcción de la vista.
+  ///
+  ///El usuario verá una pantalla con el nombre de la aplicación, y los cambios de la aplicación.
+  ///
+  ///Esos cambios se verán en el idioma seleccionado en la aplicación.
   @override
   Widget build(BuildContext context) {
     return Scaffold(

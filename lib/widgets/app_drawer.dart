@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
-import 'package:magik_antivirus/views/AboutView.dart';
+import 'package:magik_antivirus/viewmodels/language_provider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/views/about_app_view.dart';
+import 'package:magik_antivirus/widgets/dropdown_color_menu_item.dart';
 import 'package:provider/provider.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/views/UserConfigView/UserView.dart';
-import 'package:magik_antivirus/views/ForbiddenFilesView/FFoldersView.dart';
+import 'package:magik_antivirus/views/UserConfigView/user_data_view.dart';
+import 'package:magik_antivirus/views/ForbiddenFilesView/forbidden_folders_view.dart';
 
 ///Drawer de la aplicación
 ///
@@ -43,33 +45,36 @@ class AppDrawer extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: (context
-                                      .watch<MainAppProvider>()
-                                      .thisUser !=
-                                  null &&
-                              context
-                                      .watch<MainAppProvider>()
-                                      .thisUser!
-                                      .image !=
-                                  null)
-                          ? NetworkImage(
-                              context.watch<MainAppProvider>().thisUser!.image!)
-                          : null,
+                      backgroundImage:
+                          (context.watch<UserDataProvider>().thisUser != null &&
+                                  context
+                                          .watch<UserDataProvider>()
+                                          .thisUser!
+                                          .image !=
+                                      null)
+                              ? NetworkImage(context
+                                  .watch<UserDataProvider>()
+                                  .thisUser!
+                                  .image!)
+                              : null,
                     ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text((context.watch<MainAppProvider>().thisUser !=
+                          Text((context.watch<UserDataProvider>().thisUser !=
                                   null)
                               ? context
-                                  .watch<MainAppProvider>()
+                                  .watch<UserDataProvider>()
                                   .thisUser!
                                   .username
                               : "No user"),
-                          Text((context.watch<MainAppProvider>().thisUser !=
+                          Text((context.watch<UserDataProvider>().thisUser !=
                                   null)
-                              ? context.watch<MainAppProvider>().thisUser!.email
+                              ? context
+                                  .watch<UserDataProvider>()
+                                  .thisUser!
+                                  .email
                               : "No user")
                         ],
                       ),
@@ -139,9 +144,10 @@ class AppDrawer extends StatelessWidget {
                       value: "fr",
                     )
                   ],
-                  value: context.watch<MainAppProvider>().language.languageCode,
+                  value:
+                      context.watch<LanguageNotifier>().language.languageCode,
                   onChanged: (value) {
-                    context.read<MainAppProvider>().changeLang(value!);
+                    context.read<LanguageNotifier>().changeLang(value!);
                   }),
             ),
           ),
@@ -178,7 +184,7 @@ class AppDrawer extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => AboutView(
                               language: context
-                                  .watch<MainAppProvider>()
+                                  .watch<LanguageNotifier>()
                                   .language
                                   .languageCode,
                             )));
@@ -206,58 +212,16 @@ class AppDrawer extends StatelessWidget {
                   .watch<StyleProvider>()
                   .colorsMap[(modoClaro) ? "appMain" : "appLight"],
             ),
-            title: Text("Prueba: Cambiar Color"),
+            title: Text("changeColor"),
             trailing: DropdownButton<Color>(
                 items: [
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 14, 54, 111)),
-                    value: Color.fromARGB(255, 14, 54, 111),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 14, 111, 14)),
-                    value: Color.fromARGB(255, 14, 111, 14),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 199, 199, 61)),
-                    value: Color.fromARGB(255, 199, 199, 61),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    value: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 111, 17, 14)),
-                    value: Color.fromARGB(255, 111, 17, 14),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 14, 111, 111)),
-                    value: Color.fromARGB(255, 14, 111, 111),
-                  ),
-                  DropdownMenuItem(
-                    child: Container(
-                        width: 20,
-                        height: 20,
-                        color: Color.fromARGB(255, 88, 14, 111)),
-                    value: Color.fromARGB(255, 88, 14, 111),
-                  ),
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 54, 111)),
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 14)),
+                  DropDownColorItem(color: Color.fromARGB(255, 199, 199, 61)),
+                  DropDownColorItem(color: Color.fromARGB(255, 0, 0, 0)),
+                  DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
+                  DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
                 ],
                 onChanged: (value) {
                   context.read<StyleProvider>().changeThemeColor(value!);

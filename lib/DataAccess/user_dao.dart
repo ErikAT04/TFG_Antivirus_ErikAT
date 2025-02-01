@@ -1,8 +1,8 @@
 import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
-import 'package:magik_antivirus/model/User.dart';
-import 'package:magik_antivirus/utils/DBUtils.dart';
-import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
+import 'package:magik_antivirus/model/user.dart';
+import 'package:magik_antivirus/utils/database_utils.dart';
+import 'package:magik_antivirus/DataAccess/dao_interfaces.dart';
 
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los dispositivos
 ///

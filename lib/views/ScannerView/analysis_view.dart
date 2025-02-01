@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
+import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -26,7 +26,7 @@ class AnalysisViewState extends State<AnalysisView> {
   ///Además decir que se puede abandonar esta pestaña sin ningún problema, ya que no afectará al funcionamiento del análisis
   @override
   Widget build(BuildContext context) {
-    bool isActive = context.watch<MainAppProvider>().isIsolateActive;
+    bool isActive = context.watch<AnalysisProvider>().isIsolateActive;
     if (!isActive) {
       return Center(
           child: Container(
@@ -52,7 +52,11 @@ class AnalysisViewState extends State<AnalysisView> {
         child: ExcludeSemantics(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [CircularProgressIndicator(), Text("${AppLocalizations.of(context)!.pleaseWait}\n${AppLocalizations.of(context)!.mightTakeaWhile}")],
+          children: [
+            CircularProgressIndicator(),
+            Text(
+                "${AppLocalizations.of(context)!.pleaseWait}\n${AppLocalizations.of(context)!.mightTakeaWhile}")
+          ],
         )),
       );
     }
@@ -62,6 +66,6 @@ class AnalysisViewState extends State<AnalysisView> {
   ///
   ///Si necesita algún tipo de permiso del SO, lo pide (Permissions plugin)
   void scan() async {
-    context.read<MainAppProvider>().analizarArchivos();
+    context.read<AnalysisProvider>().analizarArchivos();
   }
 }

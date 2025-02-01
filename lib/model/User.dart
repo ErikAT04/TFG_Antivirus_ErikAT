@@ -1,4 +1,4 @@
-import 'package:magik_antivirus/model/ApiContent.dart';
+import 'package:magik_antivirus/model/api_content.dart';
 
 ///Clase de Usuario: Guarda la información de inicio de sesión
 class User implements APIContent{

@@ -67,6 +67,8 @@
     "translate":"Pulse en la bandera para cambiar idioma",
     "drawerAppVerContext":"Pulse aquí para ver los datos de las versiones de la aplicación",
     "darkModeContext":"Cambie aquí el modo claro y oscuro",
+    "changeColor":"Cambiar Color",
+    "changeColorContext":"Selecciona el color que más te guste para utilizar en la aplicación",
 
     "fFoldersInfo":"Aquí aparecerán las carpetas a las que no se desea que el antivirus analice ",
     "fFoldersAddFolder":"Añadir Carpeta",

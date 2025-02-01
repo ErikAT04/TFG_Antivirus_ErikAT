@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/model/User.dart';
-import 'package:magik_antivirus/model/Device.dart';
-import 'package:magik_antivirus/views/LogInView.dart';
-import 'package:magik_antivirus/widgets/Dialogs.dart';
-import 'package:magik_antivirus/DataAccess/UserDAO.dart';
-import 'package:magik_antivirus/DataAccess/DeviceDAO.dart';
+import 'package:magik_antivirus/model/user.dart';
+import 'package:magik_antivirus/model/device.dart';
+import 'package:magik_antivirus/views/login_view.dart';
+import 'package:magik_antivirus/widgets/dialogs.dart';
+import 'package:magik_antivirus/DataAccess/user_dao.dart';
+import 'package:magik_antivirus/DataAccess/device_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.
@@ -19,8 +19,14 @@ class UserView extends StatefulWidget {
 }
 
 class UserViewState extends State<UserView> {
+  ///Lista de dispositivos
+  ///
+  ///Sirve para mostrar la cantidad de dispositivos asociados a la cuenta
   List<Device> devs = [];
 
+  ///Inicio del estado de la vista
+  ///
+  ///Carga la lista de dispositivos para mostrar la cantidad de éstos que el usuario tiene registrados en su cuenta.
   @override
   void initState() {
     super.initState();
@@ -29,12 +35,12 @@ class UserViewState extends State<UserView> {
 
   ///El usuario podrá ver todos sus datos: El nombre, email, su fecha de unión y el número de dispositivos conectados.
   ///
-  ///Aparte de esto, tiene una selección de botones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
+  ///Aparte de esto, tiene una lista de opciones para cambiar varios parámetros, como el nombre y la contraseña. La foto de perfil se puede cambiar si se pulsa en el icono de la imagen.
   ///
   ///Además de esos cambios, se puede cerrar sesión y borrar la cuenta con otros botones que se ven a continuación.
   @override
   Widget build(BuildContext context) {
-    User u = context.watch<MainAppProvider>().thisUser!;
+    User u = context.watch<UserDataProvider>().thisUser!;
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.userTile),
@@ -136,8 +142,10 @@ class UserViewState extends State<UserView> {
                     child: ListTile(
                       iconColor: Colors.white,
                       leading: Icon(Icons.remove),
-                      textColor: context.watch<StyleProvider>().colorsMap["white"],
-                      tileColor: context.watch<StyleProvider>().colorsMap["red"],
+                      textColor:
+                          context.watch<StyleProvider>().colorsMap["white"],
+                      tileColor:
+                          context.watch<StyleProvider>().colorsMap["red"],
                       title: Text(AppLocalizations.of(context)!.userErase),
                       subtitle:
                           Text(AppLocalizations.of(context)!.userEraseContext),
@@ -162,7 +170,7 @@ class UserViewState extends State<UserView> {
       u.image = res;
       await UserDAO().update(u);
     }
-    context.read<MainAppProvider>().changeUser(u);
+    context.read<UserDataProvider>().changeUser(u);
   }
 
   ///Función de cambio de nombre de usuario
@@ -174,8 +182,8 @@ class UserViewState extends State<UserView> {
     String? newPass = await showDialog<String>(
         context: context, builder: (context) => ChangePasswordContextDialog());
     if (newPass != null) {
-      context.read<MainAppProvider>().thisUser!.passwd = newPass;
-      await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+      context.read<UserDataProvider>().thisUser!.passwd = newPass;
+      await UserDAO().update(context.read<UserDataProvider>().thisUser!);
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Contraseña actualizada correctamente")));
     }
@@ -190,11 +198,11 @@ class UserViewState extends State<UserView> {
     String? newName = await showDialog<String>(
         context: context, builder: (context) => ChangeUserNameContextDialog());
     if (newName != null) {
-      context.read<MainAppProvider>().thisUser!.username = newName;
-      await UserDAO().update(context.read<MainAppProvider>().thisUser!);
+      context.read<UserDataProvider>().thisUser!.username = newName;
+      await UserDAO().update(context.read<UserDataProvider>().thisUser!);
       context
-          .read<MainAppProvider>()
-          .changeUser(context.read<MainAppProvider>().thisUser!);
+          .read<UserDataProvider>()
+          .changeUser(context.read<UserDataProvider>().thisUser!);
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Nombre actualizado correctamente")));
     }
@@ -212,7 +220,7 @@ class UserViewState extends State<UserView> {
       Navigator.pop(context);
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => LogInView()));
-      context.read<MainAppProvider>().erase();
+      context.read<UserDataProvider>().erase();
     }
   }
 
@@ -223,7 +231,7 @@ class UserViewState extends State<UserView> {
     Navigator.pop(context);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LogInView()));
-    context.read<MainAppProvider>().logout();
+    context.read<UserDataProvider>().logout();
   }
 
   void loadList() async {

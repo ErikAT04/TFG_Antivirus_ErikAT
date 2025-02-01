@@ -1,14 +1,16 @@
 import 'dart:io';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
+import 'package:magik_antivirus/viewmodels/language_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:magik_antivirus/utils/DBUtils.dart';
-import 'package:magik_antivirus/views/MainView.dart';
-import 'package:magik_antivirus/views/LogInView.dart';
-import 'package:magik_antivirus/utils/AppEssentials.dart';
+import 'package:magik_antivirus/utils/database_utils.dart';
+import 'package:magik_antivirus/views/main_view.dart';
+import 'package:magik_antivirus/views/login_view.dart';
+import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -40,8 +42,12 @@ void main() async {
   AppEssentials.registerThisDevice();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => MainAppProvider()),
-      ChangeNotifierProvider(create: (context) => StyleProvider())
+      ChangeNotifierProvider(create: (context) => UserDataProvider()),
+      ChangeNotifierProvider(create: (context) => StyleProvider()),
+      ChangeNotifierProvider(
+        create: (context) => AnalysisProvider(),
+      ),
+      ChangeNotifierProvider(create: (context) => LanguageNotifier())
     ],
     child: MainApp(),
   ));
@@ -50,6 +56,7 @@ void main() async {
 ///Clase de inicio de la app: Se inicia MaterialApp con la pagina principal en LogIn o Main dependiendo de si el usuario está iniciado
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
+
   ///Inicia el contexto y, con él:
   /// - Delegates: Definen los recursos que utilizan las localizaciones
   /// - Locales soportados: Definen los idiomas que se pueden usar
@@ -74,11 +81,11 @@ class MainApp extends StatelessWidget {
         Locale('fr')
       ],
       locale: //Controlar el lenguaje formato Locale('codigo')
-          context.watch<MainAppProvider>().language,
+          context.watch<LanguageNotifier>().language,
       theme: context.watch<StyleProvider>().isLightModeActive
           ? context.watch<StyleProvider>().lightMode
           : context.watch<StyleProvider>().darkMode,
-      home: (context.watch<MainAppProvider>().thisUser == null)
+      home: (context.watch<UserDataProvider>().thisUser == null)
           ? LogInView()
           : Mainview(), //Si no se carga un usuario por defecto, se va al inicio de sesión.
     );

@@ -1,4 +1,4 @@
-import 'package:magik_antivirus/model/ApiContent.dart';
+import 'package:magik_antivirus/model/api_content.dart';
 
 ///La clase Device guarda los dispositivos de los usuarios
 class Device implements APIContent {

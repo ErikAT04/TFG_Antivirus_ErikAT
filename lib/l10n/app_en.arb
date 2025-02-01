@@ -67,6 +67,8 @@
     "translate":"Click on the flag to change language",
     "drawerAppVerContext":"Click here to see application version data",
     "darkModeContext":"Switch between light and dark mode here",
+    "changeColor":"Change Color",
+    "changeColorContext":"Choose the colour you like the most to use it in this app",
 
     "fFoldersInfo":"The different folders in this page won't be scanned by the app",
     "fFoldersAddFolder":"Add Folder",

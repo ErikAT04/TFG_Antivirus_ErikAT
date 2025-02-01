@@ -1,7 +1,7 @@
 import 'package:logger/logger.dart';
-import 'package:magik_antivirus/model/File.dart';
-import 'package:magik_antivirus/utils/DBUtils.dart';
-import 'package:magik_antivirus/DataAccess/DAOInterfaces.dart';
+import 'package:magik_antivirus/model/file.dart';
+import 'package:magik_antivirus/utils/database_utils.dart';
+import 'package:magik_antivirus/DataAccess/dao_interfaces.dart';
 
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los archivos
 ///

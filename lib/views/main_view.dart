@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/MainAppProvider.dart';
-import 'package:magik_antivirus/viewmodels/StyleProvider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/widgets/Drawer.dart';
+import 'package:magik_antivirus/widgets/app_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/views/AppVaultView/VaultView.dart';
-import 'package:magik_antivirus/views/DevicesView/DevicesView.dart';
-import 'package:magik_antivirus/views/ScannerView/AnalysisView.dart';
+import 'package:magik_antivirus/views/AppVaultView/app_vault_view.dart';
+import 'package:magik_antivirus/views/DevicesView/devices_view.dart';
+import 'package:magik_antivirus/views/ScannerView/analysis_view.dart';
 
 ///Vista de la pantalla principal
 class Mainview extends StatefulWidget {
@@ -28,7 +28,7 @@ class MainviewState extends State<Mainview> {
   void initState() {
     super.initState();
     context
-        .read<MainAppProvider>()
+        .read<UserDataProvider>()
         .reloadFFolders(); //Precarga de los archivos prohibidos
   }
 
@@ -64,12 +64,14 @@ class MainviewState extends State<Mainview> {
               ),
               GestureDetector(
                 child: CircleAvatar(
-                  backgroundImage: (context.watch<MainAppProvider>().thisUser !=
+                  backgroundImage: (context
+                                  .watch<UserDataProvider>()
+                                  .thisUser !=
                               null &&
-                          context.watch<MainAppProvider>().thisUser!.image !=
+                          context.watch<UserDataProvider>().thisUser!.image !=
                               null)
                       ? NetworkImage(
-                          context.watch<MainAppProvider>().thisUser!.image!)
+                          context.watch<UserDataProvider>().thisUser!.image!)
                       : null,
                 ),
                 onTap: () {
