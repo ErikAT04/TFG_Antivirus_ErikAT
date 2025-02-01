@@ -20,8 +20,12 @@ class EraseContextDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Wrap(
-        alignment: WrapAlignment.center,
+      child: Container(
+        padding: EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 5,
         children: [
           ExcludeSemantics(
             child: Text(
@@ -47,7 +51,7 @@ class EraseContextDialog extends StatelessWidget {
                   child: Text(AppLocalizations.of(context)!.cancel))),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -91,6 +95,7 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
     return Dialog(
         child: Container(
       margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(5),
       child: Wrap(
         spacing: 10,
         alignment: WrapAlignment.center,
@@ -115,6 +120,7 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                                     .colorsMap["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               )),
+          Padding(padding: EdgeInsets.all(10)),
           Semantics(
             label: AppLocalizations.of(context)!.uname,
             hint: AppLocalizations.of(context)!.unameContext,
@@ -133,6 +139,7 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),
+          Padding(padding: EdgeInsets.all(10)),
           Semantics(
             label: AppLocalizations.of(context)!.pass,
             hint: AppLocalizations.of(context)!.passContext,
@@ -152,6 +159,7 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
               obscureText: true,
             ),
           ),
+          Padding(padding: EdgeInsets.all(10)),
           Semantics(
               label: AppLocalizations.of(context)!.repPass,
               hint: AppLocalizations.of(context)!.repPassContext,
@@ -173,14 +181,16 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
                     errorStyle: TextStyle(fontSize: 10)),
                 obscureText: true,
               )),
+          Padding(padding: EdgeInsets.all(10)),
           Semantics(
             label: AppLocalizations.of(context)!.signUp,
             hint: AppLocalizations.of(context)!.registerContext,
-            child: ElevatedButton(
-                onPressed: () {
-                  register(context);
-                },
-                child: Text(AppLocalizations.of(context)!.signUp)),
+            child: Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      register(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.signUp))),
           )
         ],
       ),
@@ -303,8 +313,11 @@ class ChangeUserNameContextDialogState
     return Dialog(
       child: Container(
           margin: EdgeInsets.all(10),
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
+          child: Column(
+            spacing: 10,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Semantics(
                 label: AppLocalizations.of(context)!.newUserName,
@@ -327,7 +340,6 @@ class ChangeUserNameContextDialogState
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(10)),
               Semantics(
                 label: AppLocalizations.of(context)!.passConfirm,
                 hint: AppLocalizations.of(context)!.passContext,
@@ -350,33 +362,24 @@ class ChangeUserNameContextDialogState
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
-              Padding(padding: EdgeInsets.all(10)),
-              Center(
-                  child: Wrap(
-                runAlignment: WrapAlignment.center,
-                alignment: WrapAlignment.center,
-                children: [
-                  Semantics(
-                    label: AppLocalizations.of(context)!.userCName,
-                    hint: AppLocalizations.of(context)!.userCNameContext,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          changeName(context);
-                        },
-                        child: Text(AppLocalizations.of(context)!.userCName)),
-                  ),
-                  Padding(padding: EdgeInsets.all(10)),
-                  Semantics(
-                    label: AppLocalizations.of(context)!.cancel,
-                    hint: AppLocalizations.of(context)!.cancelContext,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, null);
-                        },
-                        child: Text(AppLocalizations.of(context)!.cancel)),
-                  )
-                ],
-              ))
+              Semantics(
+                label: AppLocalizations.of(context)!.userCName,
+                hint: AppLocalizations.of(context)!.userCNameContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      changeName(context);
+                    },
+                    child: Text(AppLocalizations.of(context)!.userCName)),
+              ),
+              Semantics(
+                label: AppLocalizations.of(context)!.cancel,
+                hint: AppLocalizations.of(context)!.cancelContext,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context, null);
+                    },
+                    child: Text(AppLocalizations.of(context)!.cancel)),
+              )
             ],
           )),
     );
@@ -475,8 +478,10 @@ class ChangePasswordContextDialogState
     return Dialog(
       child: Container(
         margin: EdgeInsets.all(10),
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           spacing: 10,
           children: [
             Semantics(
@@ -716,22 +721,34 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
 class FileContext extends StatelessWidget {
   ///Archivo que recibe por parámetro
   final SysFile file;
+
+  ///Constructor
+  ///
+  ///Recibe el archivo por parámetro
   FileContext({super.key, required this.file});
 
-  ///Muestra los distintos datos del fichero, junto un botón para
+  ///Muestra los distintos datos del fichero, junto un botón para borrar el archivo y otro para restaurarlo.
   @override
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
         padding: EdgeInsets.all(10),
-        child: Wrap(
-          direction: Axis.vertical,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Wrap(
+            Row(
               children: [
                 Text(file.name),
-                Expanded(child: Container()),
-                Icon(Icons.file_open)
+                Expanded(
+                    child: Padding(
+                  padding: EdgeInsets.all(1),
+                )),
+                Icon(
+                  Icons.file_open,
+                  size: 30,
+                )
               ],
             ),
             Text(
@@ -743,23 +760,41 @@ class FileContext extends StatelessWidget {
               softWrap: true,
             ),
             Text(
-              "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate}",
+              "${AppLocalizations.of(context)!.confDate} ${file.quarantineDate.year}-${(file.quarantineDate.month < 10) ? "0${file.quarantineDate.month}" : file.quarantineDate.month}-${(file.quarantineDate.day < 10) ? "0${file.quarantineDate.day}" : file.quarantineDate.day}",
               softWrap: true,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  restoreFile(context, file);
-                },
-                child: Text(AppLocalizations.of(context)!.restFile))
+            Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    restoreFile(context, file);
+                  },
+                  child: Text(AppLocalizations.of(context)!.restFile)),
+            ),
+            Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      eraseFile(context, file);
+                    },
+                    child: Text(AppLocalizations.of(context)!.eraseFile)))
           ],
         ),
       ),
     );
   }
 
+  ///Función de borrado permanente del archivo
+  void eraseFile(BuildContext context, SysFile file) async {
+    await AppEssentials.eraseFile(file);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context)!.fileErased)));
+    Navigator.pop(context, true);
+  }
+
   ///Función de restauración de archivos
   void restoreFile(BuildContext context, SysFile file) async {
     await AppEssentials.getOutOfQuarantine(file);
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context)!.fileRestored)));
     Navigator.pop(context, true);
   }
 }

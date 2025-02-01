@@ -32,7 +32,7 @@ class UserDAO implements DAOInterface<User, String> {
   @override
   Future<User?> get(String value) async {
     try {
-      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/${value}");
+      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/$value");
       var body = await APIReaderUtils.getData(uri);
       if (body != "Dispositivo no encontrado") {
         var map = convert.jsonDecode(body);

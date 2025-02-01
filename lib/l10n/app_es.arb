@@ -47,6 +47,9 @@
     "malType":"Tipo de Malware:",
     "confDate":"Fecha de Confinamiento:",
     "restFile":"Restaurar Archivo",
+    "eraseFile":"Borrar Archivo",
+    "fileErased":"Archivo eliminado correctamente",
+    "fileRestored":"Archivo restaurado correctamente",
 
     "fileList":"Lista de archivos",
     "devlist":"Lista de dispositivos",

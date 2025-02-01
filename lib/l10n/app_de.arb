@@ -47,6 +47,9 @@
     "malType":"Malware-Typ:",
     "confDate":"Quarantänedatum:",
     "restFile":"Datei Wiederherstellen",
+    "eraseFile":"Datei Löschen",
+    "fileErased":"Datei erfolgreich gelöscht",
+    "fileRestored":"Datei erfolgreich wiederhergestellt",
 
     "fileList":"Dateiliste",
     "devlist":"Geräteliste",

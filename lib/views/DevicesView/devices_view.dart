@@ -63,14 +63,13 @@ class AppDevicesViewState extends State<AppDevicesView> {
                               Row(
                                 children: [
                                   Expanded(
-                                    child: Text(dev.dev_name,
+                                    child: Text(dev.dev_name, textAlign: TextAlign.center,
                                         style: TextStyle(
                                             color: context.watch<StyleProvider>().colorsMap[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"],
-                                            fontSize: 40),
-                                        overflow: TextOverflow.ellipsis),
+                                            fontSize: 25), softWrap: true,),
                                   ),
                                   switch (dev.dev_type) {
                                     "android" => Icon(Icons.android,

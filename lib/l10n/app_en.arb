@@ -47,6 +47,9 @@
     "malType":"Malware Type:",
     "confDate":"Quarantine Date:",
     "restFile":"Restore File",
+    "eraseFile":"Erase File",
+    "fileErased":"File erased successfully",
+    "fileRestored":"File restored successfully",
 
     "fileList":"File list",
     "devlist":"Device list",
@@ -76,7 +79,7 @@
     "fFoldersAlreadyError":"Esta carpeta ya estaba en la lista",
 
     "ffolderBttContext":"Pulse aquí para añadir una nueva carpeta",
-    "ffolderList":"Lista de carpetas prohibidas, puedes eliminarlas dando al icono de borrar",
+    "ffolderList":"Lista de carpetas prohibidas. Puedes eliminarlas dando al icono de borrar",
 
     "user":"User",
     "userMemSince":"Member since:",

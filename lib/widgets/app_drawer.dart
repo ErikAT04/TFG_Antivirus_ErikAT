@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:magik_antivirus/views/UserConfigView/user_data_view.dart';
-import 'package:magik_antivirus/views/ForbiddenFilesView/forbidden_folders_view.dart';
+import 'package:magik_antivirus/views/ForbiddenFoldersView/forbidden_folders_view.dart';
 
 ///Drawer de la aplicación
 ///
@@ -175,6 +175,33 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           Semantics(
+            label: AppLocalizations.of(context)!.changeColor,
+            hint: AppLocalizations.of(context)!.changeColorContext,
+            child: ListTile(
+            leading: Icon(
+              Icons.brush,
+              color: context
+                  .watch<StyleProvider>()
+                  .colorsMap[(modoClaro) ? "appMain" : "appLight"],
+            ),
+            title: Text(AppLocalizations.of(context)!.changeColor),
+            trailing: DropdownButton<Color>(
+                items: [
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 54, 111)),
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 14)),
+                  DropDownColorItem(color: Color.fromARGB(255, 199, 199, 61)),
+                  DropDownColorItem(color: Color.fromARGB(255, 0, 0, 0)),
+                  DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
+                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
+                  DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
+                ],
+                onChanged: (value) {
+                  context.read<StyleProvider>().changeThemeColor(value!);
+                },
+                value: context.watch<StyleProvider>().mainColor),
+          ),
+          ),
+          Semantics(
             label: AppLocalizations.of(context)!.drawerAppVer,
             hint: AppLocalizations.of(context)!.drawerAppVerContext,
             child: GestureDetector(
@@ -204,30 +231,7 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.brush,
-              color: context
-                  .watch<StyleProvider>()
-                  .colorsMap[(modoClaro) ? "appMain" : "appLight"],
-            ),
-            title: Text("changeColor"),
-            trailing: DropdownButton<Color>(
-                items: [
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 54, 111)),
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 14)),
-                  DropDownColorItem(color: Color.fromARGB(255, 199, 199, 61)),
-                  DropDownColorItem(color: Color.fromARGB(255, 0, 0, 0)),
-                  DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
-                  DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
-                ],
-                onChanged: (value) {
-                  context.read<StyleProvider>().changeThemeColor(value!);
-                },
-                value: context.watch<StyleProvider>().mainColor),
-          ),
+          )
         ],
       ),
     ));

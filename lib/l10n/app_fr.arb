@@ -48,6 +48,8 @@
     "malType": "Type de malware :",
     "confDate": "Date de confinement :",
     "restFile": "Restaurer le fichier",
+    "fileErased":"Fichier supprimé avec succès",
+    "fileRestored":"Archivo restaurado correctamente",
 
     "fileList":"Liste des fichiers",
     "devlist":"Liste des appareils",
@@ -75,6 +77,7 @@
     "fFoldersAddFolder": "Ajouter un dossier",
     "fFoldersFolder": "Dossier :",
     "fFoldersAlreadyError":"Ce dossier était déjà dans la liste",
+    "eraseFile":"Supprimer le ficher",
 
     "ffolderBttContext":"Cliquez ici pour ajouter un nouveau dossier",
     "ffolderList":"Liste des dossiers interdits, vous pouvez les supprimer en cliquant sur l'icône Supprimer",

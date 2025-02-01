@@ -81,9 +81,9 @@ class AppEssentials {
         prefs.getBool("isUserRegistered")!) {
       user = await UserDAO().get(prefs.getString("userName")!);
     }
-    int r = prefs.getInt("colorR")??14;
-    int g = prefs.getInt("colorG")??54;
-    int b = prefs.getInt("colorB")??111;
+    int r = prefs.getInt("colorR") ?? 14;
+    int g = prefs.getInt("colorG") ?? 54;
+    int b = prefs.getInt("colorB") ?? 111;
     color = Color.fromARGB(255, r, g, b);
   }
 
@@ -274,6 +274,14 @@ class AppEssentials {
     await file.create();
 
     await quarantined.delete();
+
+    await FileDAO().delete(s);
+  }
+
+  static Future<void> eraseFile(SysFile s) async {
+    File file = File(s.newRoute);
+
+    await file.delete();
 
     await FileDAO().delete(s);
   }
