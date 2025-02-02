@@ -1,4 +1,13 @@
-## Current version (0.3) - 01/23/2025
+## Current Version (0.4) - 02/02/2025
+**New additions**:
+- The option to **change color** has been added to the interface. *"That there was only one color seemed a bit boring, so now the user can choose between 14 different options: 7 colors alternating light and dark mode"*.
+
+**Fixes**:
+- Network functions should now work without any issues.
+
+
+## Old versions
+### Version 0.3 - 01/23/2025
 **New additions**:
 - **File analysis** has been implemented, tested on Windows and Android.
 - Users can also **restore quarantined files**\
@@ -13,7 +22,6 @@ To carry out any necessary tests, an emulation of a malicious file is provided b
 
 The possible bad experience in file analysis is regretted, certain aspects still need to be improved.
 
-## Old versions
 ### Version 0.2 - 15/01/2025
 **New additions**:
 - The "App Version" section has been added

@@ -1,4 +1,12 @@
-## Version actuelle (0.3) - 23/01/2025
+## Version actuelle (0.4) - 02/02/2025
+**Nouveaux ajouts**:
+- L'option permettant de **changer la couleur** a été ajoutée à l'interface. *"Le fait qu'il n'y ait qu'une seule couleur semblait un peu ennuyeux, alors maintenant l'utilisateur peut choisir entre 14 options différentes : 7 couleurs alternant les modes clair et sombre"*.
+
+**Corrections**:
+- La mise en réseau devrait maintenant fonctionner sans aucun problème.
+
+## Anciennes versions
+### Version 0.3 - 23/01/2025
 **Nouveaux ajouts**:
 - **L'analyse de fichiers** a été implémentée et testée sur Windows et Android.
 - L'utilisateur peut également **restaurer les fichiers mis en quarantaine**\
@@ -13,9 +21,8 @@ Pour effectuer les tests nécessaires, une émulation d'un fichier malveillant e
 
 L'éventuelle mauvaise expérience dans l'analyse des dossiers est regrettée, certains aspects doivent encore être améliorés.
 
-## Anciennes versions
 ## Version 0.2 - 15/01/2025
-**Nouveaux ajouts** :
+**Nouveaux ajouts**:
 - La section "Version de l'app" a été ajoutée
 - Des fonctionnalités d'accessibilité des utilisateurs ont été implémentées
 - Un changement dans le menu de navigation a été implémenté sur l'écran principal :

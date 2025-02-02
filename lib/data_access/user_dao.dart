@@ -16,7 +16,7 @@ class UserDAO implements DAOInterface<User, String> {
   @override
   Future<bool> delete(User item) async {
     try {
-      var uri = Uri.http(
+      var uri = Uri.https(
           APIReaderUtils.apiRESTLink, "$routerUrl/${item.email}/remove");
       var body = await APIReaderUtils.deleteData(uri);
       return body == "Eliminado correctamente";
@@ -32,7 +32,7 @@ class UserDAO implements DAOInterface<User, String> {
   @override
   Future<User?> get(String value) async {
     try {
-      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/$value");
+      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/$value");
       var body = await APIReaderUtils.getData(uri);
       if (body != "Dispositivo no encontrado") {
         var map = convert.jsonDecode(body);
@@ -56,7 +56,7 @@ class UserDAO implements DAOInterface<User, String> {
   @override
   Future<bool> insert(User item) async {
     try {
-      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
+      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
       var body = await APIReaderUtils.postData(uri, item);
       return body == convert.jsonEncode(item.toAPI());
     } catch (e) {
@@ -72,7 +72,7 @@ class UserDAO implements DAOInterface<User, String> {
   Future<List<User>> list() async {
     List<User> users = [];
     try {
-      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/");
+      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/");
       var body = await APIReaderUtils.getData(uri);
       var mapList = convert.jsonDecode(body);
       for (var map in mapList) {
@@ -96,7 +96,7 @@ class UserDAO implements DAOInterface<User, String> {
   @override
   Future<bool> update(User item) async {
     try {
-      var uri = Uri.http(
+      var uri = Uri.https(
           APIReaderUtils.apiRESTLink, "$routerUrl/${item.email}/update");
       Logger().d(uri.toString());
       var body = await APIReaderUtils.putData(uri, item);

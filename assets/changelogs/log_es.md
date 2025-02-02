@@ -1,4 +1,12 @@
-## Versión actual (0.3) - 23/01/2025
+## Versión actual (0.4) - 02/02/2025
+**Nuevas Adiciones**:
+- Se ha añadido la opción de **cambiar de color** a la interfaz. *"Que solo hubiera un color parecía algo aburrido, asi que ahora el usuario puede elegir entre 14 opciones distintas: 7 colores alternando modo claro y oscuro"*.
+
+**Arreglos**:
+- Las funciones en red deberían funcionar a sin problema alguno actualmente.
+
+## Antiguas versiones
+### Versión 0.3 - 23/01/2025
 **Nuevas Adiciones**:
 - Se ha implementado el **análisis de archivos**, probado en Windows y Android.
 - El usuario también puede **restaurar los archivos en cuarentena**\
@@ -13,7 +21,6 @@ Para hacer las pruebas que se vean necesarias, se proporciona una emulación de 
 
 Se lamenta la posible mala experiencia en el análisis de ficheros, aún hace falta mejorar ciertos aspectos.
 
-## Antiguas versiones
 ### Versión 0.2 - 15/01/2025
 **Nuevas adiciones**:
 - Se ha añadido el apartado de "Versión de Aplicación"

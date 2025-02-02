@@ -1,4 +1,12 @@
-## Aktuelle Version (0.3) – 23.01.2025
+## Aktuelle Version (0.4) - 02/02/2025
+**Neue Ergänzungen**:
+- Die Option zum **Ändern der Farbe** wurde der Benutzeroberfläche hinzugefügt. *„Dass es nur eine Farbe gab, schien etwas langweilig, daher kann der Benutzer jetzt zwischen 14 verschiedenen Optionen wählen: 7 Farben, abwechselnd heller und dunkler Modus“*.
+
+**Korrekturen**:
+- Die Vernetzung sollte nun problemlos funktionieren.
+
+## Alte Versionen
+### Version 0.3 - 23/01/2025
 **Neue Ergänzungen**:
 - **Dateianalyse** wurde implementiert und unter Windows und Android getestet.
 - Der Benutzer kann auch **unter Quarantäne gestellte Dateien wiederherstellen**\
@@ -13,7 +21,6 @@ Um alle notwendigen Tests durchzuführen, wird eine Emulation einer Schaddatei b
 
 Die möglicherweise schlechten Erfahrungen bei der Dateianalyse werden bedauert, bestimmte Aspekte müssen noch verbessert werden.
 
-## Alte Versionen
 ### Version (0.2) - 15/01/2025
 **Neuzugänge**:
 - Der Abschnitt 'Anwendungsversion' wurde hinzugefügt
