@@ -1,0 +1,38 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest, macos-latest, windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Build APK for Android
+      run: flutter build apk --release
+
+    - name: Build iOS App
+      if: runner.os == 'macOS'
+      run: flutter build ios --release
+
+    - name: Build Linux app
+      if: runner.os == 'linux'
+      run: flutter build linux --release
+  

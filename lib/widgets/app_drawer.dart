@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/viewmodels/language_provider.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
-import 'package:magik_antivirus/views/about_app_view.dart';
-import 'package:magik_antivirus/widgets/dropdown_color_menu_item.dart';
+import 'dropdown_color_menu_item.dart';
 import 'package:provider/provider.dart';
 import 'package:country_flags/country_flags.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:magik_antivirus/views/about_app_view.dart';
 import 'package:magik_antivirus/views/user_data_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodels/language_provider.dart';
 import 'package:magik_antivirus/views/forbidden_folders_view.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/widgets/dropdown_color_menu_item.dart';
+
 
 ///Drawer de la aplicación
 ///
@@ -194,6 +196,7 @@ class AppDrawer extends StatelessWidget {
                   DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
                   DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
                   DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
+                  DropDownColorItem(color: Color.fromARGB(255, 158, 21, 124))
                 ],
                 onChanged: (value) {
                   context.read<StyleProvider>().changeThemeColor(value!);
