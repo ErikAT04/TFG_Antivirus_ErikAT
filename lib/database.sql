@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS m_antivirus_db;
-CREATE DATABASE m_antivirus_db;
-USE m_antivirus_db;
+USE freedb_PruebasAndroid;
 
+DROP TABLE IF EXISTS `signature`;
+DROP TABLE IF EXISTS `device`;
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -37,1004 +38,1004 @@ INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC
 INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC_4", "Linux - Prueba", "linux", NOW(), NOW(), "prueba@gmail.com");
 INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC_5", "iOS - Prueba", "ios", NOW(), NOW(), "prueba@gmail.com");
 
-INSERT INTO signature(signature, type, extended_type) VALUES ('00f538c3d410822e241486ca061a57ee', 'VIRUS', 'Win32/ASuspect.HHDYL!genus');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0955924ebc1876f0b849b3b9e45ed49d', 'WORM', 'W32.EloradoKQ.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01b656578e9f00f289d4c560fb8f2ff8', 'VIRUS', 'Win32/Zuten.JZ');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0615864d027b6f46731ee3bdcbe24edd', 'VIRUS', 'W32/Zbot.TH.gen!Eldorado');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058c705488bf0f173fb782d422f4092b', 'VIRUS', 'HW32.Packed.5EC0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01bc2c90c9b5bffe79a0dd0f08df6ef6', 'VIRUS', 'Win32/StartPage.UNH');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c8078e676a7ac7cac5c927db4d45db3', 'VIRUS', 'HW32.Packed.1530');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d0e1475b0e143d4c6a6b925507f94e7', 'VIRUS', 'Win32/SillyDl.YFM');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0645142dd01109963441a96025eecd67', 'VIRUS', 'W32.HfsAutoB.6A0E');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06e76cf96c7c7a3a138324516af9fce8', 'VIRUS', 'HW32.Packed.A9B9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f9829e53f83e2c61513b291f7bb7348', 'VIRUS', 'WVP.382');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04df65889035a471f8346565600841af', 'TROJAN', 'Trojan.Genome.Win32.230770');
-INSERT INTO signature(signature, type, extended_type) VALUES ('069506a02c4562260c971c8244bef301', 'MALWARE', 'UnclassifiedMalware');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d273f3cf24f8f59f1a4ed7996e97507', 'VIRUS', 'Gen:Variant.Graftor.27475');
-INSERT INTO signature(signature, type, extended_type) VALUES ('069cec530ac649d49d6f8f79b779368b', 'VIRUS', 'Win32/Gamepass.PPO');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bc699a7117b3b07eb4d6d1583b13924', 'VIRUS', 'Win32/Llac.AA');
-INSERT INTO signature(signature, type, extended_type) VALUES ('6ce6f415d8475545be5ba114f208b0ff', 'TEST VIRUS', 'EICAR Test Virus');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07c22b87ee5b22247c4a63df6d50fa5c', 'BACKDOOR', 'Backdoor.Death.25.H');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d596bd439c7177a88cbfee0f5737f36', 'VIRUS', 'HW32.Packed.D69F');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fe78378ed3d77612ab139a3aaf30842', 'TROJAN', 'Trojan.Generic.6538009');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0648e3483ed760aa63e34307b8696080', 'TROJAN', 'W32.OLGJA1DLL.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('063d2c2d9ca83cbe055b5f548b7ebccd', 'VIRUS', 'Gen:Dos.MbrInfector.aaW@aaaaa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09664bca3234f121328be6b543ce9544', 'MALWARE', 'Generic.Malware.Ssp.BBF994BB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bb4c030d36d27ddf748ea9fdaf005d9', 'DOWNLOADER', 'Trojan.Downloader.NSIS.CB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('047395207d2e40681592be7f7b33c49e', 'VIRUS', 'HW32.Packed.AE9D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03640062ca1c74ece6ad672c157fbad0', 'VIRUS', 'Gen:Variant.Kazy.6831');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e950c7e5177a62efd2aa526f16f6d88', 'VIRUS', 'W32.HfsVibisi.CA0D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('016634635da04b695e3e701b3e01f507', 'VIRUS', 'Pixel.299.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('065e6e926afe63030427fcf440ca4e43', 'TROJAN', 'W32.Cloddc1.Trojan.14b9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07864aa01de413bb2ab2d7fd3d2747b3', 'TROJAN', 'W32.Clod3ba.Trojan.dd54');
-INSERT INTO signature(signature, type, extended_type) VALUES ('085e2ee2cee7c33172587f8acd68fe9f', 'TROJAN', 'Trojan.Generic.8389503');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08f517af221f8795bc1c487408eda52b', 'TROJAN', 'Trojan.Generic.2999029');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0003c4bf19b275ff5193d4b892387f99', 'TROJAN', 'Trojan.Generic.533547');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08e66979eb72a334867d2d96f76abfbf', 'VIRUS', 'Digital_Death.963');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f84d57ed1bd13662b557e1d582c6975', 'TROJAN', 'Dos.Clod0f8.Trojan.4d57');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c78df4c6df19c02f1ad7584d7730a3c', 'TROJAN', 'W32.Clod8b3.Trojan.669b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('014940416d57b740e1152f6cb2577900', 'VIRUS', 'Application.Generic.189590');
-INSERT INTO signature(signature, type, extended_type) VALUES ('062ef5e21255a6b1848e6bf072076993', 'VIRUS', 'Packed.Win32.Toggaf.7!O');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05f57001f65d185722dd6d292f4e70b5', 'TROJAN', 'MW.Clod05f.Trojan.5700');
-INSERT INTO signature(signature, type, extended_type) VALUES ('053bce3e7067fd137f839af8773391e4', 'TROJAN', 'W32.QuaslanB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01e366e605e530928b10d661e5964c6a', 'TROJAN', 'W32.Clod0a3.Trojan.4a82');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00d360a72cb7b0e8287eaced1306649e', 'TROJAN', 'W32.Clodba2.Trojan.160c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c2fbe39fccce7efde09df1a4b2f34d1', 'TROJAN', 'W32.Cloda02.Trojan.c06e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ba26fa3354ef5b9832423f7eed0d90a', 'TROJAN', 'W32.Clod080.Trojan.7af3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e8ee47853ac09c8fe5cf4c92872bdd0', 'TROJAN', 'W32.Clod302.Trojan.a356');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0deec9086d4ed9a1bc3432a9ffffe388', 'TROJAN', 'Trojan.Generic.8389503');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09905a1036569829589feb849af5c6ff', 'TROJAN', 'W32.Clod276.Trojan.cc25');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04eec2f526739304962cfc2a9a9c063a', 'TROJAN', 'W32.Clod4ea.Trojan.6dfb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ae71159daed698f4a54871c36e84399', 'TROJAN', 'W32.Clod26f.Trojan.1ece');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ca2bcdd7d654bcf42f81c48f77686e8', 'VIRUS', 'Generic.Win32.0ca2bcdd7d!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07322da15d1c3ed0f642d315b660448e', 'TROJAN', 'W32.Clod906.Trojan.7f58');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a2bad52b38fdd4a9f95d20b1f62dd5b', 'TROJAN', 'Dos.Clod0a2.Trojan.bad5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('046865606e23af76d4c6912093227bd9', 'VIRUS', 'Silicon_Avenger.1019');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01714479b951a0b9b0fda81c89ee7ef5', 'ADWARE', 'Gen:Variant.Adware.Solimba.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('059ba6b07c2dad628f91c21978f9be5c', 'TROJAN', 'W32.StuxnetQKE.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('069a52009452db95b09dbf5d7c2256aa', 'TROJAN', 'Doc.Clod069.Trojan.a520');
-INSERT INTO signature(signature, type, extended_type) VALUES ('032005e9c33b2b9c142eedc721768587', 'VIRUS', 'Virtool.Dos.Gcae.20.C');
-INSERT INTO signature(signature, type, extended_type) VALUES ('042d5f3561f8f45e8755d79b372a8269', 'TROJAN', 'W32.Clod75a.Trojan.3153');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08d3b1800804fa1bc9926c47b895e1d3', 'TROJAN', 'Trojan.Dropper.Vb.LW');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aa0adbe9861349d05ac79ab76ba448e', 'TROJAN', 'Trojan.Autoit.StartPage.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bae5847efeca1b9a01cc6dc3fe9e137', 'TROJAN', 'W32.Clodf15.Trojan.62a6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aa57e74fed6c67730ff77faafbd6ecd', 'TROJAN', 'Trojan.Generic.6141649');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0822983c580fc433cb982a26c704af67', 'TROJAN', 'W32.Clodcb1.Trojan.b398');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05a4ae6350467a17682cb5d1d769e010', 'VIRUS', 'Gen:Heur.Zilix.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bb2436dd193df1d098158180522dd16', 'TROJAN', 'W32.Clod781.Trojan.72d3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01f0230ea1db2bc5f1c2577a4ff35612', 'TROJAN', 'W32.Clod51b.Trojan.55c1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('053544d512f5b22291ac3584a13fade5', 'KEYLOGGER', 'Trojan-Spy/W32.KeyLogger.1154504');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03bb6e1aed3e059ac7080734019df784', 'TROJAN', 'W32.Clodb0f.Trojan.30cb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03de216e9af276d3ec062e287199dba1', 'TROJAN', 'Trojan.Durell');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ac9bf25be181e10296b17183acf9b96', 'TROJAN', 'W32.Clod006.Trojan.35f3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09e2f7aeca3e339569155a7622cbbb7d', 'VIRUS', 'W95.ILMX');
-INSERT INTO signature(signature, type, extended_type) VALUES ('009ed09bf0adc2177d7cf77c460ab2c3', 'TROJAN', 'W32.Clod03f.Trojan.01aa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c31d5627cbcb2760e932fd81d10a76', 'TROJAN', 'W32.Clod0e4.Trojan.1022');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05243d56856db0239f07c5a01e765404', 'TROJAN', 'Doc.Clod052.Trojan.43d5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e874855fa879382bc8369da7d34e95', 'TROJAN', 'W32.Clod52f.Trojan.332d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02cd5c96e40281353e3bb97c05bfdbd6', 'TROJAN', 'W32.Clod301.Trojan.ca01');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02f58c9069b5508176f28709c82b26d9', 'TROJAN', 'W32.Clod7ca.Trojan.a295');
-INSERT INTO signature(signature, type, extended_type) VALUES ('051aa4342e92a131522bc37eb88c27ad', 'TROJAN', 'W32.Cloda74.Trojan.5269');
-INSERT INTO signature(signature, type, extended_type) VALUES ('000605d7cbb3928b07f8e7473c820f4c', 'TROJAN', 'W32.Clod7a9.Trojan.6eb2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('073a47c822c04d931048508eb6804eba', 'VIRUS', 'W32.HfsGFT.4505');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a2e942bcd4bf41b40e44c1658348ba4', 'TROJAN', 'W32.Clod90e.Trojan.5358');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d8f580528bc2877dbcf0a11ef8c28f4', 'MALWARE', 'Generic.Malware.P!V.476F7E4E');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c9809a1976e949ebcb95751fc72dced', 'VIRUS', 'Gen:Variant.Kazy.274980');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03c98a6bc65c57ccd2420ddd7bcdbae0', 'TROJAN', 'W32.Clod0cc.Trojan.01c1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('091bfb47538f0fd842383672a4f5ea6d', 'TROJAN', 'W32.LeganisD.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('099ddec252a040d2b0c191c9179af68f', 'TROJAN', 'W32.Clod32e.Trojan.c037');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b36b73112ad1e01e31f36cd0e7a3bfc', 'TROJAN', 'MW.Clod0b3.Trojan.6b73');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09d785e67805d00108abd6a69fd31ed9', 'VIRUS', 'HW32.Packed.AB02');
-INSERT INTO signature(signature, type, extended_type) VALUES ('018f7d080d3cd363ab90f1d22804cf8c', 'TROJAN', 'W32.Clod1c3.Trojan.fc42');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bfd76280c0c5fc03469adbbf16e4afa', 'TROJAN', 'W32.Clod8b7.Trojan.71c8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0665b567f49eb197aa97288905968e61', 'VIRUS', 'W32.Vetor.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06a398e2c5cb364d92b4eb39c40fad9b', 'TROJAN', 'MW.Clod06a.Trojan.398e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01ad440830a06d4729dee330e47d3b9c', 'PDF', 'Trojan.Exploit.PDF.J');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05a6b6290e3368227c8f3e091b04dcdd', 'TROJAN', 'Trojan.Generic.7496990');
-INSERT INTO signature(signature, type, extended_type) VALUES ('096be15b8e9931a5426208f1c43d683c', 'VIRUS', 'Win32.Stel.A@mm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c61647e8b9f45c43c181ee46f115d6', 'VIRUS', 'WM.Minimal.AP');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0149881d9727ce08ea3b7a1233a6418a', 'VIRUS', 'BehavesLike:Bat.Gen');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05d37e89554c0ac86d2485aa5a185f4d', 'TROJAN', 'W32.AgentFyusLnr.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04d15da2023b809a34b4ee09c78f7932', 'TROJAN', 'W32.Clod4f4.Trojan.32fc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03962059d4848ad145cd10f314b5985b', 'TROJAN', 'W32.Clod0f8.Trojan.dc95');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cf6f1776aa63eaca1587836322b48ce', 'VIRUS', 'W32.HfsGFT.4505');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03ed62192001da26d628fc11ba3ad040', 'TROJAN', 'W32.Clod657.Trojan.2d89');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05ef810ad9423a365d2efa72e7d4f03c', 'TROJAN', 'W32.Clodb3c.Trojan.a131');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0667b947c3255351763d1efb502dc70c', 'VIRUS', 'Generic.Rugo.1.E25EED35');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0574d54c38ae99117f52028921447784', 'TROJAN', 'W32.Clodba2.Trojan.117d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01037b0ba3337bf9c1ca69cd4be3189f', 'BANK', 'Generic.Banker.Delf.6A6A2BAC');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0314f02152cfb1d30cdb54a43efac09c', 'TROJAN', 'W32.Clode42.Trojan.6631');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0efee59ab9bf7804b40d832a397a325f', 'TROJAN', 'W32.Clodcae.Trojan.a7de');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fa555f6f375c1e1a75ce09ef61fd8b5', 'TROJAN', 'W32.Clodee4.Trojan.e7f2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09e133579189a9a56ff9c34155592e69', 'TROJAN', 'Trojan.Generic.6155606');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08885a98b9963ead4e5ebe4378a2f8f3', 'TROJAN', 'W32.Clod1a9.Trojan.e964');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04ac7dee9a238d984f6d480da96b1ec1', 'TROJAN', 'W32.Clodf37.Trojan.c3a9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ac5bebc5d1376b163a8ed0992f4cd31', 'VIRUS', 'STSV.200.J');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00459faff7688f8ab94e358af18c79c0', 'TROJAN', 'W32.Clode54.Trojan.6d2b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0577365c060e30b723cfcd67d2e389ad', 'TROJAN', 'W32.Cloda5a.Trojan.d129');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08c708de2c0738512e14abcdb514f983', 'TROJAN', 'W32.Clod963.Trojan.e9b4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('060ded75953553704990615904e99047', 'TROJAN', 'W32.Clod92b.Trojan.01f0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03d20922537334551fd668036e62b74e', 'TROJAN', 'MW.Clod03d.Trojan.2092');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03f38a3da09c7c43de319a4983e94a52', 'TROJAN', 'MW.Clod03f.Trojan.38a3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a184514aab9ea15a0ff445303cccda1', 'TROJAN', 'MW.Clod0a1.Trojan.8451');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05b76ce686c6b7e50c12d1889f30193d', 'TROJAN', 'W32.Clod23a.Trojan.7594');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b1cb0d6c266a656c6abe72404864875', 'TROJAN', 'W32.OnGamesLTMSBACKAF.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e43a460948de7ae974028923f5fc16f', 'TROJAN', 'W32.Clod491.Trojan.6b03');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0719a29f3a9d9748b28de32bf5ab4dad', 'TROJAN', 'W32.Clodd38.Trojan.dc01');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04ec827eacc5388efdfcfd0c899a1062', 'TROJAN', 'W32.Clod82b.Trojan.16dc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04fe56b199a425a1293aecec2ee055da', 'TROJAN', 'W32.Clod764.Trojan.4edf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0025a8123d0616fe543bd1286085619e', 'VIRUS', 'Anti-AV.907');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e16ff386c59ec1c827d540e539fd55f', 'VIRUS', 'W32.QvodInfect.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08a6fd7146b525e69de3af2842d3eb2f', 'TROJAN', 'W32.Clodefb.Trojan.dff1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b2f288e5251d358dccc6c01b00da0aa', 'VIRUS', 'Quox.C (Boot image)');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020601bc177427e95b64928eab9cf894', 'TROJAN', 'Trojan.Script.134366');
-INSERT INTO signature(signature, type, extended_type) VALUES ('065e49de3122f73df58845f6f491cbe0', 'VIRUS', 'W32.HfsAutoB.1D16');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fde3e8c88e3cb6a80ac431c6ea80660', 'TROJAN', 'Dos.Clod0fd.Trojan.e3e8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dbf13eaa423a61596041267c6563b44', 'VIRUS', 'WS.Reputation.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c786d41e525568fabd8deea7463e834', 'MALWARE', 'W32.MalwareOnlineLJ.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a6a26323b3aa22cb77eea81874b30be', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ed5bbe2265f5d02f8788bcde0377ec2', 'TROJAN', 'MW.Clod6c5.Trojan.f73b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07b977daecc87b252b68f180cc1b76eb', 'ROOTKIT', 'Rootkit.MBR.TDSS.B (Boot image)');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02f5755b9b6930cd475806e80883d234', 'TROJAN', 'W32.Clod345.Trojan.75d4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('068cbb16c168a72d71ff63aeae7a2680', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be6093e9122b8d13baaf470f858e018', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08afefbad407e6b76087f307c293d941', 'TROJAN', 'W32.Clodf95.Trojan.299e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0df77f3999c843359c03d4c4796d517e', 'VIRUS', 'HW32.Packed.C928');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05bfab181053ec0fbb3125923a4971e9', 'WORM', 'W32.QueryexXA.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b1278b67badde68d58b1f28cfa82f45', 'VIRUS', 'W97M.FS.Y');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09087c1e3b5245d09ebfa05d141ba6cb', 'TROJAN', 'W32.Clod96a.Trojan.de8f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b7ac1e220cc6f2f2b43262c20cfc406', 'TROJAN', 'W32.DialupassBAA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cddda54a9c0f3a5acf60cca3d2cbc01', 'TROJAN', 'W32.Clod7da.Trojan.def1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('036ede4c733010d2ebec1a4d80ca7635', 'TROJAN', 'Trojan.Generic.7382009');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c6581448cbed084eb85ae5496ebdc9d', 'VIRUS', 'Murphy.1172');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03b03fbc007b79af73c6f51d6e9c226a', 'TROJAN', 'W32.Clod781.Trojan.f683');
-INSERT INTO signature(signature, type, extended_type) VALUES ('057b227169110fb59af660dec5bd2fdc', 'TROJAN', 'W32.Clod46c.Trojan.17a4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('074e4a42d3e9ff4b84a93726dbe65aca', 'TROJAN', 'Trojan.Script.140873');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04f4769c200bde6b8b7ecbc3981d0096', 'TROJAN', 'W32.Clod818.Trojan.3a43');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0836d5020676d36d5d4d37c5aa8f450f', 'VIRUS', 'W32.LogoOneB.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06ce15c5d064a141537ccc1e56712e31', 'VIRUS', 'WS.Reputation.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('085cbf7606e76cc0ad386543f8e70da1', 'TROJAN', 'W32.Clod74f.Trojan.e9aa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('024c413b436ac7f6af84fb5af991377f', 'TROJAN', 'MW.Cloda0f.Trojan.19bc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ef7a4947a3d50097c8f36d453570086', 'TROJAN', 'W32.Clod0ba.Trojan.4fa2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f00a0070e21ae0915dd79eafd42b975', 'TROJAN', 'W32.Clod746.Trojan.f4d1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07432b0b58da051b86e639e8ab4d8a66', 'TROJAN', 'W32.Clod426.Trojan.ce03');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c07c2f981c598b0e62155b746ecae4', 'DIALER', 'W32.PornDialerQKB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a8ded1941b5a6b64b9268871d5efeff', 'WORM', 'W32.FanVT.ZbotK.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('014e1219d05b117d45e79b4f0249a9cd', 'WORM', 'W32.ResulaD.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0493fbc78b7665fbc60fea8031cba79c', 'VIRUS', 'HW32.Paked.CC1A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020e3e94ef75faaf07c6dea5410c8892', 'TROJAN', 'Doc.Clod020.Trojan.e3e9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e61cf0783b8429769106a0fab013d94', 'TROJAN', 'W32.Clodda0.Trojan.39fa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0125284a942e0ed22597532b820d7881', 'VIRUS', 'Pixel.1575');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00f06a970f4711599d5d8fdd47b936a1', 'VIRUS', 'HW32.Packed.1D53');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05c87f86ce65db5f3777bdce7148e5f5', 'TROJAN', 'W32.Clod324.Trojan.6d27');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f6756c8cb0b454c452055f189e4c3f4', 'TROJAN', 'W32.Clod8f2.Trojan.2fc1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05f0b9ade0728b473c147cb0031bf6f2', 'VIRUS', 'W32/Fujacks.aw');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09e44f619c43d1ac186f90538a2aaa97', 'TROJAN', 'MW.Clod09e.Trojan.44f6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0da15eb49533e200859a53ce00f8544b', 'TROJAN', 'W32.Clode66.Trojan.250b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0129a0a029e313474edef9a285e222f9', 'TROJAN', 'W32.Clod113.Trojan.1cc1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('014e2830aed1b477eab301a925caa774', 'VIRUS', 'W32.HfsGFT.4505');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0153396b97fd8d47b5fd5ee65d1de6e8', 'TROJAN', 'W32.SmsseuftyC.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b63fbfea25eed38a4f1f01c9d33bf48', 'TROJAN', 'W32.FakeWmpQKB.Fam.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cfb392c0885c8e21d9dbfea04febac8', 'TROJAN', 'Trojan.Startpage.UE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00b8b528bd45f7105271cc768d0cc3b4', 'TROJAN', 'Dos.Clod00b.Trojan.8b52');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0340d88b918df883bcec2e00c9adfab7', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03ac83e58080b43253fbd4a482de47ff', 'TROJAN', 'W32.Clodf66.Trojan.9fdd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058bfbe829532b1ad74bdd67a65dc87b', 'TROJAN', 'W32.Clod5e4.Trojan.a5d2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0742eff7a73b946dfb13d6b5fb225266', 'TROJAN', 'W32.Clodbc5.Trojan.2ce8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e67a8a73f1e4a3dc9a8b7d7999f0344', 'TROJAN', 'W32.QuaslanB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05e1e48cc0dc2b2dc1f1d67239006ea0', 'TROJAN', 'W32.TranmostN.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05c665d98d06fa4424b953f31289f3c8', 'TROJAN', 'W32.Clod355.Trojan.6fb1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0608af459bcab9875c3a508acd08273c', 'TROJAN', 'W32.Clod625.Trojan.786f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01165c63b641686ec1aa008049c6da90', 'WORM', 'W32.OnGameELWILAL.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c152e466124f6c3d66a499d49b35fca', 'JAVASCRIPT', 'JS:Exploit.JS.Agent.AV');
-INSERT INTO signature(signature, type, extended_type) VALUES ('030a9f4cba92b33239cef0478a4d2f9c', 'TROJAN', 'Trojan.PWS.Yahoo.YPager.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cdad7f20acdd3939cb74a4851e67ab6', 'TROJAN', 'W32.Clode5a.Trojan.b28c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d09da69cdd570248663263ef7deb106', 'TROJAN', 'W32.Clodd66.Trojan.55e0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c5b71f868708c591d219089914fa20b', 'VIRUS', 'X97M.Chesu.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ace7e08e68ac839ad3bd54afde0bcf0', 'TROJAN', 'MW.Clod0ac.Trojan.e7e0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b374fa6ffeff5261fcc12af8a23646a', 'TROJAN', 'W32.Clod02f.Trojan.9ab5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05ee7285af2047a6f6cfb347afad25ca', 'TROJAN', 'Trojan.DoS.Lanxue.2.0.0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c8ec9ca2b0e1242fe9889c213805d80', 'ADWARE', 'Adware.Generic.291824');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e9ad115854d9261461e7eeff7d2c38f', 'TROJAN', 'W32.Clod0c6.Trojan.b8ad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0397cb3bbfee009c8de03f9431be084d', 'TROJAN', 'Trojan.Generic.Fdos.F');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08c0c749eca92cba0166acc2ff897350', 'VIRUS', 'Gen:Variant.VBKrypt.43');
-INSERT INTO signature(signature, type, extended_type) VALUES ('079775ca6c5886b83d5374bc4cf9b13e', 'TROJAN', 'W32.Clode6e.Trojan.a499');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c99ebfc07518d2ba69ef5405ba4dc76', 'VIRUS', 'HW32.Paked.489E');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09979d208c20c8a73cb7a18b619aae2b', 'TROJAN', 'W32.Clod004.Trojan.4782');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05566fdf4a6bf2f41991df57891ce890', 'VIRUS', 'BAT.FormatC.G');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04ed3d9d42508bc4de1521c53887de9a', 'TROJAN', 'W32.Clod393.Trojan.60b8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('097422e0eb7f8a000e1093a30477e090', 'TROJAN', 'W32.Clod1d7.Trojan.6c09');
-INSERT INTO signature(signature, type, extended_type) VALUES ('006c0f265aaa94501fbf9db8a38f803f', 'TROJAN', 'W32.Cloda94.Trojan.342d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('015cc9dab62bbb797239adf1a9d0adb0', 'TROJAN', 'W32.Clod9a4.Trojan.33de');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d35a7e9415dd8fd065e16e85cf9ca2e', 'TROJAN', 'W32.Clod242.Trojan.db42');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cf29bb261c76e145b7aa53f6dea6b8c', 'TROJAN', 'W32.Clod97c.Trojan.2788');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ece1f9d9bd9a8b706fe89d19a514a3d', 'TROJAN', 'Doc.Clod0ec.Trojan.e1f9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c8a030963b1d58fb20a625e2855307', 'TROJAN', 'W32.Clod0a1.Trojan.d4bc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0872083735c96846bf52092acec1320f', 'TROJAN', 'W32.Clod39f.Trojan.3694');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03681cf0d73f68ef2a93f6c00c24eb64', 'TROJAN', 'Trojan.Generic.4907999');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c5594e46662eeb0df6e6af0ea1380b', 'TROJAN', 'MW.Clod00c.Trojan.5594');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06022411299e313e6450c6cbdcadb371', 'TROJAN', 'Trojan.Wve.KIT');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ef1b01346965529c4fe58ebf6e1c991', 'VIRUS', 'Flash.688.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0de3ef222b1ab34ab2c7c22e44a7212b', 'TROJAN', 'W32.Cloda7f.Trojan.69a6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ad219323491c465e4a27bc4042ad91f', 'VIRUS', 'HW32.Paked.B577');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01be9eddcfbc7aa37d5155bbbd098688', 'TROJAN', 'W32.Clod94c.Trojan.8b1b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e6a7b946967c512916198b3d74fde8', 'TROJAN', 'W32.Clod9b7.Trojan.591f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e0c42362deda1b3fd197a04b4df3d1a', 'TROJAN', 'Trojan.Generic.KDV.156055');
-INSERT INTO signature(signature, type, extended_type) VALUES ('002b0542fe96a80165112ad34fe82381', 'VIRUS', 'HW32.Packed.C8B4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c2cce3a52ffadfee539a164a416eb2d', 'TROJAN', 'W32.Clod024.Trojan.bcc0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d182e1ece5e3fb33df5a7389fc95156', 'VIRUS', 'Exploit.ADODBStream.G');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cf7d8cc3fa7e19efc1cfa528afe53d9', 'TROJAN', 'W32.Clodb6c.Trojan.90c6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c2c4fe0d1680136f9143df909745f6', 'TROJAN', 'W32.Clod2b2.Trojan.f2ac');
-INSERT INTO signature(signature, type, extended_type) VALUES ('040aa9b6e1e641385912e36f9ff054ca', 'VIRUS', 'W32.FamVT.ExpiroPC.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01fbcbbc229e4af3dd7234013827e9bd', 'TROJAN', 'W32.Clod275.Trojan.d90a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('059d949f71802a435f5c92d45ab772f1', 'TROJAN', 'W32.Clodf1f.Trojan.0749');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06275fd51434c472cb504829b5447964', 'TROJAN', 'W32.Clod61b.Trojan.f207');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a752c2e8abe440340f108fda26eae8b', 'TROJAN', 'W32.Clod000.Trojan.9871');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0236cabc7b81f685b6854d2b8213d619', 'VIRUS', 'Hobbit.416');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ba0edcac8e27ba00cf76fd58b06d812', 'VIRUS', 'PS-MPC.0560.AV.Gen');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ab96a78930bedc84db87fa204b30cac', 'TROJAN', 'W32.Clod927.Trojan.b4d7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d116706395a75e4ecb7d2ff168a987e', 'TROJAN', 'W32.Clod6f8.Trojan.d773');
-INSERT INTO signature(signature, type, extended_type) VALUES ('057a3eef8cf0426e50a6a5c55c22e256', 'TROJAN', 'W32.Cloddaf.Trojan.f8f7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a11ce05b25c5582272741fcaf704f7a', 'VIRUS', 'Gen:Variant.Zbot.6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d7cac6f42512f461b0ed2ee64318687', 'TROJAN', 'W32.Cloda24.Trojan.085f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b41068cf43540d92c594b81f4d20671', 'TROJAN', 'W32.Clod613.Trojan.ed15');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00db87dd7c061915317ba14f6c2fcb29', 'TROJAN', 'Trojan.Bat.Delsys.AW');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0736f6a318868dfd93cd344daac9688c', 'TROJAN', 'W32.FeylarmQ.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('055ec1bd89b13902e247d4f505cae391', 'TROJAN', 'MW.Clod055.Trojan.ec1b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02259e0264c0a04dbc299e2625f76e71', 'TROJAN', 'MW.Clodfd6.Trojan.3806');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dee3aeb1fa8fbb255563a3383002f9b', 'TROJAN', 'W32.Cloda13.Trojan.f898');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a4962d33997af7763303b079e81e899', 'TROJAN', 'W32.Clod037.Trojan.7eee');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0854fb8426e221c06dced5752991911f', 'VIRUS', 'mIRC.Duke.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09da04b8305a5ae59b34eb598b6637ce', 'TROJAN', 'MW.Clod09d.Trojan.a04b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e6db7343a88fd8129156ff41ae1338e', 'TROJAN', 'W32.Clod2c7.Trojan.42cd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0025af1b1d0def1dad571d8af5ffbb15', 'TROJAN', 'W32.Clodcda.Trojan.1d0a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06d8383b7a17a7adfc38b7cf1c4182f2', 'VIRUS', 'Trinidad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d695de7d16c7037df5e9fc6056c6293', 'TROJAN', 'W32.Clod1b5.Trojan.8fb1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00d1d0537c2510b024be7014c8a6ceb3', 'TROJAN', 'W32.Clod69b.Trojan.b35a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04eb8f4d5c18ffed37eccd764fa7ea59', 'TROJAN', 'W32.Clod4bd.Trojan.5133');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0443071e6b0e93f8f64e3b68f7b0b52f', 'TROJAN', 'W32.Clod783.Trojan.def6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('035225ab21b2a096d1a67ce5651a9615', 'TROJAN', 'W32.Clod837.Trojan.c861');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dcbd7073932b6a3caab3323e67011fd', 'VIRUS', 'HW32.Paked.CFA7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('025a8cb363f41f7663ff54edb3782720', 'VIRUS', 'Artemis!025A8CB363F4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04f5c18df3f09d31451271b93ef1aae9', 'TROJAN', 'Trojan.Constructor.Vb.K');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05da2c1a6fbc6c57198e54c0c0968301', 'VIRUS', 'PUP.Optional.SweetIM');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04a4883cea7b5e791b5e39ce9344e480', 'BACKDOOR', 'Backdoor.Hupigon.264841');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05a0deda225189587a99e9b9debb0b77', 'TROJAN', 'W32.Clod870.Trojan.bcb4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f778932be42aafe8ea12f7075566ba2', 'TROJAN', 'W32.Clodedf.Trojan.ed83');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0676e818f6244ade64bed608d0f59197', 'VIRUS', 'HW32.Packed.4B94');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b441d8160f6cc8008ffdadd409cb61e', 'VIRUS', 'Generic.Win32.0b441d8160!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04f72bb75532a4288012a9fc32dea066', 'VIRUS', 'Artemis!04F72BB75532');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0592629cff8065c0f0d878d1ec02d740', 'TROJAN', 'W32.Clod7ff.Trojan.bf17');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08356ad16fa3ccbca8aa6992e70e90e5', 'TROJAN', 'W32.Clod742.Trojan.f20c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('012928598a598907779a370922a922bf', 'TROJAN', 'W32.OnGameHIWAJ.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ae69606b09784ed6ee3b7e1c475ab59', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e2c279417204530d187bcf71de2dec5', 'BACKDOOR', 'Backdoor.Shell.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('041c184b357792583469487625efc6c5', 'TROJAN', 'W32.Clodec7.Trojan.d4b1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09c37f7ae9deeb23d9a5cf948aef0f44', 'TROJAN', 'Trojan.Generic.1963475');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09d5929131d733c42eac4961329e51b3', 'VIRUS', 'Artemis!09D5929131D7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('025c6830091d83d5a1078f1067dcb850', 'TROJAN', 'MW.Clod025.Trojan.c683');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b0c2c36dd31dd39be02683b1fbb7696', 'TROJAN', 'MW.Clod0b0.Trojan.c2c3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02d64ebb2c1b7053e3602d57c1c97b9f', 'TROJAN', 'W32.BeloseaC.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0524e025e64d89af7132600c89e4f00d', 'BACKDOOR', 'Backdoor.Snowdoor.2.3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('052533faa61d127eaca7fc48e80687de', 'TROJAN', 'MW.Clod052.Trojan.533f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ac46ed1d8cdc1e90e7e41693ee06cec', 'TROJAN', 'W32.Clod1af.Trojan.f6bf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03f912899b3d90f9915d72fc9abb91be', 'WORM', 'W32.Sasser.BNV.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('054411fa5d7634ce3f0b101d3f7ea57c', 'VIRUS', 'Gen:Heur.IPZ.5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b04857c337ee34afc9260b4386ebe2', 'TROJAN', 'W32.Clodf8f.Trojan.aa8a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01824b6e769cfd1b507e2a821eead2c5', 'VIRUS', 'HW32.Paked.6B06');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d84d4e2fee1d35de0c106a244e271dd', 'VIRUS', 'Vienna.566');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e8ffb22e73cbe63fb5767cc9cdfbb4a', 'DOWNLOADER', 'Trojan.Downloader.Lexbac.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fc8d75d9fb61c7ca01ee83da2fd5454', 'TROJAN', 'W32.Clod444.Trojan.a4da');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f189318cbee25342d81155249955fb', 'TROJAN', 'W32.Clod444.Trojan.58ea');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00f45ba3ada16d54eaa845a221c7d9e2', 'TROJAN', 'W32.Clodf42.Trojan.d1dc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d8e12cb1fcf3f1df6e0e4f4b9c3cc87', 'TROJAN', 'W32.Clod410.Trojan.fddf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08444a621d4efb99dc0186d63cd5fc92', 'TROJAN', 'MW.Clod084.Trojan.44a6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cd0de85963914759163270a751d7303', 'VIRUS', 'Gen:Variant.Symmi.37079');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f45f36587e65ce5ef888b59f8d2b306', 'TROJAN', 'W32.Clod6f0.Trojan.d53a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c6914f6bfb61379b6a77f87cd48c2d5', 'TROJAN', 'W32.Clodbfe.Trojan.efa0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01ecc04d5901c1d7cd08b380392767b1', 'TROJAN', 'Dos.Clod01e.Trojan.cc04');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06fc15c111b7c78d57b7fb81696f66cc', 'VIRUS', 'Win32/SillyDl.XSW');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05a33f4f441fcabbf6e5bf8fa28cde42', 'TROJAN', 'W32.Clod516.Trojan.d742');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06679d2853687d80f3f5e139e0fd1b96', 'VIRUS', 'Gen:Variant.TDss.21');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05412a530da795c6b1ff46f10182000e', 'TROJAN', 'W32.Clod8c7.Trojan.8ca8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03b0d42dc6ad1fefa350eb743432ff8c', 'TROJAN', 'W32.Clod03a.Trojan.6d01');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c3e7370b922eea53a13841f191a224c', 'TROJAN', 'W32.Clod6f9.Trojan.119f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00955251b41ff2538c380e81cce54c45', 'TROJAN', 'W32.Clod009.Trojan.fae1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e37f83f58d8229305a926b4fceb6913', 'WORM', 'W32.FamVT.ViselPM.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02fea9606826b29ab13e863d3bce6fc7', 'TROJAN', 'W32.Clodbed.Trojan.94d1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('090cca976ccf1e48a5984c65bea2feb5', 'TROJAN', 'W32.Clod514.Trojan.1d13');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a9a3d5f697a0bae53977553838a8713', 'TROJAN', 'MW.Clod0a9.Trojan.a3d5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('012eaf12bee9ed83e45ff737aec2713f', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0647b53bef40889d79a2515980d45125', 'TROJAN', 'W32.Clodc93.Trojan.d0c3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bf154751eb712397299cd1c9ddf6bc6', 'TROJAN', 'W32.Clod6f9.Trojan.d4f1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00a4e5f97506292b2454763afac22f27', 'TROJAN', 'W32.Clodd21.Trojan.4fbe');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0355d09c62f646198f2fde0dd5140295', 'TROJAN', 'W32.Clodee1.Trojan.7a4d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b42d8e7e54df3bb74c205ae0ccf4477', 'TROJAN', 'W32.Clod2a9.Trojan.d6f7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04edce55068391e369b18aeae13779fc', 'TROJAN', 'W32.Clod24a.Trojan.6704');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bf4f8851e36df5722c4e5dea866ca26', 'TROJAN', 'W32.Clod667.Trojan.c5f1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('030dbf162a9d82648455428101944d98', 'TROJAN', 'W32.Clod5f8.Trojan.b8bc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0541244663075e089d219fd4cf7842c7', 'VIRUS', 'Win32/PornoAsset.A!generic');
-INSERT INTO signature(signature, type, extended_type) VALUES ('053ce830539f3f8cc8bb8f4c3546bddc', 'TROJAN', 'W32.Cloddc9.Trojan.fffd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('062048bc3bae35a8cbdfe034eb9e7d64', 'TROJAN', 'W32.Clodb65.Trojan.7b01');
-INSERT INTO signature(signature, type, extended_type) VALUES ('010f59fa1974324a4b9d06334f15ced0', 'TROJAN', 'W32.Clod28e.Trojan.dbec');
-INSERT INTO signature(signature, type, extended_type) VALUES ('093529318541bd3b59408f66c63989a3', 'TROJAN', 'W32.Clod1bf.Trojan.3ae8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ac7b55b0117083e5691dd7fb25b47a1', 'TROJAN', 'Trojan.Generic.2029782');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dfed82a69b19f4dc45e811e5ee5d8a2', 'TROJAN', 'W32.Clod2a0.Trojan.aa08');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bc0dc46c0290910f47e6a6afb8b2a90', 'TROJAN', 'W32.SampleswallO.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fbb3dff0a5cc1098f5c1c9e4d336d0e', 'WORM', 'W32.FamVT.ViselPM.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('015fe9a99f931ceb949e49a264dbbc0c', 'TROJAN', 'W32.Clod3b5.Trojan.a35a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('008c786f3c188338d7ae9dd8be8838a6', 'TROJAN', 'W32.Clode4f.Trojan.5f61');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0595e9d9b011c1a8f3f67361ca2eeed8', 'VIRUS', 'Gen:Variant.Graftor.51731');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05f407ba4d29fe293466564d1e72199c', 'TROJAN', 'W32.Clod48a.Trojan.b22a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('055644d288e8ae9708a21eacf519d00e', 'VIRUS', 'Gobleen.238');
-INSERT INTO signature(signature, type, extended_type) VALUES ('013655f5a23a2f0f325bcc2bff5daf09', 'BANK', 'Generic.Banker.Delf.D0694ABC');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05bb450bc0d0d272e34cdaf1f0b4017d', 'TROJAN', 'W32.SanalarCAA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f949ac5d3a920e8ca43cbe5d3c37fac', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fef64a50f2cb8a903721878b8274e15', 'SPY', 'Trojan.Spy.Zagaban.G');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06a60d14c5167da92b238d3fa412bb9e', 'TROJAN', 'W32.Clod2ee.Trojan.91c1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0120b5e0422b628dfe8c5f0ca36b398b', 'VIRUS', 'Gen:Variant.Graftor.37754');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cbe1c8de4a92bf5bb22e2bbcf5e8e0e', 'TROJAN', 'W32.Clodd4c.Trojan.e7cf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fae1d0bad00b1facae2e4c32d2c6680', 'TROJAN', 'Dos.Clod0fa.Trojan.e1d0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c8b063065a43afd447f212f977a400', 'TROJAN', 'W32.Clodaa3.Trojan.ef8a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('093be5310f54a574ccf0c61762d26545', 'TROJAN', 'W32.Clod544.Trojan.cb2c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07f5be4f4784bcf4242470c45176390d', 'TROJAN', 'W32.Clod9b5.Trojan.9cb1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0479e980fbbe3ff2fbf4dd79bf7b3752', 'TROJAN', 'W32.Cloda04.Trojan.7365');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f26ebbd22064998209e9d8100740f6d', 'TROJAN', 'W32.SinowalTG.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020ec57a5058ca3b06872b9f93c7cf9a', 'TROJAN', 'W32.Clod77d.Trojan.1e82');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08d0093fe250fdae361096a9a2fc9064', 'VIRUS', 'HW32.Paked.2E21');
-INSERT INTO signature(signature, type, extended_type) VALUES ('038c9db8159da91bf0c8dea72618b10a', 'VIRUS', 'Win32.Ruft.A@mm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a21de97df5cb1393589f9605907eb0f', 'TROJAN', 'W32.OnGamesHSNSKQ.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07f2156efa0331e43f3e4febb6efc3d4', 'TROJAN', 'W32.Clod481.Trojan.5f4c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02c388ceefa68708ab93a05b504e4d70', 'TROJAN', 'W32.Clod746.Trojan.9bfc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f0dba3437c410ec3d62ae172a5331d', 'TROJAN', 'W32.Clod620.Trojan.a92e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07d251263c065960f90572b48f4acff9', 'TROJAN', 'Doc.Clod07d.Trojan.2512');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bcc3928b30238f6457644f2f1acb82c', 'WORM', 'W32.OnGameWLLIASX.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08b7e7cda39250a6f39bec43503a3a34', 'TROJAN', 'W32.Clod127.Trojan.cf27');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d3531117955451d12361173f22a2c3d', 'VIRUS', 'HW32.Packed.D5DF');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01d276a1d8b2142f69a0cb9e49cd85e7', 'TROJAN', 'Trojan.Generic.6796699');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f375776798bf5327ad20067f16c4ea', 'TROJAN', 'W32.OnlinegameAAAY.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01f471d4661edb0e2fdc65b3698b04d4', 'TROJAN', 'W32.Clod414.Trojan.4e1d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('078df92ca248f5eb53a0ec9be847f2f9', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e71db53b6be033455d15f31495df8df', 'TROJAN', 'Doc.Clod0e7.Trojan.1db5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01e488156cd00c72f8b327e455dae879', 'TROJAN', 'MW.Clod01e.Trojan.4881');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c3b78cf59198695248d09bbbd8df327', 'VIRUS', 'Win32.Fujacks.PRP.DG');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a986e36ce9814cd2c774753635d0394', 'TROJAN', 'W32.Clod2b2.Trojan.a951');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c83bc1533d20aef245a1318e512dbb', 'BACKDOOR', 'Backdoor.Arcanum.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('011eeeb4722eb241758093dc9c57fc67', 'TROJAN', 'MW.Clod011.Trojan.eeeb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0db50c5f56cfc7b6e197b672bd80268a', 'TROJAN', 'Doc.Clod0db.Trojan.50c5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('000432d85e14ea16d2ce3f23b9c11d8e', 'TROJAN', 'W32.Clod781.Trojan.3274');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ee4d96c9e5e0e246a3ffce705ecab0d', 'TROJAN', 'W32.Clod84a.Trojan.65d3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08aa8f55478ce2b33d37c649f4d1a907', 'TROJAN', 'W32.Clodef3.Trojan.6e62');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dc1870ba072c4a2e5a2f8daaaff4974', 'TROJAN', 'W32.Cloded4.Trojan.2224');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07a07016e2ee46d8ca95f8013a9180f4', 'TROJAN', 'MW.Clod07a.Trojan.0701');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04659a90203a5922edf133b4ea0e556b', 'TROJAN', 'W32.Clod4bb.Trojan.010c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03314cd3d617f710fdc0e3e56a7812f2', 'TROJAN', 'W32.Clod8e8.Trojan.8ad0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0eb9d185e89ea26dec47412cf16dffa0', 'TROJAN', 'Dos.Clod0eb.Trojan.9d18');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02e8e86b2be5c1deb43d7fcb6c6a4f57', 'WORM', 'W32.OnGameQLAKCIA.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fa70dab867a91b226f2202758494511', 'TROJAN', 'W32.Clod1f5.Trojan.a5c5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02b838579e2e3d280b18c5f05087464e', 'TROJAN', 'W32.Clod2b9.Trojan.6bbd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('050aaff07e87376b93d4a998a71d03f3', 'TROJAN', 'MW.Clod050.Trojan.aaff');
-INSERT INTO signature(signature, type, extended_type) VALUES ('061deb3e002a091661ec5ea5e1792846', 'TROJAN', 'W32.Clod77f.Trojan.8141');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f3ec8e9e5bd35738d323cca62ed5307', 'VIRUS', 'Artemis!0F3EC8E9E5BD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('086805a86002acca02ddd53ecac11266', 'TROJAN', 'MW.Clod086.Trojan.805a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0babdd988d7a97cc605f3855700df74f', 'TROJAN', 'W32.Clod429.Trojan.c742');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09220668d33853fc1c148609d4989773', 'TROJAN', 'W32.Clod656.Trojan.cd12');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0605a35f1a2348a9378cc673a733ed9b', 'DIALER', 'W32.PornDialerQKB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e78b25914269b114559c2cc0578338f', 'TROJAN', 'W32.Clodc20.Trojan.5f68');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09c2332f683b55340e99ebfd9d70b0f2', 'VIRUS', 'HW32.Packed.3CEB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08763fad8e2c16102af95d1232f30f52', 'TROJAN', 'MW.Clod087.Trojan.63fa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d2121ab302ab9c2ed161deb6e1f60ac', 'TROJAN', 'W32.Cloda9c.Trojan.c91d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0618a60344a77f8e2da04cd8e3e1b73f', 'TROJAN', 'Trojan.Generic.7164819');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bb2b56f1f4735711ba94e1a778daf3d', 'TROJAN', 'W32.Clod91b.Trojan.2513');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d79af546eb06f76560ac8d6234168da', 'TROJAN', 'MW.Clod0d7.Trojan.9af5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('059dad6c871371df073c85419ee32449', 'TROJAN', 'W32.Clod7f0.Trojan.7e4d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09beec9b85dcdf3c84acf8cc4e61417f', 'TROJAN', 'W32.AlustinP.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0379f9f5d974e8ade3eabe70f5046df4', 'TROJAN', 'W32.Lipler.Fam.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0491a8d635c30dcb44381a156960b5cc', 'TROJAN', 'W32.Clod118.Trojan.6cf9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c9915a0c5631669563f04c23a78ded4', 'VIRUS', 'HW32.Packed.368C');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0afa4bcc2377655814b6cfce63391dd3', 'TROJAN', 'MW.Clod0af.Trojan.a4bc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01940b84f32ab8bebd22a50238b0e4b4', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b75c1f5c37856df4d2c6e18e596067b', 'TROJAN', 'W32.Clod9d4.Trojan.2594');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0da4a24cbe08e1d12ffcaac13f405e01', 'VIRUS', 'HW32.Packed.2CE1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0009e89094db5c1ad99100781125c1f4', 'TROJAN', 'W32.MaganiaEG.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0829660f18553733876ead17d3ed8020', 'WORM', 'W32.OnGame_0X3AH.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09174733bb1d2abb567b0e308e7b3a8b', 'KEYLOGGER', 'W32.SCKeyLogE.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('003fabad747e2a9ffbb5adbad92f4e5b', 'TROJAN', 'W32.Clodd93.Trojan.19c9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cc899430b7a6e866c0dd0f56f768604', 'BANK', 'Generic.Banker.VB.579B5A6B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0490faca2d5b9e546234dd86446131d7', 'TROJAN', 'MW.Clod049.Trojan.0fac');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f929041a34ccd4b138a3987f4a80434', 'TROJAN', 'W32.Clod76c.Trojan.2cbd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01b1f1e915b5f23c4bdc1166b501e637', 'TROJAN', 'W32.Clod0b2.Trojan.182c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('035de219ee58bfe0e7fd2e281e903275', 'JOKE', 'Application.Joke.Fakedel.F');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d2481c3d5652c60915ab1da13bcdd42', 'TROJAN', 'Trojan.Generic.8674726');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bdbdb07697eb39d2c3818cb83a61aa9', 'TROJAN', 'W32.Clod11e.Trojan.423f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('069c44b1917c140e1958a46c667644d7', 'TROJAN', 'Trojan.Generic.7000673');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e4d86e9989ea378c4e5a44b1520725a', 'TROJAN', 'W32.Clod4e9.Trojan.1925');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fed6c6ffc705a4bd280a292dcaff69d', 'TROJAN', 'W32.Clod1f1.Trojan.9ed2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b3003ddbee83a72c2b9e56773601223', 'VIRUS', 'IMI.1536.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('044050338d2c6c5d45cd5083de331c86', 'TROJAN', 'W32.Clod84f.Trojan.ffc5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d37cf27982a5ae9132c71be755ec3d9', 'VIRUS', 'Gen:Variant.Graftor.75330');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ca7768defed156842bc7d42030054ff', 'TROJAN', 'W32.Cloddf4.Trojan.34ab');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e0a13b7835b353ae4219ab940386c9', 'TROJAN', 'W32.Clod16d.Trojan.e9d8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02351e42999b4720a29f5f93f8a7f834', 'TROJAN', 'W32.Clodcfa.Trojan.f0b0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('006e275a2351535db43597e79855ad8a', 'TROJAN', 'W32.Clod369.Trojan.ad22');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c428c78536095c2eb759aaf1ce08ae', 'VIRUS', 'Generic.Win32.06c428c785!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('056963aad9560a76dd2c8835b4642737', 'TROJAN', 'W32.Clod36d.Trojan.4f40');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03c7dfab0b46c65959ee2eba4f362d0a', 'TROJAN', 'W32.Clodc44.Trojan.ef98');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00f4d07b057217a40cc5f7444a0f861f', 'TROJAN', 'Trojan.Generic.849554');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e12576662b7a0011153b6646d2215e', 'TROJAN', 'W32.Clodc0f.Trojan.d1c3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0abd18cfbdc2e99e3e4530def91aafed', 'TROJAN', 'W32.Clod41c.Trojan.5e97');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02efc7404bfa353c629dcd4ade273602', 'TROJAN', 'Doc.Clod02e.Trojan.fc74');
-INSERT INTO signature(signature, type, extended_type) VALUES ('078d809b58ab5a9d4789c7533e7cc070', 'TROJAN', 'W32.AgentFyusLnr.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0130c4afac5905081c3f3307ec94a344', 'TROJAN', 'W32.Clod1e7.Trojan.35a7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0941e0ce91667d78c9792473bc5e2a64', 'TROJAN', 'MW.Clodc67.Trojan.4591');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06e27806e94c18d80182210b9ff168b7', 'VIRUS', 'W32.HfsAutoB.FFF8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('081c63d74282c9c772c3176986066a02', 'VIRUS', 'Generic.Win32.081c63d742!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('068ab7aff165eaf4a6b5d1f5efc5779d', 'VIRUS', 'W32.Lovegate.XB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09495c592c21192d90c148d45e24343a', 'VIRUS', 'VCL.O.267');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09825b698db185abf162027e2381ae99', 'TROJAN', 'Trojan.Generic.8389503');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05c45eccf88e2abb11d34462e3f630ae', 'VIRUS', 'HW32.Paked.3D0E');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07c8939949070c6224bf23d389f3a7a1', 'TROJAN', 'MW.Clod07c.Trojan.8939');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01424e3ab808b41f181711d30a8d41f7', 'ROOTKIT', 'Rootkit.MBR.TDSS.C (Boot image)');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f41128227756fd450e5f536f70879c', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b5d7d8147e47e34361819f0c2282843', 'TROJAN', 'W32.Clod164.Trojan.0f94');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ad4b7f0ccada303fe769c237784aee4', 'TROJAN', 'W32.Raraban.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('000b7ae1ad64bbbbdf06c5bd70d60c4b', 'VIRUS', 'Gen:Variant.Graftor.22651');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02360b31b2c157d09e3b9abfcf1b7221', 'VIRUS', 'Gen:Dos.FileInfector.aaW@aaaaa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06b481fdb9e3b6ba43453e2ff8780a49', 'TROJAN', 'W32.Clod342.Trojan.75a5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0590a0bc57e14fcac52259cf56b55660', 'TROJAN', 'W32.Clode8b.Trojan.5dd5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f08cb388a962ccd1858151e2fc79c6c', 'TROJAN', 'W32.Clodee7.Trojan.a980');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0db13ccafca20991ac7f0c5703d40eed', 'TROJAN', 'MW.Clod0db.Trojan.13cc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e31762feaf5b297acd6b0409e316b98', 'TROJAN', 'W32.Clod44d.Trojan.20f0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c739f8f24f2d755846e23627bd085d', 'VIRUS', 'WS.Reputation.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02d9f2ae1c0bd58cd1ccb8d3e4c96ba5', 'VIRUS', 'W32.InjectBrowserLTA.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('060aed031d49986c09d7088532081f28', 'VIRUS', 'Cobra.M');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0163be346baae829115413cf53fee280', 'TROJAN', 'W32.Clod03b.Trojan.43c7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05cf1c23e96288b52aff9ca78993a24d', 'TROJAN', 'W32.Clodcd3.Trojan.f048');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02c7391f557fa2cf1f5b0c140913688e', 'TROJAN', 'W32.Clod111.Trojan.beec');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b1931c25bd8c2397edeff8d2477054d', 'TROJAN', 'MW.Clod0b1.Trojan.931c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c1834da00b68fda77295dc34652f47', 'TROJAN', 'W32.Cloda12.Trojan.1caa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a6e293731ee55bb6aceed2fdf72159b', 'VIRUS', 'HW32.Paked.78CB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058533b5187d5c0c5492dfa4e06a632e', 'TROJAN', 'Trojan.Agent/Gen-FakeAV');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01d6e5b58ac3d7f88b799c39e68bd337', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06ca4040a38aff82b8e7e69ed279ffe2', 'TROJAN', 'W32.Clod16f.Trojan.b138');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02e4298980cbfb3c709aa6c9f632b766', 'TROJAN', 'MW.Clod02e.Trojan.4298');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0741af446e0ae3b509abf692e5a6eade', 'TROJAN', 'W32.Clodedd.Trojan.00b1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bc4ca151f095fd0fd07cac7689f6c8e', 'VIRUS', 'Dropped:NRLG.2513.Gen');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020f54e785bfb154bfa5da373b0e61bc', 'VIRUS', 'Gen:Variant.Zbot.6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('061a29de2fdddb17afbde9743ae04343', 'TROJAN', 'W32.Clod879.Trojan.be58');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04cdf7b66c57ca15362b8c029f7e1723', 'TROJAN', 'W32.Clod788.Trojan.b89e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09b9787a524ed3c2f5cdf70d00cd22d5', 'TROJAN', 'W32.Clodbd7.Trojan.f4f2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('056abe07e6f80da4d27ebe579105d0a5', 'TROJAN', 'W32.TempCetrd.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be6a8b51b1500e4a93f0b4fcea8cacf', 'TROJAN', 'W32.Clod644.Trojan.c248');
-INSERT INTO signature(signature, type, extended_type) VALUES ('035c49bfc96e2813b3e3ded7ac5e4b80', 'TROJAN', 'W32.LiplerQKB.Fam.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06bf31a3ccc71dde1a2dd9a26d47e066', 'TROJAN', 'Trojan.Generic.6591249');
-INSERT INTO signature(signature, type, extended_type) VALUES ('021146cb01f54430bd926cc9f268fa49', 'TROJAN', 'W32.Clodd93.Trojan.4d98');
-INSERT INTO signature(signature, type, extended_type) VALUES ('017636cc905b84ecb0b5a278a503ca3f', 'TROJAN', 'W32.Clodf76.Trojan.5792');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0814ac55c97b9afbcf2f216e98ec2d61', 'TROJAN', 'MW.Clod081.Trojan.4ac5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('031f4979799d8207a0563826d3c114c5', 'TROJAN', 'W32.Clodbcc.Trojan.669c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0971f04652514e5ee13b386a7060f654', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('056610c1ef64214994ec6d47e76e00fc', 'TROJAN', 'W32.IrcBotHA.Fam.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e846727d367fff7f2996d95495ec6e4', 'TROJAN', 'W32.Clode33.Trojan.6a5d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0084c57a07feb2462807653401cc28a9', 'TROJAN', 'W32.Clod706.Trojan.8415');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f1c18902f415089fc6dfed9ef321386', 'TROJAN', 'W32.Clod7f0.Trojan.a9dd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a2136ce1a0aac63940a3d8abb4d790f', 'TROJAN', 'W32.Clod1bb.Trojan.f3c7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05ff99471c82fbedf1ce3930c4c03318', 'TROJAN', 'W32.Clod77c.Trojan.b4bd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00bdcb8162d61ce98bc6f5038368f235', 'TROJAN', 'W32.Clodbcd.Trojan.a10e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('055697d68b3278441a3dc863ec4fce59', 'WORM', 'Generic.ScriptWorm.8CE777E4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c1950369067a49561d8569ec2f6e880', 'WORM', 'W32.PeAceD.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f8c7ed1e040de7b916b14f255296664', 'TROJAN', 'W32.Clod189.Trojan.de88');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a8cf2d6e7de98904ad62278f2ee4526', 'TROJAN', 'MW.Clod0a8.Trojan.cf2d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c7a16f634a0dbf786e8d97d2b1846b7', 'VIRUS', 'W32.HfsGFT.4505');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07003c9a405dc81265489e67cbd8bd26', 'TROJAN', 'MW.Clod070.Trojan.03c9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b4fb3b796083188169ea0ee967f33e3', 'VIRUS', 'Virus.IVP.DOS.320');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06a2780e6fa89f3743a5f3cf63294e73', 'TROJAN', 'W32.IastenoA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('042c6ffed65b9db026a6868554b50b78', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('017e82e69dc737bedd2d1b38b8ccbf74', 'WORM', 'W32.ZabatoeAB.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f0799919182202df501032fe1cfc55e', 'TROJAN', 'W32.HisganetE.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('064968a1123febe3b0f441f6a052fdb1', 'TROJAN', 'Dos.Clod064.Trojan.968a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fc8e8a7547ed9f6dbbd59afa2639d0d', 'TROJAN', 'W32.OnGameELAIXNMAI.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dc87ec1fd9f81dd3e11d5a5dd9e4499', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0809a04e42848116553932b01612d4f7', 'TROJAN', 'MW.Clod080.Trojan.9a04');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07fb8f22b23e1d2dcdc46dd2cdd9f164', 'JAVASCRIPT', 'Trojan.JS.Redirector.KL');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05bb7e2b0fbea42830d83bf2291761e2', 'TROJAN', 'MW.Clod05b.Trojan.b7e2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ea0bc95e57e7652b4cac0eb158b3347', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d060e213d3408f98635615445900d20', 'TROJAN', 'W32.Clod319.Trojan.ff57');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01320540af9d8ed13b4329bfb4fe6dd9', 'TROJAN', 'W32.Clod750.Trojan.a382');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ac81e4d40b650c1edf78ae5ae452132', 'TROJAN', 'MW.Clod0ac.Trojan.81e4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bac0c7827ed0b89b07c3072a65e63fd', 'TROJAN', 'W32.Clod942.Trojan.ee56');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b1a4870fa47fcd944fa4c4d1d5fad6', 'VIRUS', 'Gen:Variant.Kazy.140450');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f652c8c924e25dfd6e09d8b0527cb20', 'VIRUS', 'HW32.Packed.B6A1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03483684f270064adbc72f991261a055', 'TROJAN', 'W32.Clod7fa.Trojan.06e1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('066df748cd4614e03456ac95b8aef6cd', 'VIRUS', 'Gen:Variant.Kazy.147612');
-INSERT INTO signature(signature, type, extended_type) VALUES ('002911a7d549def1c63bd3f97c6c3e44', 'TROJAN', 'W32.Clod29e.Trojan.2235');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f9e3e70996241c77a22c34b22362f25', 'TROJAN', 'Trojan.Dropper.SAG');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b08a7fcfbb9201907022f5970cd300f', 'TROJAN', 'Dos.Clodd2e.Trojan.f4bf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e08a69da1f0eb1765e3ebc44396bdfc', 'TROJAN', 'W32.Clodb02.Trojan.7a63');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0353cb4022e7577f5d0c184cf574b575', 'TROJAN', 'Doc.Clod035.Trojan.3cb4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ec5f4f8a008c22db03a98688630aed9', 'TROJAN', 'MW.Clod0ec.Trojan.5f4f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07f39a3ab7178bd876f59f6850ce8477', 'TROJAN', 'Dos.Clod07f.Trojan.39a3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fdfbdf3f1941e6254b40e9ba51a0e60', 'TROJAN', 'W32.Clod494.Trojan.fd45');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0333b46a6b2e1dfb8de5ba343992fb67', 'TROJAN', 'W32.Clod1ec.Trojan.5883');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03b1d9568562ba3c01ca8edcf1251e87', 'TROJAN', 'Trojan.Pws.Lmir.WM');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ca673466ff92ab66c0beef8706572a4', 'VIRUS', 'WZ_II.436.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b10cb31b08b567c3512fca747d51f9b', 'TROJAN', 'W32.Clode35.Trojan.605c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('009563856ecee47144b8746e0b11814e', 'TROJAN', 'W32.Clod7b1.Trojan.5df8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03be5778e9ae2d14b6b97d0481ca12dd', 'TROJAN', 'W32.Clodfff.Trojan.4fbd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b070a8da5c6f2bd8009e08a52c3db9a', 'TROJAN', 'Trojan.Cong.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05fdd18946633530a10dfe68477f71b3', 'VIRUS', 'W32/A-ee238bd5!Eldorado');
-INSERT INTO signature(signature, type, extended_type) VALUES ('035d03d16dd92d9fe5bb9e403cb0f0e5', 'VIRUS', 'Generic.Win32.035d03d16d!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ecb679470d57b48ec01e63e5ca67c13', 'TROJAN', 'Trojan.Exploit.Linux.Interbase.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b97987411f114784bdaf7a2408e59e7', 'SPY', 'Trojan.Spy.Replor.C');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0baa7ad932e5f226c4227188bbb24da2', 'TROJAN', 'MW.Clod0ba.Trojan.a7ad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e6aaae6604320c7df665a07187f4e6', 'TROJAN', 'Dos.Clod04e.Trojan.6aaa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f12ff32ec37883d049a986787393616', 'VIRUS', 'W32.FamVT.ExpiroPC.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08d248646933589fde6cabadc58dd4d0', 'TROJAN', 'W32.Clodce3.Trojan.891c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b595d7a24e4909b45334d72a6cfbef6', 'TROJAN', 'MW.Clod0b5.Trojan.95d7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02f4337cdf9b76482c89abf1938d5b09', 'VIRUS', 'Gen:Variant.Zusy.Elzob.1507');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02dc74a0490b62b3db4de15563deef99', 'VIRUS', 'Exploit.C99Shell.Gen');
-INSERT INTO signature(signature, type, extended_type) VALUES ('007a3db0f42697b8d85712ad165f75f5', 'TROJAN', 'W32.Clodb96.Trojan.8e0d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('030170230a85713d197c501903239142', 'HTML', 'Trojan.Spy.Html.Fraud.C');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e7c4b4bb78918867d854c1273e950bd', 'TROJAN', 'W32.Clodb2c.Trojan.de27');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01920517bab2a3b79ce37cc7b7d3e207', 'TROJAN', 'W32.Clod030.Trojan.8bc9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0418d6b11972035ddf42aec0daecbeef', 'TROJAN', 'W32.Clod924.Trojan.1449');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00be1f51f25cd66f2c669074d79b0847', 'WORM', 'Irc.Worm.Irc.BAQ');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03c7e6e652586eb28b3619d08c2c0498', 'TROJAN', 'Dos.Clod03c.Trojan.7e6e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0552c1c7f0d4211f264f1ffc681dce1b', 'VIRUS', 'Gen:Variant.Graftor.3317');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0444bea34d02fce9b141c27ff2ee3130', 'TROJAN', 'Dos.Clod044.Trojan.4bea');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0beef7bf8ad858412c72323c524bba9e', 'TROJAN', 'W32.Clod6d3.Trojan.1ee0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fccb12f29031b767fd3ae86845587b1', 'VIRUS', 'Win32/AdClicker.DZX');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a7ce0ce04d97f1571a715f6d0399192', 'VIRUS', 'Gen:Variant.Kazy.14238');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02d1c2ccf3062856ba82734d04bc5de6', 'TROJAN', 'W32.Clod15a.Trojan.c529');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02b879f597eaed2a328608f559ea16b8', 'TROJAN', 'W32.Clod023.Trojan.345a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0933bfa637e2fc7b26898b771cfdd8b3', 'TROJAN', 'W32.Clod0c2.Trojan.4be8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('076bd3b271aea400fb8df50eca6113b1', 'BACKDOOR', 'Backdoor.Generic.193717');
-INSERT INTO signature(signature, type, extended_type) VALUES ('081dde94e213b2e5cf5bf3199f682938', 'VIRUS', 'W32.SalityVC.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ef50aed6bd7285bd9b6a985cc73343b', 'TROJAN', 'W32.Clod02a.Trojan.f589');
-INSERT INTO signature(signature, type, extended_type) VALUES ('054657efbacd00f802e60a0d44ba406d', 'VIRUS', 'Gen:Variant.Buzy.833');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09f856739987a254101af533454772ec', 'WORM', 'W32.MyDoom.M.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0854b12d2a19879cdae20a1b36d918db', 'TROJAN', 'W32.Clod6f5.Trojan.5037');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0478de980e53ea467404a9fc409efc34', 'TROJAN', 'MW.Clodc5a.Trojan.f133');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07f1ff2505528ed8800bd0cb3ee78c5b', 'TROJAN', 'W32.Clod404.Trojan.aa04');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e6a84b55ee00029240b72746ba42139', 'TROJAN', 'Dos.Clod0e6.Trojan.a84b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('067ffb08aa5459edfe9de3bff1b4e87e', 'VIRUS', 'Virtool.Dos.Searchexe.D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('057f054ed5045b6f97472225b7897b0e', 'TROJAN', 'W32.Clodf89.Trojan.5639');
-INSERT INTO signature(signature, type, extended_type) VALUES ('047ff16f19b758da734762ea4e4bf310', 'TROJAN', 'W32.OnGamesLT180912HKGHAAI.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f5919653d9fd20b204363e515c18a9f', 'VIRUS', 'W32.Vetor9E1E');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05cd552288c8d2ab6e2767dec734fe24', 'TROJAN', 'Gen:Trojan.Heur.RP.byX@aaYml2ab');
-INSERT INTO signature(signature, type, extended_type) VALUES ('068ff1ae4cfd08023f0c04ac471cfe2e', 'TROJAN', 'W32.GroduA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('030329b6255d08bcc488ae0cff0f2c31', 'TROJAN', 'W32.Clodb12.Trojan.feda');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0efd07598aa02617362084b23b8560e6', 'VIRUS', 'Generic.Lmir.C9F160C9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('002d397aa7b6a47a824def1b68de59c0', 'VIRUS', 'W32.FamVT.ExpiroPC.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00b6610c0c993b8d72e477b549b8d6c5', 'TROJAN', 'W32.Clod8ee.Trojan.c452');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b618fe09e499d8280c12aed9161963c', 'VIRUS', 'Lox.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0175a1e8cfae12129131fea2cea40290', 'TROJAN', 'W32.Clod64c.Trojan.e1f7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d884389c3fa063fd5745b41e7e8ad04', 'TROJAN', 'MW.Clod0d8.Trojan.8438');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c16127e2413d2cad23c87bae69b3d83', 'TROJAN', 'W32.Clodcf9.Trojan.f3ce');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0743742931926b03182ad9ffdba427c1', 'JAVASCRIPT', 'Trojan.StartPage.JS.D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06b31fda99f159b560ec5908d97de0d4', 'TROJAN', 'W32.Clod271.Trojan.b08f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07d75865135ddd45416f7349235238a8', 'TROJAN', 'W32.Clod0f5.Trojan.7635');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b953e26271cc601349c4e7dd54303d', 'TROJAN', 'W32.Clodc80.Trojan.e7b7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020ed17b8cdf7cdbc573e81fa8567b2b', 'TROJAN', 'MW.Clod020.Trojan.ed17');
-INSERT INTO signature(signature, type, extended_type) VALUES ('054398b06aefa693dd9d20c326d973d9', 'TROJAN', 'W32.Clod7a8.Trojan.99f9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0757f72f5bbad8994d59f89e4a9c93b4', 'TROJAN', 'MW.Clod075.Trojan.7f72');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05a73d0f70245dc244b367175c8f0674', 'TROJAN', 'Trojan.PWS.Keyman.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0540bd8116feb6b132f90b3eb17c1a75', 'TROJAN', 'W32.GroduA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06307ec9c95a64e1626b55ecd6d4eaa8', 'VIRUS', 'Gen:Variant.KillAV.6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d0b007c138640dc83f76ff9aef38e03', 'TROJAN', 'W32.Cloda2a.Trojan.2adf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f05f20e21a28703ae3027f37bc51978', 'VIRUS', 'Win32/Tnega.CCYFeZB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00b9fbc044f07e7231ed13594c7d9f9e', 'TROJAN', 'Doc.Clod00b.Trojan.9fbc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f5fba0fe19671062a6b6abd8cd5bb49', 'TROJAN', 'W32.Clod64e.Trojan.d140');
-INSERT INTO signature(signature, type, extended_type) VALUES ('073a9295bc0ac74e720a7edb42fccfd9', 'TROJAN', 'W32.Clodd32.Trojan.86a9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07cfb61c36b90f323a00bb824804c742', 'TROJAN', 'W32.Clodde4.Trojan.aaba');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e93c96b140365ff36c5a6534214c1eb', 'BACKDOOR', 'Backdoor.Generic.77330');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02de133ccab2a676bfdd6ec71edd7c81', 'TROJAN', 'W32.Cloda3a.Trojan.3bdd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06490c8e44c7830fcfd1b0d988c9b59e', 'VIRUS', 'Heur.Win32.Veebee.1!O');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09957767d2a5e60b689adb67acc75d5a', 'TROJAN', 'MW.Clod162.Trojan.be13');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0627e3a917d6e36c12468dd3f74fa740', 'TROJAN', 'MW.Clod062.Trojan.7e3a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('056f73a9087a279b0379869af54c0a1d', 'BACKDOOR', 'Backdoor.Urcs.105');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0086695493bb2a428f1bfcb865a173c8', 'TROJAN', 'W32.Clod3b2.Trojan.09cd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('048caac97633b0bcc67b83db6f2659d2', 'TROJAN', 'W32.Clod687.Trojan.f4d5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c084a509a9414f53352035cdce6e87', 'TROJAN', 'W32.Clod89d.Trojan.9141');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06773391d137b028dc8fca1b9f50ef9c', 'TROJAN', 'W32.Clodb58.Trojan.a0c4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e0505cfa381da5f66b89fcf34df9a1d', 'TROJAN', 'W32.Clod3a0.Trojan.229a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08e89d7c01886fc978a692a1a303f76e', 'TROJAN', 'W32.Clod6b2.Trojan.598a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02914e861578c222a7296a402df13d67', 'VIRUS', 'Kit.2384');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c971ad723f31ca74f0da0a6feb8655', 'TROJAN', 'W32.Clod53f.Trojan.ab42');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0002f2f17d87e0647b6ab92a76c08fd3', 'TROJAN', 'Trojan.Generic.1551979');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00ac8f6b496a206c8022d1501df0c6bc', 'TROJAN', 'W32.Clodfb4.Trojan.d2fb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d51e39fab4787c33f80376e03dd732e', 'TROJAN', 'Trojan.CryptRedol.Gen.3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02de7726e796e7c010d10852d42b4f09', 'TROJAN', 'W32.Clodde1.Trojan.73ad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02df7d2e230ce30ed114527d8e595ade', 'DOWNLOADER', 'Trojan-Downloader.Win32.Gamarue.2!O');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e6f843d03ecfc8b08cdb75b01d9db61', 'TROJAN', 'W32.Clod1d4.Trojan.02e0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02b2042bd37eea08f3e39a1eb4d19971', 'TROJAN', 'W32.Clod45c.Trojan.759f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b9e91d347a72a2e75fe9c92fd1c5810', 'TROJAN', 'Trojan.Generic.8021513');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0424087150ca10acd16ddd3f242c4260', 'TROJAN', 'MW.Clod042.Trojan.4087');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a849cf73b204ac7f47507ab8f63b05c', 'TROJAN', 'W32.Clodd2b.Trojan.853e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01d457261fcaedebe3a2e58b8b749b25', 'TROJAN', 'W32.Clod0fb.Trojan.0afe');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0708764cea1e181513c1afe3d01e83cb', 'TROJAN', 'W32.Clod378.Trojan.39ad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f3afe92c6139b262402bff10721db75', 'TROJAN', 'W32.Clod444.Trojan.ab65');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c08c8649fa0e93937554599fef2d22d', 'TROJAN', 'Trojan.Script.143101');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d78607cf15e665bffa0f0eff556fd29', 'VIRUS', 'SillyComp.45.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e24fcd59a211fac372e951ffbed32ab', 'TROJAN', 'Doc.Clod0e2.Trojan.4fcd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c5a22f9cd7b0cacde5d94be66d1891f', 'VIRUS', 'Hilite.A:intended');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0322018a3afd23900f545cf8a3677442', 'TROJAN', 'W32.Clodc64.Trojan.e570');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e2f7ffe3ad69b37c0c4d06885a1b6a7', 'TROJAN', 'W32.FakeWmpQKB.Fam.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fd5b6657eec45744b6c3689dcb428fe', 'TROJAN', 'W32.Clod0be.Trojan.ea17');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03c3f75464687e743f1c632d935be6fe', 'TROJAN', 'Trojan.Generic.7635328');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0052d5810f3b6cf8016c4e5647ca653c', 'TROJAN', 'W32.BifrostServB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be0d754ef9db308abf1eba76eca5520', 'VIRUS', 'Gen:Variant.Graftor.Elzob.11409');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0386bf7f1c793488b141c1ae09645f5a', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00dae3a9f00b5bacd6bb70f7db2d0467', 'TROJAN', 'W32.Clod98d.Trojan.7804');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b907ee83b9404aaac1768307df1f729', 'TROJAN', 'MW.Clod0b9.Trojan.07ee');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a2e65210502377fe8864a866241a1ca', 'TROJAN', 'W32.Clodad2.Trojan.b301');
-INSERT INTO signature(signature, type, extended_type) VALUES ('043ba24daf76c6c884551f9d941d6cd6', 'TROJAN', 'W32.Clod564.Trojan.c900');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c179e52762de6861f2f716f38995217', 'VIRUS', 'Artemis!0C179E52762D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09bb271beea49e38735fbc0577c56a07', 'TROJAN', 'W32.Clod44e.Trojan.b379');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d629d32341b8da4d909dd8597fd33fd', 'TROJAN', 'W32.Cloddee.Trojan.6417');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b29302fb3f378b863a757cc09a5682b', 'MALWARE', 'Generic.Malware.G!K!FWX!!g.2311AA42');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06bd122dd540cf47cc21b3ac57e1a16a', 'TROJAN', 'Trojan.Generic.2164801');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09ca3f7891bf1929c424a63ac8219129', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01302494624de3f68c68eac7592d3eae', 'VIRUS', 'Keelung.208');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e06954d2e322a0422c8445dd2bd658b', 'BACKDOOR', 'Gen:Win32.IRC-Backdoor.IGZ@aujUs92S');
-INSERT INTO signature(signature, type, extended_type) VALUES ('057a7c549516522fd0dbce6185b93dc6', 'TROJAN', 'W32.Clodf5b.Trojan.1028');
-INSERT INTO signature(signature, type, extended_type) VALUES ('044cbbca9eb1a99678124449e24b464e', 'TROJAN', 'Trojan.Generic.6110707');
-INSERT INTO signature(signature, type, extended_type) VALUES ('086e79340f47daef8b26e39cc91aa26d', 'TROJAN', 'W32.Clod537.Trojan.14b2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d5c563b45f369e0142c6587f3d5f043', 'TROJAN', 'Dos.Clod0d5.Trojan.c563');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d1b19a0bdd1ded153b7d7861e57e79e', 'TROJAN', 'W32.OnGameXZLAIYAM.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f7bade9e3de98ee7000b37f87a744a0', 'VIRUS', 'Gen:Variant.Symmi.50128');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0145d775512c6d51ead5a6a62223d297', 'BACKDOOR', 'Backdoor.Grnu.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f3f412be3ff606d1fc5fe3ece9f52d', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('039bffb060abfcb05b7b4bf1acfe7f4a', 'TROJAN', 'W32.Clod76b.Trojan.90b3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02811f7eca68713c440d48965a894ed7', 'TROJAN', 'MW.Clod031.Trojan.907d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('083b694413f28c0e4e29016d625fcb0f', 'VIRUS', 'Gen:Variant.Delf.12');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fbc6cec251237e410c15440db1b0f1e', 'VIRUS', 'Generic.Lmir.2D403ECB');
-INSERT INTO signature(signature, type, extended_type) VALUES ('092a07e7f191201b3c2678bdb9e17468', 'VIRUS', 'HW32.Packed.774C');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08c7b284b9df8398ce2e87a673fb8075', 'TROJAN', 'W32.Clod714.Trojan.7763');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00a20feb199b707568567a8617b5637a', 'VIRUS', 'HW32.Paked.A9C2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('057d3bd3bffcafa4a2c93bf4455712c3', 'TROJAN', 'W32.Clodccd.Trojan.4306');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0028739c9a18b33f11b0ad56f9657960', 'TROJAN', 'Trojan.Dos.Killmbr.W');
-INSERT INTO signature(signature, type, extended_type) VALUES ('000c99f6434bd6da03e958fa8d5b0a25', 'VIRUS', 'HW32.Packed.F061');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0950fa0d2e265ae739abbd2d60bb3e43', 'TROJAN', 'W32.Clodf3b.Trojan.499d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f9a75e989cb1445c5624d57b369de53', 'TROJAN', 'Trojan.Favadd.G');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b370b01edcd0837ee742a4eae8e782', 'TROJAN', 'W32.OnlinegameXFCPJ.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b02352207896d2ebc8d189bb77e9897', 'VIRUS', 'Flame.B (Boot image)');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c4f60c55c413e4c8adb1cdcb5d8f01', 'TROJAN', 'W32.Clod123.Trojan.dd7a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00ae42f820e161c55f84862de6c8ca2a', 'TROJAN', 'Trojan.Script.263807');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e63398bb88a5c6ab36c99c6a2903ce2', 'TROJAN', 'Trojan.Generic.818587');
-INSERT INTO signature(signature, type, extended_type) VALUES ('012fd07c6adfc79d778cf2987071ccf4', 'TROJAN', 'W32.Clod5e7.Trojan.6a5a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c5b8cfc51945eb5799fde6e439854ce', 'TROJAN', 'W32.Clod974.Trojan.e386');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0077157ff2253c437aa5560c835a2934', 'BACKDOOR', 'Backdoor.Irc.Djaa.D');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f504bd9252143e8981feb9f9210cbe7', 'TROJAN', 'MW.Clod0f5.Trojan.04bd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f2f035a7393b7657199bbea7af9cf5', 'TROJAN', 'W32.Clodccc.Trojan.1b7d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bc9a1929f64a45e1753ad16d35a22c1', 'TROJAN', 'W32.Clod26c.Trojan.584a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e7d4651782a0ac49126ec950dd296dd', 'TROJAN', 'MW.Clod0e7.Trojan.d465');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09c61c27bbac5219b40578ee061ed155', 'WORM', 'W32.OnGameEHAJZV.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02c57d4881b845d4a4f8b26430e46190', 'WORM', 'W32.Larwin.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0507fea489578a31f5f71b8cccc2666e', 'VIRUS', 'Gen:Heur.Zilix.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09f3a22cabb280a59c7e79badfa99f8b', 'TROJAN', 'W32.StartPageLnr.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0617988ae764e54e14d78e8b670167f1', 'TROJAN', 'W32.Clod761.Trojan.bb06');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00dbdee1acfe9f583e08461624e27664', 'TROJAN', 'MW.Clod6e7.Trojan.6823');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c4a653a253bde6623a89c82a82c1667', 'TROJAN', 'Trojan.Generic.6260133');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05965a142cc88675463fa9deeb5cca27', 'VIRUS', 'Artemis!05965A142CC8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b51dcf54e679bd1bcf8e841098f2a26', 'TROJAN', 'W32.Clod20b.Trojan.713c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0503b1bc9bea1fb61a9b907fa9583ab4', 'VIRUS', 'Pantera.486');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a8fb63acdaf1598606c1f0c60fb602a', 'TROJAN', 'MW.Clod0a8.Trojan.fb63');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00d07266752709920fc727c7e7cb5c66', 'TROJAN', 'W32.Clodca1.Trojan.9884');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06d5da22f8e834d2e19c9b086a6763a8', 'BACKDOOR', 'Dropped:Backdoor.Haxdoor.KA');
-INSERT INTO signature(signature, type, extended_type) VALUES ('076e333f440e93ee70fd8294ed5c413d', 'TROJAN', 'W32.Clod3cc.Trojan.8a85');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c91118c620c0947121394f8286e19c4', 'TROJAN', 'W32.Clodbdf.Trojan.f41e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0694e0d3055e83ffa9531d22f9c33731', 'TROJAN', 'W32.Clodf97.Trojan.5839');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0903b6f9f56b24950df5d24dbc16da43', 'TROJAN', 'W32.Clod470.Trojan.ad23');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ee0667cf69b13a5b2e3839f73250d77', 'TROJAN', 'W32.Clodb4a.Trojan.d9ef');
-INSERT INTO signature(signature, type, extended_type) VALUES ('059c56d53d70ab89fa4d77b896d7139f', 'TROJAN', 'MW.Clodc69.Trojan.06a0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0feaabf5e499afaebecf28b00fc01f8b', 'BACKDOOR', 'Backdoor.Bushtrommel.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('068f5324ac26cfc0abddf4d30da13665', 'VIRUS', 'Packed.Win32.Toggaf.7!O');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05c5eb921f12f0f9c21fafabee2a9144', 'TROJAN', 'W32.Clode25.Trojan.78a3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f4794c970514940950547b682c89687', 'TROJAN', 'W32.Clod610.Trojan.96bc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02545bcca35687494fc3f9d7e82e085b', 'BACKDOOR', 'Backdoor.Rcserv.I');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0622554eff4645a79df96edc630356a6', 'TROJAN', 'W32.BifrostServerLnrH1.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('005d6b31fbc6fb1390bbe30056d8032c', 'VIRUS', 'W32.SalityK.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('008397142fb3f355bdd4e54e7bc45168', 'TROJAN', 'MW.Clod008.Trojan.3971');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f91908d8b94c1853a85a7b449d1e8f3', 'TROJAN', 'W32.Clod0a5.Trojan.123c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0557801613850facf01b883597c7be4b', 'TROJAN', 'W32.Clode19.Trojan.1083');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a29d2753d4ee432943b995b8b17e5d1', 'TROJAN', 'MW.Clod0a2.Trojan.9d27');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02b3107f8286d5c9f2281b439bc1ab29', 'TROJAN', 'W32.Clod6da.Trojan.456c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d44505314f0d5621eaf4272d0d9de3c', 'VIRUS', 'BAT.Count.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0fafb1be3c60dd0eaa847b02bec89b3e', 'TROJAN', 'W32.Clod0f7.Trojan.aed7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0887fcbef33946717a0ceb43463831f0', 'TROJAN', 'W32.Clod427.Trojan.3da2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0651c3ec590ab60f1439374c2ca7ca58', 'TROJAN', 'W32.Clodd17.Trojan.bba2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('073a9906e056f88c21baaa1d04443625', 'TROJAN', 'W32.Clodc69.Trojan.520a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c828ce8be10cf82de1fad1e00205e4', 'TROJAN', 'W32.Clod9ca.Trojan.e5d3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09cd3a109266c40f35d8ce2433f427ef', 'TROJAN', 'W32.Clod9b9.Trojan.f60a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07021bed662d7b418c09f1dc12c176a3', 'TROJAN', 'W32.Clod8d5.Trojan.34b9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a8287fd40d7edd3fd831c577007f9c7', 'TROJAN', 'MW.Clod0a8.Trojan.287f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0206dde150ec2a5fdf6695087811fac4', 'TROJAN', 'W32.Clode9c.Trojan.c222');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0af16d2306cbb1da18ca963cd1d56585', 'VIRUS', 'HW32.Paked.5E91');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00190c038bfa73463f68eae01222ba37', 'TROJAN', 'W32.Clod9e2.Trojan.1482');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aa1a4843fea283b8719d5e1bd057587', 'TROJAN', 'W32.Clod0b4.Trojan.1650');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04e8205822b324c19dfaf099c962b5ce', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('029e3cc6e32f086e54a01942fd17e142', 'VIRUS', 'Artemis!029E3CC6E32F');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09a52423f9192cd21a17cb176ad9d93c', 'TROJAN', 'Dos.Clod09a.Trojan.5242');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0271f5f9cf992b6fa4a1c2d93c521ae1', 'TROJAN', 'W32.Clod30a.Trojan.4210');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b382991252bc67be50dd85511eab461', 'TROJAN', 'W32.Clodf92.Trojan.4476');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0332f84c18c99a040516d48740eef170', 'TROJAN', 'Doc.Clod033.Trojan.2f84');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06a113ef087cb8925dde865017a7c67f', 'WORM', 'W32.FamVT.ViselPM.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06267c3b8350eb689f58d7df0e68f48e', 'EMAIL', 'EmailWorm ( 0008d2741 )');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c3aab0481189d4c46371ff90450c091', 'TROJAN', 'W32.OnGamesDFDAE.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09add6920e2fa3af05e5a527bd6c2494', 'TROJAN', 'W32.Clod4b3.Trojan.da36');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01c4133bc6466ca2a2ca552ae6638039', 'VIRUS', 'W32.HfsOval.845A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('010110a747467a8abd655ec5e1635eb8', 'TROJAN', 'Trojan.Gen.2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0dcadf1a2b17a1f7745518fa86442555', 'VIRUS', 'Gen:Variant.Beax.2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06b8b7a5ff16d46da6edcea167351e1e', 'WORM', 'W32.OnGameELLIZUC.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0eb95854cb0be8705b475e6f73e41865', 'TROJAN', 'Trojan.Vb.VI');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02da2c77891e617321f14d5ca1aace4c', 'VIRUS', 'Gen:Variant.Graftor.63974');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f6524a7078effedd437f1a0e74902d9', 'TROJAN', 'W32.Clod85b.Trojan.ba90');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e0fc966862971c29edd4dcaa0ba8e86', 'BACKDOOR', 'Backdoor.Netbull.11.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('065ae2beb9af8f3acf8965ddc6e87f5a', 'WORM', 'Posible_Worm32');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c98efe2f45f06b209d2405d34b2653', 'TROJAN', 'MW.Clod04c.Trojan.98ef');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d8eb7f2f9d73d5eb53ab310da670b75', 'VIRUS', 'Gen:Variant.Delf.12');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f29730101b1ec368e9134f1d67059f', 'TROJAN', 'Trojan.Agent/Gen-FakeAV');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05f66e3938b50b1ebbc64fba49da3251', 'TROJAN', 'W32.Clodf3f.Trojan.c188');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09a4d35c4ae6f1e7c4bdb24e56cd24a3', 'VIRUS', 'W32.Vetor.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05ac6eb4ba655d2422a917448a6da95a', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08da14d022a30a0e1b0ee28e705109b9', 'TROJAN', 'W32.Clod1ac.Trojan.517b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08964e4dcd77cdc5ec7e2f21241b1af0', 'TROJAN', 'W32.Clodf21.Trojan.7ee4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a62fb55c96d15b614692476fd23bc05', 'VIRUS', 'Ace.1878');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06fa838f99db1b3d2c7f30d8e127996d', 'TROJAN', 'W32.Clod7e3.Trojan.b774');
-INSERT INTO signature(signature, type, extended_type) VALUES ('005215a67632be81ca8095417e22bde9', 'TROJAN', 'W32.Clodc60.Trojan.7b02');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b8548e3ceb3a6fee47ed24ec1b8431d', 'TROJAN', 'W32.Clod4ed.Trojan.96a3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b7e63dbe9429b7c6f224745dec3324', 'TROJAN', 'W32.Clod76e.Trojan.90db');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0507f988637ee4b8f2e8fa197d4b6dfa', 'TROJAN', 'W32.Clod9e7.Trojan.fd41');
-INSERT INTO signature(signature, type, extended_type) VALUES ('040a8765be9a4c6cdfccae4c032094a0', 'TROJAN', 'W32.Clod057.Trojan.799d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05cb140a5454ebc271fc519625a023d1', 'TROJAN', 'W32.Clod44f.Trojan.4816');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c7c6ef548ab5598b4d968e9932fc5b9', 'PHP', 'Backdoor.Php.Pokemon.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be08ccb377ba39108ea417aa168f4c5', 'TROJAN', 'W32.Clod3db.Trojan.1853');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05fd6891750094d8599907e6b194eb65', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('003b30ef3063e05100867d674346e758', 'TROJAN', 'W32.Clod9f9.Trojan.531d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ad8e3751ebad92b189d8d75d76e1a11', 'TROJAN', 'W32.Clod87e.Trojan.6954');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e235062b85a9412a2942264fa4404e6', 'VIRUS', 'HW32.Paked.B43B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06945a1232204ba791f3d61fc4646153', 'TROJAN', 'MW.Clod069.Trojan.45a1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02f91d121bec10b8402d883242132e19', 'TROJAN', 'W32.Clod08b.Trojan.519d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('054fd91b115926ab1c0106dcf3667759', 'TROJAN', 'W32.Clodf52.Trojan.c7af');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bdd6c8e1633fd37be634ee285109190', 'TROJAN', 'W32.Clod6e2.Trojan.6bdc');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0695d1266063a60849383f8f7f9d889b', 'TROJAN', 'MW.Clod069.Trojan.5d12');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01ea5ba59a316240e48b0475b24b15b7', 'TROJAN', 'W32.Clod5c0.Trojan.a220');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02558181f8d4e68e452d7d02bf227eda', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0de0ddcef18c16f8ea15c139e388dcc1', 'TROJAN', 'W32.OnGamesICOCSG.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('062866b10e353d226847f4ca2a8fdda6', 'VIRUS', 'Artemis!062866B10E35');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06d704f1b872cde834e40c9a4e88e042', 'TROJAN', 'W32.Clod62b.Trojan.3701');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ed70fc40c19b79adc216228f09efeb5', 'TROJAN', 'W32.Clod4ae.Trojan.9641');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0224ad47175acbc5c19e7ae3dfdf137c', 'TROJAN', 'W32.Clodbf4.Trojan.5756');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0afd5d15cc7e03b8220906459d072621', 'TROJAN', 'W32.Clod29c.Trojan.428b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0896c23b0d5a34d57fe425ac01d8cfed', 'WORM', 'W32.AutorunHA3.Fam.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0378feef3a75a9da90dc29cf1e1fb9e7', 'VIRUS', 'W32.HfsAutoB.639B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058babf552cccc52fa68135667c24ebc', 'TROJAN', 'W32.Clod632.Trojan.0146');
-INSERT INTO signature(signature, type, extended_type) VALUES ('025fa0924b29d03767f5da078a840658', 'TROJAN', 'MW.Clod025.Trojan.fa09');
-INSERT INTO signature(signature, type, extended_type) VALUES ('023f745f559ecf88806e28f221dac0fb', 'WORM', 'Win32.Worm.Nohack.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00cd2efd5805197bb61e2579ca79feb7', 'TROJAN', 'W32.Clodfe8.Trojan.be3f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('061a71b8ad25d8674e1ab6863eece3dc', 'KEYLOGGER', 'Trojan.Spy.Keylogger.FX');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cde73a0d0c43ba0ea67a6a8cd89d1be', 'TROJAN', 'W32.Clodf06.Trojan.30dd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04f0aaa2efafb09a91db5aaa1e897143', 'TROJAN', 'W32.Clodf29.Trojan.5526');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00fc49007667be76960f07d887f946ca', 'DIALER', 'W32.PornDialerQKB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f219c8daa64fc6273ebf18ad817d090', 'TROJAN', 'W32.Clodf5d.Trojan.6520');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bbad1c2d0c27cd118e03a98efba6b8a', 'TROJAN', 'W32.ViromewH.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ccb7ff76b741a559792786b52a0ab46', 'TROJAN', 'W32.Cloda96.Trojan.f2e1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01a983d78c4f79e63ee39285336ff498', 'TROJAN', 'W32.Clod973.Trojan.f2e7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c5cc044be27ba3490170a010759564', 'TROJAN', 'W32.ServiceMngLNR.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07d3982d5dc07a6ee2bc437cf34bf201', 'TROJAN', 'W32.Clodcd6.Trojan.3323');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0657889e37ed320292beeeab03756796', 'TROJAN', 'W32.Clod976.Trojan.2e2e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04747b2fe187dbad71363e28006b39c1', 'VIRUS', 'W32.CisClipSvrC90A.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08015fce43c57886b335f167600e2be4', 'TROJAN', 'W32.Clod27e.Trojan.73bd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00ddd83fc987faff21e9ea4820621ac3', 'BACKDOOR', 'Backdoor.Lamebot.V');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05582d7a5ddc169d15284e0b4b286950', 'TROJAN', 'W32.Clod7f5.Trojan.070a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00e29387aa6cc7f6849b9f9bd5812a3f', 'TROJAN', 'MW.Clod00e.Trojan.2938');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08e04392022bd630b28e1cc923255ce8', 'VIRUS', 'PS-MPC.0389.AA.Gen');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aa460a03c6f5ba534687bf256cf7537', 'TROJAN', 'W32.Clode28.Trojan.4b8f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('085d3a00d690d1ac1d67287f61b110d8', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09aab3e3a417dc3f6879b9c099c4f6de', 'BACKDOOR', 'Backdoor.Retrieve.1.3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04db5fd1c00203cddab9dc621f367f78', 'BACKDOOR', 'Backdoor.Agent.BL');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e64c8ae293f0b772ef8c44180522518', 'WORM', 'W32.OnlineGameECPLI.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('022e5ba02781b9ff11090f27be51068f', 'VIRUS', 'Gen:Variant.Kazy.25993');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06ccf09b48005893e2d6a191a0e90ca0', 'TROJAN', 'Trojan/Agent.lf');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05e6f0670d84e4b2d4060d78aa270e83', 'TROJAN', 'W32.GenericAgentA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06b0f4212faf6ff1f69e22c3d6aa615c', 'TROJAN', 'W32.Clodc42.Trojan.222a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08eea6441b22dc82f33392dc371f9403', 'TROJAN', 'W32.Clod1c7.Trojan.6bb8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cb7de2b0de2b3ce8defddf9b48f5951', 'TROJAN', 'W32.Clod9b1.Trojan.e3b0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('091af82922d72338e0bbb456225b9e73', 'TROJAN', 'MW.Clod091.Trojan.af82');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0170b51ece5aa717a58cff5872786513', 'TROJAN', 'Dos.Clod017.Trojan.0b51');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04c8adf7c830cdfce9dcbbb76ad5a920', 'TROJAN', 'W32.Cloda49.Trojan.3f28');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c12cd3c5beaf11b8bef1492dc5cf6c1', 'VIRUS', 'W32.HfsAutoB.E793');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c285bd0c6461588319b9a2955a79609', 'VIRUS', 'W32.HfsGFT.4505');
-INSERT INTO signature(signature, type, extended_type) VALUES ('080d461b8723b5d5cb306e93f5bc83e2', 'TROJAN', 'W32.Clod48f.Trojan.0dde');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a048ad6e1be8ab2910c212d935cda4a', 'TROJAN', 'W32.Hastorn.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0120a497d381f78c2a6c87649a24133b', 'TROJAN', 'W32.Cloda26.Trojan.1ab9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09b97ba02e1db609484404868cd8f298', 'TROJAN', 'W32.Clodb48.Trojan.c9e3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09d3ffe35685236c2789e220c6b93211', 'VIRUS', 'Liberty SSSS');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06455fd965048807f6c079ba91461333', 'TROJAN', 'W32.GroduA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('014ab1ed1b312dd56628a2f9a6cf8b30', 'VIRUS', 'Yosha.745');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07e86e31637b3dac8c3e83de1ac9182e', 'SPAM', 'Trojan.Spammer.Mail.ShockMark.1.7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04dab4b424bc3e25b84ad822d3edcc22', 'VIRUS', 'Ape.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('005a36ac3ddd5b51eea64dcde94bb32d', 'TROJAN', 'Trojan.Flood.Vb.EH');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0efbd5fedf0b5dcef6d1c1407e068cf6', 'TROJAN', 'W32.Clod03e.Trojan.60e1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e90ac58391f5e324d1a369b4fbe4402', 'TROJAN', 'W32.Clod75d.Trojan.3a30');
-INSERT INTO signature(signature, type, extended_type) VALUES ('065f4cc7d3902c4253634574343a185d', 'TROJAN', 'W32.Clod702.Trojan.09ec');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05b431561e94ff68a329c9b78b15480e', 'VIRUS', 'CasOnline');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09546a51e7448e468ca6967ac55618aa', 'TROJAN', 'MW.Clod095.Trojan.46a5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0500d379dcd113253bc36025a0a5ccdd', 'VIRUS', 'Gen:Variant.Buzy.1733');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e9ef9ff3a9e0fef64353eab1e32f2a0', 'TROJAN', 'W32.Clode17.Trojan.ba86');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06fdcc0c175a8c6440ae59ee7c4c7097', 'TROJAN', 'W32.Clod4a7.Trojan.9596');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05ccf293946bfd5bce1ac2d5ca8f74d5', 'VIRUS', 'W32.Infect2Loader.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('061615bdfdf6dfe07d3db6a75fae15a3', 'VIRUS', 'Gen:Variant.Kazy.3978');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b8f760d1ca4baf78c15c9fe66db70f8', 'TROJAN', 'W32.Clod863.Trojan.e718');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07a084ce0664553c44058154a27c9979', 'TROJAN', 'W32.Clodc98.Trojan.cee8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07bff3a6fb25f281169de04ee8ff0bdf', 'TROJAN', 'W32.Clod097.Trojan.928f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0caf23c4668f7e21896d8c9393eb3f41', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('050a599988b4029e8cdb429485bb641b', 'BACKDOOR', 'Backdoor.SpyKing.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0222d2ddd1c895aa58ed4cc69ba31d0c', 'TROJAN', 'W32.Clodb86.Trojan.c57c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09336e9e0f4d6e0ada8eda279cefb0d6', 'VIRUS', 'Lesson II.358');
-INSERT INTO signature(signature, type, extended_type) VALUES ('053c207fd54b70530d23f9edcdf83c5c', 'TROJAN', 'Trojan.ZAgent.r4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c03cee4db1f4cb66987eb32e470f2cb', 'TROJAN', 'W32.Clod8a2.Trojan.339d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0154b940c5b44b3c972207a68412011b', 'TROJAN', 'Trojan.Flooder.Fast.3.0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0944ed4f20ba0c38f246db4c8b516110', 'TROJAN', 'W32.Cloddbd.Trojan.3e42');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0602f7d611aaeffdee60e6a5cc4fc100', 'TROJAN', 'Trojan.PWS.Onlinegames.KEGA');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04be33e8f00db0f052e97668b2e377c2', 'ROOTKIT', 'Rootkit.Kobcka.H');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c000a2b36937c08e6eaad406a9a3fc5', 'TROJAN', 'W32.FakeFolderAAA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c015e4e95852732eb9db97e1f8cb3d', 'VIRUS', 'Win32.Sality.3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02c00c0dda3a9bd5ef28ac24aac74d57', 'TROJAN', 'W32.Clodee0.Trojan.99ce');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0729d7f813786103c380c8a2ddc51047', 'TROJAN', 'W32.Cloddbf.Trojan.41a5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f78d9cfed724b3e51be0f82c71d3c02', 'TROJAN', 'W32.Clodece.Trojan.33ff');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08dd8e2abeb590d92614d2a63423454f', 'TROJAN', 'W32.IastenoA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09cf844d7ba941c70f244fcb56a3502b', 'VIRUS', 'Retaliator.1559');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06105301ce4a615cf428bb235a4c0c1f', 'TROJAN', 'W32.Clod13d.Trojan.3ad4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('031d8a5fb1a0cf88b7933951949a8154', 'TROJAN', 'W32.Clod098.Trojan.1be7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0efea95ab4d5cd30e1b039ac5f23a874', 'TROJAN', 'W32.Clod09d.Trojan.67c1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03bcd975d33c03704b4144071f3cfa6e', 'TROJAN', 'W32.GenericSacanph.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01b24cc5cadadee00bb28706d73e95a0', 'VIRUS', 'Generic.NSIS.Downloade.77FB5219');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09a5333630e6ec7047d5954a45aeae1b', 'TROJAN', 'W32.Clod90a.Trojan.98b7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d9e4bf518b3642126b7bca4be7ba7a7', 'DOWNLOADER', 'Trojan.Downloader.Small.AHX');
-INSERT INTO signature(signature, type, extended_type) VALUES ('053bc471856e3ec665f92e891e32dc6e', 'TROJAN', 'Gen:Trojan.Heur.dm0@snHQJ5liy');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cf37a8a5bc774f2671def3a88dbd821', 'VIRUS', 'W32.Upx0Paster.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01bd603842a463db9e5995fe7083fa6a', 'VIRUS', 'Gen:Variant.Zusy.105876');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b601b9f6d8bba6ce7e31f10303f1026', 'TROJAN', 'W32.Clod095.Trojan.8b0c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06ac41b396fdb9ec54dd31547a5a6cf3', 'TROJAN', 'W32.Clod1db.Trojan.f8e2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05d046183f4743a81bdd5af8e01015fb', 'TROJAN', 'W32.Clodf10.Trojan.1570');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f4a21324c8d92aefbbb674324fad3d1', 'VIRUS', 'Gen:Heur.ManBat.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09e898104ac2f21f40fef72d6be7c028', 'TROJAN', 'W32.Clodb27.Trojan.7670');
-INSERT INTO signature(signature, type, extended_type) VALUES ('048e258a646ae3204bccc80467d47a5d', 'TROJAN', 'W32.Clodf7f.Trojan.582b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01c461b9d1b0d12b3a51fe8186a8d8df', 'TROJAN', 'MW.Clod01c.Trojan.461b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a4903aa4a29b1f8852fcb18c3551a44', 'TROJAN', 'W32.Clod802.Trojan.95ce');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05d675755a63ef203b526ff3768ff86e', 'MALWARE', 'Generic.Malware.SP!dldspPk!g.CE62A187');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05089296b3d29883a38b94e98890c122', 'TROJAN', 'W32.Clodcb9.Trojan.1656');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c63d8329999e1ad71a8c21d4c40931d', 'VIRUS', 'Gen:Variant.Graftor.21236');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c1425e57b5c5ffcb4069e39f72b1db7', 'TROJAN', 'W32.GroduA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0eac03cbe5c5cb10cf4cdd2cced48979', 'TROJAN', 'W32.Clod9cd.Trojan.2298');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0926ce1da8031d7efe050910a094c5ff', 'TROJAN', 'W32.Clod376.Trojan.bdb6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0600fd9b425ff9dcea9638958c4296e0', 'TROJAN', 'W32.Clod942.Trojan.424d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05d60805dfb73e3bbb78544df52c2de3', 'TROJAN', 'W32.Clod1b9.Trojan.a535');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058ba6b7d8a1e23139be0deed2687bc8', 'VIRUS', 'Artemis!058BA6B7D8A1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c6120dbac79e5c56988fd4617918cca', 'TROJAN', 'MW.Clod0c6.Trojan.120d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0488b8c742a3ab9cdd68404f96d5d89f', 'TROJAN', 'W32.Clod3eb.Trojan.3999');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0666bd69e0b83f86bf78a0645d4714fc', 'TROJAN', 'W32.Clod1e1.Trojan.d91c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e11ae3c9a9b1100af3d95b1dfdcfbfc', 'TROJAN', 'MW.Clod0e1.Trojan.1ae3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08826782ab57fb91531c2189a7b108f8', 'TROJAN', 'MW.Clod088.Trojan.2678');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08f316a70f9416c5e7f3bf2e74867298', 'TROJAN', 'W32.Clodc8f.Trojan.72ca');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08844af0616224965b2d07dd92876dcf', 'TROJAN', 'BAT.Trojan.Noshare.G');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0caf68d0c020974e90f9637456fcf741', 'WORM', 'Worm/W32.Zhangpo.307205');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b197f9af6b0a23f18ff52dacdccd7e8', 'TROJAN', 'W32.IEMasterB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0abd7fe4c48acff518c08b97da908f16', 'VIRUS', 'PeaceMan.2064.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01ef8b1c06ef4cfde5652af829dd7723', 'TROJAN', 'W32.Clod3b5.Trojan.4d4f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0afc553c5d08c22978689bf28522f954', 'BACKDOOR', 'Backdoor.Bot.35655');
-INSERT INTO signature(signature, type, extended_type) VALUES ('020f522e7c6a858602cbfc478dee9406', 'TROJAN', 'MW.Clodd09.Trojan.5859');
-INSERT INTO signature(signature, type, extended_type) VALUES ('044d2c925420f9667512c4d82283b276', 'TROJAN', 'W32.CrypticB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b81db77d316f4675bba4ee982cb3a4e', 'TROJAN', 'Trojan.VB.AI');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c1748c0cfa7c966e28de551f5daad9e', 'TROJAN', 'W32.Clod4a5.Trojan.b486');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aeb668d40baac4d9b60ec084fb038c8', 'TROJAN', 'W32.Clodd33.Trojan.0d60');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f3447d97332f10813c3815322f02f73', 'TROJAN', 'Trojan.Pws.Ldpinch.QG');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01e28765ca26b18706a86e61565cc86f', 'WORM', 'W32.MytobA1.Worm');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0895cc3c5abeeec189431c9ed11fb307', 'TROJAN', 'Trojan.Hacktool.Sqlpass.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04b60522753e205d541c0bea85b54850', 'TROJAN', 'W32.Clodee7.Trojan.cc45');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04bc0800877934f23e67517bf38f3846', 'TROJAN', 'MW.Clod04b.Trojan.c080');
-INSERT INTO signature(signature, type, extended_type) VALUES ('022af44cca6f3188bef08a810968e40a', 'VIRUS', 'W32/FakeAlert.ZR2.gen!Eldorado');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ffd115a173a6987ab0097eac41be34c', 'TROJAN', 'Trojan.PWS.MSN.Hohack');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07da6f77e970d54bd085b12c51848f10', 'TROJAN', 'W32.Clodd23.Trojan.e02d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0029d6de692f00af89e03a3e65b207b1', 'TROJAN', 'Trojan.Exploit.Vbs.Phel.AV');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05c530c554fba91c670f2e8bbb230dcb', 'TROJAN', 'W32.Clod44f.Trojan.b2b8');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05afdeb10c5c88c0cc7947e41f00e1b1', 'ADWARE', 'W32.FakeSecuritySDF.Adware');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0002e34d7bc37ed784440556291943be', 'WORM', 'Win32.Worm.Mytob.DAT');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06a2489d2f73f757f870a019fb4229b1', 'TROJAN', 'W32.Clod9a4.Trojan.b445');
-INSERT INTO signature(signature, type, extended_type) VALUES ('015bdfd2d708dad667f7dc6caa3cccb3', 'TROJAN', 'W32.Clodb4b.Trojan.386a');
-INSERT INTO signature(signature, type, extended_type) VALUES ('02f031aca70a4052a1fb6cd1f1bf7d8b', 'VIRUS', 'Diamond.608');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ecb14a6dc60c167ac438145ed8518f3', 'VIRUS', 'Generic.Win32.0ecb14a6dc!MD');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01c53b31c036b3eb0c1e26dd96cd91cc', 'TROJAN', 'W32.Clod34f.Trojan.520e');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0bb8c80d242d08b6bcb3f8db3dbf3b78', 'MALWARE', 'Generic.Malware.SM!spoe.EB9C90D5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('082aeb9071825c0525a4eeeb9fcb4587', 'TROJAN', 'W32.GanioleO.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01cf11b5ae4ec1447c905c4026cd37a7', 'TROJAN', 'MW.Clod01c.Trojan.f11b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('062ed1eeeb5d3d801e8130fdb70fe57b', 'MALWARE', 'LooksLike.Win32.Malware!C (v)');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0b0555b2c93189a3961b788536a117e6', 'TROJAN', 'W32.Cloda4e.Trojan.1fa9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0102ae1e6df13a503f2da9dacdfdbf59', 'TROJAN', 'MW.Clod010.Trojan.2ae1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d107414f2d657598be1ba32f7789a92', 'TROJAN', 'W32.Clod766.Trojan.e04f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a94d5ead0f3e83b90d94032535dfbbd', 'TROJAN', 'Trojan.DisableErase.A');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a158aa92da222ab6bbc5252b13a423f', 'TROJAN', 'W32.Clod984.Trojan.07ea');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04ca1d3fa462faade512dfb6e6883ddf', 'TROJAN', 'W32.Clodb1e.Trojan.cb34');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a040299fb106b733915b55cbb0ab70a', 'TROJAN', 'W32.Clod6d8.Trojan.1d46');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03eb02e8411566fccc16cfb2db9c0004', 'TROJAN', 'W32.Clodd19.Trojan.0bb2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('026e18d8131513c63373534b0c936285', 'TROJAN', 'W32.Clod8c9.Trojan.d2aa');
-INSERT INTO signature(signature, type, extended_type) VALUES ('063c08f93962e4317a73efd2c29a4053', 'TROJAN', 'W32.Clod65f.Trojan.15ea');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a568b043a52b5143f368c209401af88', 'VIRUS', 'Pojer.1941');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00e527f9fb12d9f80b030b1085c51c77', 'TROJAN', 'W32.Clodae8.Trojan.22dd');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e0c61e8eab97534dcc1452023b8fe49', 'TROJAN', 'W32.TemplateAA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07ebdf4ed63496b9484d14b7ca1831bc', 'TROJAN', 'W32.Clod59e.Trojan.489b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('046d0e33d4f1c5bba184a8e422e9647a', 'TROJAN', 'MW.Clod046.Trojan.d0e3');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0efd8c2e4c29851b61c791038a4eea6e', 'TROJAN', 'W32.Clod001.Trojan.6a9b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e9e246aa1c86d3ce969447abeb7f536', 'TROJAN', 'W32.Clodbed.Trojan.1df4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06f5c659d3a6c27b65e8c102e55b10ba', 'TROJAN', 'W32.Clod551.Trojan.1849');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ecc5ba4982a33271cdc90d311fe40e2', 'TROJAN', 'W32.KlormirH.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06b4fe5544b585ff57db2c60d1415eb7', 'TROJAN', 'Trojan.Agent.AROC');
-INSERT INTO signature(signature, type, extended_type) VALUES ('070673e2bb6676d16627e9e8ef6bdd88', 'TROJAN', 'W32.Clodcf6.Trojan.6839');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00c836c656afa377738b6583ca468f3f', 'VIRUS', 'W32.Sality.PE');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f7d8b241cb9c9889d15c861a76b2801', 'TROJAN', 'W32.Clodb8a.Trojan.1e78');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01b3078ee5fc15c22447f6a4ae0c8f85', 'TROJAN', 'W32.Clod44f.Trojan.947c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0194a4b079f935c49f0e1b5d2e9e4cd4', 'TROJAN', 'W32.Clod42a.Trojan.456f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a20604f8f9af7b297d493627928e1c2', 'TROJAN', 'W32.Clodc23.Trojan.a693');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f96c35be938ddda70bec08763c1a1c6', 'TROJAN', 'W32.Clod138.Trojan.90fb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0baacee3e377a9643858b078ba7e1c9a', 'TROJAN', 'Trojan.Horse.NX');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03fc13ffeadd7f5e35bfe67dffdfcee8', 'TROJAN', 'W32.Clod7a3.Trojan.d7f5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04ad272a859cabfde8a97d033010c26b', 'TROJAN', 'W32.Clodead.Trojan.f67d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04111366f886c62aad7f32413367d065', 'TROJAN', 'W32.Clod8a3.Trojan.e475');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be40da6f779438f38dc3c571296f7d0', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0013dcf697760a9858bf102bd5ae18ba', 'DIALER', 'W32.PornDialerQKB.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d749aec09b0d13924b791eb84d60222', 'TROJAN', 'MW.Clod0d7.Trojan.49ae');
-INSERT INTO signature(signature, type, extended_type) VALUES ('091462ffd7aee58d26e8a2213e1752eb', 'TROJAN', 'MW.Clod091.Trojan.462f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f6964dc529938d2806f38695efa46da', 'VIRUS', 'W97M.Bonker.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('063af96c8c44b1d248af7e205dc604e7', 'TROJAN', 'W32.Clod682.Trojan.eb27');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cc3f27953d7ef567ae29186d8d72796', 'TROJAN', 'W32.Clodca1.Trojan.0f10');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058975e03c210ed247e07bb1288ce6fb', 'TROJAN', 'Trojan.Generic.6689720');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0ad29c4106be57e28b27e70c4336eb7b', 'TROJAN', 'W32.Clod26b.Trojan.3320');
-INSERT INTO signature(signature, type, extended_type) VALUES ('016a2130bbc28acb944db334a27cc55c', 'VIRUS', 'Jurassic.3763');
-INSERT INTO signature(signature, type, extended_type) VALUES ('066e51b3c560db0aedf6794059ee9b3e', 'VIRUS', 'WS.Reputation.1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a464a9c0bdfcca0751ab4953f38ed83', 'TROJAN', 'W32.Clodbfe.Trojan.2983');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09a75557e9478f59d8ad3457f57b5a5b', 'TROJAN', 'W32.Clodcaf.Trojan.2d67');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c50b973ff379647e51e5c4db27e882c', 'TROJAN', 'W32.Clod9b5.Trojan.a1d5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01535ad8efc562aead8e8553241f5c91', 'TROJAN', 'MW.Clod015.Trojan.35ad');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0235ae5d95dce889cae20bb9e96ba0b5', 'TROJAN', 'W32.StuxnetQKY.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00070feb80aeb037fdeef4fc1ccf6a4a', 'TROJAN', 'W32.Clod99a.Trojan.67bb');
-INSERT INTO signature(signature, type, extended_type) VALUES ('042d00ff263c59d8f0c82ce719c87806', 'TROJAN', 'W32.Cloda0b.Trojan.16b4');
-INSERT INTO signature(signature, type, extended_type) VALUES ('064890b7d1a018620a01ffc930219722', 'TROJAN', 'W32.Clod99b.Trojan.70f5');
-INSERT INTO signature(signature, type, extended_type) VALUES ('089bca3a4401146049d29c2f2265e5b5', 'TROJAN', 'MW.Clodc47.Trojan.ed28');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05be35280e90e484f7270c54b044fc9a', 'TROJAN', 'W32.Clod2e9.Trojan.e5f7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08a0394a85bbe5b5cf8cc88232d6878a', 'TROJAN', 'W32.Clod2de.Trojan.9166');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09ae9fbbeff6bedc6e44a0d6d99d46fb', 'TROJAN', 'W32.Clod094.Trojan.e02c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0579b576c5978b28191562229237a8bd', 'TROJAN', 'W32.Clodd7d.Trojan.1289');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d45e72fbd00461ce8e840fbf5af7b39', 'TROJAN', 'W32.Clod1da.Trojan.57b1');
-INSERT INTO signature(signature, type, extended_type) VALUES ('00019322819480aec09da95c3321d864', 'VIRUS', 'Generic.Sdbot.BF739ED2');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f9bb0567a342a312d6db6fedccc96f1', 'TROJAN', 'MW.Clod0f9.Trojan.bb05');
-INSERT INTO signature(signature, type, extended_type) VALUES ('058abb0d207007a2c7f8e78856af10ab', 'TROJAN', 'W32.Clodc78.Trojan.d6db');
-INSERT INTO signature(signature, type, extended_type) VALUES ('01299ca291344ba549143a2987409f7f', 'TROJAN', 'W32.Clod73f.Trojan.38da');
-INSERT INTO signature(signature, type, extended_type) VALUES ('08ceefb95fd890980884463418bf7c99', 'TROJAN', 'W32.Clod88b.Trojan.3f1c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('03f269f3d17d1669416c5e8a7e0622f8', 'TROJAN', 'MW.Clodb33.Trojan.14ab');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05d7f5cb431e7e34a2aee9b1d920c669', 'TROJAN', 'MW.Clod05d.Trojan.7f5c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('092ac971d04764f0160b229e01f6c5ad', 'TROJAN', 'W32.Clod366.Trojan.3833');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0aaba47d51e4c29d85b067e2abde96d1', 'ASP', 'Backdoor.Asp.Ace.B');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0cc4d14ed90760864a8d7aa9fe11ec92', 'DOWNLOADER', 'W32.Downloadervmx.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e45c2e9f493292ea27d57b1971e074d', 'TROJAN', 'W32.Clod575.Trojan.d4e7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('054c33b7fce588cb016e166d23efac18', 'TROJAN', 'W32.Cloda7d.Trojan.3cc0');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0be0bfab5bd461a53e26b0d9b80c18c5', 'TROJAN', 'MW.Clodad5.Trojan.c24d');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e6549600017feb26a377230f5b098b6', 'TROJAN', 'W32.Clod061.Trojan.8762');
-INSERT INTO signature(signature, type, extended_type) VALUES ('017d8a52c0f04b67327372417f6b992f', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09e1135ce289fd00e65a5ab631bb4c3c', 'TROJAN', 'W32.ScacheExecLnrF.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0d8983bd6d6d6a8cef7c7f17b9a10cea', 'TROJAN', 'Dos.Clod0d8.Trojan.983b');
-INSERT INTO signature(signature, type, extended_type) VALUES ('07fd1899ea5375addbf9e3847d66cfff', 'BACKDOOR', 'Backdoor.Eggdrop.AI');
-INSERT INTO signature(signature, type, extended_type) VALUES ('09ce5599f0bf84d2ce84b72c53802b11', 'TROJAN', 'Trojan.Generic.9907350');
-INSERT INTO signature(signature, type, extended_type) VALUES ('075d4aeade36bcc59e2d37d0e21a8867', 'VIRUS', 'Gen:Variant.Renos.37');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0320662d46b33e6f1d09f15b5ef477cf', 'TROJAN', 'W32.Clodf5d.Trojan.7736');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0434021c2f691424024f78623660460a', 'TROJAN', 'MW.Clod3e7.Trojan.6bc6');
-INSERT INTO signature(signature, type, extended_type) VALUES ('05bede6a9c704da9f910132aa5991d86', 'TROJAN', 'W32.GenericAgentA.Trojan');
-INSERT INTO signature(signature, type, extended_type) VALUES ('04f45058aced100d4e5606e6fe3242a7', 'TROJAN', 'W32.Cloda43.Trojan.011f');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0baada989e17e7d049040d2732eb4dfe', 'TROJAN', 'W32.Clodba5.Trojan.d775');
-INSERT INTO signature(signature, type, extended_type) VALUES ('06c8574b2eca0fe2001252b7c0e6209d', 'TROJAN', 'W32.Clodde8.Trojan.5776');
-INSERT INTO signature(signature, type, extended_type) VALUES ('062f4497e115c6a1c91c15f38ee8cf35', 'VIRUS', 'Packed.Win32.Zcrypt.3!O');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0c8e23cef9baf33d3025d925636cf85c', 'TROJAN', 'Doc.Clod0c8.Trojan.e23c');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0e3e13292540b823c8cabfa7c326711f', 'TROJAN', 'W32.Clod3a0.Trojan.d8d9');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0a8b44bf42d642b9db5861fc3ab4317c', 'TROJAN', 'W32.Cloda88.Trojan.97a7');
-INSERT INTO signature(signature, type, extended_type) VALUES ('0f5b5482e857019263360725ac7a51e6', 'TROJAN', 'W32.Clod003.Trojan.ca80');
-INSERT INTO signature(signature, type, extended_type) VALUES ('d501194c987486789bb01b50dc1a0adb', 'TRIAL', 'PruebaVirus');
+INSERT INTO signature(signature, type, extended_type) VALUES ('00f538c3d410822e241486ca061a57ee', 'VIRUS', 'Win32/ASuspect.HHDYL!genus'),
+('0955924ebc1876f0b849b3b9e45ed49d', 'WORM', 'W32.EloradoKQ.Worm'),
+('01b656578e9f00f289d4c560fb8f2ff8', 'VIRUS', 'Win32/Zuten.JZ'),
+('0615864d027b6f46731ee3bdcbe24edd', 'VIRUS', 'W32/Zbot.TH.gen!Eldorado'),
+('058c705488bf0f173fb782d422f4092b', 'VIRUS', 'HW32.Packed.5EC0'),
+('01bc2c90c9b5bffe79a0dd0f08df6ef6', 'VIRUS', 'Win32/StartPage.UNH'),
+('0c8078e676a7ac7cac5c927db4d45db3', 'VIRUS', 'HW32.Packed.1530'),
+('0d0e1475b0e143d4c6a6b925507f94e7', 'VIRUS', 'Win32/SillyDl.YFM'),
+('0645142dd01109963441a96025eecd67', 'VIRUS', 'W32.HfsAutoB.6A0E'),
+('06e76cf96c7c7a3a138324516af9fce8', 'VIRUS', 'HW32.Packed.A9B9'),
+('0f9829e53f83e2c61513b291f7bb7348', 'VIRUS', 'WVP.382'),
+('04df65889035a471f8346565600841af', 'TROJAN', 'Trojan.Genome.Win32.230770'),
+('069506a02c4562260c971c8244bef301', 'MALWARE', 'UnclassifiedMalware'),
+('0d273f3cf24f8f59f1a4ed7996e97507', 'VIRUS', 'Gen:Variant.Graftor.27475'),
+('069cec530ac649d49d6f8f79b779368b', 'VIRUS', 'Win32/Gamepass.PPO'),
+('0bc699a7117b3b07eb4d6d1583b13924', 'VIRUS', 'Win32/Llac.AA'),
+('6ce6f415d8475545be5ba114f208b0ff', 'TEST VIRUS', 'EICAR Test Virus'),
+('07c22b87ee5b22247c4a63df6d50fa5c', 'BACKDOOR', 'Backdoor.Death.25.H'),
+('0d596bd439c7177a88cbfee0f5737f36', 'VIRUS', 'HW32.Packed.D69F'),
+('0fe78378ed3d77612ab139a3aaf30842', 'TROJAN', 'Trojan.Generic.6538009'),
+('0648e3483ed760aa63e34307b8696080', 'TROJAN', 'W32.OLGJA1DLL.Trojan'),
+('063d2c2d9ca83cbe055b5f548b7ebccd', 'VIRUS', 'Gen:Dos.MbrInfector.aaW@aaaaa'),
+('09664bca3234f121328be6b543ce9544', 'MALWARE', 'Generic.Malware.Ssp.BBF994BB'),
+('0bb4c030d36d27ddf748ea9fdaf005d9', 'DOWNLOADER', 'Trojan.Downloader.NSIS.CB'),
+('047395207d2e40681592be7f7b33c49e', 'VIRUS', 'HW32.Packed.AE9D'),
+('03640062ca1c74ece6ad672c157fbad0', 'VIRUS', 'Gen:Variant.Kazy.6831'),
+('0e950c7e5177a62efd2aa526f16f6d88', 'VIRUS', 'W32.HfsVibisi.CA0D'),
+('016634635da04b695e3e701b3e01f507', 'VIRUS', 'Pixel.299.B'),
+('065e6e926afe63030427fcf440ca4e43', 'TROJAN', 'W32.Cloddc1.Trojan.14b9'),
+('07864aa01de413bb2ab2d7fd3d2747b3', 'TROJAN', 'W32.Clod3ba.Trojan.dd54'),
+('085e2ee2cee7c33172587f8acd68fe9f', 'TROJAN', 'Trojan.Generic.8389503'),
+('08f517af221f8795bc1c487408eda52b', 'TROJAN', 'Trojan.Generic.2999029'),
+('0003c4bf19b275ff5193d4b892387f99', 'TROJAN', 'Trojan.Generic.533547'),
+('08e66979eb72a334867d2d96f76abfbf', 'VIRUS', 'Digital_Death.963'),
+('0f84d57ed1bd13662b557e1d582c6975', 'TROJAN', 'Dos.Clod0f8.Trojan.4d57'),
+('0c78df4c6df19c02f1ad7584d7730a3c', 'TROJAN', 'W32.Clod8b3.Trojan.669b'),
+('014940416d57b740e1152f6cb2577900', 'VIRUS', 'Application.Generic.189590'),
+('062ef5e21255a6b1848e6bf072076993', 'VIRUS', 'Packed.Win32.Toggaf.7!O'),
+('05f57001f65d185722dd6d292f4e70b5', 'TROJAN', 'MW.Clod05f.Trojan.5700'),
+('053bce3e7067fd137f839af8773391e4', 'TROJAN', 'W32.QuaslanB.Trojan'),
+('01e366e605e530928b10d661e5964c6a', 'TROJAN', 'W32.Clod0a3.Trojan.4a82'),
+('00d360a72cb7b0e8287eaced1306649e', 'TROJAN', 'W32.Clodba2.Trojan.160c'),
+('0c2fbe39fccce7efde09df1a4b2f34d1', 'TROJAN', 'W32.Cloda02.Trojan.c06e'),
+('0ba26fa3354ef5b9832423f7eed0d90a', 'TROJAN', 'W32.Clod080.Trojan.7af3'),
+('0e8ee47853ac09c8fe5cf4c92872bdd0', 'TROJAN', 'W32.Clod302.Trojan.a356'),
+('0deec9086d4ed9a1bc3432a9ffffe388', 'TROJAN', 'Trojan.Generic.8389503'),
+('09905a1036569829589feb849af5c6ff', 'TROJAN', 'W32.Clod276.Trojan.cc25'),
+('04eec2f526739304962cfc2a9a9c063a', 'TROJAN', 'W32.Clod4ea.Trojan.6dfb'),
+('0ae71159daed698f4a54871c36e84399', 'TROJAN', 'W32.Clod26f.Trojan.1ece'),
+('0ca2bcdd7d654bcf42f81c48f77686e8', 'VIRUS', 'Generic.Win32.0ca2bcdd7d!MD'),
+('07322da15d1c3ed0f642d315b660448e', 'TROJAN', 'W32.Clod906.Trojan.7f58'),
+('0a2bad52b38fdd4a9f95d20b1f62dd5b', 'TROJAN', 'Dos.Clod0a2.Trojan.bad5'),
+('046865606e23af76d4c6912093227bd9', 'VIRUS', 'Silicon_Avenger.1019'),
+('01714479b951a0b9b0fda81c89ee7ef5', 'ADWARE', 'Gen:Variant.Adware.Solimba.1'),
+('059ba6b07c2dad628f91c21978f9be5c', 'TROJAN', 'W32.StuxnetQKE.Trojan'),
+('069a52009452db95b09dbf5d7c2256aa', 'TROJAN', 'Doc.Clod069.Trojan.a520'),
+('032005e9c33b2b9c142eedc721768587', 'VIRUS', 'Virtool.Dos.Gcae.20.C'),
+('042d5f3561f8f45e8755d79b372a8269', 'TROJAN', 'W32.Clod75a.Trojan.3153'),
+('08d3b1800804fa1bc9926c47b895e1d3', 'TROJAN', 'Trojan.Dropper.Vb.LW'),
+('0aa0adbe9861349d05ac79ab76ba448e', 'TROJAN', 'Trojan.Autoit.StartPage.A'),
+('0bae5847efeca1b9a01cc6dc3fe9e137', 'TROJAN', 'W32.Clodf15.Trojan.62a6'),
+('0aa57e74fed6c67730ff77faafbd6ecd', 'TROJAN', 'Trojan.Generic.6141649'),
+('0822983c580fc433cb982a26c704af67', 'TROJAN', 'W32.Clodcb1.Trojan.b398'),
+('05a4ae6350467a17682cb5d1d769e010', 'VIRUS', 'Gen:Heur.Zilix.1'),
+('0bb2436dd193df1d098158180522dd16', 'TROJAN', 'W32.Clod781.Trojan.72d3'),
+('01f0230ea1db2bc5f1c2577a4ff35612', 'TROJAN', 'W32.Clod51b.Trojan.55c1'),
+('053544d512f5b22291ac3584a13fade5', 'KEYLOGGER', 'Trojan-Spy/W32.KeyLogger.1154504'),
+('03bb6e1aed3e059ac7080734019df784', 'TROJAN', 'W32.Clodb0f.Trojan.30cb'),
+('03de216e9af276d3ec062e287199dba1', 'TROJAN', 'Trojan.Durell'),
+('0ac9bf25be181e10296b17183acf9b96', 'TROJAN', 'W32.Clod006.Trojan.35f3'),
+('09e2f7aeca3e339569155a7622cbbb7d', 'VIRUS', 'W95.ILMX'),
+('009ed09bf0adc2177d7cf77c460ab2c3', 'TROJAN', 'W32.Clod03f.Trojan.01aa'),
+('06c31d5627cbcb2760e932fd81d10a76', 'TROJAN', 'W32.Clod0e4.Trojan.1022'),
+('05243d56856db0239f07c5a01e765404', 'TROJAN', 'Doc.Clod052.Trojan.43d5'),
+('04e874855fa879382bc8369da7d34e95', 'TROJAN', 'W32.Clod52f.Trojan.332d'),
+('02cd5c96e40281353e3bb97c05bfdbd6', 'TROJAN', 'W32.Clod301.Trojan.ca01'),
+('02f58c9069b5508176f28709c82b26d9', 'TROJAN', 'W32.Clod7ca.Trojan.a295'),
+('051aa4342e92a131522bc37eb88c27ad', 'TROJAN', 'W32.Cloda74.Trojan.5269'),
+('000605d7cbb3928b07f8e7473c820f4c', 'TROJAN', 'W32.Clod7a9.Trojan.6eb2'),
+('073a47c822c04d931048508eb6804eba', 'VIRUS', 'W32.HfsGFT.4505'),
+('0a2e942bcd4bf41b40e44c1658348ba4', 'TROJAN', 'W32.Clod90e.Trojan.5358'),
+('0d8f580528bc2877dbcf0a11ef8c28f4', 'MALWARE', 'Generic.Malware.P!V.476F7E4E'),
+('0c9809a1976e949ebcb95751fc72dced', 'VIRUS', 'Gen:Variant.Kazy.274980'),
+('03c98a6bc65c57ccd2420ddd7bcdbae0', 'TROJAN', 'W32.Clod0cc.Trojan.01c1'),
+('091bfb47538f0fd842383672a4f5ea6d', 'TROJAN', 'W32.LeganisD.Trojan'),
+('099ddec252a040d2b0c191c9179af68f', 'TROJAN', 'W32.Clod32e.Trojan.c037'),
+('0b36b73112ad1e01e31f36cd0e7a3bfc', 'TROJAN', 'MW.Clod0b3.Trojan.6b73'),
+('09d785e67805d00108abd6a69fd31ed9', 'VIRUS', 'HW32.Packed.AB02'),
+('018f7d080d3cd363ab90f1d22804cf8c', 'TROJAN', 'W32.Clod1c3.Trojan.fc42'),
+('0bfd76280c0c5fc03469adbbf16e4afa', 'TROJAN', 'W32.Clod8b7.Trojan.71c8'),
+('0665b567f49eb197aa97288905968e61', 'VIRUS', 'W32.Vetor.PE'),
+('06a398e2c5cb364d92b4eb39c40fad9b', 'TROJAN', 'MW.Clod06a.Trojan.398e'),
+('01ad440830a06d4729dee330e47d3b9c', 'PDF', 'Trojan.Exploit.PDF.J'),
+('05a6b6290e3368227c8f3e091b04dcdd', 'TROJAN', 'Trojan.Generic.7496990'),
+('096be15b8e9931a5426208f1c43d683c', 'VIRUS', 'Win32.Stel.A@mm'),
+('00c61647e8b9f45c43c181ee46f115d6', 'VIRUS', 'WM.Minimal.AP'),
+('0149881d9727ce08ea3b7a1233a6418a', 'VIRUS', 'BehavesLike:Bat.Gen'),
+('05d37e89554c0ac86d2485aa5a185f4d', 'TROJAN', 'W32.AgentFyusLnr.Trojan'),
+('04d15da2023b809a34b4ee09c78f7932', 'TROJAN', 'W32.Clod4f4.Trojan.32fc'),
+('03962059d4848ad145cd10f314b5985b', 'TROJAN', 'W32.Clod0f8.Trojan.dc95'),
+('0cf6f1776aa63eaca1587836322b48ce', 'VIRUS', 'W32.HfsGFT.4505'),
+('03ed62192001da26d628fc11ba3ad040', 'TROJAN', 'W32.Clod657.Trojan.2d89'),
+('05ef810ad9423a365d2efa72e7d4f03c', 'TROJAN', 'W32.Clodb3c.Trojan.a131'),
+('0667b947c3255351763d1efb502dc70c', 'VIRUS', 'Generic.Rugo.1.E25EED35'),
+('0574d54c38ae99117f52028921447784', 'TROJAN', 'W32.Clodba2.Trojan.117d'),
+('01037b0ba3337bf9c1ca69cd4be3189f', 'BANK', 'Generic.Banker.Delf.6A6A2BAC'),
+('0314f02152cfb1d30cdb54a43efac09c', 'TROJAN', 'W32.Clode42.Trojan.6631'),
+('0efee59ab9bf7804b40d832a397a325f', 'TROJAN', 'W32.Clodcae.Trojan.a7de'),
+('0fa555f6f375c1e1a75ce09ef61fd8b5', 'TROJAN', 'W32.Clodee4.Trojan.e7f2'),
+('09e133579189a9a56ff9c34155592e69', 'TROJAN', 'Trojan.Generic.6155606'),
+('08885a98b9963ead4e5ebe4378a2f8f3', 'TROJAN', 'W32.Clod1a9.Trojan.e964'),
+('04ac7dee9a238d984f6d480da96b1ec1', 'TROJAN', 'W32.Clodf37.Trojan.c3a9'),
+('0ac5bebc5d1376b163a8ed0992f4cd31', 'VIRUS', 'STSV.200.J'),
+('00459faff7688f8ab94e358af18c79c0', 'TROJAN', 'W32.Clode54.Trojan.6d2b'),
+('0577365c060e30b723cfcd67d2e389ad', 'TROJAN', 'W32.Cloda5a.Trojan.d129'),
+('08c708de2c0738512e14abcdb514f983', 'TROJAN', 'W32.Clod963.Trojan.e9b4'),
+('060ded75953553704990615904e99047', 'TROJAN', 'W32.Clod92b.Trojan.01f0'),
+('03d20922537334551fd668036e62b74e', 'TROJAN', 'MW.Clod03d.Trojan.2092'),
+('03f38a3da09c7c43de319a4983e94a52', 'TROJAN', 'MW.Clod03f.Trojan.38a3'),
+('0a184514aab9ea15a0ff445303cccda1', 'TROJAN', 'MW.Clod0a1.Trojan.8451'),
+('05b76ce686c6b7e50c12d1889f30193d', 'TROJAN', 'W32.Clod23a.Trojan.7594'),
+('0b1cb0d6c266a656c6abe72404864875', 'TROJAN', 'W32.OnGamesLTMSBACKAF.Trojan'),
+('0e43a460948de7ae974028923f5fc16f', 'TROJAN', 'W32.Clod491.Trojan.6b03'),
+('0719a29f3a9d9748b28de32bf5ab4dad', 'TROJAN', 'W32.Clodd38.Trojan.dc01'),
+('04ec827eacc5388efdfcfd0c899a1062', 'TROJAN', 'W32.Clod82b.Trojan.16dc'),
+('04fe56b199a425a1293aecec2ee055da', 'TROJAN', 'W32.Clod764.Trojan.4edf'),
+('0025a8123d0616fe543bd1286085619e', 'VIRUS', 'Anti-AV.907'),
+('0e16ff386c59ec1c827d540e539fd55f', 'VIRUS', 'W32.QvodInfect.PE'),
+('08a6fd7146b525e69de3af2842d3eb2f', 'TROJAN', 'W32.Clodefb.Trojan.dff1'),
+('0b2f288e5251d358dccc6c01b00da0aa', 'VIRUS', 'Quox.C (Boot image)'),
+('020601bc177427e95b64928eab9cf894', 'TROJAN', 'Trojan.Script.134366'),
+('065e49de3122f73df58845f6f491cbe0', 'VIRUS', 'W32.HfsAutoB.1D16'),
+('0fde3e8c88e3cb6a80ac431c6ea80660', 'TROJAN', 'Dos.Clod0fd.Trojan.e3e8'),
+('0dbf13eaa423a61596041267c6563b44', 'VIRUS', 'WS.Reputation.1'),
+('0c786d41e525568fabd8deea7463e834', 'MALWARE', 'W32.MalwareOnlineLJ.Trojan'),
+('0a6a26323b3aa22cb77eea81874b30be', 'TROJAN', 'W32.CrypticB.Trojan'),
+('0ed5bbe2265f5d02f8788bcde0377ec2', 'TROJAN', 'MW.Clod6c5.Trojan.f73b'),
+('07b977daecc87b252b68f180cc1b76eb', 'ROOTKIT', 'Rootkit.MBR.TDSS.B (Boot image)'),
+('02f5755b9b6930cd475806e80883d234', 'TROJAN', 'W32.Clod345.Trojan.75d4'),
+('068cbb16c168a72d71ff63aeae7a2680', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan'),
+('0be6093e9122b8d13baaf470f858e018', 'TROJAN', 'W32.CrypticB.Trojan'),
+('08afefbad407e6b76087f307c293d941', 'TROJAN', 'W32.Clodf95.Trojan.299e'),
+('0df77f3999c843359c03d4c4796d517e', 'VIRUS', 'HW32.Packed.C928'),
+('05bfab181053ec0fbb3125923a4971e9', 'WORM', 'W32.QueryexXA.Worm'),
+('0b1278b67badde68d58b1f28cfa82f45', 'VIRUS', 'W97M.FS.Y'),
+('09087c1e3b5245d09ebfa05d141ba6cb', 'TROJAN', 'W32.Clod96a.Trojan.de8f'),
+('0b7ac1e220cc6f2f2b43262c20cfc406', 'TROJAN', 'W32.DialupassBAA.Trojan'),
+('0cddda54a9c0f3a5acf60cca3d2cbc01', 'TROJAN', 'W32.Clod7da.Trojan.def1'),
+('036ede4c733010d2ebec1a4d80ca7635', 'TROJAN', 'Trojan.Generic.7382009'),
+('0c6581448cbed084eb85ae5496ebdc9d', 'VIRUS', 'Murphy.1172'),
+('03b03fbc007b79af73c6f51d6e9c226a', 'TROJAN', 'W32.Clod781.Trojan.f683'),
+('057b227169110fb59af660dec5bd2fdc', 'TROJAN', 'W32.Clod46c.Trojan.17a4'),
+('074e4a42d3e9ff4b84a93726dbe65aca', 'TROJAN', 'Trojan.Script.140873'),
+('04f4769c200bde6b8b7ecbc3981d0096', 'TROJAN', 'W32.Clod818.Trojan.3a43'),
+('0836d5020676d36d5d4d37c5aa8f450f', 'VIRUS', 'W32.LogoOneB.PE'),
+('06ce15c5d064a141537ccc1e56712e31', 'VIRUS', 'WS.Reputation.1'),
+('085cbf7606e76cc0ad386543f8e70da1', 'TROJAN', 'W32.Clod74f.Trojan.e9aa'),
+('024c413b436ac7f6af84fb5af991377f', 'TROJAN', 'MW.Cloda0f.Trojan.19bc'),
+('0ef7a4947a3d50097c8f36d453570086', 'TROJAN', 'W32.Clod0ba.Trojan.4fa2'),
+('0f00a0070e21ae0915dd79eafd42b975', 'TROJAN', 'W32.Clod746.Trojan.f4d1'),
+('07432b0b58da051b86e639e8ab4d8a66', 'TROJAN', 'W32.Clod426.Trojan.ce03'),
+('06c07c2f981c598b0e62155b746ecae4', 'DIALER', 'W32.PornDialerQKB.Trojan'),
+('0a8ded1941b5a6b64b9268871d5efeff', 'WORM', 'W32.FanVT.ZbotK.Worm'),
+('014e1219d05b117d45e79b4f0249a9cd', 'WORM', 'W32.ResulaD.Worm'),
+('0493fbc78b7665fbc60fea8031cba79c', 'VIRUS', 'HW32.Paked.CC1A'),
+('020e3e94ef75faaf07c6dea5410c8892', 'TROJAN', 'Doc.Clod020.Trojan.e3e9'),
+('0e61cf0783b8429769106a0fab013d94', 'TROJAN', 'W32.Clodda0.Trojan.39fa'),
+('0125284a942e0ed22597532b820d7881', 'VIRUS', 'Pixel.1575'),
+('00f06a970f4711599d5d8fdd47b936a1', 'VIRUS', 'HW32.Packed.1D53'),
+('05c87f86ce65db5f3777bdce7148e5f5', 'TROJAN', 'W32.Clod324.Trojan.6d27'),
+('0f6756c8cb0b454c452055f189e4c3f4', 'TROJAN', 'W32.Clod8f2.Trojan.2fc1'),
+('05f0b9ade0728b473c147cb0031bf6f2', 'VIRUS', 'W32/Fujacks.aw'),
+('09e44f619c43d1ac186f90538a2aaa97', 'TROJAN', 'MW.Clod09e.Trojan.44f6'),
+('0da15eb49533e200859a53ce00f8544b', 'TROJAN', 'W32.Clode66.Trojan.250b'),
+('0129a0a029e313474edef9a285e222f9', 'TROJAN', 'W32.Clod113.Trojan.1cc1'),
+('014e2830aed1b477eab301a925caa774', 'VIRUS', 'W32.HfsGFT.4505'),
+('0153396b97fd8d47b5fd5ee65d1de6e8', 'TROJAN', 'W32.SmsseuftyC.Trojan'),
+('0b63fbfea25eed38a4f1f01c9d33bf48', 'TROJAN', 'W32.FakeWmpQKB.Fam.Trojan'),
+('0cfb392c0885c8e21d9dbfea04febac8', 'TROJAN', 'Trojan.Startpage.UE'),
+('00b8b528bd45f7105271cc768d0cc3b4', 'TROJAN', 'Dos.Clod00b.Trojan.8b52'),
+('0340d88b918df883bcec2e00c9adfab7', 'VIRUS', 'W32.Sality.PE'),
+('03ac83e58080b43253fbd4a482de47ff', 'TROJAN', 'W32.Clodf66.Trojan.9fdd'),
+('058bfbe829532b1ad74bdd67a65dc87b', 'TROJAN', 'W32.Clod5e4.Trojan.a5d2'),
+('0742eff7a73b946dfb13d6b5fb225266', 'TROJAN', 'W32.Clodbc5.Trojan.2ce8'),
+('0e67a8a73f1e4a3dc9a8b7d7999f0344', 'TROJAN', 'W32.QuaslanB.Trojan'),
+('05e1e48cc0dc2b2dc1f1d67239006ea0', 'TROJAN', 'W32.TranmostN.Trojan'),
+('05c665d98d06fa4424b953f31289f3c8', 'TROJAN', 'W32.Clod355.Trojan.6fb1'),
+('0608af459bcab9875c3a508acd08273c', 'TROJAN', 'W32.Clod625.Trojan.786f'),
+('01165c63b641686ec1aa008049c6da90', 'WORM', 'W32.OnGameELWILAL.Worm'),
+('0c152e466124f6c3d66a499d49b35fca', 'JAVASCRIPT', 'JS:Exploit.JS.Agent.AV'),
+('030a9f4cba92b33239cef0478a4d2f9c', 'TROJAN', 'Trojan.PWS.Yahoo.YPager.B'),
+('0cdad7f20acdd3939cb74a4851e67ab6', 'TROJAN', 'W32.Clode5a.Trojan.b28c'),
+('0d09da69cdd570248663263ef7deb106', 'TROJAN', 'W32.Clodd66.Trojan.55e0'),
+('0c5b71f868708c591d219089914fa20b', 'VIRUS', 'X97M.Chesu.A'),
+('0ace7e08e68ac839ad3bd54afde0bcf0', 'TROJAN', 'MW.Clod0ac.Trojan.e7e0'),
+('0b374fa6ffeff5261fcc12af8a23646a', 'TROJAN', 'W32.Clod02f.Trojan.9ab5'),
+('05ee7285af2047a6f6cfb347afad25ca', 'TROJAN', 'Trojan.DoS.Lanxue.2.0.0'),
+('0c8ec9ca2b0e1242fe9889c213805d80', 'ADWARE', 'Adware.Generic.291824'),
+('0e9ad115854d9261461e7eeff7d2c38f', 'TROJAN', 'W32.Clod0c6.Trojan.b8ad'),
+('0397cb3bbfee009c8de03f9431be084d', 'TROJAN', 'Trojan.Generic.Fdos.F'),
+('08c0c749eca92cba0166acc2ff897350', 'VIRUS', 'Gen:Variant.VBKrypt.43'),
+('079775ca6c5886b83d5374bc4cf9b13e', 'TROJAN', 'W32.Clode6e.Trojan.a499'),
+('0c99ebfc07518d2ba69ef5405ba4dc76', 'VIRUS', 'HW32.Paked.489E'),
+('09979d208c20c8a73cb7a18b619aae2b', 'TROJAN', 'W32.Clod004.Trojan.4782'),
+('05566fdf4a6bf2f41991df57891ce890', 'VIRUS', 'BAT.FormatC.G'),
+('04ed3d9d42508bc4de1521c53887de9a', 'TROJAN', 'W32.Clod393.Trojan.60b8'),
+('097422e0eb7f8a000e1093a30477e090', 'TROJAN', 'W32.Clod1d7.Trojan.6c09'),
+('006c0f265aaa94501fbf9db8a38f803f', 'TROJAN', 'W32.Cloda94.Trojan.342d'),
+('015cc9dab62bbb797239adf1a9d0adb0', 'TROJAN', 'W32.Clod9a4.Trojan.33de'),
+('0d35a7e9415dd8fd065e16e85cf9ca2e', 'TROJAN', 'W32.Clod242.Trojan.db42'),
+('0cf29bb261c76e145b7aa53f6dea6b8c', 'TROJAN', 'W32.Clod97c.Trojan.2788'),
+('0ece1f9d9bd9a8b706fe89d19a514a3d', 'TROJAN', 'Doc.Clod0ec.Trojan.e1f9'),
+('04c8a030963b1d58fb20a625e2855307', 'TROJAN', 'W32.Clod0a1.Trojan.d4bc'),
+('0872083735c96846bf52092acec1320f', 'TROJAN', 'W32.Clod39f.Trojan.3694'),
+('03681cf0d73f68ef2a93f6c00c24eb64', 'TROJAN', 'Trojan.Generic.4907999'),
+('00c5594e46662eeb0df6e6af0ea1380b', 'TROJAN', 'MW.Clod00c.Trojan.5594'),
+('06022411299e313e6450c6cbdcadb371', 'TROJAN', 'Trojan.Wve.KIT'),
+('0ef1b01346965529c4fe58ebf6e1c991', 'VIRUS', 'Flash.688.A'),
+('0de3ef222b1ab34ab2c7c22e44a7212b', 'TROJAN', 'W32.Cloda7f.Trojan.69a6'),
+('0ad219323491c465e4a27bc4042ad91f', 'VIRUS', 'HW32.Paked.B577'),
+('01be9eddcfbc7aa37d5155bbbd098688', 'TROJAN', 'W32.Clod94c.Trojan.8b1b'),
+('04e6a7b946967c512916198b3d74fde8', 'TROJAN', 'W32.Clod9b7.Trojan.591f'),
+('0e0c42362deda1b3fd197a04b4df3d1a', 'TROJAN', 'Trojan.Generic.KDV.156055'),
+('002b0542fe96a80165112ad34fe82381', 'VIRUS', 'HW32.Packed.C8B4'),
+('0c2cce3a52ffadfee539a164a416eb2d', 'TROJAN', 'W32.Clod024.Trojan.bcc0'),
+('0d182e1ece5e3fb33df5a7389fc95156', 'VIRUS', 'Exploit.ADODBStream.G'),
+('0cf7d8cc3fa7e19efc1cfa528afe53d9', 'TROJAN', 'W32.Clodb6c.Trojan.90c6'),
+('06c2c4fe0d1680136f9143df909745f6', 'TROJAN', 'W32.Clod2b2.Trojan.f2ac'),
+('040aa9b6e1e641385912e36f9ff054ca', 'VIRUS', 'W32.FamVT.ExpiroPC.PE'),
+('01fbcbbc229e4af3dd7234013827e9bd', 'TROJAN', 'W32.Clod275.Trojan.d90a'),
+('059d949f71802a435f5c92d45ab772f1', 'TROJAN', 'W32.Clodf1f.Trojan.0749'),
+('06275fd51434c472cb504829b5447964', 'TROJAN', 'W32.Clod61b.Trojan.f207'),
+('0a752c2e8abe440340f108fda26eae8b', 'TROJAN', 'W32.Clod000.Trojan.9871'),
+('0236cabc7b81f685b6854d2b8213d619', 'VIRUS', 'Hobbit.416'),
+('0ba0edcac8e27ba00cf76fd58b06d812', 'VIRUS', 'PS-MPC.0560.AV.Gen'),
+('0ab96a78930bedc84db87fa204b30cac', 'TROJAN', 'W32.Clod927.Trojan.b4d7'),
+('0d116706395a75e4ecb7d2ff168a987e', 'TROJAN', 'W32.Clod6f8.Trojan.d773'),
+('057a3eef8cf0426e50a6a5c55c22e256', 'TROJAN', 'W32.Cloddaf.Trojan.f8f7'),
+('0a11ce05b25c5582272741fcaf704f7a', 'VIRUS', 'Gen:Variant.Zbot.6'),
+('0d7cac6f42512f461b0ed2ee64318687', 'TROJAN', 'W32.Cloda24.Trojan.085f'),
+('0b41068cf43540d92c594b81f4d20671', 'TROJAN', 'W32.Clod613.Trojan.ed15'),
+('00db87dd7c061915317ba14f6c2fcb29', 'TROJAN', 'Trojan.Bat.Delsys.AW'),
+('0736f6a318868dfd93cd344daac9688c', 'TROJAN', 'W32.FeylarmQ.Trojan'),
+('055ec1bd89b13902e247d4f505cae391', 'TROJAN', 'MW.Clod055.Trojan.ec1b'),
+('02259e0264c0a04dbc299e2625f76e71', 'TROJAN', 'MW.Clodfd6.Trojan.3806'),
+('0dee3aeb1fa8fbb255563a3383002f9b', 'TROJAN', 'W32.Cloda13.Trojan.f898'),
+('0a4962d33997af7763303b079e81e899', 'TROJAN', 'W32.Clod037.Trojan.7eee'),
+('0854fb8426e221c06dced5752991911f', 'VIRUS', 'mIRC.Duke.A'),
+('09da04b8305a5ae59b34eb598b6637ce', 'TROJAN', 'MW.Clod09d.Trojan.a04b'),
+('0e6db7343a88fd8129156ff41ae1338e', 'TROJAN', 'W32.Clod2c7.Trojan.42cd'),
+('0025af1b1d0def1dad571d8af5ffbb15', 'TROJAN', 'W32.Clodcda.Trojan.1d0a'),
+('06d8383b7a17a7adfc38b7cf1c4182f2', 'VIRUS', 'Trinidad'),
+('0d695de7d16c7037df5e9fc6056c6293', 'TROJAN', 'W32.Clod1b5.Trojan.8fb1'),
+('00d1d0537c2510b024be7014c8a6ceb3', 'TROJAN', 'W32.Clod69b.Trojan.b35a'),
+('04eb8f4d5c18ffed37eccd764fa7ea59', 'TROJAN', 'W32.Clod4bd.Trojan.5133'),
+('0443071e6b0e93f8f64e3b68f7b0b52f', 'TROJAN', 'W32.Clod783.Trojan.def6'),
+('035225ab21b2a096d1a67ce5651a9615', 'TROJAN', 'W32.Clod837.Trojan.c861'),
+('0dcbd7073932b6a3caab3323e67011fd', 'VIRUS', 'HW32.Paked.CFA7'),
+('025a8cb363f41f7663ff54edb3782720', 'VIRUS', 'Artemis!025A8CB363F4'),
+('04f5c18df3f09d31451271b93ef1aae9', 'TROJAN', 'Trojan.Constructor.Vb.K'),
+('05da2c1a6fbc6c57198e54c0c0968301', 'VIRUS', 'PUP.Optional.SweetIM'),
+('04a4883cea7b5e791b5e39ce9344e480', 'BACKDOOR', 'Backdoor.Hupigon.264841'),
+('05a0deda225189587a99e9b9debb0b77', 'TROJAN', 'W32.Clod870.Trojan.bcb4'),
+('0f778932be42aafe8ea12f7075566ba2', 'TROJAN', 'W32.Clodedf.Trojan.ed83'),
+('0676e818f6244ade64bed608d0f59197', 'VIRUS', 'HW32.Packed.4B94'),
+('0b441d8160f6cc8008ffdadd409cb61e', 'VIRUS', 'Generic.Win32.0b441d8160!MD'),
+('04f72bb75532a4288012a9fc32dea066', 'VIRUS', 'Artemis!04F72BB75532'),
+('0592629cff8065c0f0d878d1ec02d740', 'TROJAN', 'W32.Clod7ff.Trojan.bf17'),
+('08356ad16fa3ccbca8aa6992e70e90e5', 'TROJAN', 'W32.Clod742.Trojan.f20c'),
+('012928598a598907779a370922a922bf', 'TROJAN', 'W32.OnGameHIWAJ.Trojan'),
+('0ae69606b09784ed6ee3b7e1c475ab59', 'VIRUS', 'W32.Sality.PE'),
+('0e2c279417204530d187bcf71de2dec5', 'BACKDOOR', 'Backdoor.Shell.A'),
+('041c184b357792583469487625efc6c5', 'TROJAN', 'W32.Clodec7.Trojan.d4b1'),
+('09c37f7ae9deeb23d9a5cf948aef0f44', 'TROJAN', 'Trojan.Generic.1963475'),
+('09d5929131d733c42eac4961329e51b3', 'VIRUS', 'Artemis!09D5929131D7'),
+('025c6830091d83d5a1078f1067dcb850', 'TROJAN', 'MW.Clod025.Trojan.c683'),
+('0b0c2c36dd31dd39be02683b1fbb7696', 'TROJAN', 'MW.Clod0b0.Trojan.c2c3'),
+('02d64ebb2c1b7053e3602d57c1c97b9f', 'TROJAN', 'W32.BeloseaC.Trojan'),
+('0524e025e64d89af7132600c89e4f00d', 'BACKDOOR', 'Backdoor.Snowdoor.2.3'),
+('052533faa61d127eaca7fc48e80687de', 'TROJAN', 'MW.Clod052.Trojan.533f'),
+('0ac46ed1d8cdc1e90e7e41693ee06cec', 'TROJAN', 'W32.Clod1af.Trojan.f6bf'),
+('03f912899b3d90f9915d72fc9abb91be', 'WORM', 'W32.Sasser.BNV.Worm'),
+('054411fa5d7634ce3f0b101d3f7ea57c', 'VIRUS', 'Gen:Heur.IPZ.5'),
+('04b04857c337ee34afc9260b4386ebe2', 'TROJAN', 'W32.Clodf8f.Trojan.aa8a'),
+('01824b6e769cfd1b507e2a821eead2c5', 'VIRUS', 'HW32.Paked.6B06'),
+('0d84d4e2fee1d35de0c106a244e271dd', 'VIRUS', 'Vienna.566'),
+('0e8ffb22e73cbe63fb5767cc9cdfbb4a', 'DOWNLOADER', 'Trojan.Downloader.Lexbac.A'),
+('0fc8d75d9fb61c7ca01ee83da2fd5454', 'TROJAN', 'W32.Clod444.Trojan.a4da'),
+('06f189318cbee25342d81155249955fb', 'TROJAN', 'W32.Clod444.Trojan.58ea'),
+('00f45ba3ada16d54eaa845a221c7d9e2', 'TROJAN', 'W32.Clodf42.Trojan.d1dc'),
+('0d8e12cb1fcf3f1df6e0e4f4b9c3cc87', 'TROJAN', 'W32.Clod410.Trojan.fddf'),
+('08444a621d4efb99dc0186d63cd5fc92', 'TROJAN', 'MW.Clod084.Trojan.44a6'),
+('0cd0de85963914759163270a751d7303', 'VIRUS', 'Gen:Variant.Symmi.37079'),
+('0f45f36587e65ce5ef888b59f8d2b306', 'TROJAN', 'W32.Clod6f0.Trojan.d53a'),
+('0c6914f6bfb61379b6a77f87cd48c2d5', 'TROJAN', 'W32.Clodbfe.Trojan.efa0'),
+('01ecc04d5901c1d7cd08b380392767b1', 'TROJAN', 'Dos.Clod01e.Trojan.cc04'),
+('06fc15c111b7c78d57b7fb81696f66cc', 'VIRUS', 'Win32/SillyDl.XSW'),
+('05a33f4f441fcabbf6e5bf8fa28cde42', 'TROJAN', 'W32.Clod516.Trojan.d742'),
+('06679d2853687d80f3f5e139e0fd1b96', 'VIRUS', 'Gen:Variant.TDss.21'),
+('05412a530da795c6b1ff46f10182000e', 'TROJAN', 'W32.Clod8c7.Trojan.8ca8'),
+('03b0d42dc6ad1fefa350eb743432ff8c', 'TROJAN', 'W32.Clod03a.Trojan.6d01'),
+('0c3e7370b922eea53a13841f191a224c', 'TROJAN', 'W32.Clod6f9.Trojan.119f'),
+('00955251b41ff2538c380e81cce54c45', 'TROJAN', 'W32.Clod009.Trojan.fae1'),
+('0e37f83f58d8229305a926b4fceb6913', 'WORM', 'W32.FamVT.ViselPM.Worm'),
+('02fea9606826b29ab13e863d3bce6fc7', 'TROJAN', 'W32.Clodbed.Trojan.94d1'),
+('090cca976ccf1e48a5984c65bea2feb5', 'TROJAN', 'W32.Clod514.Trojan.1d13'),
+('0a9a3d5f697a0bae53977553838a8713', 'TROJAN', 'MW.Clod0a9.Trojan.a3d5'),
+('012eaf12bee9ed83e45ff737aec2713f', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF'),
+('0647b53bef40889d79a2515980d45125', 'TROJAN', 'W32.Clodc93.Trojan.d0c3'),
+('0bf154751eb712397299cd1c9ddf6bc6', 'TROJAN', 'W32.Clod6f9.Trojan.d4f1'),
+('00a4e5f97506292b2454763afac22f27', 'TROJAN', 'W32.Clodd21.Trojan.4fbe'),
+('0355d09c62f646198f2fde0dd5140295', 'TROJAN', 'W32.Clodee1.Trojan.7a4d'),
+('0b42d8e7e54df3bb74c205ae0ccf4477', 'TROJAN', 'W32.Clod2a9.Trojan.d6f7'),
+('04edce55068391e369b18aeae13779fc', 'TROJAN', 'W32.Clod24a.Trojan.6704'),
+('0bf4f8851e36df5722c4e5dea866ca26', 'TROJAN', 'W32.Clod667.Trojan.c5f1'),
+('030dbf162a9d82648455428101944d98', 'TROJAN', 'W32.Clod5f8.Trojan.b8bc'),
+('0541244663075e089d219fd4cf7842c7', 'VIRUS', 'Win32/PornoAsset.A!generic'),
+('053ce830539f3f8cc8bb8f4c3546bddc', 'TROJAN', 'W32.Cloddc9.Trojan.fffd'),
+('062048bc3bae35a8cbdfe034eb9e7d64', 'TROJAN', 'W32.Clodb65.Trojan.7b01'),
+('010f59fa1974324a4b9d06334f15ced0', 'TROJAN', 'W32.Clod28e.Trojan.dbec'),
+('093529318541bd3b59408f66c63989a3', 'TROJAN', 'W32.Clod1bf.Trojan.3ae8'),
+('0ac7b55b0117083e5691dd7fb25b47a1', 'TROJAN', 'Trojan.Generic.2029782'),
+('0dfed82a69b19f4dc45e811e5ee5d8a2', 'TROJAN', 'W32.Clod2a0.Trojan.aa08'),
+('0bc0dc46c0290910f47e6a6afb8b2a90', 'TROJAN', 'W32.SampleswallO.Trojan'),
+('0fbb3dff0a5cc1098f5c1c9e4d336d0e', 'WORM', 'W32.FamVT.ViselPM.Worm'),
+('015fe9a99f931ceb949e49a264dbbc0c', 'TROJAN', 'W32.Clod3b5.Trojan.a35a'),
+('008c786f3c188338d7ae9dd8be8838a6', 'TROJAN', 'W32.Clode4f.Trojan.5f61'),
+('0595e9d9b011c1a8f3f67361ca2eeed8', 'VIRUS', 'Gen:Variant.Graftor.51731'),
+('05f407ba4d29fe293466564d1e72199c', 'TROJAN', 'W32.Clod48a.Trojan.b22a'),
+('055644d288e8ae9708a21eacf519d00e', 'VIRUS', 'Gobleen.238'),
+('013655f5a23a2f0f325bcc2bff5daf09', 'BANK', 'Generic.Banker.Delf.D0694ABC'),
+('05bb450bc0d0d272e34cdaf1f0b4017d', 'TROJAN', 'W32.SanalarCAA.Trojan'),
+('0f949ac5d3a920e8ca43cbe5d3c37fac', 'VIRUS', 'W32.Sality.PE'),
+('0fef64a50f2cb8a903721878b8274e15', 'SPY', 'Trojan.Spy.Zagaban.G'),
+('06a60d14c5167da92b238d3fa412bb9e', 'TROJAN', 'W32.Clod2ee.Trojan.91c1'),
+('0120b5e0422b628dfe8c5f0ca36b398b', 'VIRUS', 'Gen:Variant.Graftor.37754'),
+('0cbe1c8de4a92bf5bb22e2bbcf5e8e0e', 'TROJAN', 'W32.Clodd4c.Trojan.e7cf'),
+('0fae1d0bad00b1facae2e4c32d2c6680', 'TROJAN', 'Dos.Clod0fa.Trojan.e1d0'),
+('04c8b063065a43afd447f212f977a400', 'TROJAN', 'W32.Clodaa3.Trojan.ef8a'),
+('093be5310f54a574ccf0c61762d26545', 'TROJAN', 'W32.Clod544.Trojan.cb2c'),
+('07f5be4f4784bcf4242470c45176390d', 'TROJAN', 'W32.Clod9b5.Trojan.9cb1'),
+('0479e980fbbe3ff2fbf4dd79bf7b3752', 'TROJAN', 'W32.Cloda04.Trojan.7365'),
+('0f26ebbd22064998209e9d8100740f6d', 'TROJAN', 'W32.SinowalTG.Trojan'),
+('020ec57a5058ca3b06872b9f93c7cf9a', 'TROJAN', 'W32.Clod77d.Trojan.1e82'),
+('08d0093fe250fdae361096a9a2fc9064', 'VIRUS', 'HW32.Paked.2E21'),
+('038c9db8159da91bf0c8dea72618b10a', 'VIRUS', 'Win32.Ruft.A@mm'),
+('0a21de97df5cb1393589f9605907eb0f', 'TROJAN', 'W32.OnGamesHSNSKQ.Trojan'),
+('07f2156efa0331e43f3e4febb6efc3d4', 'TROJAN', 'W32.Clod481.Trojan.5f4c'),
+('02c388ceefa68708ab93a05b504e4d70', 'TROJAN', 'W32.Clod746.Trojan.9bfc'),
+('06f0dba3437c410ec3d62ae172a5331d', 'TROJAN', 'W32.Clod620.Trojan.a92e'),
+('07d251263c065960f90572b48f4acff9', 'TROJAN', 'Doc.Clod07d.Trojan.2512'),
+('0bcc3928b30238f6457644f2f1acb82c', 'WORM', 'W32.OnGameWLLIASX.Worm'),
+('08b7e7cda39250a6f39bec43503a3a34', 'TROJAN', 'W32.Clod127.Trojan.cf27'),
+('0d3531117955451d12361173f22a2c3d', 'VIRUS', 'HW32.Packed.D5DF'),
+('01d276a1d8b2142f69a0cb9e49cd85e7', 'TROJAN', 'Trojan.Generic.6796699'),
+('06f375776798bf5327ad20067f16c4ea', 'TROJAN', 'W32.OnlinegameAAAY.Trojan'),
+('01f471d4661edb0e2fdc65b3698b04d4', 'TROJAN', 'W32.Clod414.Trojan.4e1d'),
+('078df92ca248f5eb53a0ec9be847f2f9', 'VIRUS', 'W32.Sality.PE'),
+('0e71db53b6be033455d15f31495df8df', 'TROJAN', 'Doc.Clod0e7.Trojan.1db5'),
+('01e488156cd00c72f8b327e455dae879', 'TROJAN', 'MW.Clod01e.Trojan.4881'),
+('0c3b78cf59198695248d09bbbd8df327', 'VIRUS', 'Win32.Fujacks.PRP.DG'),
+('0a986e36ce9814cd2c774753635d0394', 'TROJAN', 'W32.Clod2b2.Trojan.a951'),
+('00c83bc1533d20aef245a1318e512dbb', 'BACKDOOR', 'Backdoor.Arcanum.1'),
+('011eeeb4722eb241758093dc9c57fc67', 'TROJAN', 'MW.Clod011.Trojan.eeeb'),
+('0db50c5f56cfc7b6e197b672bd80268a', 'TROJAN', 'Doc.Clod0db.Trojan.50c5'),
+('000432d85e14ea16d2ce3f23b9c11d8e', 'TROJAN', 'W32.Clod781.Trojan.3274'),
+('0ee4d96c9e5e0e246a3ffce705ecab0d', 'TROJAN', 'W32.Clod84a.Trojan.65d3'),
+('08aa8f55478ce2b33d37c649f4d1a907', 'TROJAN', 'W32.Clodef3.Trojan.6e62'),
+('0dc1870ba072c4a2e5a2f8daaaff4974', 'TROJAN', 'W32.Cloded4.Trojan.2224'),
+('07a07016e2ee46d8ca95f8013a9180f4', 'TROJAN', 'MW.Clod07a.Trojan.0701'),
+('04659a90203a5922edf133b4ea0e556b', 'TROJAN', 'W32.Clod4bb.Trojan.010c'),
+('03314cd3d617f710fdc0e3e56a7812f2', 'TROJAN', 'W32.Clod8e8.Trojan.8ad0'),
+('0eb9d185e89ea26dec47412cf16dffa0', 'TROJAN', 'Dos.Clod0eb.Trojan.9d18'),
+('02e8e86b2be5c1deb43d7fcb6c6a4f57', 'WORM', 'W32.OnGameQLAKCIA.Worm'),
+('0fa70dab867a91b226f2202758494511', 'TROJAN', 'W32.Clod1f5.Trojan.a5c5'),
+('02b838579e2e3d280b18c5f05087464e', 'TROJAN', 'W32.Clod2b9.Trojan.6bbd'),
+('050aaff07e87376b93d4a998a71d03f3', 'TROJAN', 'MW.Clod050.Trojan.aaff'),
+('061deb3e002a091661ec5ea5e1792846', 'TROJAN', 'W32.Clod77f.Trojan.8141'),
+('0f3ec8e9e5bd35738d323cca62ed5307', 'VIRUS', 'Artemis!0F3EC8E9E5BD'),
+('086805a86002acca02ddd53ecac11266', 'TROJAN', 'MW.Clod086.Trojan.805a'),
+('0babdd988d7a97cc605f3855700df74f', 'TROJAN', 'W32.Clod429.Trojan.c742'),
+('09220668d33853fc1c148609d4989773', 'TROJAN', 'W32.Clod656.Trojan.cd12'),
+('0605a35f1a2348a9378cc673a733ed9b', 'DIALER', 'W32.PornDialerQKB.Trojan'),
+('0e78b25914269b114559c2cc0578338f', 'TROJAN', 'W32.Clodc20.Trojan.5f68'),
+('09c2332f683b55340e99ebfd9d70b0f2', 'VIRUS', 'HW32.Packed.3CEB'),
+('08763fad8e2c16102af95d1232f30f52', 'TROJAN', 'MW.Clod087.Trojan.63fa'),
+('0d2121ab302ab9c2ed161deb6e1f60ac', 'TROJAN', 'W32.Cloda9c.Trojan.c91d'),
+('0618a60344a77f8e2da04cd8e3e1b73f', 'TROJAN', 'Trojan.Generic.7164819'),
+('0bb2b56f1f4735711ba94e1a778daf3d', 'TROJAN', 'W32.Clod91b.Trojan.2513'),
+('0d79af546eb06f76560ac8d6234168da', 'TROJAN', 'MW.Clod0d7.Trojan.9af5'),
+('059dad6c871371df073c85419ee32449', 'TROJAN', 'W32.Clod7f0.Trojan.7e4d'),
+('09beec9b85dcdf3c84acf8cc4e61417f', 'TROJAN', 'W32.AlustinP.Trojan'),
+('0379f9f5d974e8ade3eabe70f5046df4', 'TROJAN', 'W32.Lipler.Fam.Trojan'),
+('0491a8d635c30dcb44381a156960b5cc', 'TROJAN', 'W32.Clod118.Trojan.6cf9'),
+('0c9915a0c5631669563f04c23a78ded4', 'VIRUS', 'HW32.Packed.368C'),
+('0afa4bcc2377655814b6cfce63391dd3', 'TROJAN', 'MW.Clod0af.Trojan.a4bc'),
+('01940b84f32ab8bebd22a50238b0e4b4', 'TROJAN', 'W32.CrypticB.Trojan'),
+('0b75c1f5c37856df4d2c6e18e596067b', 'TROJAN', 'W32.Clod9d4.Trojan.2594'),
+('0da4a24cbe08e1d12ffcaac13f405e01', 'VIRUS', 'HW32.Packed.2CE1'),
+('0009e89094db5c1ad99100781125c1f4', 'TROJAN', 'W32.MaganiaEG.Trojan'),
+('0829660f18553733876ead17d3ed8020', 'WORM', 'W32.OnGame_0X3AH.Worm'),
+('09174733bb1d2abb567b0e308e7b3a8b', 'KEYLOGGER', 'W32.SCKeyLogE.Trojan'),
+('003fabad747e2a9ffbb5adbad92f4e5b', 'TROJAN', 'W32.Clodd93.Trojan.19c9'),
+('0cc899430b7a6e866c0dd0f56f768604', 'BANK', 'Generic.Banker.VB.579B5A6B'),
+('0490faca2d5b9e546234dd86446131d7', 'TROJAN', 'MW.Clod049.Trojan.0fac'),
+('0f929041a34ccd4b138a3987f4a80434', 'TROJAN', 'W32.Clod76c.Trojan.2cbd'),
+('01b1f1e915b5f23c4bdc1166b501e637', 'TROJAN', 'W32.Clod0b2.Trojan.182c'),
+('035de219ee58bfe0e7fd2e281e903275', 'JOKE', 'Application.Joke.Fakedel.F'),
+('0d2481c3d5652c60915ab1da13bcdd42', 'TROJAN', 'Trojan.Generic.8674726'),
+('0bdbdb07697eb39d2c3818cb83a61aa9', 'TROJAN', 'W32.Clod11e.Trojan.423f'),
+('069c44b1917c140e1958a46c667644d7', 'TROJAN', 'Trojan.Generic.7000673'),
+('0e4d86e9989ea378c4e5a44b1520725a', 'TROJAN', 'W32.Clod4e9.Trojan.1925'),
+('0fed6c6ffc705a4bd280a292dcaff69d', 'TROJAN', 'W32.Clod1f1.Trojan.9ed2'),
+('0b3003ddbee83a72c2b9e56773601223', 'VIRUS', 'IMI.1536.B'),
+('044050338d2c6c5d45cd5083de331c86', 'TROJAN', 'W32.Clod84f.Trojan.ffc5'),
+('0d37cf27982a5ae9132c71be755ec3d9', 'VIRUS', 'Gen:Variant.Graftor.75330'),
+('0ca7768defed156842bc7d42030054ff', 'TROJAN', 'W32.Cloddf4.Trojan.34ab'),
+('04e0a13b7835b353ae4219ab940386c9', 'TROJAN', 'W32.Clod16d.Trojan.e9d8'),
+('02351e42999b4720a29f5f93f8a7f834', 'TROJAN', 'W32.Clodcfa.Trojan.f0b0'),
+('006e275a2351535db43597e79855ad8a', 'TROJAN', 'W32.Clod369.Trojan.ad22'),
+('06c428c78536095c2eb759aaf1ce08ae', 'VIRUS', 'Generic.Win32.06c428c785!MD'),
+('056963aad9560a76dd2c8835b4642737', 'TROJAN', 'W32.Clod36d.Trojan.4f40'),
+('03c7dfab0b46c65959ee2eba4f362d0a', 'TROJAN', 'W32.Clodc44.Trojan.ef98'),
+('00f4d07b057217a40cc5f7444a0f861f', 'TROJAN', 'Trojan.Generic.849554'),
+('04e12576662b7a0011153b6646d2215e', 'TROJAN', 'W32.Clodc0f.Trojan.d1c3'),
+('0abd18cfbdc2e99e3e4530def91aafed', 'TROJAN', 'W32.Clod41c.Trojan.5e97'),
+('02efc7404bfa353c629dcd4ade273602', 'TROJAN', 'Doc.Clod02e.Trojan.fc74'),
+('078d809b58ab5a9d4789c7533e7cc070', 'TROJAN', 'W32.AgentFyusLnr.Trojan'),
+('0130c4afac5905081c3f3307ec94a344', 'TROJAN', 'W32.Clod1e7.Trojan.35a7'),
+('0941e0ce91667d78c9792473bc5e2a64', 'TROJAN', 'MW.Clodc67.Trojan.4591'),
+('06e27806e94c18d80182210b9ff168b7', 'VIRUS', 'W32.HfsAutoB.FFF8'),
+('081c63d74282c9c772c3176986066a02', 'VIRUS', 'Generic.Win32.081c63d742!MD'),
+('068ab7aff165eaf4a6b5d1f5efc5779d', 'VIRUS', 'W32.Lovegate.XB'),
+('09495c592c21192d90c148d45e24343a', 'VIRUS', 'VCL.O.267'),
+('09825b698db185abf162027e2381ae99', 'TROJAN', 'Trojan.Generic.8389503'),
+('05c45eccf88e2abb11d34462e3f630ae', 'VIRUS', 'HW32.Paked.3D0E'),
+('07c8939949070c6224bf23d389f3a7a1', 'TROJAN', 'MW.Clod07c.Trojan.8939'),
+('01424e3ab808b41f181711d30a8d41f7', 'ROOTKIT', 'Rootkit.MBR.TDSS.C (Boot image)'),
+('06f41128227756fd450e5f536f70879c', 'VIRUS', 'W32.Sality.PE'),
+('0b5d7d8147e47e34361819f0c2282843', 'TROJAN', 'W32.Clod164.Trojan.0f94'),
+('0ad4b7f0ccada303fe769c237784aee4', 'TROJAN', 'W32.Raraban.Trojan'),
+('000b7ae1ad64bbbbdf06c5bd70d60c4b', 'VIRUS', 'Gen:Variant.Graftor.22651'),
+('02360b31b2c157d09e3b9abfcf1b7221', 'VIRUS', 'Gen:Dos.FileInfector.aaW@aaaaa'),
+('06b481fdb9e3b6ba43453e2ff8780a49', 'TROJAN', 'W32.Clod342.Trojan.75a5'),
+('0590a0bc57e14fcac52259cf56b55660', 'TROJAN', 'W32.Clode8b.Trojan.5dd5'),
+('0f08cb388a962ccd1858151e2fc79c6c', 'TROJAN', 'W32.Clodee7.Trojan.a980'),
+('0db13ccafca20991ac7f0c5703d40eed', 'TROJAN', 'MW.Clod0db.Trojan.13cc'),
+('0e31762feaf5b297acd6b0409e316b98', 'TROJAN', 'W32.Clod44d.Trojan.20f0'),
+('04c739f8f24f2d755846e23627bd085d', 'VIRUS', 'WS.Reputation.1'),
+('02d9f2ae1c0bd58cd1ccb8d3e4c96ba5', 'VIRUS', 'W32.InjectBrowserLTA.PE'),
+('060aed031d49986c09d7088532081f28', 'VIRUS', 'Cobra.M'),
+('0163be346baae829115413cf53fee280', 'TROJAN', 'W32.Clod03b.Trojan.43c7'),
+('05cf1c23e96288b52aff9ca78993a24d', 'TROJAN', 'W32.Clodcd3.Trojan.f048'),
+('02c7391f557fa2cf1f5b0c140913688e', 'TROJAN', 'W32.Clod111.Trojan.beec'),
+('0b1931c25bd8c2397edeff8d2477054d', 'TROJAN', 'MW.Clod0b1.Trojan.931c'),
+('06c1834da00b68fda77295dc34652f47', 'TROJAN', 'W32.Cloda12.Trojan.1caa'),
+('0a6e293731ee55bb6aceed2fdf72159b', 'VIRUS', 'HW32.Paked.78CB'),
+('058533b5187d5c0c5492dfa4e06a632e', 'TROJAN', 'Trojan.Agent/Gen-FakeAV'),
+('01d6e5b58ac3d7f88b799c39e68bd337', 'TROJAN', 'W32.CrypticB.Trojan'),
+('06ca4040a38aff82b8e7e69ed279ffe2', 'TROJAN', 'W32.Clod16f.Trojan.b138'),
+('02e4298980cbfb3c709aa6c9f632b766', 'TROJAN', 'MW.Clod02e.Trojan.4298'),
+('0741af446e0ae3b509abf692e5a6eade', 'TROJAN', 'W32.Clodedd.Trojan.00b1'),
+('0bc4ca151f095fd0fd07cac7689f6c8e', 'VIRUS', 'Dropped:NRLG.2513.Gen'),
+('020f54e785bfb154bfa5da373b0e61bc', 'VIRUS', 'Gen:Variant.Zbot.6'),
+('061a29de2fdddb17afbde9743ae04343', 'TROJAN', 'W32.Clod879.Trojan.be58'),
+('04cdf7b66c57ca15362b8c029f7e1723', 'TROJAN', 'W32.Clod788.Trojan.b89e'),
+('09b9787a524ed3c2f5cdf70d00cd22d5', 'TROJAN', 'W32.Clodbd7.Trojan.f4f2'),
+('056abe07e6f80da4d27ebe579105d0a5', 'TROJAN', 'W32.TempCetrd.Trojan'),
+('0be6a8b51b1500e4a93f0b4fcea8cacf', 'TROJAN', 'W32.Clod644.Trojan.c248'),
+('035c49bfc96e2813b3e3ded7ac5e4b80', 'TROJAN', 'W32.LiplerQKB.Fam.Trojan'),
+('06bf31a3ccc71dde1a2dd9a26d47e066', 'TROJAN', 'Trojan.Generic.6591249'),
+('021146cb01f54430bd926cc9f268fa49', 'TROJAN', 'W32.Clodd93.Trojan.4d98'),
+('017636cc905b84ecb0b5a278a503ca3f', 'TROJAN', 'W32.Clodf76.Trojan.5792'),
+('0814ac55c97b9afbcf2f216e98ec2d61', 'TROJAN', 'MW.Clod081.Trojan.4ac5'),
+('031f4979799d8207a0563826d3c114c5', 'TROJAN', 'W32.Clodbcc.Trojan.669c'),
+('0971f04652514e5ee13b386a7060f654', 'TROJAN', 'W32.CrypticB.Trojan'),
+('056610c1ef64214994ec6d47e76e00fc', 'TROJAN', 'W32.IrcBotHA.Fam.Trojan'),
+('0e846727d367fff7f2996d95495ec6e4', 'TROJAN', 'W32.Clode33.Trojan.6a5d'),
+('0084c57a07feb2462807653401cc28a9', 'TROJAN', 'W32.Clod706.Trojan.8415'),
+('0f1c18902f415089fc6dfed9ef321386', 'TROJAN', 'W32.Clod7f0.Trojan.a9dd'),
+('0a2136ce1a0aac63940a3d8abb4d790f', 'TROJAN', 'W32.Clod1bb.Trojan.f3c7'),
+('05ff99471c82fbedf1ce3930c4c03318', 'TROJAN', 'W32.Clod77c.Trojan.b4bd'),
+('00bdcb8162d61ce98bc6f5038368f235', 'TROJAN', 'W32.Clodbcd.Trojan.a10e'),
+('055697d68b3278441a3dc863ec4fce59', 'WORM', 'Generic.ScriptWorm.8CE777E4'),
+('0c1950369067a49561d8569ec2f6e880', 'WORM', 'W32.PeAceD.Worm'),
+('0f8c7ed1e040de7b916b14f255296664', 'TROJAN', 'W32.Clod189.Trojan.de88'),
+('0a8cf2d6e7de98904ad62278f2ee4526', 'TROJAN', 'MW.Clod0a8.Trojan.cf2d'),
+('0c7a16f634a0dbf786e8d97d2b1846b7', 'VIRUS', 'W32.HfsGFT.4505'),
+('07003c9a405dc81265489e67cbd8bd26', 'TROJAN', 'MW.Clod070.Trojan.03c9'),
+('0b4fb3b796083188169ea0ee967f33e3', 'VIRUS', 'Virus.IVP.DOS.320'),
+('06a2780e6fa89f3743a5f3cf63294e73', 'TROJAN', 'W32.IastenoA.Trojan'),
+('042c6ffed65b9db026a6868554b50b78', 'TROJAN', 'W32.CrypticB.Trojan'),
+('017e82e69dc737bedd2d1b38b8ccbf74', 'WORM', 'W32.ZabatoeAB.Worm'),
+('0f0799919182202df501032fe1cfc55e', 'TROJAN', 'W32.HisganetE.Trojan'),
+('064968a1123febe3b0f441f6a052fdb1', 'TROJAN', 'Dos.Clod064.Trojan.968a'),
+('0fc8e8a7547ed9f6dbbd59afa2639d0d', 'TROJAN', 'W32.OnGameELAIXNMAI.Trojan'),
+('0dc87ec1fd9f81dd3e11d5a5dd9e4499', 'TROJAN', 'W32.CrypticB.Trojan'),
+('0809a04e42848116553932b01612d4f7', 'TROJAN', 'MW.Clod080.Trojan.9a04'),
+('07fb8f22b23e1d2dcdc46dd2cdd9f164', 'JAVASCRIPT', 'Trojan.JS.Redirector.KL'),
+('05bb7e2b0fbea42830d83bf2291761e2', 'TROJAN', 'MW.Clod05b.Trojan.b7e2'),
+('0ea0bc95e57e7652b4cac0eb158b3347', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF'),
+('0d060e213d3408f98635615445900d20', 'TROJAN', 'W32.Clod319.Trojan.ff57'),
+('01320540af9d8ed13b4329bfb4fe6dd9', 'TROJAN', 'W32.Clod750.Trojan.a382'),
+('0ac81e4d40b650c1edf78ae5ae452132', 'TROJAN', 'MW.Clod0ac.Trojan.81e4'),
+('0bac0c7827ed0b89b07c3072a65e63fd', 'TROJAN', 'W32.Clod942.Trojan.ee56'),
+('04b1a4870fa47fcd944fa4c4d1d5fad6', 'VIRUS', 'Gen:Variant.Kazy.140450'),
+('0f652c8c924e25dfd6e09d8b0527cb20', 'VIRUS', 'HW32.Packed.B6A1'),
+('03483684f270064adbc72f991261a055', 'TROJAN', 'W32.Clod7fa.Trojan.06e1'),
+('066df748cd4614e03456ac95b8aef6cd', 'VIRUS', 'Gen:Variant.Kazy.147612'),
+('002911a7d549def1c63bd3f97c6c3e44', 'TROJAN', 'W32.Clod29e.Trojan.2235'),
+('0f9e3e70996241c77a22c34b22362f25', 'TROJAN', 'Trojan.Dropper.SAG'),
+('0b08a7fcfbb9201907022f5970cd300f', 'TROJAN', 'Dos.Clodd2e.Trojan.f4bf'),
+('0e08a69da1f0eb1765e3ebc44396bdfc', 'TROJAN', 'W32.Clodb02.Trojan.7a63'),
+('0353cb4022e7577f5d0c184cf574b575', 'TROJAN', 'Doc.Clod035.Trojan.3cb4'),
+('0ec5f4f8a008c22db03a98688630aed9', 'TROJAN', 'MW.Clod0ec.Trojan.5f4f'),
+('07f39a3ab7178bd876f59f6850ce8477', 'TROJAN', 'Dos.Clod07f.Trojan.39a3'),
+('0fdfbdf3f1941e6254b40e9ba51a0e60', 'TROJAN', 'W32.Clod494.Trojan.fd45'),
+('0333b46a6b2e1dfb8de5ba343992fb67', 'TROJAN', 'W32.Clod1ec.Trojan.5883'),
+('03b1d9568562ba3c01ca8edcf1251e87', 'TROJAN', 'Trojan.Pws.Lmir.WM'),
+('0ca673466ff92ab66c0beef8706572a4', 'VIRUS', 'WZ_II.436.A'),
+('0b10cb31b08b567c3512fca747d51f9b', 'TROJAN', 'W32.Clode35.Trojan.605c'),
+('009563856ecee47144b8746e0b11814e', 'TROJAN', 'W32.Clod7b1.Trojan.5df8'),
+('03be5778e9ae2d14b6b97d0481ca12dd', 'TROJAN', 'W32.Clodfff.Trojan.4fbd'),
+('0b070a8da5c6f2bd8009e08a52c3db9a', 'TROJAN', 'Trojan.Cong.A'),
+('05fdd18946633530a10dfe68477f71b3', 'VIRUS', 'W32/A-ee238bd5!Eldorado'),
+('035d03d16dd92d9fe5bb9e403cb0f0e5', 'VIRUS', 'Generic.Win32.035d03d16d!MD'),
+('0ecb679470d57b48ec01e63e5ca67c13', 'TROJAN', 'Trojan.Exploit.Linux.Interbase.A'),
+('0b97987411f114784bdaf7a2408e59e7', 'SPY', 'Trojan.Spy.Replor.C'),
+('0baa7ad932e5f226c4227188bbb24da2', 'TROJAN', 'MW.Clod0ba.Trojan.a7ad'),
+('04e6aaae6604320c7df665a07187f4e6', 'TROJAN', 'Dos.Clod04e.Trojan.6aaa'),
+('0f12ff32ec37883d049a986787393616', 'VIRUS', 'W32.FamVT.ExpiroPC.PE'),
+('08d248646933589fde6cabadc58dd4d0', 'TROJAN', 'W32.Clodce3.Trojan.891c'),
+('0b595d7a24e4909b45334d72a6cfbef6', 'TROJAN', 'MW.Clod0b5.Trojan.95d7'),
+('02f4337cdf9b76482c89abf1938d5b09', 'VIRUS', 'Gen:Variant.Zusy.Elzob.1507'),
+('02dc74a0490b62b3db4de15563deef99', 'VIRUS', 'Exploit.C99Shell.Gen'),
+('007a3db0f42697b8d85712ad165f75f5', 'TROJAN', 'W32.Clodb96.Trojan.8e0d'),
+('030170230a85713d197c501903239142', 'HTML', 'Trojan.Spy.Html.Fraud.C'),
+('0e7c4b4bb78918867d854c1273e950bd', 'TROJAN', 'W32.Clodb2c.Trojan.de27'),
+('01920517bab2a3b79ce37cc7b7d3e207', 'TROJAN', 'W32.Clod030.Trojan.8bc9'),
+('0418d6b11972035ddf42aec0daecbeef', 'TROJAN', 'W32.Clod924.Trojan.1449'),
+('00be1f51f25cd66f2c669074d79b0847', 'WORM', 'Irc.Worm.Irc.BAQ'),
+('03c7e6e652586eb28b3619d08c2c0498', 'TROJAN', 'Dos.Clod03c.Trojan.7e6e'),
+('0552c1c7f0d4211f264f1ffc681dce1b', 'VIRUS', 'Gen:Variant.Graftor.3317'),
+('0444bea34d02fce9b141c27ff2ee3130', 'TROJAN', 'Dos.Clod044.Trojan.4bea'),
+('0beef7bf8ad858412c72323c524bba9e', 'TROJAN', 'W32.Clod6d3.Trojan.1ee0'),
+('0fccb12f29031b767fd3ae86845587b1', 'VIRUS', 'Win32/AdClicker.DZX'),
+('0a7ce0ce04d97f1571a715f6d0399192', 'VIRUS', 'Gen:Variant.Kazy.14238'),
+('02d1c2ccf3062856ba82734d04bc5de6', 'TROJAN', 'W32.Clod15a.Trojan.c529'),
+('02b879f597eaed2a328608f559ea16b8', 'TROJAN', 'W32.Clod023.Trojan.345a'),
+('0933bfa637e2fc7b26898b771cfdd8b3', 'TROJAN', 'W32.Clod0c2.Trojan.4be8'),
+('076bd3b271aea400fb8df50eca6113b1', 'BACKDOOR', 'Backdoor.Generic.193717'),
+('081dde94e213b2e5cf5bf3199f682938', 'VIRUS', 'W32.SalityVC.PE'),
+('0ef50aed6bd7285bd9b6a985cc73343b', 'TROJAN', 'W32.Clod02a.Trojan.f589'),
+('054657efbacd00f802e60a0d44ba406d', 'VIRUS', 'Gen:Variant.Buzy.833'),
+('09f856739987a254101af533454772ec', 'WORM', 'W32.MyDoom.M.Worm'),
+('0854b12d2a19879cdae20a1b36d918db', 'TROJAN', 'W32.Clod6f5.Trojan.5037'),
+('0478de980e53ea467404a9fc409efc34', 'TROJAN', 'MW.Clodc5a.Trojan.f133'),
+('07f1ff2505528ed8800bd0cb3ee78c5b', 'TROJAN', 'W32.Clod404.Trojan.aa04'),
+('0e6a84b55ee00029240b72746ba42139', 'TROJAN', 'Dos.Clod0e6.Trojan.a84b'),
+('067ffb08aa5459edfe9de3bff1b4e87e', 'VIRUS', 'Virtool.Dos.Searchexe.D'),
+('057f054ed5045b6f97472225b7897b0e', 'TROJAN', 'W32.Clodf89.Trojan.5639'),
+('047ff16f19b758da734762ea4e4bf310', 'TROJAN', 'W32.OnGamesLT180912HKGHAAI.Trojan'),
+('0f5919653d9fd20b204363e515c18a9f', 'VIRUS', 'W32.Vetor9E1E'),
+('05cd552288c8d2ab6e2767dec734fe24', 'TROJAN', 'Gen:Trojan.Heur.RP.byX@aaYml2ab'),
+('068ff1ae4cfd08023f0c04ac471cfe2e', 'TROJAN', 'W32.GroduA.Trojan'),
+('030329b6255d08bcc488ae0cff0f2c31', 'TROJAN', 'W32.Clodb12.Trojan.feda'),
+('0efd07598aa02617362084b23b8560e6', 'VIRUS', 'Generic.Lmir.C9F160C9'),
+('002d397aa7b6a47a824def1b68de59c0', 'VIRUS', 'W32.FamVT.ExpiroPC.PE'),
+('00b6610c0c993b8d72e477b549b8d6c5', 'TROJAN', 'W32.Clod8ee.Trojan.c452'),
+('0b618fe09e499d8280c12aed9161963c', 'VIRUS', 'Lox.A'),
+('0175a1e8cfae12129131fea2cea40290', 'TROJAN', 'W32.Clod64c.Trojan.e1f7'),
+('0d884389c3fa063fd5745b41e7e8ad04', 'TROJAN', 'MW.Clod0d8.Trojan.8438'),
+('0c16127e2413d2cad23c87bae69b3d83', 'TROJAN', 'W32.Clodcf9.Trojan.f3ce'),
+('0743742931926b03182ad9ffdba427c1', 'JAVASCRIPT', 'Trojan.StartPage.JS.D'),
+('06b31fda99f159b560ec5908d97de0d4', 'TROJAN', 'W32.Clod271.Trojan.b08f'),
+('07d75865135ddd45416f7349235238a8', 'TROJAN', 'W32.Clod0f5.Trojan.7635'),
+('04b953e26271cc601349c4e7dd54303d', 'TROJAN', 'W32.Clodc80.Trojan.e7b7'),
+('020ed17b8cdf7cdbc573e81fa8567b2b', 'TROJAN', 'MW.Clod020.Trojan.ed17'),
+('054398b06aefa693dd9d20c326d973d9', 'TROJAN', 'W32.Clod7a8.Trojan.99f9'),
+('0757f72f5bbad8994d59f89e4a9c93b4', 'TROJAN', 'MW.Clod075.Trojan.7f72'),
+('05a73d0f70245dc244b367175c8f0674', 'TROJAN', 'Trojan.PWS.Keyman.A'),
+('0540bd8116feb6b132f90b3eb17c1a75', 'TROJAN', 'W32.GroduA.Trojan'),
+('06307ec9c95a64e1626b55ecd6d4eaa8', 'VIRUS', 'Gen:Variant.KillAV.6'),
+('0d0b007c138640dc83f76ff9aef38e03', 'TROJAN', 'W32.Cloda2a.Trojan.2adf'),
+('0f05f20e21a28703ae3027f37bc51978', 'VIRUS', 'Win32/Tnega.CCYFeZB'),
+('00b9fbc044f07e7231ed13594c7d9f9e', 'TROJAN', 'Doc.Clod00b.Trojan.9fbc'),
+('0f5fba0fe19671062a6b6abd8cd5bb49', 'TROJAN', 'W32.Clod64e.Trojan.d140'),
+('073a9295bc0ac74e720a7edb42fccfd9', 'TROJAN', 'W32.Clodd32.Trojan.86a9'),
+('07cfb61c36b90f323a00bb824804c742', 'TROJAN', 'W32.Clodde4.Trojan.aaba'),
+('0e93c96b140365ff36c5a6534214c1eb', 'BACKDOOR', 'Backdoor.Generic.77330'),
+('02de133ccab2a676bfdd6ec71edd7c81', 'TROJAN', 'W32.Cloda3a.Trojan.3bdd'),
+('06490c8e44c7830fcfd1b0d988c9b59e', 'VIRUS', 'Heur.Win32.Veebee.1!O'),
+('09957767d2a5e60b689adb67acc75d5a', 'TROJAN', 'MW.Clod162.Trojan.be13'),
+('0627e3a917d6e36c12468dd3f74fa740', 'TROJAN', 'MW.Clod062.Trojan.7e3a'),
+('056f73a9087a279b0379869af54c0a1d', 'BACKDOOR', 'Backdoor.Urcs.105'),
+('0086695493bb2a428f1bfcb865a173c8', 'TROJAN', 'W32.Clod3b2.Trojan.09cd'),
+('048caac97633b0bcc67b83db6f2659d2', 'TROJAN', 'W32.Clod687.Trojan.f4d5'),
+('06c084a509a9414f53352035cdce6e87', 'TROJAN', 'W32.Clod89d.Trojan.9141'),
+('06773391d137b028dc8fca1b9f50ef9c', 'TROJAN', 'W32.Clodb58.Trojan.a0c4'),
+('0e0505cfa381da5f66b89fcf34df9a1d', 'TROJAN', 'W32.Clod3a0.Trojan.229a'),
+('08e89d7c01886fc978a692a1a303f76e', 'TROJAN', 'W32.Clod6b2.Trojan.598a'),
+('02914e861578c222a7296a402df13d67', 'VIRUS', 'Kit.2384'),
+('00c971ad723f31ca74f0da0a6feb8655', 'TROJAN', 'W32.Clod53f.Trojan.ab42'),
+('0002f2f17d87e0647b6ab92a76c08fd3', 'TROJAN', 'Trojan.Generic.1551979'),
+('00ac8f6b496a206c8022d1501df0c6bc', 'TROJAN', 'W32.Clodfb4.Trojan.d2fb'),
+('0d51e39fab4787c33f80376e03dd732e', 'TROJAN', 'Trojan.CryptRedol.Gen.3'),
+('02de7726e796e7c010d10852d42b4f09', 'TROJAN', 'W32.Clodde1.Trojan.73ad'),
+('02df7d2e230ce30ed114527d8e595ade', 'DOWNLOADER', 'Trojan-Downloader.Win32.Gamarue.2!O'),
+('0e6f843d03ecfc8b08cdb75b01d9db61', 'TROJAN', 'W32.Clod1d4.Trojan.02e0'),
+('02b2042bd37eea08f3e39a1eb4d19971', 'TROJAN', 'W32.Clod45c.Trojan.759f'),
+('0b9e91d347a72a2e75fe9c92fd1c5810', 'TROJAN', 'Trojan.Generic.8021513'),
+('0424087150ca10acd16ddd3f242c4260', 'TROJAN', 'MW.Clod042.Trojan.4087'),
+('0a849cf73b204ac7f47507ab8f63b05c', 'TROJAN', 'W32.Clodd2b.Trojan.853e'),
+('01d457261fcaedebe3a2e58b8b749b25', 'TROJAN', 'W32.Clod0fb.Trojan.0afe'),
+('0708764cea1e181513c1afe3d01e83cb', 'TROJAN', 'W32.Clod378.Trojan.39ad'),
+('0f3afe92c6139b262402bff10721db75', 'TROJAN', 'W32.Clod444.Trojan.ab65'),
+('0c08c8649fa0e93937554599fef2d22d', 'TROJAN', 'Trojan.Script.143101'),
+('0d78607cf15e665bffa0f0eff556fd29', 'VIRUS', 'SillyComp.45.B'),
+('0e24fcd59a211fac372e951ffbed32ab', 'TROJAN', 'Doc.Clod0e2.Trojan.4fcd'),
+('0c5a22f9cd7b0cacde5d94be66d1891f', 'VIRUS', 'Hilite.A:intended'),
+('0322018a3afd23900f545cf8a3677442', 'TROJAN', 'W32.Clodc64.Trojan.e570'),
+('0e2f7ffe3ad69b37c0c4d06885a1b6a7', 'TROJAN', 'W32.FakeWmpQKB.Fam.Trojan'),
+('0fd5b6657eec45744b6c3689dcb428fe', 'TROJAN', 'W32.Clod0be.Trojan.ea17'),
+('03c3f75464687e743f1c632d935be6fe', 'TROJAN', 'Trojan.Generic.7635328'),
+('0052d5810f3b6cf8016c4e5647ca653c', 'TROJAN', 'W32.BifrostServB.Trojan'),
+('0be0d754ef9db308abf1eba76eca5520', 'VIRUS', 'Gen:Variant.Graftor.Elzob.11409'),
+('0386bf7f1c793488b141c1ae09645f5a', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan'),
+('00dae3a9f00b5bacd6bb70f7db2d0467', 'TROJAN', 'W32.Clod98d.Trojan.7804'),
+('0b907ee83b9404aaac1768307df1f729', 'TROJAN', 'MW.Clod0b9.Trojan.07ee'),
+('0a2e65210502377fe8864a866241a1ca', 'TROJAN', 'W32.Clodad2.Trojan.b301'),
+('043ba24daf76c6c884551f9d941d6cd6', 'TROJAN', 'W32.Clod564.Trojan.c900'),
+('0c179e52762de6861f2f716f38995217', 'VIRUS', 'Artemis!0C179E52762D'),
+('09bb271beea49e38735fbc0577c56a07', 'TROJAN', 'W32.Clod44e.Trojan.b379'),
+('0d629d32341b8da4d909dd8597fd33fd', 'TROJAN', 'W32.Cloddee.Trojan.6417'),
+('0b29302fb3f378b863a757cc09a5682b', 'MALWARE', 'Generic.Malware.G!K!FWX!!g.2311AA42'),
+('06bd122dd540cf47cc21b3ac57e1a16a', 'TROJAN', 'Trojan.Generic.2164801'),
+('09ca3f7891bf1929c424a63ac8219129', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF'),
+('01302494624de3f68c68eac7592d3eae', 'VIRUS', 'Keelung.208'),
+('0e06954d2e322a0422c8445dd2bd658b', 'BACKDOOR', 'Gen:Win32.IRC-Backdoor.IGZ@aujUs92S'),
+('057a7c549516522fd0dbce6185b93dc6', 'TROJAN', 'W32.Clodf5b.Trojan.1028'),
+('044cbbca9eb1a99678124449e24b464e', 'TROJAN', 'Trojan.Generic.6110707'),
+('086e79340f47daef8b26e39cc91aa26d', 'TROJAN', 'W32.Clod537.Trojan.14b2'),
+('0d5c563b45f369e0142c6587f3d5f043', 'TROJAN', 'Dos.Clod0d5.Trojan.c563'),
+('0d1b19a0bdd1ded153b7d7861e57e79e', 'TROJAN', 'W32.OnGameXZLAIYAM.Trojan'),
+('0f7bade9e3de98ee7000b37f87a744a0', 'VIRUS', 'Gen:Variant.Symmi.50128'),
+('0145d775512c6d51ead5a6a62223d297', 'BACKDOOR', 'Backdoor.Grnu.A'),
+('06f3f412be3ff606d1fc5fe3ece9f52d', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan'),
+('039bffb060abfcb05b7b4bf1acfe7f4a', 'TROJAN', 'W32.Clod76b.Trojan.90b3'),
+('02811f7eca68713c440d48965a894ed7', 'TROJAN', 'MW.Clod031.Trojan.907d'),
+('083b694413f28c0e4e29016d625fcb0f', 'VIRUS', 'Gen:Variant.Delf.12'),
+('0fbc6cec251237e410c15440db1b0f1e', 'VIRUS', 'Generic.Lmir.2D403ECB'),
+('092a07e7f191201b3c2678bdb9e17468', 'VIRUS', 'HW32.Packed.774C'),
+('08c7b284b9df8398ce2e87a673fb8075', 'TROJAN', 'W32.Clod714.Trojan.7763'),
+('00a20feb199b707568567a8617b5637a', 'VIRUS', 'HW32.Paked.A9C2'),
+('057d3bd3bffcafa4a2c93bf4455712c3', 'TROJAN', 'W32.Clodccd.Trojan.4306'),
+('0028739c9a18b33f11b0ad56f9657960', 'TROJAN', 'Trojan.Dos.Killmbr.W'),
+('000c99f6434bd6da03e958fa8d5b0a25', 'VIRUS', 'HW32.Packed.F061'),
+('0950fa0d2e265ae739abbd2d60bb3e43', 'TROJAN', 'W32.Clodf3b.Trojan.499d'),
+('0f9a75e989cb1445c5624d57b369de53', 'TROJAN', 'Trojan.Favadd.G'),
+('04b370b01edcd0837ee742a4eae8e782', 'TROJAN', 'W32.OnlinegameXFCPJ.Trojan'),
+('0b02352207896d2ebc8d189bb77e9897', 'VIRUS', 'Flame.B (Boot image)'),
+('04c4f60c55c413e4c8adb1cdcb5d8f01', 'TROJAN', 'W32.Clod123.Trojan.dd7a'),
+('00ae42f820e161c55f84862de6c8ca2a', 'TROJAN', 'Trojan.Script.263807'),
+('0e63398bb88a5c6ab36c99c6a2903ce2', 'TROJAN', 'Trojan.Generic.818587'),
+('012fd07c6adfc79d778cf2987071ccf4', 'TROJAN', 'W32.Clod5e7.Trojan.6a5a'),
+('0c5b8cfc51945eb5799fde6e439854ce', 'TROJAN', 'W32.Clod974.Trojan.e386'),
+('0077157ff2253c437aa5560c835a2934', 'BACKDOOR', 'Backdoor.Irc.Djaa.D'),
+('0f504bd9252143e8981feb9f9210cbe7', 'TROJAN', 'MW.Clod0f5.Trojan.04bd'),
+('06f2f035a7393b7657199bbea7af9cf5', 'TROJAN', 'W32.Clodccc.Trojan.1b7d'),
+('0bc9a1929f64a45e1753ad16d35a22c1', 'TROJAN', 'W32.Clod26c.Trojan.584a'),
+('0e7d4651782a0ac49126ec950dd296dd', 'TROJAN', 'MW.Clod0e7.Trojan.d465'),
+('09c61c27bbac5219b40578ee061ed155', 'WORM', 'W32.OnGameEHAJZV.Worm'),
+('02c57d4881b845d4a4f8b26430e46190', 'WORM', 'W32.Larwin.Worm'),
+('0507fea489578a31f5f71b8cccc2666e', 'VIRUS', 'Gen:Heur.Zilix.1'),
+('09f3a22cabb280a59c7e79badfa99f8b', 'TROJAN', 'W32.StartPageLnr.Trojan'),
+('0617988ae764e54e14d78e8b670167f1', 'TROJAN', 'W32.Clod761.Trojan.bb06'),
+('00dbdee1acfe9f583e08461624e27664', 'TROJAN', 'MW.Clod6e7.Trojan.6823'),
+('0c4a653a253bde6623a89c82a82c1667', 'TROJAN', 'Trojan.Generic.6260133'),
+('05965a142cc88675463fa9deeb5cca27', 'VIRUS', 'Artemis!05965A142CC8'),
+('0b51dcf54e679bd1bcf8e841098f2a26', 'TROJAN', 'W32.Clod20b.Trojan.713c'),
+('0503b1bc9bea1fb61a9b907fa9583ab4', 'VIRUS', 'Pantera.486'),
+('0a8fb63acdaf1598606c1f0c60fb602a', 'TROJAN', 'MW.Clod0a8.Trojan.fb63'),
+('00d07266752709920fc727c7e7cb5c66', 'TROJAN', 'W32.Clodca1.Trojan.9884'),
+('06d5da22f8e834d2e19c9b086a6763a8', 'BACKDOOR', 'Dropped:Backdoor.Haxdoor.KA'),
+('076e333f440e93ee70fd8294ed5c413d', 'TROJAN', 'W32.Clod3cc.Trojan.8a85'),
+('0c91118c620c0947121394f8286e19c4', 'TROJAN', 'W32.Clodbdf.Trojan.f41e'),
+('0694e0d3055e83ffa9531d22f9c33731', 'TROJAN', 'W32.Clodf97.Trojan.5839'),
+('0903b6f9f56b24950df5d24dbc16da43', 'TROJAN', 'W32.Clod470.Trojan.ad23'),
+('0ee0667cf69b13a5b2e3839f73250d77', 'TROJAN', 'W32.Clodb4a.Trojan.d9ef'),
+('059c56d53d70ab89fa4d77b896d7139f', 'TROJAN', 'MW.Clodc69.Trojan.06a0'),
+('0feaabf5e499afaebecf28b00fc01f8b', 'BACKDOOR', 'Backdoor.Bushtrommel.B'),
+('068f5324ac26cfc0abddf4d30da13665', 'VIRUS', 'Packed.Win32.Toggaf.7!O'),
+('05c5eb921f12f0f9c21fafabee2a9144', 'TROJAN', 'W32.Clode25.Trojan.78a3'),
+('0f4794c970514940950547b682c89687', 'TROJAN', 'W32.Clod610.Trojan.96bc'),
+('02545bcca35687494fc3f9d7e82e085b', 'BACKDOOR', 'Backdoor.Rcserv.I'),
+('0622554eff4645a79df96edc630356a6', 'TROJAN', 'W32.BifrostServerLnrH1.Trojan'),
+('005d6b31fbc6fb1390bbe30056d8032c', 'VIRUS', 'W32.SalityK.PE'),
+('008397142fb3f355bdd4e54e7bc45168', 'TROJAN', 'MW.Clod008.Trojan.3971'),
+('0f91908d8b94c1853a85a7b449d1e8f3', 'TROJAN', 'W32.Clod0a5.Trojan.123c'),
+('0557801613850facf01b883597c7be4b', 'TROJAN', 'W32.Clode19.Trojan.1083'),
+('0a29d2753d4ee432943b995b8b17e5d1', 'TROJAN', 'MW.Clod0a2.Trojan.9d27'),
+('02b3107f8286d5c9f2281b439bc1ab29', 'TROJAN', 'W32.Clod6da.Trojan.456c'),
+('0d44505314f0d5621eaf4272d0d9de3c', 'VIRUS', 'BAT.Count.A'),
+('0fafb1be3c60dd0eaa847b02bec89b3e', 'TROJAN', 'W32.Clod0f7.Trojan.aed7'),
+('0887fcbef33946717a0ceb43463831f0', 'TROJAN', 'W32.Clod427.Trojan.3da2'),
+('0651c3ec590ab60f1439374c2ca7ca58', 'TROJAN', 'W32.Clodd17.Trojan.bba2'),
+('073a9906e056f88c21baaa1d04443625', 'TROJAN', 'W32.Clodc69.Trojan.520a'),
+('06c828ce8be10cf82de1fad1e00205e4', 'TROJAN', 'W32.Clod9ca.Trojan.e5d3'),
+('09cd3a109266c40f35d8ce2433f427ef', 'TROJAN', 'W32.Clod9b9.Trojan.f60a'),
+('07021bed662d7b418c09f1dc12c176a3', 'TROJAN', 'W32.Clod8d5.Trojan.34b9'),
+('0a8287fd40d7edd3fd831c577007f9c7', 'TROJAN', 'MW.Clod0a8.Trojan.287f'),
+('0206dde150ec2a5fdf6695087811fac4', 'TROJAN', 'W32.Clode9c.Trojan.c222'),
+('0af16d2306cbb1da18ca963cd1d56585', 'VIRUS', 'HW32.Paked.5E91'),
+('00190c038bfa73463f68eae01222ba37', 'TROJAN', 'W32.Clod9e2.Trojan.1482'),
+('0aa1a4843fea283b8719d5e1bd057587', 'TROJAN', 'W32.Clod0b4.Trojan.1650'),
+('04e8205822b324c19dfaf099c962b5ce', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan'),
+('029e3cc6e32f086e54a01942fd17e142', 'VIRUS', 'Artemis!029E3CC6E32F'),
+('09a52423f9192cd21a17cb176ad9d93c', 'TROJAN', 'Dos.Clod09a.Trojan.5242'),
+('0271f5f9cf992b6fa4a1c2d93c521ae1', 'TROJAN', 'W32.Clod30a.Trojan.4210'),
+('0b382991252bc67be50dd85511eab461', 'TROJAN', 'W32.Clodf92.Trojan.4476'),
+('0332f84c18c99a040516d48740eef170', 'TROJAN', 'Doc.Clod033.Trojan.2f84'),
+('06a113ef087cb8925dde865017a7c67f', 'WORM', 'W32.FamVT.ViselPM.Worm'),
+('06267c3b8350eb689f58d7df0e68f48e', 'EMAIL', 'EmailWorm ( 0008d2741 )'),
+('0c3aab0481189d4c46371ff90450c091', 'TROJAN', 'W32.OnGamesDFDAE.Trojan'),
+('09add6920e2fa3af05e5a527bd6c2494', 'TROJAN', 'W32.Clod4b3.Trojan.da36'),
+('01c4133bc6466ca2a2ca552ae6638039', 'VIRUS', 'W32.HfsOval.845A'),
+('010110a747467a8abd655ec5e1635eb8', 'TROJAN', 'Trojan.Gen.2'),
+('0dcadf1a2b17a1f7745518fa86442555', 'VIRUS', 'Gen:Variant.Beax.2'),
+('06b8b7a5ff16d46da6edcea167351e1e', 'WORM', 'W32.OnGameELLIZUC.Worm'),
+('0eb95854cb0be8705b475e6f73e41865', 'TROJAN', 'Trojan.Vb.VI'),
+('02da2c77891e617321f14d5ca1aace4c', 'VIRUS', 'Gen:Variant.Graftor.63974'),
+('0f6524a7078effedd437f1a0e74902d9', 'TROJAN', 'W32.Clod85b.Trojan.ba90'),
+('0e0fc966862971c29edd4dcaa0ba8e86', 'BACKDOOR', 'Backdoor.Netbull.11.B'),
+('065ae2beb9af8f3acf8965ddc6e87f5a', 'WORM', 'Posible_Worm32'),
+('04c98efe2f45f06b209d2405d34b2653', 'TROJAN', 'MW.Clod04c.Trojan.98ef'),
+('0d8eb7f2f9d73d5eb53ab310da670b75', 'VIRUS', 'Gen:Variant.Delf.12'),
+('06f29730101b1ec368e9134f1d67059f', 'TROJAN', 'Trojan.Agent/Gen-FakeAV'),
+('05f66e3938b50b1ebbc64fba49da3251', 'TROJAN', 'W32.Clodf3f.Trojan.c188'),
+('09a4d35c4ae6f1e7c4bdb24e56cd24a3', 'VIRUS', 'W32.Vetor.PE'),
+('05ac6eb4ba655d2422a917448a6da95a', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan'),
+('08da14d022a30a0e1b0ee28e705109b9', 'TROJAN', 'W32.Clod1ac.Trojan.517b'),
+('08964e4dcd77cdc5ec7e2f21241b1af0', 'TROJAN', 'W32.Clodf21.Trojan.7ee4'),
+('0a62fb55c96d15b614692476fd23bc05', 'VIRUS', 'Ace.1878'),
+('06fa838f99db1b3d2c7f30d8e127996d', 'TROJAN', 'W32.Clod7e3.Trojan.b774'),
+('005215a67632be81ca8095417e22bde9', 'TROJAN', 'W32.Clodc60.Trojan.7b02'),
+('0b8548e3ceb3a6fee47ed24ec1b8431d', 'TROJAN', 'W32.Clod4ed.Trojan.96a3'),
+('04b7e63dbe9429b7c6f224745dec3324', 'TROJAN', 'W32.Clod76e.Trojan.90db'),
+('0507f988637ee4b8f2e8fa197d4b6dfa', 'TROJAN', 'W32.Clod9e7.Trojan.fd41'),
+('040a8765be9a4c6cdfccae4c032094a0', 'TROJAN', 'W32.Clod057.Trojan.799d'),
+('05cb140a5454ebc271fc519625a023d1', 'TROJAN', 'W32.Clod44f.Trojan.4816'),
+('0c7c6ef548ab5598b4d968e9932fc5b9', 'PHP', 'Backdoor.Php.Pokemon.A'),
+('0be08ccb377ba39108ea417aa168f4c5', 'TROJAN', 'W32.Clod3db.Trojan.1853'),
+('05fd6891750094d8599907e6b194eb65', 'TROJAN', 'W32.FamVT.FlushtoHV.Trojan'),
+('003b30ef3063e05100867d674346e758', 'TROJAN', 'W32.Clod9f9.Trojan.531d'),
+('0ad8e3751ebad92b189d8d75d76e1a11', 'TROJAN', 'W32.Clod87e.Trojan.6954'),
+('0e235062b85a9412a2942264fa4404e6', 'VIRUS', 'HW32.Paked.B43B'),
+('06945a1232204ba791f3d61fc4646153', 'TROJAN', 'MW.Clod069.Trojan.45a1'),
+('02f91d121bec10b8402d883242132e19', 'TROJAN', 'W32.Clod08b.Trojan.519d'),
+('054fd91b115926ab1c0106dcf3667759', 'TROJAN', 'W32.Clodf52.Trojan.c7af'),
+('0bdd6c8e1633fd37be634ee285109190', 'TROJAN', 'W32.Clod6e2.Trojan.6bdc'),
+('0695d1266063a60849383f8f7f9d889b', 'TROJAN', 'MW.Clod069.Trojan.5d12'),
+('01ea5ba59a316240e48b0475b24b15b7', 'TROJAN', 'W32.Clod5c0.Trojan.a220'),
+('02558181f8d4e68e452d7d02bf227eda', 'VIRUS', 'W32.ReplaceMiKsLT.Fam.RSF'),
+('0de0ddcef18c16f8ea15c139e388dcc1', 'TROJAN', 'W32.OnGamesICOCSG.Trojan'),
+('062866b10e353d226847f4ca2a8fdda6', 'VIRUS', 'Artemis!062866B10E35'),
+('06d704f1b872cde834e40c9a4e88e042', 'TROJAN', 'W32.Clod62b.Trojan.3701'),
+('0ed70fc40c19b79adc216228f09efeb5', 'TROJAN', 'W32.Clod4ae.Trojan.9641'),
+('0224ad47175acbc5c19e7ae3dfdf137c', 'TROJAN', 'W32.Clodbf4.Trojan.5756'),
+('0afd5d15cc7e03b8220906459d072621', 'TROJAN', 'W32.Clod29c.Trojan.428b'),
+('0896c23b0d5a34d57fe425ac01d8cfed', 'WORM', 'W32.AutorunHA3.Fam.Worm'),
+('0378feef3a75a9da90dc29cf1e1fb9e7', 'VIRUS', 'W32.HfsAutoB.639B'),
+('058babf552cccc52fa68135667c24ebc', 'TROJAN', 'W32.Clod632.Trojan.0146'),
+('025fa0924b29d03767f5da078a840658', 'TROJAN', 'MW.Clod025.Trojan.fa09'),
+('023f745f559ecf88806e28f221dac0fb', 'WORM', 'Win32.Worm.Nohack.A'),
+('00cd2efd5805197bb61e2579ca79feb7', 'TROJAN', 'W32.Clodfe8.Trojan.be3f'),
+('061a71b8ad25d8674e1ab6863eece3dc', 'KEYLOGGER', 'Trojan.Spy.Keylogger.FX'),
+('0cde73a0d0c43ba0ea67a6a8cd89d1be', 'TROJAN', 'W32.Clodf06.Trojan.30dd'),
+('04f0aaa2efafb09a91db5aaa1e897143', 'TROJAN', 'W32.Clodf29.Trojan.5526'),
+('00fc49007667be76960f07d887f946ca', 'DIALER', 'W32.PornDialerQKB.Trojan'),
+('0f219c8daa64fc6273ebf18ad817d090', 'TROJAN', 'W32.Clodf5d.Trojan.6520'),
+('0bbad1c2d0c27cd118e03a98efba6b8a', 'TROJAN', 'W32.ViromewH.Trojan'),
+('0ccb7ff76b741a559792786b52a0ab46', 'TROJAN', 'W32.Cloda96.Trojan.f2e1'),
+('01a983d78c4f79e63ee39285336ff498', 'TROJAN', 'W32.Clod973.Trojan.f2e7'),
+('00c5cc044be27ba3490170a010759564', 'TROJAN', 'W32.ServiceMngLNR.Trojan'),
+('07d3982d5dc07a6ee2bc437cf34bf201', 'TROJAN', 'W32.Clodcd6.Trojan.3323'),
+('0657889e37ed320292beeeab03756796', 'TROJAN', 'W32.Clod976.Trojan.2e2e'),
+('04747b2fe187dbad71363e28006b39c1', 'VIRUS', 'W32.CisClipSvrC90A.PE'),
+('08015fce43c57886b335f167600e2be4', 'TROJAN', 'W32.Clod27e.Trojan.73bd'),
+('00ddd83fc987faff21e9ea4820621ac3', 'BACKDOOR', 'Backdoor.Lamebot.V'),
+('05582d7a5ddc169d15284e0b4b286950', 'TROJAN', 'W32.Clod7f5.Trojan.070a'),
+('00e29387aa6cc7f6849b9f9bd5812a3f', 'TROJAN', 'MW.Clod00e.Trojan.2938'),
+('08e04392022bd630b28e1cc923255ce8', 'VIRUS', 'PS-MPC.0389.AA.Gen'),
+('0aa460a03c6f5ba534687bf256cf7537', 'TROJAN', 'W32.Clode28.Trojan.4b8f'),
+('085d3a00d690d1ac1d67287f61b110d8', 'VIRUS', 'W32.Sality.PE'),
+('09aab3e3a417dc3f6879b9c099c4f6de', 'BACKDOOR', 'Backdoor.Retrieve.1.3'),
+('04db5fd1c00203cddab9dc621f367f78', 'BACKDOOR', 'Backdoor.Agent.BL'),
+('0e64c8ae293f0b772ef8c44180522518', 'WORM', 'W32.OnlineGameECPLI.Worm'),
+('022e5ba02781b9ff11090f27be51068f', 'VIRUS', 'Gen:Variant.Kazy.25993'),
+('06ccf09b48005893e2d6a191a0e90ca0', 'TROJAN', 'Trojan/Agent.lf'),
+('05e6f0670d84e4b2d4060d78aa270e83', 'TROJAN', 'W32.GenericAgentA.Trojan'),
+('06b0f4212faf6ff1f69e22c3d6aa615c', 'TROJAN', 'W32.Clodc42.Trojan.222a'),
+('08eea6441b22dc82f33392dc371f9403', 'TROJAN', 'W32.Clod1c7.Trojan.6bb8'),
+('0cb7de2b0de2b3ce8defddf9b48f5951', 'TROJAN', 'W32.Clod9b1.Trojan.e3b0'),
+('091af82922d72338e0bbb456225b9e73', 'TROJAN', 'MW.Clod091.Trojan.af82'),
+('0170b51ece5aa717a58cff5872786513', 'TROJAN', 'Dos.Clod017.Trojan.0b51'),
+('04c8adf7c830cdfce9dcbbb76ad5a920', 'TROJAN', 'W32.Cloda49.Trojan.3f28'),
+('0c12cd3c5beaf11b8bef1492dc5cf6c1', 'VIRUS', 'W32.HfsAutoB.E793'),
+('0c285bd0c6461588319b9a2955a79609', 'VIRUS', 'W32.HfsGFT.4505'),
+('080d461b8723b5d5cb306e93f5bc83e2', 'TROJAN', 'W32.Clod48f.Trojan.0dde'),
+('0a048ad6e1be8ab2910c212d935cda4a', 'TROJAN', 'W32.Hastorn.Trojan'),
+('0120a497d381f78c2a6c87649a24133b', 'TROJAN', 'W32.Cloda26.Trojan.1ab9'),
+('09b97ba02e1db609484404868cd8f298', 'TROJAN', 'W32.Clodb48.Trojan.c9e3'),
+('09d3ffe35685236c2789e220c6b93211', 'VIRUS', 'Liberty SSSS'),
+('06455fd965048807f6c079ba91461333', 'TROJAN', 'W32.GroduA.Trojan'),
+('014ab1ed1b312dd56628a2f9a6cf8b30', 'VIRUS', 'Yosha.745'),
+('07e86e31637b3dac8c3e83de1ac9182e', 'SPAM', 'Trojan.Spammer.Mail.ShockMark.1.7'),
+('04dab4b424bc3e25b84ad822d3edcc22', 'VIRUS', 'Ape.B'),
+('005a36ac3ddd5b51eea64dcde94bb32d', 'TROJAN', 'Trojan.Flood.Vb.EH'),
+('0efbd5fedf0b5dcef6d1c1407e068cf6', 'TROJAN', 'W32.Clod03e.Trojan.60e1'),
+('0e90ac58391f5e324d1a369b4fbe4402', 'TROJAN', 'W32.Clod75d.Trojan.3a30'),
+('065f4cc7d3902c4253634574343a185d', 'TROJAN', 'W32.Clod702.Trojan.09ec'),
+('05b431561e94ff68a329c9b78b15480e', 'VIRUS', 'CasOnline'),
+('09546a51e7448e468ca6967ac55618aa', 'TROJAN', 'MW.Clod095.Trojan.46a5'),
+('0500d379dcd113253bc36025a0a5ccdd', 'VIRUS', 'Gen:Variant.Buzy.1733'),
+('0e9ef9ff3a9e0fef64353eab1e32f2a0', 'TROJAN', 'W32.Clode17.Trojan.ba86'),
+('06fdcc0c175a8c6440ae59ee7c4c7097', 'TROJAN', 'W32.Clod4a7.Trojan.9596'),
+('05ccf293946bfd5bce1ac2d5ca8f74d5', 'VIRUS', 'W32.Infect2Loader.PE'),
+('061615bdfdf6dfe07d3db6a75fae15a3', 'VIRUS', 'Gen:Variant.Kazy.3978'),
+('0b8f760d1ca4baf78c15c9fe66db70f8', 'TROJAN', 'W32.Clod863.Trojan.e718'),
+('07a084ce0664553c44058154a27c9979', 'TROJAN', 'W32.Clodc98.Trojan.cee8'),
+('07bff3a6fb25f281169de04ee8ff0bdf', 'TROJAN', 'W32.Clod097.Trojan.928f'),
+('0caf23c4668f7e21896d8c9393eb3f41', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan'),
+('050a599988b4029e8cdb429485bb641b', 'BACKDOOR', 'Backdoor.SpyKing.B'),
+('0222d2ddd1c895aa58ed4cc69ba31d0c', 'TROJAN', 'W32.Clodb86.Trojan.c57c'),
+('09336e9e0f4d6e0ada8eda279cefb0d6', 'VIRUS', 'Lesson II.358'),
+('053c207fd54b70530d23f9edcdf83c5c', 'TROJAN', 'Trojan.ZAgent.r4'),
+('0c03cee4db1f4cb66987eb32e470f2cb', 'TROJAN', 'W32.Clod8a2.Trojan.339d'),
+('0154b940c5b44b3c972207a68412011b', 'TROJAN', 'Trojan.Flooder.Fast.3.0'),
+('0944ed4f20ba0c38f246db4c8b516110', 'TROJAN', 'W32.Cloddbd.Trojan.3e42'),
+('0602f7d611aaeffdee60e6a5cc4fc100', 'TROJAN', 'Trojan.PWS.Onlinegames.KEGA'),
+('04be33e8f00db0f052e97668b2e377c2', 'ROOTKIT', 'Rootkit.Kobcka.H'),
+('0c000a2b36937c08e6eaad406a9a3fc5', 'TROJAN', 'W32.FakeFolderAAA.Trojan'),
+('06c015e4e95852732eb9db97e1f8cb3d', 'VIRUS', 'Win32.Sality.3'),
+('02c00c0dda3a9bd5ef28ac24aac74d57', 'TROJAN', 'W32.Clodee0.Trojan.99ce'),
+('0729d7f813786103c380c8a2ddc51047', 'TROJAN', 'W32.Cloddbf.Trojan.41a5'),
+('0f78d9cfed724b3e51be0f82c71d3c02', 'TROJAN', 'W32.Clodece.Trojan.33ff'),
+('08dd8e2abeb590d92614d2a63423454f', 'TROJAN', 'W32.IastenoA.Trojan'),
+('09cf844d7ba941c70f244fcb56a3502b', 'VIRUS', 'Retaliator.1559'),
+('06105301ce4a615cf428bb235a4c0c1f', 'TROJAN', 'W32.Clod13d.Trojan.3ad4'),
+('031d8a5fb1a0cf88b7933951949a8154', 'TROJAN', 'W32.Clod098.Trojan.1be7'),
+('0efea95ab4d5cd30e1b039ac5f23a874', 'TROJAN', 'W32.Clod09d.Trojan.67c1'),
+('03bcd975d33c03704b4144071f3cfa6e', 'TROJAN', 'W32.GenericSacanph.Trojan'),
+('01b24cc5cadadee00bb28706d73e95a0', 'VIRUS', 'Generic.NSIS.Downloade.77FB5219'),
+('09a5333630e6ec7047d5954a45aeae1b', 'TROJAN', 'W32.Clod90a.Trojan.98b7'),
+('0d9e4bf518b3642126b7bca4be7ba7a7', 'DOWNLOADER', 'Trojan.Downloader.Small.AHX'),
+('053bc471856e3ec665f92e891e32dc6e', 'TROJAN', 'Gen:Trojan.Heur.dm0@snHQJ5liy'),
+('0cf37a8a5bc774f2671def3a88dbd821', 'VIRUS', 'W32.Upx0Paster.PE'),
+('01bd603842a463db9e5995fe7083fa6a', 'VIRUS', 'Gen:Variant.Zusy.105876'),
+('0b601b9f6d8bba6ce7e31f10303f1026', 'TROJAN', 'W32.Clod095.Trojan.8b0c'),
+('06ac41b396fdb9ec54dd31547a5a6cf3', 'TROJAN', 'W32.Clod1db.Trojan.f8e2'),
+('05d046183f4743a81bdd5af8e01015fb', 'TROJAN', 'W32.Clodf10.Trojan.1570'),
+('0f4a21324c8d92aefbbb674324fad3d1', 'VIRUS', 'Gen:Heur.ManBat.1'),
+('09e898104ac2f21f40fef72d6be7c028', 'TROJAN', 'W32.Clodb27.Trojan.7670'),
+('048e258a646ae3204bccc80467d47a5d', 'TROJAN', 'W32.Clodf7f.Trojan.582b'),
+('01c461b9d1b0d12b3a51fe8186a8d8df', 'TROJAN', 'MW.Clod01c.Trojan.461b'),
+('0a4903aa4a29b1f8852fcb18c3551a44', 'TROJAN', 'W32.Clod802.Trojan.95ce'),
+('05d675755a63ef203b526ff3768ff86e', 'MALWARE', 'Generic.Malware.SP!dldspPk!g.CE62A187'),
+('05089296b3d29883a38b94e98890c122', 'TROJAN', 'W32.Clodcb9.Trojan.1656'),
+('0c63d8329999e1ad71a8c21d4c40931d', 'VIRUS', 'Gen:Variant.Graftor.21236'),
+('0c1425e57b5c5ffcb4069e39f72b1db7', 'TROJAN', 'W32.GroduA.Trojan'),
+('0eac03cbe5c5cb10cf4cdd2cced48979', 'TROJAN', 'W32.Clod9cd.Trojan.2298'),
+('0926ce1da8031d7efe050910a094c5ff', 'TROJAN', 'W32.Clod376.Trojan.bdb6'),
+('0600fd9b425ff9dcea9638958c4296e0', 'TROJAN', 'W32.Clod942.Trojan.424d'),
+('05d60805dfb73e3bbb78544df52c2de3', 'TROJAN', 'W32.Clod1b9.Trojan.a535'),
+('058ba6b7d8a1e23139be0deed2687bc8', 'VIRUS', 'Artemis!058BA6B7D8A1'),
+('0c6120dbac79e5c56988fd4617918cca', 'TROJAN', 'MW.Clod0c6.Trojan.120d'),
+('0488b8c742a3ab9cdd68404f96d5d89f', 'TROJAN', 'W32.Clod3eb.Trojan.3999'),
+('0666bd69e0b83f86bf78a0645d4714fc', 'TROJAN', 'W32.Clod1e1.Trojan.d91c'),
+('0e11ae3c9a9b1100af3d95b1dfdcfbfc', 'TROJAN', 'MW.Clod0e1.Trojan.1ae3'),
+('08826782ab57fb91531c2189a7b108f8', 'TROJAN', 'MW.Clod088.Trojan.2678'),
+('08f316a70f9416c5e7f3bf2e74867298', 'TROJAN', 'W32.Clodc8f.Trojan.72ca'),
+('08844af0616224965b2d07dd92876dcf', 'TROJAN', 'BAT.Trojan.Noshare.G'),
+('0caf68d0c020974e90f9637456fcf741', 'WORM', 'Worm/W32.Zhangpo.307205'),
+('0b197f9af6b0a23f18ff52dacdccd7e8', 'TROJAN', 'W32.IEMasterB.Trojan'),
+('0abd7fe4c48acff518c08b97da908f16', 'VIRUS', 'PeaceMan.2064.B'),
+('01ef8b1c06ef4cfde5652af829dd7723', 'TROJAN', 'W32.Clod3b5.Trojan.4d4f'),
+('0afc553c5d08c22978689bf28522f954', 'BACKDOOR', 'Backdoor.Bot.35655'),
+('020f522e7c6a858602cbfc478dee9406', 'TROJAN', 'MW.Clodd09.Trojan.5859'),
+('044d2c925420f9667512c4d82283b276', 'TROJAN', 'W32.CrypticB.Trojan'),
+('0b81db77d316f4675bba4ee982cb3a4e', 'TROJAN', 'Trojan.VB.AI'),
+('0c1748c0cfa7c966e28de551f5daad9e', 'TROJAN', 'W32.Clod4a5.Trojan.b486'),
+('0aeb668d40baac4d9b60ec084fb038c8', 'TROJAN', 'W32.Clodd33.Trojan.0d60'),
+('0f3447d97332f10813c3815322f02f73', 'TROJAN', 'Trojan.Pws.Ldpinch.QG'),
+('01e28765ca26b18706a86e61565cc86f', 'WORM', 'W32.MytobA1.Worm'),
+('0895cc3c5abeeec189431c9ed11fb307', 'TROJAN', 'Trojan.Hacktool.Sqlpass.A'),
+('04b60522753e205d541c0bea85b54850', 'TROJAN', 'W32.Clodee7.Trojan.cc45'),
+('04bc0800877934f23e67517bf38f3846', 'TROJAN', 'MW.Clod04b.Trojan.c080'),
+('022af44cca6f3188bef08a810968e40a', 'VIRUS', 'W32/FakeAlert.ZR2.gen!Eldorado'),
+('0ffd115a173a6987ab0097eac41be34c', 'TROJAN', 'Trojan.PWS.MSN.Hohack'),
+('07da6f77e970d54bd085b12c51848f10', 'TROJAN', 'W32.Clodd23.Trojan.e02d'),
+('0029d6de692f00af89e03a3e65b207b1', 'TROJAN', 'Trojan.Exploit.Vbs.Phel.AV'),
+('05c530c554fba91c670f2e8bbb230dcb', 'TROJAN', 'W32.Clod44f.Trojan.b2b8'),
+('05afdeb10c5c88c0cc7947e41f00e1b1', 'ADWARE', 'W32.FakeSecuritySDF.Adware'),
+('0002e34d7bc37ed784440556291943be', 'WORM', 'Win32.Worm.Mytob.DAT'),
+('06a2489d2f73f757f870a019fb4229b1', 'TROJAN', 'W32.Clod9a4.Trojan.b445'),
+('015bdfd2d708dad667f7dc6caa3cccb3', 'TROJAN', 'W32.Clodb4b.Trojan.386a'),
+('02f031aca70a4052a1fb6cd1f1bf7d8b', 'VIRUS', 'Diamond.608'),
+('0ecb14a6dc60c167ac438145ed8518f3', 'VIRUS', 'Generic.Win32.0ecb14a6dc!MD'),
+('01c53b31c036b3eb0c1e26dd96cd91cc', 'TROJAN', 'W32.Clod34f.Trojan.520e'),
+('0bb8c80d242d08b6bcb3f8db3dbf3b78', 'MALWARE', 'Generic.Malware.SM!spoe.EB9C90D5'),
+('082aeb9071825c0525a4eeeb9fcb4587', 'TROJAN', 'W32.GanioleO.Trojan'),
+('01cf11b5ae4ec1447c905c4026cd37a7', 'TROJAN', 'MW.Clod01c.Trojan.f11b'),
+('062ed1eeeb5d3d801e8130fdb70fe57b', 'MALWARE', 'LooksLike.Win32.Malware!C (v)'),
+('0b0555b2c93189a3961b788536a117e6', 'TROJAN', 'W32.Cloda4e.Trojan.1fa9'),
+('0102ae1e6df13a503f2da9dacdfdbf59', 'TROJAN', 'MW.Clod010.Trojan.2ae1'),
+('0d107414f2d657598be1ba32f7789a92', 'TROJAN', 'W32.Clod766.Trojan.e04f'),
+('0a94d5ead0f3e83b90d94032535dfbbd', 'TROJAN', 'Trojan.DisableErase.A'),
+('0a158aa92da222ab6bbc5252b13a423f', 'TROJAN', 'W32.Clod984.Trojan.07ea'),
+('04ca1d3fa462faade512dfb6e6883ddf', 'TROJAN', 'W32.Clodb1e.Trojan.cb34'),
+('0a040299fb106b733915b55cbb0ab70a', 'TROJAN', 'W32.Clod6d8.Trojan.1d46'),
+('03eb02e8411566fccc16cfb2db9c0004', 'TROJAN', 'W32.Clodd19.Trojan.0bb2'),
+('026e18d8131513c63373534b0c936285', 'TROJAN', 'W32.Clod8c9.Trojan.d2aa'),
+('063c08f93962e4317a73efd2c29a4053', 'TROJAN', 'W32.Clod65f.Trojan.15ea'),
+('0a568b043a52b5143f368c209401af88', 'VIRUS', 'Pojer.1941'),
+('00e527f9fb12d9f80b030b1085c51c77', 'TROJAN', 'W32.Clodae8.Trojan.22dd'),
+('0e0c61e8eab97534dcc1452023b8fe49', 'TROJAN', 'W32.TemplateAA.Trojan'),
+('07ebdf4ed63496b9484d14b7ca1831bc', 'TROJAN', 'W32.Clod59e.Trojan.489b'),
+('046d0e33d4f1c5bba184a8e422e9647a', 'TROJAN', 'MW.Clod046.Trojan.d0e3'),
+('0efd8c2e4c29851b61c791038a4eea6e', 'TROJAN', 'W32.Clod001.Trojan.6a9b'),
+('0e9e246aa1c86d3ce969447abeb7f536', 'TROJAN', 'W32.Clodbed.Trojan.1df4'),
+('06f5c659d3a6c27b65e8c102e55b10ba', 'TROJAN', 'W32.Clod551.Trojan.1849'),
+('0ecc5ba4982a33271cdc90d311fe40e2', 'TROJAN', 'W32.KlormirH.Trojan'),
+('06b4fe5544b585ff57db2c60d1415eb7', 'TROJAN', 'Trojan.Agent.AROC'),
+('070673e2bb6676d16627e9e8ef6bdd88', 'TROJAN', 'W32.Clodcf6.Trojan.6839'),
+('00c836c656afa377738b6583ca468f3f', 'VIRUS', 'W32.Sality.PE'),
+('0f7d8b241cb9c9889d15c861a76b2801', 'TROJAN', 'W32.Clodb8a.Trojan.1e78'),
+('01b3078ee5fc15c22447f6a4ae0c8f85', 'TROJAN', 'W32.Clod44f.Trojan.947c'),
+('0194a4b079f935c49f0e1b5d2e9e4cd4', 'TROJAN', 'W32.Clod42a.Trojan.456f'),
+('0a20604f8f9af7b297d493627928e1c2', 'TROJAN', 'W32.Clodc23.Trojan.a693'),
+('0f96c35be938ddda70bec08763c1a1c6', 'TROJAN', 'W32.Clod138.Trojan.90fb'),
+('0baacee3e377a9643858b078ba7e1c9a', 'TROJAN', 'Trojan.Horse.NX'),
+('03fc13ffeadd7f5e35bfe67dffdfcee8', 'TROJAN', 'W32.Clod7a3.Trojan.d7f5'),
+('04ad272a859cabfde8a97d033010c26b', 'TROJAN', 'W32.Clodead.Trojan.f67d'),
+('04111366f886c62aad7f32413367d065', 'TROJAN', 'W32.Clod8a3.Trojan.e475'),
+('0be40da6f779438f38dc3c571296f7d0', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan'),
+('0013dcf697760a9858bf102bd5ae18ba', 'DIALER', 'W32.PornDialerQKB.Trojan'),
+('0d749aec09b0d13924b791eb84d60222', 'TROJAN', 'MW.Clod0d7.Trojan.49ae'),
+('091462ffd7aee58d26e8a2213e1752eb', 'TROJAN', 'MW.Clod091.Trojan.462f'),
+('0f6964dc529938d2806f38695efa46da', 'VIRUS', 'W97M.Bonker.B'),
+('063af96c8c44b1d248af7e205dc604e7', 'TROJAN', 'W32.Clod682.Trojan.eb27'),
+('0cc3f27953d7ef567ae29186d8d72796', 'TROJAN', 'W32.Clodca1.Trojan.0f10'),
+('058975e03c210ed247e07bb1288ce6fb', 'TROJAN', 'Trojan.Generic.6689720'),
+('0ad29c4106be57e28b27e70c4336eb7b', 'TROJAN', 'W32.Clod26b.Trojan.3320'),
+('016a2130bbc28acb944db334a27cc55c', 'VIRUS', 'Jurassic.3763'),
+('066e51b3c560db0aedf6794059ee9b3e', 'VIRUS', 'WS.Reputation.1'),
+('0a464a9c0bdfcca0751ab4953f38ed83', 'TROJAN', 'W32.Clodbfe.Trojan.2983'),
+('09a75557e9478f59d8ad3457f57b5a5b', 'TROJAN', 'W32.Clodcaf.Trojan.2d67'),
+('0c50b973ff379647e51e5c4db27e882c', 'TROJAN', 'W32.Clod9b5.Trojan.a1d5'),
+('01535ad8efc562aead8e8553241f5c91', 'TROJAN', 'MW.Clod015.Trojan.35ad'),
+('0235ae5d95dce889cae20bb9e96ba0b5', 'TROJAN', 'W32.StuxnetQKY.Trojan'),
+('00070feb80aeb037fdeef4fc1ccf6a4a', 'TROJAN', 'W32.Clod99a.Trojan.67bb'),
+('042d00ff263c59d8f0c82ce719c87806', 'TROJAN', 'W32.Cloda0b.Trojan.16b4'),
+('064890b7d1a018620a01ffc930219722', 'TROJAN', 'W32.Clod99b.Trojan.70f5'),
+('089bca3a4401146049d29c2f2265e5b5', 'TROJAN', 'MW.Clodc47.Trojan.ed28'),
+('05be35280e90e484f7270c54b044fc9a', 'TROJAN', 'W32.Clod2e9.Trojan.e5f7'),
+('08a0394a85bbe5b5cf8cc88232d6878a', 'TROJAN', 'W32.Clod2de.Trojan.9166'),
+('09ae9fbbeff6bedc6e44a0d6d99d46fb', 'TROJAN', 'W32.Clod094.Trojan.e02c'),
+('0579b576c5978b28191562229237a8bd', 'TROJAN', 'W32.Clodd7d.Trojan.1289'),
+('0d45e72fbd00461ce8e840fbf5af7b39', 'TROJAN', 'W32.Clod1da.Trojan.57b1'),
+('00019322819480aec09da95c3321d864', 'VIRUS', 'Generic.Sdbot.BF739ED2'),
+('0f9bb0567a342a312d6db6fedccc96f1', 'TROJAN', 'MW.Clod0f9.Trojan.bb05'),
+('058abb0d207007a2c7f8e78856af10ab', 'TROJAN', 'W32.Clodc78.Trojan.d6db'),
+('01299ca291344ba549143a2987409f7f', 'TROJAN', 'W32.Clod73f.Trojan.38da'),
+('08ceefb95fd890980884463418bf7c99', 'TROJAN', 'W32.Clod88b.Trojan.3f1c'),
+('03f269f3d17d1669416c5e8a7e0622f8', 'TROJAN', 'MW.Clodb33.Trojan.14ab'),
+('05d7f5cb431e7e34a2aee9b1d920c669', 'TROJAN', 'MW.Clod05d.Trojan.7f5c'),
+('092ac971d04764f0160b229e01f6c5ad', 'TROJAN', 'W32.Clod366.Trojan.3833'),
+('0aaba47d51e4c29d85b067e2abde96d1', 'ASP', 'Backdoor.Asp.Ace.B'),
+('0cc4d14ed90760864a8d7aa9fe11ec92', 'DOWNLOADER', 'W32.Downloadervmx.Trojan'),
+('0e45c2e9f493292ea27d57b1971e074d', 'TROJAN', 'W32.Clod575.Trojan.d4e7'),
+('054c33b7fce588cb016e166d23efac18', 'TROJAN', 'W32.Cloda7d.Trojan.3cc0'),
+('0be0bfab5bd461a53e26b0d9b80c18c5', 'TROJAN', 'MW.Clodad5.Trojan.c24d'),
+('0e6549600017feb26a377230f5b098b6', 'TROJAN', 'W32.Clod061.Trojan.8762'),
+('017d8a52c0f04b67327372417f6b992f', 'TROJAN', 'W32.FamVT.Kykymber.P.Trojan'),
+('09e1135ce289fd00e65a5ab631bb4c3c', 'TROJAN', 'W32.ScacheExecLnrF.Trojan'),
+('0d8983bd6d6d6a8cef7c7f17b9a10cea', 'TROJAN', 'Dos.Clod0d8.Trojan.983b'),
+('07fd1899ea5375addbf9e3847d66cfff', 'BACKDOOR', 'Backdoor.Eggdrop.AI'),
+('09ce5599f0bf84d2ce84b72c53802b11', 'TROJAN', 'Trojan.Generic.9907350'),
+('075d4aeade36bcc59e2d37d0e21a8867', 'VIRUS', 'Gen:Variant.Renos.37'),
+('0320662d46b33e6f1d09f15b5ef477cf', 'TROJAN', 'W32.Clodf5d.Trojan.7736'),
+('0434021c2f691424024f78623660460a', 'TROJAN', 'MW.Clod3e7.Trojan.6bc6'),
+('05bede6a9c704da9f910132aa5991d86', 'TROJAN', 'W32.GenericAgentA.Trojan'),
+('04f45058aced100d4e5606e6fe3242a7', 'TROJAN', 'W32.Cloda43.Trojan.011f'),
+('0baada989e17e7d049040d2732eb4dfe', 'TROJAN', 'W32.Clodba5.Trojan.d775'),
+('06c8574b2eca0fe2001252b7c0e6209d', 'TROJAN', 'W32.Clodde8.Trojan.5776'),
+('062f4497e115c6a1c91c15f38ee8cf35', 'VIRUS', 'Packed.Win32.Zcrypt.3!O'),
+('0c8e23cef9baf33d3025d925636cf85c', 'TROJAN', 'Doc.Clod0c8.Trojan.e23c'),
+('0e3e13292540b823c8cabfa7c326711f', 'TROJAN', 'W32.Clod3a0.Trojan.d8d9'),
+('0a8b44bf42d642b9db5861fc3ab4317c', 'TROJAN', 'W32.Cloda88.Trojan.97a7'),
+('0f5b5482e857019263360725ac7a51e6', 'TROJAN', 'W32.Clod003.Trojan.ca80');
+INSERT INTO signature(signature, type, extended_type) VALUES ('1e580212a3cc7b1df648d80eaa00e0e5', 'TRIAL', 'PruebaVirus');

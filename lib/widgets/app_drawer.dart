@@ -196,7 +196,6 @@ class AppDrawer extends StatelessWidget {
                   DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
                   DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
                   DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
-                  DropDownColorItem(color: Color.fromARGB(255, 158, 21, 124))
                 ],
                 onChanged: (value) {
                   context.read<StyleProvider>().changeThemeColor(value!);
