@@ -57,7 +57,11 @@ class AnalysisProvider extends ChangeNotifier {
           notifyListeners();
         }
       }
+<<<<<<< HEAD
     } else {
+=======
+    } else { //En los dispositivos que no reuquieren ningun permiso:
+>>>>>>> 1065129d24558d47f2efe6c39994712a9c4a9e40
       await AppEssentials.scanDir(Directory(mainDirectory), folders);
 
       AppEssentials.dev!.last_scan = DateTime.now();

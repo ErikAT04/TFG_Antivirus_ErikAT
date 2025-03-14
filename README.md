@@ -1,6 +1,8 @@
 # Magik Antivirus - Proyecto de Desarrollo de Aplicaciones Multiplataforma 
 Trabajo de fin de grado de Erik Amo, basado en el Análisis de Malware por medio de la **detección basada en firmas**.
 
+[Enlace a la documentación de la aplicación](https://erikat04.github.io/magik_antivirus_documentation/)
+
 ## Objetivos del proyecto
 - Aprender a manipular archivos de los distintos sistemas operativos, creándolos, editándolos y borrándolos
 - Ser capaz de desplegar una aplicación que, con una única versión de código, pueda operar correctamente en Android, iOS, MacOS, Windows y Linux.
@@ -52,3 +54,40 @@ Para el desarrollo de este trabajo, he utilizado lo siguiente:
 - **Base de datos Local - SQLite:** Gestor de Bases de Datos Relacionales que permite guardar toda su información en un archivo local. Muy ágil para guardar datos de forma local en dispositivos móviles y de escritorio
 - **Base de datos 'En red' - MySQL:** Gestor de Bases de Datos Relacionales de Oracle que permite su acceso desde dispositivos de forma remota, bastante útil para acceder a bases de datos en red.
 
+## Estructura del Proyecto
+Las carpetas con todos los ficheros del proyecto están organizados de la siguiente forma:
+- **Data Access**: Son los ficheros con todas las clases que realizan operaciones CRUD a una base de datos, algunas de ellas a través de un servicio API. Todas ellas implementan una interfaz DAO para marcar sus recursos principales:
+```dart
+abstract class DAOInterface<T, V>{ //T es el objeto a obtener y V es el tipo de su identificador en la base de datos
+  ///Función de creación en BD
+  Future<bool> insert(T item) async{
+    return true;
+  }
+  ///Función de actualización en BD
+  Future<bool> update(T item) async{
+    return true;
+  }
+  ///Función de obtención en BD
+  Future<T?> get(V value) async{
+    return null;
+  }
+  ///Función de listado en BD
+  Future<List<T>> list() async{
+    return List.empty();
+  }
+  ///Función de borrado en BD
+  Future<bool> delete(T item) async{
+    return true;
+  }
+}
+```
+- **L10n**: Carpeta que contiene los archivos de traducción de la aplicación. Todos ellos se forman por conjuntos de pares clave valor, donde las claves son iguales en todos los ficheros y el valor es un texto traducido al idioma deseado.
+- **Model**: Contiene las clases de datos principales de la aplicación.
+- **Views**: Guarda las pantallas de la aplicación.
+- **ViewModels**: El punto medio entre la vista y los modelos: Guarda recursos compartidos y persistentes por toda la aplicación y que, por medio de listeners, monitorea los datos que se ven en las diferentes pantallas.
+- **Utils**: Guarda dos clases con información para el correcto funcionamiento de la aplicación.
+  - *Database Utils*: Guarda dos clases con métodos estáticos para acceder a las distintas bases de datos: 
+    - ***APIUtils***: Guarda las funciones CRUD esenciales de la API, además de la URL principal para acceder a ésta.
+    - ***SQLiteUtils***: Tiene un atributo para acceder a la base de datos y una función para iniciar la base de datos al principio de la aplicación
+  - *App Essentials*: Consta de diferentes funciones y atributos estáticos los cuales, en su mayoría, se ejecutan al principio de la aplicación y sirven para iniciar correctamente los proveedores ViewModel.
+- **Widgets**: Hay recursos que aparecen instanciados en varias ocasiones o que, por legibilidad de código, se separan de sus respectivas pantallas. Por ello, esta carpeta guarda las clases de recursos.

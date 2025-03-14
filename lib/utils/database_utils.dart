@@ -58,12 +58,15 @@ class APIReaderUtils {
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
   static String apiRESTLink = "localhost:8000";
+<<<<<<< HEAD
   //static String apiRESTLink = "192.168.1.56:8000";
+=======
+>>>>>>> 1065129d24558d47f2efe6c39994712a9c4a9e40
 
   ///Token de la API
   ///
   ///La API está protegida de modo que solo pueden acceder a ella los usuarios registrados en la aplicación
-  static String apiToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcnVlYmFAZ21haWwuY29tIn0.qyKzvQjkFkTwZTcic364RKcujkmGO3-2i2G-PV8Q4n8";
+  static String apiToken = "";
 
   static void getToken(String username, String password) async {
     Uri url = Uri.http(apiRESTLink, "api/token");
