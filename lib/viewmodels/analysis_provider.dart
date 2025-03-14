@@ -7,7 +7,7 @@ import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 ///Provider del apartado de análisis de ficheros
-class AnalysisProvider extends ChangeNotifier{
+class AnalysisProvider extends ChangeNotifier {
   ///Estado del "hilo"
   ///
   ///Marca si el análisis de archivos sigue siendo ejecutado o no
@@ -23,39 +23,47 @@ class AnalysisProvider extends ChangeNotifier{
   void analizarArchivos() async {
     isIsolateActive = true;
     notifyListeners();
-    // Verificar el estado del permiso
-    if (await Permission.manageExternalStorage.status.isGranted) {
-      // Permiso ya concedido
-      Logger().d("Permiso ya concedido");
-      Set<String> folders =
-          (await ForbFolderDAO().list()).map((folder) => folder.route).toSet();
+    Set<String> folders =
+        (await ForbFolderDAO().list()).map((folder) => folder.route).toSet();
 
-      String mainDirectory = (Platform.isAndroid)
-          ? "/storage/emulated/0"
-          : (Platform.isWindows)
-              ? "C:\\"
-              : "/";
+    String mainDirectory = (Platform.isAndroid)
+        ? "/storage/emulated/0"
+        : (Platform.isWindows)
+            ? "C:\\"
+            : "/";
+    if (Platform.isAndroid) {
+      // Verificar el estado del permiso
+      if (await Permission.manageExternalStorage.status.isGranted) {
+        // Permiso ya concedido
+        Logger().d("Permiso ya concedido");
 
+        await AppEssentials.scanDir(Directory(mainDirectory), folders);
+
+        AppEssentials.dev!.last_scan = DateTime.now();
+        await DeviceDAO().update(AppEssentials.dev!);
+        isIsolateActive = false;
+        notifyListeners();
+      } else {
+        // Solicitar permiso
+        Logger().d("Solicitando permiso de almacenamiento...");
+        if (await Permission.manageExternalStorage.request().isGranted) {
+          // Permiso concedido
+          Logger().d("Permiso concedido");
+          analizarArchivos();
+        } else {
+          // Permiso denegado
+          Logger().d("Permiso denegado");
+          isIsolateActive = false;
+          notifyListeners();
+        }
+      }
+    } else {
       await AppEssentials.scanDir(Directory(mainDirectory), folders);
 
       AppEssentials.dev!.last_scan = DateTime.now();
       await DeviceDAO().update(AppEssentials.dev!);
       isIsolateActive = false;
       notifyListeners();
-    } else {
-      // Solicitar permiso
-      Logger().d("Solicitando permiso de almacenamiento...");
-      if (await Permission.manageExternalStorage.request().isGranted) {
-        // Permiso concedido
-        Logger().d("Permiso concedido");
-        analizarArchivos();
-      } else {
-        // Permiso denegado
-        Logger().d("Permiso denegado");
-        isIsolateActive = false;
-        notifyListeners();
-      }
     }
   }
-
 }
