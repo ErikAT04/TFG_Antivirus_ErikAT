@@ -1,13 +1,10 @@
-import 'dart:io';
 import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
 import 'package:magik_antivirus/viewmodels/language_provider.dart';
 import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:path/path.dart';
+import 'package:magik_antivirus/views/app_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:magik_antivirus/utils/database_utils.dart';
 import 'package:magik_antivirus/views/main_view.dart';
 import 'package:magik_antivirus/views/login_view.dart';
 import 'package:magik_antivirus/utils/app_essentials.dart';
@@ -25,20 +22,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SQLiteUtils.cargardb();
-  await AppEssentials.loadSigs();
-  Directory dir = Directory(join(
-      (await getApplicationDocumentsDirectory()).path, "MagikAV", "MyFiles"));
-  if (!dir.existsSync()) {
-    dir.createSync(recursive: true);
-  }
-  AppEssentials.quarantineDirectory = dir;
   await AppEssentials.getProperties();
-  await SQLiteUtils.startDB();
-  AppEssentials.registerThisDevice();
+  UserDataProvider provider = UserDataProvider();
+  provider.loadAssets();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => UserDataProvider()),
+      ChangeNotifierProvider(create: (context) => provider),
       ChangeNotifierProvider(create: (context) => StyleProvider()),
       ChangeNotifierProvider(
         create: (context) => AnalysisProvider(),
@@ -81,9 +70,11 @@ class MainApp extends StatelessWidget {
       theme: context.watch<StyleProvider>().isLightModeActive
           ? context.watch<StyleProvider>().lightMode
           : context.watch<StyleProvider>().darkMode,
-      home: (context.watch<UserDataProvider>().thisUser == null)
-          ? LogInView()
-          : Mainview(), //Si no se carga un usuario por defecto, se va al inicio de sesión.
+      home: !(context.watch<UserDataProvider>().assetsLoaded)
+          ? AppLoadingView()
+          : (context.watch<UserDataProvider>().thisUser == null)
+              ? LogInView()
+              : Mainview(), //Si no se carga un usuario por defecto, se va al inicio de sesión.
     );
   }
 }

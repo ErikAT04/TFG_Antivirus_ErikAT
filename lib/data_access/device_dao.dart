@@ -32,7 +32,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
   @override
   Future<Device?> get(String value) async {
     try {
-      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/${value}");
+      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/${value}");
       print(uri);
       var body = await APIReaderUtils.getData(uri);
       if (body != "Dispositivo no encontrado") {
@@ -59,7 +59,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
   @override
   Future<bool> insert(Device item) async {
     try {
-      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
+      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/insert");
       var body = await APIReaderUtils.postData(uri, item);
       return body == convert.jsonEncode(item.toAPI());    
       } catch (e) {
@@ -75,7 +75,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
   Future<List<Device>> list() async {
     List<Device> list = [];
     try {
-      var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/");
+      var uri = Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/");
       var body = await APIReaderUtils.getData(uri);
       var mapList = convert.jsonDecode(body);
       for (var map in mapList) {
@@ -100,7 +100,7 @@ class DeviceDAO implements DAOInterface<Device, String> {
   Future<bool> update(Device item) async {
     try {
       var uri =
-          Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/${item.id!}/update");
+          Uri.http(APIReaderUtils.apiRESTLink, "$routerUrl/${item.id!}/update");
       var body = await APIReaderUtils.putData(uri, item);
       return body == convert.jsonEncode(item.toAPI());
     } catch (e) {

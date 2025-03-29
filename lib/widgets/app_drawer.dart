@@ -9,8 +9,6 @@ import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:magik_antivirus/viewmodels/language_provider.dart';
 import 'package:magik_antivirus/views/forbidden_folders_view.dart';
 import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
-import 'package:magik_antivirus/widgets/dropdown_color_menu_item.dart';
-
 
 ///Drawer de la aplicación
 ///

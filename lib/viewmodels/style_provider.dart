@@ -107,6 +107,7 @@ class StyleProvider extends ChangeNotifier {
         ),
       )),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: colorsMap["appDark"],
         selectedItemColor: colorsMap["appLight"],
         unselectedItemColor: colorsMap["appLight"],

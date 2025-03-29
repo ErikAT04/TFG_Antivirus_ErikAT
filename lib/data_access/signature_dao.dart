@@ -12,7 +12,7 @@ class SignatureDAO {
   ///Devuelve una lista de firmas de la base de datos
   Future<List<Signature>> getSigs() async {
     List<Signature> sigs = [];
-    var uri = Uri.https(APIReaderUtils.apiRESTLink, "api/signatures/");
+    var uri = Uri.http(APIReaderUtils.apiRESTLink, "api/signatures/");
     var body = await APIReaderUtils.getData(uri);
     if (body != "noBody") {
       var json = convert.jsonDecode(body);

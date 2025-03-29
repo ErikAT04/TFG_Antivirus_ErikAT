@@ -1,6 +1,8 @@
 # Magik Antivirus - Proyecto de Desarrollo de Aplicaciones Multiplataforma 
 Trabajo de fin de grado de Erik Amo, basado en el Análisis de Malware por medio de la **detección basada en firmas**.
 
+<img alt="Tiempo de Código:" src="https://img.shields.io/endpoint?url=https://wakapi.dev/api/compat/shields/v1/ByErikAT/interval:any/project:tfg_antivirus_erikat&label=Tiempo%20Utilizado&color=blue">
+
 [Enlace a la documentación de la aplicación](https://erikat04.github.io/magik_antivirus_documentation/)
 
 ## Objetivos del proyecto

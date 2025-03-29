@@ -11,7 +11,6 @@ import 'package:magik_antivirus/model/device.dart';
 import 'package:magik_antivirus/model/signature.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/data_access/file_dao.dart';
-import 'package:magik_antivirus/data_access/user_dao.dart';
 import 'package:magik_antivirus/data_access/device_dao.dart';
 import 'package:magik_antivirus/data_access/signature_dao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -76,10 +75,6 @@ class AppEssentials {
     if (!prefs.containsKey("colorR")) {
       await newPreferences();
     }
-    if (prefs.getBool("isUserRegistered") != null &&
-        prefs.getBool("isUserRegistered")!) {
-      user = await UserDAO().get(prefs.getString("userName")!);
-    }
     int r = prefs.getInt("colorR") ?? 14;
     int g = prefs.getInt("colorG") ?? 54;
     int b = prefs.getInt("colorB") ?? 111;
@@ -117,10 +112,10 @@ class AppEssentials {
   ///- Si existe, guarda en el dispositivo estático la ocurrencia
   ///
   ///- Si no existe, la crea con todos los datos necesarios
-  static void registerThisDevice() async {
+  static Future<void> registerThisDevice() async {
     DeviceInfoPlugin plugin = DeviceInfoPlugin();
     String dname = switch (Platform.operatingSystem) {
-      "android" => (await plugin.androidInfo).model,
+      "android" => (await plugin.androidInfo).host,
       "ios" => (await plugin.iosInfo).name,
       "macos" => (await plugin.macOsInfo).computerName,
       "linux" => (await plugin.linuxInfo).name,
@@ -142,6 +137,7 @@ class AppEssentials {
       // TODO: Handle this case.
       String() => throw UnimplementedError()
     };
+    //thisdev.id = crypto.sha256.convert(utf8.encode(thisdev.id!)).toString();
     Device? devDB = await DeviceDAO().get(thisdev.id!);
     if (devDB != null) {
       dev = devDB;
@@ -151,6 +147,18 @@ class AppEssentials {
     }
   }
 
+  ///Directorio Principal del dispositivo
+  ///
+  ///Dependiendo del dispositivo, el directorio raíz puede ser uno u otro:
+  ///- Android: /storage/emulated/0
+  ///- Linux y MacOS: /
+  ///- Windows: C:\\
+  static String mainDirectory = (Platform.isAndroid)
+      ? "/storage/emulated/0"
+      : (Platform.isWindows)
+          ? "C:\\"
+          : "/";
+
   ///Función de escaneo de directorios:
   ///
   ///Mira si el File que está mirando es un directorio y si su acceso está o no prohibido
@@ -158,7 +166,7 @@ class AppEssentials {
   ///Si es un archivo, imprime su path (esto es solo de prueba de momento)
   ///
   ///Si es un directorio y tiene acceso a él, llama otra vez a su función, esta vez desde este nuevo directorio
-  static Future<void> scanDir(Directory d, Set<String> forbiddenPaths) async {
+  static Future<void> scanDir(Directory d, List<String> forbiddenPaths) async {
     await for (var f in d.list(recursive: false)) {
       if (f is File) {
         try {
