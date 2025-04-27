@@ -39,6 +39,8 @@
     "mightTakeaWhile":"It might take a while",
 
     "analyseBttContext":"Press here to analyse your device",
+    "analyseOneFolderBtt": "Analyse a folder",
+    "analyseOneFolderBttContext":"Press here to analyse a single folder",
 
     "vault":"File Vault",
     "vaultLow":"Vault",

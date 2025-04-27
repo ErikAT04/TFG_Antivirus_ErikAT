@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -28,21 +27,7 @@ class AnalysisProvider extends ChangeNotifier {
   ///Si este acepta, recorrerá los archivos del dispositivo.
   ///
   ///Al estar en el notifier y ser una función asíncrona, es posible hacer otras tareas en el equipo mientras esta se lleva a cabo
-  void analizarArchivos() async {
-    finishedThreads = 0;
-
-    List<Directory> dirs = [];
-
-    var filesInRoot = Directory(AppEssentials.mainDirectory).listSync();
-
-    for (var f in filesInRoot) {
-      if (f is Directory) {
-        dirs.add(f);
-      }
-    }
-
-    numThreads = dirs.length;
-
+  void analizarArchivos(String? custom_dir) async {
     isIsolateActive = true;
     notifyListeners();
     folders =
@@ -52,16 +37,8 @@ class AnalysisProvider extends ChangeNotifier {
       if (await Permission.manageExternalStorage.status.isGranted) {
         // Permiso ya concedido
         Logger().d("Permiso ya concedido");
-        for (Directory d in dirs) {
-          compute(scanDirectoryInIsolate, d.path).then((_) {
-            finishedThreads++;
-            checkIsolatesFinished();
-          }).catchError((e) {
-            Logger().e("Error: $e");
-            isIsolateActive = false;
-            notifyListeners();
-          });
-        }
+
+        startAnalysis(custom_dir);
 
         AppEssentials.dev!.last_scan = DateTime.now();
         await DeviceDAO().update(AppEssentials.dev!);
@@ -71,7 +48,7 @@ class AnalysisProvider extends ChangeNotifier {
         if (await Permission.manageExternalStorage.request().isGranted) {
           // Permiso concedido
           Logger().d("Permiso concedido");
-          analizarArchivos();
+          analizarArchivos(custom_dir);
         } else {
           // Permiso denegado
           Logger().d("Permiso denegado");
@@ -80,16 +57,8 @@ class AnalysisProvider extends ChangeNotifier {
         }
       }
     } else {
-      for (Directory d in dirs) {
-        compute(scanDirectoryInIsolate, d.path).then((_) {
-          finishedThreads++;
-          checkIsolatesFinished();
-        }).catchError((e) {
-          Logger().e("Error: $e");
-          isIsolateActive = false;
-          notifyListeners();
-        });
-      }
+      startAnalysis(custom_dir);
+
       AppEssentials.dev!.last_scan = DateTime.now();
       await DeviceDAO().update(AppEssentials.dev!);
     }
@@ -100,10 +69,40 @@ class AnalysisProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> scanDirectoryInIsolate(String param) async {
-    String dirPath = param;
+  void startAnalysis(String? custom_dir) async {
+    List<Directory> dirs = [];
 
-    Directory d = Directory(dirPath);
-    await AppEssentials.scanDir(d, folders);
+    var filesInRoot =
+        Directory(custom_dir ?? AppEssentials.mainDirectory).listSync();
+
+    for (var f in filesInRoot) {
+      if (f is Directory) {
+        dirs.add(f);
+      }
+    }
+
+    finishedThreads = 0;
+
+    numThreads = dirs.length +
+        1; // Tantos "hilos" como directorios haya +1 para el directorio raíz
+
+    for (Directory d in dirs) {
+      AppEssentials.scanDir(d, folders).then((_) {
+        finishedThreads++;
+        checkIsolatesFinished();
+      }).catchError((e) {
+        Logger().e("Error: $e");
+        isIsolateActive = false;
+        notifyListeners();
+      });
+    }
+
+    for (var file in filesInRoot) {
+      if (file is File) {
+        await AppEssentials.scanFile(file);
+      }
+    }
+    finishedThreads++;
+    checkIsolatesFinished();
   }
 }

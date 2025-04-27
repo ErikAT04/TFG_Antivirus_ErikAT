@@ -40,6 +40,8 @@
     "mightTakeaWhile":"Cela pourrait prendre un certain temps",
 
     "analyseBttContext":"Cliquez ici pour analyser l'appareil",
+    "analyseOneFolderBtt": "Analyser un dossier",
+    "analyseOneFolderBttContext":"Cliquez ici pour analyser un seul dossier",
 
     "vault": "Coffre de fichiers",
     "vaultLow": "Coffre",

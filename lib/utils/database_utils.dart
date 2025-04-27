@@ -39,7 +39,6 @@ class SQLiteUtils {
     DatabaseFactory dbfact;
     sqfliteFfiInit();
     if (!(Platform.isAndroid || Platform.isIOS)) {
-      //Llamo a la base de datos de databaseFactoryFfi para crear la BD
       dbfact = databaseFactoryFfi;
     } else {
       dbfact = databaseFactory;
@@ -57,7 +56,7 @@ class APIReaderUtils {
   ///Enlace estático al API Rest
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
-  static String apiRESTLink = "localhost:8000";
+  static String apiRESTLink = "10.46.2.239:8000";
 
   ///Token de la API
   ///

@@ -1,5 +1,7 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
+import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -29,23 +31,62 @@ class AnalysisViewState extends State<AnalysisView> {
     bool isActive = context.watch<AnalysisProvider>().isIsolateActive;
     if (!isActive) {
       return Center(
-          child: Container(
-        width: 150,
-        height: 150,
-        child: ElevatedButton(
-          onPressed: () {
-            scan();
-          },
-          child: MergeSemantics(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.shield, size: 30),
-                Text(AppLocalizations.of(context)!.analyse),
-              ],
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 150,
+            height: 150,
+            child: ElevatedButton(
+              onPressed: () {
+                scan(null);
+              },
+              child: MergeSemantics(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.shield, size: 30),
+                    Text(AppLocalizations.of(context)!.analyse),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+          SizedBox(height: 20),
+          Container(
+            width: 200,
+            height: 50,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: context.watch<StyleProvider>().colorsMap[
+                    (context.watch<StyleProvider>().isLightModeActive)
+                        ? "appDark"
+                        : "white"],
+                foregroundColor: context.watch<StyleProvider>().colorsMap[
+                    (context.watch<StyleProvider>().isLightModeActive)
+                        ? "white"
+                        : "appDark"],
+              ),
+              onPressed: () async {
+                String? path = await FilePicker.platform.getDirectoryPath();
+                if (path != null) {
+                  scan(path);
+                }
+              },
+              child: MergeSemantics(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.analyseOneFolderBtt,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
       ));
     } else {
       return Center(
@@ -65,7 +106,7 @@ class AnalysisViewState extends State<AnalysisView> {
   ///Función de escaneo de ficheros del dispositivo
   ///
   ///Si necesita algún tipo de permiso del SO, lo pide (Permissions plugin)
-  void scan() async {
-    context.read<AnalysisProvider>().analizarArchivos();
+  void scan(String? path) async {
+    context.read<AnalysisProvider>().analizarArchivos(path);
   }
 }

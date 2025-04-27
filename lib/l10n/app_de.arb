@@ -39,6 +39,8 @@
     "mightTakeaWhile":"Es kann eine Weile dauern",
 
     "analyseBttContext":"Klicken Sie hier, um das Gerät zu analysieren",
+    "analyseOneFolderBtt":"Einen Ordner analysieren",
+    "analyseOneFolderBttContext":"Klicken Sie hier, um einen einzelnen Ordner zu analysieren",
 
     "vault":"Dateispeicher",
     "vaultLow":"Speicher",

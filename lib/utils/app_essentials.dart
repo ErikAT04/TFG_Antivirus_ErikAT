@@ -137,7 +137,7 @@ class AppEssentials {
       // TODO: Handle this case.
       String() => throw UnimplementedError()
     };
-    //thisdev.id = crypto.sha256.convert(utf8.encode(thisdev.id!)).toString();
+    thisdev.id = crypto.sha256.convert(utf8.encode(thisdev.id!)).toString();
     Device? devDB = await DeviceDAO().get(thisdev.id!);
     if (devDB != null) {
       dev = devDB;
@@ -169,22 +169,7 @@ class AppEssentials {
   static Future<void> scanDir(Directory d, List<String> forbiddenPaths) async {
     await for (var f in d.list(recursive: false)) {
       if (f is File) {
-        try {
-          var bytes = await f.readAsBytes();
-          String s = md5.convert(bytes).toString();
-          if (sigs.map((sig) => sig.signature).toList().contains(s)) {
-            Signature? signature = null;
-            for (var sig in sigs) {
-              if (sig.signature == s) {
-                signature = sig;
-              }
-            }
-            putInQuarantine(f, signature!);
-          }
-          Logger().d("${f.path} : $s");
-        } catch (e) {
-          Logger().e("Error de Fichero en Uso: $e");
-        }
+        await scanFile(f);
       } else if (f is Directory && !forbiddenPaths.contains(f.path)) {
         try {
           await scanDir((Directory(f.path)), forbiddenPaths);
@@ -192,6 +177,25 @@ class AppEssentials {
           Logger().e("Error de directorio: $e");
         }
       }
+    }
+  }
+
+  static Future<void> scanFile(File f) async {
+    try {
+      var bytes = await f.readAsBytes();
+      String s = md5.convert(bytes).toString();
+      if (sigs.map((sig) => sig.signature).toList().contains(s)) {
+        Signature? signature = null;
+        for (var sig in sigs) {
+          if (sig.signature == s) {
+            signature = sig;
+          }
+        }
+        putInQuarantine(f, signature!);
+      }
+      Logger().d("${f.path} : $s");
+    } catch (e) {
+      Logger().e("Error de Fichero en Uso: $e");
     }
   }
 
@@ -230,14 +234,20 @@ class AppEssentials {
 
   ///Función de puesta en cuarentena
   static void putInQuarantine(File f, Signature sig) async {
+    //Se encripta la ruta del archivo. Se usará como nuevo nombre del archivo en cuarentena.
     String pathSHA = crypto.sha256
         .convert(utf8.encode("${basename(f.path)} ${DateTime.now()}"))
         .toString();
+
+    //Se crea el archivo en cuarentena, con su ruta (directorio de archivos en cuarentena) y nombre
     File file = await File(join(quarantineDirectory.path, pathSHA));
+
+    //Se leen los bytes del archivo original, se codifican en base64 y se escriben en el nuevo archivo.
     var fileInside = await f.readAsBytes();
     file = await file.writeAsString(base64Encode(fileInside));
     await file.create();
 
+    //Se crea el objeto SysFile que va a ser guardado en la BD
     SysFile sysFile = SysFile(
         name: basename(f.path),
         route: f.path,
@@ -248,10 +258,12 @@ class AppEssentials {
 
     await FileDAO().insert(sysFile);
 
+    //Se borra el archivo original
     await f.delete();
   }
 
   ///Mapa que guarda la frase que mandará la notificación, dependiendo del idioma
+  ///Como no se accede al contexto, no se puede usar AppLocalizations desde aquí
   static Map<String, String> quarantinedFile(String filename) => {
         "es": "El archivo '$filename' ha sido puesto en cuarentena",
         "en": "File '$filename' has been quarantined",
@@ -260,6 +272,7 @@ class AppEssentials {
       };
 
   ///Mapa que guarda el título de la notificación dependiendo del idioma
+  ///Como no se accede al contexto, no se puede usar AppLocalizations desde aquí
   static Map<String, String> quarantine = {
     "es": "Archivo en cuarentena",
     "en": "File quarantined",
@@ -269,11 +282,12 @@ class AppEssentials {
 
   ///Función de restauración del archivo en cuarentena
   static Future<void> getOutOfQuarantine(SysFile s) async {
-    File file = File(s.route);
-    File quarantined = File(s.newRoute);
+    File file = File(s.route); //"Archivo" en su ruta original
+    File quarantined = File(s.newRoute); //Archivo en cuarentena
 
     var bytes = await quarantined.readAsString();
 
+    //Se decodifica el archvo en cuarentena y se escriben sus bytes en la ruta original
     file = await file.writeAsBytes(base64Decode(bytes));
     await file.create();
 

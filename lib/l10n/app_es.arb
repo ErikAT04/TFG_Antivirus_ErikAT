@@ -39,6 +39,8 @@
     "mightTakeaWhile":"Puede tardar un rato",
 
     "analyseBttContext":"Pulse aquí para analizar el dispositivo",
+    "analyseOneFolderBtt": "Analizar una carpeta",
+    "analyseOneFolderBttContext":"Pulse aquí para analizar una sola carpeta",
 
     "vault":"Baúl de Archivos",
     "vaultLow":"Baúl",
