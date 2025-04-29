@@ -52,6 +52,8 @@
     "eraseFile":"Datei Löschen",
     "fileErased":"Datei erfolgreich gelöscht",
     "fileRestored":"Datei erfolgreich wiederhergestellt",
+    "fileSelected":"ausgewählte Datei",
+    "filesSelected":"ausgewählte Dateien",
 
     "fileList":"Dateiliste",
     "devlist":"Geräteliste",

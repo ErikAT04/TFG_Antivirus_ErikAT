@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/file.dart';
+import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:magik_antivirus/widgets/dialogs.dart';
 import 'package:magik_antivirus/data_access/file_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 ///Vista del baúl de archivos en cuarentena
 class AppVault extends StatefulWidget {
@@ -31,6 +33,8 @@ class AppVaultState extends State<AppVault> {
   ///Si el usuario pulsa sobre uno de ellos, aparecerá un pop up con información del archivo, como la ruta en la que se encontraba, el malware detectado y otros. Si pulsa al botón de Restaurar archivo, este desaparecerá de la lista y el programa lo sacará de su cuarentena.
   @override
   Widget build(BuildContext context) {
+    List<SysFile> selectedFiles =
+        context.watch<UserDataProvider>().selectedFiles;
     return Center(
       child: Column(
         children: [
@@ -46,20 +50,43 @@ class AppVaultState extends State<AppVault> {
                           itemBuilder: (context, index) {
                             SysFile file = list[index];
                             return GestureDetector(
+                              onLongPress: () {
+                                if (selectedFiles.isEmpty) {
+                                  context
+                                      .read<UserDataProvider>()
+                                      .addIntoFiles(file);
+                                }
+                              },
                               onTap: () async {
-                                await showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        FileContext(file: file));
-                                setState(() {
-                                  list = [];
-                                });
-                                loadList();
+                                if (selectedFiles.isEmpty) {
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          FileContext(file: file));
+                                  setState(() {
+                                    list = [];
+                                  });
+                                  loadList();
+                                }
                               },
                               child: Card(
                                 margin: EdgeInsets.all(5),
                                 child: ListTile(
-                                  leading: Icon(Icons.file_open),
+                                  leading: (selectedFiles.isEmpty)
+                                      ? Icon(Icons.file_open)
+                                      : Checkbox(
+                                          value: (selectedFiles.contains(file)),
+                                          onChanged: (val) {
+                                            if (val!) {
+                                              context
+                                                  .read<UserDataProvider>()
+                                                  .addIntoFiles(file);
+                                            } else {
+                                              context
+                                                  .read<UserDataProvider>()
+                                                  .removeFromFiles(file);
+                                            }
+                                          }),
                                   title: Text(file.name),
                                   subtitle: Text(file.route),
                                 ),

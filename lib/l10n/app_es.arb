@@ -52,6 +52,8 @@
     "eraseFile":"Borrar Archivo",
     "fileErased":"Archivo eliminado correctamente",
     "fileRestored":"Archivo restaurado correctamente",
+    "fileSelected":"archivo seleccionado",
+    "filesSelected":"archivos seleccionados",
 
     "fileList":"Lista de archivos",
     "devlist":"Lista de dispositivos",

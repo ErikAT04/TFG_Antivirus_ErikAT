@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
 import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class AnalysisView extends StatefulWidget {
 
 ///Estado de la vista Análisis:
 class AnalysisViewState extends State<AnalysisView> {
+
   ///Booleana que marca si la ventana se encuentra haciendo algo en ese momento
 
   ///String que informa al usuario del estado de su escaneo (Actualmente sin uso)

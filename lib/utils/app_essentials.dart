@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter_device_name/flutter_device_name.dart';
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
 import 'package:crypto/crypto.dart';
@@ -21,11 +22,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 ///
 ///El motivo por el que están aquí es o para ayudar a los Provider antes de cargarlo y durante su uso.
 class AppEssentials {
-  ///Usuario estático
-  ///
-  ///Este usuario se guardará para, cuando se inicialice el programa, pasar su información al provider
-  static User? user;
-
   ///Preferencias de la aplicación
   ///
   ///Guardará y gestionará las preferencias de la aplicación, haciendo las operaciones CRUD de las bases de datos
@@ -83,8 +79,6 @@ class AppEssentials {
 
   static Future<void> newPreferences() async {
     await prefs.setBool("isUserRegistered", false);
-    await prefs.setString("userName", "");
-    await prefs.setString("userPass", "");
     await prefs.setString("chosenLang", "es");
     await prefs.setString("themeMode", "light");
     await prefs.setInt("colorR", 14);
@@ -115,10 +109,11 @@ class AppEssentials {
   static Future<void> registerThisDevice() async {
     DeviceInfoPlugin plugin = DeviceInfoPlugin();
     String dname = switch (Platform.operatingSystem) {
-      "android" => (await plugin.androidInfo).host,
+      "android" =>
+        (await DeviceName().getName()) ?? (await plugin.androidInfo).model,
       "ios" => (await plugin.iosInfo).name,
       "macos" => (await plugin.macOsInfo).computerName,
-      "linux" => (await plugin.linuxInfo).name,
+      "linux" => Platform.localHostname,
       "windows" => (await plugin.windowsInfo).userName,
       // TODO: Handle this case.
       String() => throw UnimplementedError()
@@ -141,6 +136,8 @@ class AppEssentials {
     Device? devDB = await DeviceDAO().get(thisdev.id!);
     if (devDB != null) {
       dev = devDB;
+      dev!.dev_name = dname;
+      DeviceDAO().update(dev!);
     } else {
       DeviceDAO().insert(thisdev);
       dev = thisdev;
@@ -206,26 +203,17 @@ class AppEssentials {
     prefs.setString("themeMode", isLight ? "Light" : "Dark");
   }
 
-  ///Función de adición de usuarios a la BD
-  ///
-  ///Introduce el email y la contraseña en las preferencias, actualizando la BD con ello
-  static void putUser(User user) async {
-    prefs.setBool("isUserRegistered", true);
-    prefs.setString("userName", user.email);
-    prefs.setString("userPass", user.passwd);
-  }
-
   ///Función de carga de firmas en la app
   static Future<void> loadSigs() async {
     sigs = await SignatureDAO().getSigs();
   }
 
   ///Función de obtención de la lista de dispositivos del usuario
-  static Future<List<Device>> getDevicesList() async {
+  static Future<List<Device>> getDevicesList(User user) async {
     List<Device> devList = [];
     List<Device> auxList = await DeviceDAO().list();
     for (Device device in auxList) {
-      if (device.user == user!.email) {
+      if (device.user == user.email) {
         devList.add(device);
       }
     }

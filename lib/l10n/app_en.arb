@@ -52,6 +52,8 @@
     "eraseFile":"Erase File",
     "fileErased":"File erased successfully",
     "fileRestored":"File restored successfully",
+    "fileSelected":"selected file",
+    "filesSelected":"selected files",
 
     "fileList":"File list",
     "devlist":"Device list",

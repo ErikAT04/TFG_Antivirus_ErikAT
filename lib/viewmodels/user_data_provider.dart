@@ -5,6 +5,7 @@ import 'package:magik_antivirus/data_access/device_dao.dart';
 import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
 import 'package:magik_antivirus/data_access/user_dao.dart';
 import 'package:magik_antivirus/model/device.dart';
+import 'package:magik_antivirus/model/file.dart';
 import 'package:magik_antivirus/model/forbidden_folder.dart';
 import 'package:magik_antivirus/model/user.dart';
 import 'package:magik_antivirus/utils/app_essentials.dart';
@@ -21,8 +22,11 @@ class UserDataProvider extends ChangeNotifier {
 
   ///Cuando carga toda la información que necesita, se convierte en true y deja paso al procesamiento del resto de la aplicación.
   void loadAssets() async {
+    //Carga de la Base de Datos
     await SQLiteUtils.cargardb();
     await SQLiteUtils.startDB();
+
+    //Carga de las firmas de la API
     loadingStatus = "Loading Signature Database";
     notifyListeners();
     await AppEssentials.loadSigs();
@@ -37,10 +41,8 @@ class UserDataProvider extends ChangeNotifier {
     loadingStatus = "Finishing up";
     notifyListeners();
     await AppEssentials.registerThisDevice();
-    if (AppEssentials.prefs.getBool("isUserRegistered") != null &&
-        AppEssentials.prefs.getBool("isUserRegistered")!) {
-      User? u =
-          (await UserDAO().get(AppEssentials.prefs.getString("userName")!));
+    if (AppEssentials.dev!.user != null) {
+      User? u = (await UserDAO().get(AppEssentials.dev!.user!));
       if (u != null) {
         changeUser(u);
       }
@@ -50,7 +52,7 @@ class UserDataProvider extends ChangeNotifier {
   }
 
   ///Usuario de la aplicación, empezando por el usuario guardado en las preferencias
-  User? thisUser = AppEssentials.user;
+  User? thisUser;
 
   ///Función de cambio de usuario
   ///
@@ -58,7 +60,6 @@ class UserDataProvider extends ChangeNotifier {
   void changeUser(User user) {
     thisUser = user;
     notifyListeners();
-    AppEssentials.putUser(user);
   }
 
   ///Lista de directorios prohibidos
@@ -90,7 +91,7 @@ class UserDataProvider extends ChangeNotifier {
   void erase() async {
     User u = thisUser!;
     //Todos los dispositivos asignados a este usuario tendrán un usuario nulo al borrar el usuario.
-    for (Device d in await AppEssentials.getDevicesList()) {
+    for (Device d in await AppEssentials.getDevicesList(u)) {
       d.user = null;
       await DeviceDAO().update(d);
     }
@@ -101,6 +102,26 @@ class UserDataProvider extends ChangeNotifier {
   ///Función de recarga de los directorios prohibidos
   void reloadFFolders() async {
     fFoldersList = await ForbFolderDAO().list();
+    notifyListeners();
+  }
+
+  List<SysFile> selectedFiles = [];
+
+  ///Función de adición de archivos a la lista de seleccionados
+  void addIntoFiles(SysFile file) {
+    selectedFiles.add(file);
+    notifyListeners();
+  }
+
+  ///Función de borrado de archivos de la lista de seleccionados
+  void removeFromFiles(SysFile file) {
+    selectedFiles.remove(file);
+    notifyListeners();
+  }
+
+  ///Función de borrado de todos los archivos seleccionados
+  void removeAllFiles() {
+    selectedFiles.clear();
     notifyListeners();
   }
 }

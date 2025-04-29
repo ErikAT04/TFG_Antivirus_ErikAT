@@ -56,15 +56,16 @@ class APIReaderUtils {
   ///Enlace estático al API Rest
   ///
   ///Da igual el endpoint del api que sea, ya que esto se repite en todos.
-  static String apiRESTLink = "10.46.2.239:8000";
+  static String apiRESTLink = "tfg-antivirus-erik-at-api.vercel.app";
 
   ///Token de la API
   ///
   ///La API está protegida de modo que solo pueden acceder a ella los usuarios registrados en la aplicación
   static String apiToken = "";
 
+  ///Función de obtención del token para la API
   static void getToken(String username, String password) async {
-    Uri url = Uri.http(apiRESTLink, "api/token");
+    Uri url = Uri.https(apiRESTLink, "api/token");
 
     var response = await http.post(url, headers: {
       "Content-Type": "application/x-www-form-urlencoded"

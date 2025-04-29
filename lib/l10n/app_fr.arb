@@ -52,6 +52,8 @@
     "restFile": "Restaurer le fichier",
     "fileErased":"Fichier supprimé avec succès",
     "fileRestored":"Archivo restaurado correctamente",
+    "fileSelected":"fichier sélectionné",
+    "filesSelected":"fichiers sélectionnés",
 
     "fileList":"Liste des fichiers",
     "devlist":"Liste des appareils",

@@ -166,6 +166,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.2"
+  flutter_device_name:
+    dependency: "direct main"
+    description:
+      name: flutter_device_name
+      sha256: "2a681f293b44292590caafb9b6de0d2871558725ced97cf73284e4489a23edc7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   flutter_driver:
     dependency: transitive
     description: flutter

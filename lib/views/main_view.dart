@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,8 @@ class MainviewState extends State<Mainview> {
   ///Indice de la pagina (Guía al menú de navegación inferior)
   int actualPage = 0;
 
+  final _vaultKey = GlobalKey<AppVaultState>();
+
   AnalysisView aView = AnalysisView();
 
   ///En este caso, se precargan los distintos dispositivos y carpetas ocultas
@@ -39,6 +42,7 @@ class MainviewState extends State<Mainview> {
   ///En la barra superior del menú principal, aparece un icono con la imagen del perfil del usuario. Si se pulsa ahí, aparecerá el Drawer.
   @override
   Widget build(BuildContext context) {
+    var selectedFiles = context.watch<UserDataProvider>().selectedFiles;
     return Scaffold(
         appBar: AppBar(
           bottom: PreferredSize(
@@ -50,36 +54,75 @@ class MainviewState extends State<Mainview> {
                         : "appLight"],
                 height: 1,
               )),
-          title: ExcludeSemantics(
-              child: Text(switch (actualPage) {
-            0 => AppLocalizations.of(context)!.mainPage,
-            1 => AppLocalizations.of(context)!.vault,
-            2 => AppLocalizations.of(context)!.myDevices,
-            int() => throw UnimplementedError(),
-          })),
-          leading: Builder(builder: (context) {
-            return Row(children: [
-              SizedBox(
-                width: 10,
-              ),
-              GestureDetector(
-                child: CircleAvatar(
-                  backgroundImage: (context
-                                  .watch<UserDataProvider>()
-                                  .thisUser !=
-                              null &&
-                          context.watch<UserDataProvider>().thisUser!.image !=
-                              null)
-                      ? NetworkImage(
-                          context.watch<UserDataProvider>().thisUser!.image!)
-                      : null,
+          title: (selectedFiles.isEmpty)
+              ? ExcludeSemantics(
+                  child: Text(switch (actualPage) {
+                  0 => AppLocalizations.of(context)!.mainPage,
+                  1 => AppLocalizations.of(context)!.vault,
+                  2 => AppLocalizations.of(context)!.myDevices,
+                  int() => throw UnimplementedError(),
+                }))
+              : ExcludeSemantics(
+                  child: Text(
+                      "${selectedFiles.length} ${(selectedFiles.length > 1) ? AppLocalizations.of(context)!.filesSelected : AppLocalizations.of(context)!.fileSelected}")),
+          leading: (selectedFiles.isEmpty)
+              ? Builder(builder: (context) {
+                  return Row(children: [
+                    SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      child: CircleAvatar(
+                        backgroundImage:
+                            (context.watch<UserDataProvider>().thisUser !=
+                                        null &&
+                                    context
+                                            .watch<UserDataProvider>()
+                                            .thisUser!
+                                            .image !=
+                                        null)
+                                ? NetworkImage(context
+                                    .watch<UserDataProvider>()
+                                    .thisUser!
+                                    .image!)
+                                : null,
+                      ),
+                      onTap: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                    ),
+                  ]);
+                })
+              : GestureDetector(
+                  child: Icon(Icons.arrow_back),
+                  onTap: () {
+                    context.read<UserDataProvider>().removeAllFiles();
+                  },
                 ),
-                onTap: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              ),
-            ]);
-          }),
+          actions: (selectedFiles.isEmpty)
+              ? null
+              : [
+                  GestureDetector(
+                    child: Icon(Icons.replay),
+                    onTap: () async {
+                      for (var file in selectedFiles) {
+                        await AppEssentials.getOutOfQuarantine(file);
+                        _vaultKey.currentState!.loadList();
+                      }
+                      context.read<UserDataProvider>().removeAllFiles();
+                    },
+                  ),
+                  GestureDetector(
+                    child: Icon(Icons.delete),
+                    onTap: () async {
+                      for (var file in selectedFiles) {
+                        await AppEssentials.eraseFile(file);
+                        _vaultKey.currentState!.loadList();
+                      }
+                      context.read<UserDataProvider>().removeAllFiles();
+                    },
+                  ),
+                ],
         ),
         drawer: AppDrawer(),
         bottomNavigationBar: (MediaQuery.sizeOf(context).width > 720 ||
@@ -111,6 +154,9 @@ class MainviewState extends State<Mainview> {
                 ],
                 currentIndex: actualPage,
                 onTap: (value) {
+                  if (value != 1) {
+                    context.read<UserDataProvider>().removeAllFiles();
+                  }
                   setState(() {
                     actualPage = value;
                   });
@@ -162,7 +208,9 @@ class MainviewState extends State<Mainview> {
             Expanded(
               child: switch (actualPage) {
                 0 => aView,
-                1 => AppVault(),
+                1 => AppVault(
+                    key: _vaultKey,
+                  ),
                 2 => AppDevicesView(),
                 int() => throw UnimplementedError(),
               },
