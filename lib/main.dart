@@ -53,13 +53,13 @@ class MainApp extends StatelessWidget {
     Provider.debugCheckInvalidValueType = null;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: [
+      localizationsDelegates: const[
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      supportedLocales: [
+      supportedLocales: const[
         Locale('es'),
         Locale('en'),
         Locale('de'),

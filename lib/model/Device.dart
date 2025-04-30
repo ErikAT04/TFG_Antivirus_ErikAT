@@ -6,16 +6,16 @@ class Device implements APIContent {
   String? id;
 
   ///Nombre con el que se registró
-  String dev_name;
+  String devName;
 
   ///El tipo se refiere al sistema operativo que corre el dispositivo (android, ios, macos, windows o linux)
-  String dev_type;
+  String devType;
 
   ///Fecha en la que se registró el dispositivo
-  DateTime join_in;
+  DateTime joinIn;
 
   ///Última fecha en la que el dispositivo ha realizado un escaneo
-  DateTime last_scan;
+  DateTime lastScan;
 
   ///Correo electrónico del usuario del dispositivo
   ///
@@ -25,31 +25,31 @@ class Device implements APIContent {
   ///Constructor
   Device(
       {this.id,
-      required this.dev_name,
-      required this.dev_type,
-      required this.join_in,
-      required this.last_scan,
+      required this.devName,
+      required this.devType,
+      required this.joinIn,
+      required this.lastScan,
       this.user});
 
   @override
   Map<String, String?> toAPI() {
     return {
       'id': id.toString(),
-      'dev_name': dev_name,
-      'dev_type': dev_type,
-      'join_in': join_in.toString(),
-      'last_scan': last_scan.toString(),
+      'dev_name': devName,
+      'dev_type': devType,
+      'join_in': joinIn.toString(),
+      'last_scan': lastScan.toString(),
       'user': user,
     };
   }
 
   @override
   void toItem(Map<String, String> map) {
-        this.id = map["id"];
-        this.dev_name = map["dev_name"]!;
-        this.dev_type = map["dev_type"]!;
-        this.join_in = DateTime.parse(map["join_in"]!);
-        this.last_scan = DateTime.parse(map["last_scan"]!);
-        this.user = map["user"];
+    id = map["id"];
+    devName = map["dev_name"]!;
+    devType = map["dev_type"]!;
+    joinIn = DateTime.parse(map["join_in"]!);
+    lastScan = DateTime.parse(map["last_scan"]!);
+    user = map["user"];
   }
 }

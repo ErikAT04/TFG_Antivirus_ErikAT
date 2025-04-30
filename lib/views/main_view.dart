@@ -63,8 +63,10 @@ class MainviewState extends State<Mainview> {
                   int() => throw UnimplementedError(),
                 }))
               : ExcludeSemantics(
-                  child: Text(
-                      "${selectedFiles.length} ${(selectedFiles.length > 1) ? AppLocalizations.of(context)!.filesSelected : AppLocalizations.of(context)!.fileSelected}")),
+                  child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                          "${selectedFiles.length} ${(selectedFiles.length > 1) ? AppLocalizations.of(context)!.filesSelected : AppLocalizations.of(context)!.fileSelected}"))),
           leading: (selectedFiles.isEmpty)
               ? Builder(builder: (context) {
                   return Row(children: [
@@ -93,18 +95,18 @@ class MainviewState extends State<Mainview> {
                     ),
                   ]);
                 })
-              : GestureDetector(
-                  child: Icon(Icons.arrow_back),
-                  onTap: () {
+              : IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
                     context.read<UserDataProvider>().removeAllFiles();
                   },
                 ),
           actions: (selectedFiles.isEmpty)
               ? null
               : [
-                  GestureDetector(
-                    child: Icon(Icons.replay),
-                    onTap: () async {
+                  IconButton(
+                    icon: Icon(Icons.replay),
+                    onPressed: () async {
                       for (var file in selectedFiles) {
                         await AppEssentials.getOutOfQuarantine(file);
                         _vaultKey.currentState!.loadList();
@@ -112,9 +114,9 @@ class MainviewState extends State<Mainview> {
                       context.read<UserDataProvider>().removeAllFiles();
                     },
                   ),
-                  GestureDetector(
-                    child: Icon(Icons.delete),
-                    onTap: () async {
+                  IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () async {
                       for (var file in selectedFiles) {
                         await AppEssentials.eraseFile(file);
                         _vaultKey.currentState!.loadList();

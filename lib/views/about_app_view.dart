@@ -13,7 +13,7 @@ class AboutView extends StatefulWidget {
   final String language;
 
   @override
-  State<AboutView> createState() => AboutViewState(language: this.language);
+  State<AboutView> createState() => AboutViewState(language: language);
 }
 
 class AboutViewState extends State<AboutView> {

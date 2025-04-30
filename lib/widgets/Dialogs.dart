@@ -20,8 +20,8 @@ class EraseContextDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Container(
-        padding: EdgeInsets.all(10),
+        child: Container(
+      padding: EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -88,6 +88,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
 
   ///String nullable del error de la repetición de la contraseña
   String? errorRepPass;
+
+  ///Booleana que indica si está cargando el registro
+  bool isLoading = false;
 
   ///El usuario verá un pop up con 4 bloques de texto a rellenar y un botón de registro.
   @override
@@ -188,9 +191,12 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
             child: Center(
                 child: ElevatedButton(
                     onPressed: () {
+                      if (isLoading) return;
                       register(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.signUp))),
+                    child: (isLoading)
+                        ? CircularProgressIndicator()
+                        : Text(AppLocalizations.of(context)!.signUp))),
           )
         ],
       ),
@@ -213,6 +219,14 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
   ///
   ///Una vez se tiene todo eso, se cierra el pop up
   void register(BuildContext context) async {
+    setState(() {
+      errorUname = null;
+      errorPass = null;
+      errorEmail = null;
+      errorRepPass = null;
+      isLoading = true;
+    });
+
     bool resultSuccess = false;
 
     String? errorUnameText;
@@ -280,6 +294,9 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
         errorRepPass = errorRepPassText;
       });
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 }
 
@@ -306,6 +323,9 @@ class ChangeUserNameContextDialogState
 
   ///String nullable del error de contraseña
   String? passError;
+
+  //Booleana que indica si está cargando el cambio de nombre
+  bool isLoading = false;
 
   ///Aparecerá un pop up con dos textos: Uno para introducir un nombre de usuario nuevo y para confirmar con la contraseña, además de un botón para cambiar el nombre
   @override
@@ -367,9 +387,12 @@ class ChangeUserNameContextDialogState
                 hint: AppLocalizations.of(context)!.userCNameContext,
                 child: ElevatedButton(
                     onPressed: () {
+                      if (isLoading) return;
                       changeName(context);
                     },
-                    child: Text(AppLocalizations.of(context)!.userCName)),
+                    child: (isLoading)
+                        ? CircularProgressIndicator()
+                        : Text(AppLocalizations.of(context)!.userCName)),
               ),
               Semantics(
                 label: AppLocalizations.of(context)!.cancel,
@@ -399,6 +422,11 @@ class ChangeUserNameContextDialogState
   ///
   ///Si pasa todos los controles, cierra el pop up y envía el nuevo nombre de usuario como señal positiva.
   void changeName(BuildContext context) async {
+    setState(() {
+      unameError = null;
+      passError = null;
+      isLoading = true;
+    });
     bool allCorrect = false;
     String? errorNameText;
     String? errorPassText;
@@ -439,6 +467,9 @@ class ChangeUserNameContextDialogState
         passError = errorPassText;
       });
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 }
 
@@ -471,6 +502,9 @@ class ChangePasswordContextDialogState
 
   ///String nullable del error de la repetición de la nueva contraseña
   String? errorRep;
+
+  ///Booleana que indica si está cargando el cambio de contraseña
+  bool isLoading = false;
 
   ///El usuario ve 3 campos de texto para cambiar la contraseña y un botón para confirmar el cambio
   @override
@@ -551,9 +585,12 @@ class ChangePasswordContextDialogState
               hint: AppLocalizations.of(context)!.userCPassContext,
               child: ElevatedButton(
                   onPressed: () {
+                    if (isLoading) return;
                     changePass(context);
                   },
-                  child: Text(AppLocalizations.of(context)!.userCPass)),
+                  child: (isLoading)
+                      ? CircularProgressIndicator()
+                      : Text(AppLocalizations.of(context)!.userCPass)),
             ),
             Semantics(
                 label: AppLocalizations.of(context)!.cancel,
@@ -585,6 +622,12 @@ class ChangePasswordContextDialogState
   ///
   ///Si todos los campos están correctamente rellenados, se envía la nueva contraseña como señal positiva y se cierra el pop up
   void changePass(BuildContext context) {
+    setState(() {
+      errorOld = null;
+      errorNew = null;
+      errorRep = null;
+      isLoading = true;
+    });
     bool allCorrect = false;
     String? errorOldText;
     String? errorNewText;
@@ -623,6 +666,9 @@ class ChangePasswordContextDialogState
           }
         }
       }
+      setState(() {
+        isLoading = false;
+      });
     }
     if (allCorrect) {
       Navigator.pop(
@@ -657,6 +703,9 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   ///String nullable del error del bloque de texto
   String? errorTxt;
 
+  ///Booleana que indica si está cargando el cambio de imagen
+  bool isLoading = false;
+
   ///Aparece un pop up con un bloque de texto para introducir la URL de la imagen y un botón para aceptar
   @override
   Widget build(BuildContext context) {
@@ -689,9 +738,12 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
               label: AppLocalizations.of(context)!.loadImg,
               child: ElevatedButton(
                   onPressed: () {
+                    if (isLoading) return;
                     changeUserImage(context);
                   },
-                  child: Text(AppLocalizations.of(context)!.loadImg)))
+                  child: (isLoading)
+                      ? CircularProgressIndicator()
+                      : Text(AppLocalizations.of(context)!.loadImg)))
         ],
       ),
     ));
@@ -705,6 +757,10 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
   ///
   ///Una vez completado
   void changeUserImage(BuildContext context) {
+    setState(() {
+      errorTxt = null;
+      isLoading = true;
+    });
     if (linkController.text.isNotEmpty && linkController.text.length < 256) {
       Navigator.pop(context, linkController.text);
     } else {
@@ -714,13 +770,16 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
             : "${AppLocalizations.of(context)!.sizePassed} (1-254)";
       });
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 }
 
 ///Dialogo del contexto de ficheros
 class FileContext extends StatelessWidget {
   ///Archivo que recibe por parámetro
-  final SysFile file;
+  final QuarantinedFile file;
 
   ///Constructor
   ///
@@ -783,7 +842,7 @@ class FileContext extends StatelessWidget {
   }
 
   ///Función de borrado permanente del archivo
-  void eraseFile(BuildContext context, SysFile file) async {
+  void eraseFile(BuildContext context, QuarantinedFile file) async {
     await AppEssentials.eraseFile(file);
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(AppLocalizations.of(context)!.fileErased)));
@@ -791,7 +850,7 @@ class FileContext extends StatelessWidget {
   }
 
   ///Función de restauración de archivos
-  void restoreFile(BuildContext context, SysFile file) async {
+  void restoreFile(BuildContext context, QuarantinedFile file) async {
     await AppEssentials.getOutOfQuarantine(file);
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(AppLocalizations.of(context)!.fileRestored)));

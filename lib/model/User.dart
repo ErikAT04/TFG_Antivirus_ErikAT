@@ -14,6 +14,7 @@ class User implements APIContent{
   ///String que guarda la dirección a la foto de perfil
   String? image;
 
+  ///Constructor
   User(
       {required this.username,
       required this.passwd,
@@ -23,18 +24,18 @@ class User implements APIContent{
   @override
   Map<String, String?> toAPI() {
     return {
-      "email": this.email,
-      "username": this.username,
-      "passwd": this.passwd,
-      "image": this.image
+      "email": email,
+      "username": username,
+      "passwd": passwd,
+      "image": image
     };
   }
   
   @override
   void toItem(Map<String, String> map) {
-    this.email = map["email"]!;
-    this.passwd = map["passwd"]!;
-    this.image = map["image"];
-    this.username = map["username"]!;
+    email = map["email"]!;
+    passwd = map["passwd"]!;
+    image = map["image"];
+    username = map["username"]!;
   }
 }

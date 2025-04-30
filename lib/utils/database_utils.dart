@@ -46,7 +46,7 @@ class SQLiteUtils {
 
     //Creo el path a la base de datos
     final dbPath = join(await dbfact.getDatabasesPath(), "localdb.db");
-
+    //Se abre la base de datos
     db = await dbfact.openDatabase(dbPath);
   }
 }
@@ -81,6 +81,8 @@ class APIReaderUtils {
     }
   }
 
+  ///Función de petición GET
+  ///
   ///Recibe un enlace a un endpoint y devuelve el resultado de la búsqueda del API
   static Future<String> getData(Uri url) async {
     Logger().d(url);
@@ -101,9 +103,10 @@ class APIReaderUtils {
     }
   }
 
+  ///Función de petición POST
+  ///
   ///Recibe un enlace y un objeto y envía una petición POST del objeto como JSON
   static Future<String> postData(Uri url, APIContent item) async {
-    print(convert.jsonEncode(item.toAPI()));
     var response = await http.post(url,
         headers: {
           'Authorization': 'bearer $apiToken',
@@ -113,9 +116,10 @@ class APIReaderUtils {
     return response.body;
   }
 
+  ///Función de petición PUT
+  ///
   ///Recibe un enlace y un objeto y envía una petición PUT del objeto como JSON
   static Future<String> putData(Uri url, APIContent item) async {
-    print(convert.jsonEncode(item.toAPI()));
     var response = await http.put(url,
         headers: {
           'Authorization': 'bearer $apiToken',
@@ -127,6 +131,8 @@ class APIReaderUtils {
     return response.body;
   }
 
+  ///Función de petición DELETE
+  ///
   ///Recibe un enlace y un objeto y envía una petición DELETE del objeto como JSON
   static Future<String> deleteData(Uri url) async {
     var response = await http.delete(

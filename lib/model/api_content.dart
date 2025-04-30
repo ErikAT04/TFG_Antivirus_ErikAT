@@ -4,7 +4,7 @@
 abstract class APIContent{
   ///Función de paso de objeto a mapa
   Map<String, String?> toAPI(){
-  return Map();
+  return <String, String?>{};
   }
   ///Función de paso de mapa a objeto
   void toItem(Map<String, String> map){

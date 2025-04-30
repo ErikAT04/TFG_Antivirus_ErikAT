@@ -17,7 +17,7 @@ class AppVault extends StatefulWidget {
 ///Estado de la vista del baúl de archivos
 class AppVaultState extends State<AppVault> {
   ///Lista de los archivos del sistema
-  List<SysFile> list = [];
+  List<QuarantinedFile> list = [];
 
   ///Objeto de Acceso a Datos de SysFile
   FileDAO dao = FileDAO();
@@ -33,75 +33,65 @@ class AppVaultState extends State<AppVault> {
   ///Si el usuario pulsa sobre uno de ellos, aparecerá un pop up con información del archivo, como la ruta en la que se encontraba, el malware detectado y otros. Si pulsa al botón de Restaurar archivo, este desaparecerá de la lista y el programa lo sacará de su cuarentena.
   @override
   Widget build(BuildContext context) {
-    List<SysFile> selectedFiles =
+    List<QuarantinedFile> selectedFiles =
         context.watch<UserDataProvider>().selectedFiles;
-    return Center(
-      child: Column(
-        children: [
-          ExcludeSemantics(
-              child: Text(AppLocalizations.of(context)!.vaultDesc)),
-          (list.length == 0)
-              ? Text(AppLocalizations.of(context)!.noDataYet)
-              : Expanded(
-                  child: Semantics(
-                      label: AppLocalizations.of(context)!.fileList,
-                      child: ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (context, index) {
-                            SysFile file = list[index];
-                            return GestureDetector(
-                              onLongPress: () {
-                                if (selectedFiles.isEmpty) {
-                                  context
-                                      .read<UserDataProvider>()
-                                      .addIntoFiles(file);
-                                }
-                              },
-                              onTap: () async {
-                                if (selectedFiles.isEmpty) {
-                                  await showDialog(
-                                      context: context,
-                                      builder: (context) =>
-                                          FileContext(file: file));
-                                  setState(() {
-                                    list = [];
-                                  });
-                                  loadList();
-                                }
-                              },
-                              child: Card(
-                                margin: EdgeInsets.all(5),
-                                child: ListTile(
-                                  leading: (selectedFiles.isEmpty)
-                                      ? Icon(Icons.file_open)
-                                      : Checkbox(
-                                          value: (selectedFiles.contains(file)),
-                                          onChanged: (val) {
-                                            if (val!) {
-                                              context
-                                                  .read<UserDataProvider>()
-                                                  .addIntoFiles(file);
-                                            } else {
-                                              context
-                                                  .read<UserDataProvider>()
-                                                  .removeFromFiles(file);
-                                            }
-                                          }),
-                                  title: Text(file.name),
-                                  subtitle: Text(file.route),
-                                ),
-                              ),
-                            );
-                          })),
-                )
-        ],
-      ),
-    );
+    return Expanded(
+        child: Center(
+      child: (list.isEmpty)
+          ? Text(AppLocalizations.of(context)!.noDataYet)
+          : Semantics(
+              label: AppLocalizations.of(context)!.fileList,
+              child: ListView.builder(
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    QuarantinedFile file = list[index];
+                    return GestureDetector(
+                      onLongPress: () {
+                        if (selectedFiles.isEmpty) {
+                          context.read<UserDataProvider>().addIntoFiles(file);
+                        }
+                      },
+                      onTap: () async {
+                        if (selectedFiles.isEmpty) {
+                          await showDialog(
+                              context: context,
+                              builder: (context) => FileContext(file: file));
+                          setState(() {
+                            list = [];
+                          });
+                          loadList();
+                        }
+                      },
+                      child: Card(
+                        margin: EdgeInsets.all(5),
+                        child: ListTile(
+                          leading: (selectedFiles.isEmpty)
+                              ? Icon(Icons.file_open)
+                              : Checkbox(
+                                  value: (selectedFiles.contains(file)),
+                                  onChanged: (val) {
+                                    if (val!) {
+                                      context
+                                          .read<UserDataProvider>()
+                                          .addIntoFiles(file);
+                                    } else {
+                                      context
+                                          .read<UserDataProvider>()
+                                          .removeFromFiles(file);
+                                    }
+                                  }),
+                          title: Text(file.name),
+                          subtitle: Text(file.route),
+                        ),
+                      ),
+                    );
+                  })),
+    ));
   }
 
   ///Función de carga de la lista de archivos
   void loadList() async {
-    List<SysFile> listres = await dao.list();
+    List<QuarantinedFile> listres = await dao.list();
     setState(() {
       list = listres;
     });

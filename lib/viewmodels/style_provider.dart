@@ -8,7 +8,7 @@ class StyleProvider extends ChangeNotifier {
   ///Color principal, precargado por el color guardado en las preferencias
   Color mainColor = AppEssentials.color;
 
-  ///Booleana que rige si el modo actual es claro u oscuro, precargado por el modo guardado en las preferencias 
+  ///Booleana que rige si el modo actual es claro u oscuro, precargado por el modo guardado en las preferencias
   bool isLightModeActive = AppEssentials.isLightMode;
 
   ///Función de cambio de color
@@ -62,6 +62,9 @@ class StyleProvider extends ChangeNotifier {
       secondaryHeaderColor: colorsMap["appMain"],
       cardTheme: CardThemeData(
         color: colorsMap["appDark"],
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorsMap["appLight"],
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
@@ -172,6 +175,9 @@ class StyleProvider extends ChangeNotifier {
       secondaryHeaderColor: colorsMap["appMain"],
       cardTheme: CardThemeData(
         color: colorsMap["white"],
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorsMap["appMain"],
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(

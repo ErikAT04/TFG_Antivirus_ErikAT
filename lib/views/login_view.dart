@@ -34,6 +34,9 @@ class LogInViewState extends State<LogInView> {
   ///String nullable del error del email
   String? emailErrorText;
 
+  ///Booleana que indica si está cargando el inicio de sesión
+  bool isLoading = false;
+
   ///El usuario verá una Card con distintos campos: Dos TextFields y dos botones, uno para iniciar sesión y otro para registrarse
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class LogInViewState extends State<LogInView> {
                     child: Container(
                         margin: EdgeInsets.all(10),
                         child: TextField(
-                          key: Key("user"),
+                            key: Key("user"),
                             controller: emailController,
                             decoration: InputDecoration(
                                 labelText: AppLocalizations.of(context)!.user,
@@ -91,9 +94,10 @@ class LogInViewState extends State<LogInView> {
                     hint: AppLocalizations.of(context)!.logInContext,
                     child: ElevatedButton(
                         onPressed: () {
+                          if (isLoading) return;
                           logIn(context);
                         },
-                        child: Text(AppLocalizations.of(context)!.logIn))),
+                        child: (isLoading) ? CircularProgressIndicator() : Text(AppLocalizations.of(context)!.logIn))),
                 Padding(padding: EdgeInsets.all(5)),
                 Semantics(
                     label: AppLocalizations.of(context)!.signUp,
@@ -127,9 +131,12 @@ class LogInViewState extends State<LogInView> {
   ///
   ///  - Si es correcta, enviará al usuario a la próxima página: La Vista Principal
   void logIn(BuildContext context) async {
+    setState(() {
+      isLoading = true;
+    });
     User? user;
-    String? passError = null;
-    String? emailError = null;
+    String? passError;
+    String? emailError;
     bool completedSuccesfully = false;
 
     if (passController.text.isEmpty || emailController.text.isEmpty) {
@@ -166,6 +173,9 @@ class LogInViewState extends State<LogInView> {
         emailErrorText = emailError;
       });
     }
+    setState(() {
+      isLoading = false;
+    });
   }
 
   ///Función de registro

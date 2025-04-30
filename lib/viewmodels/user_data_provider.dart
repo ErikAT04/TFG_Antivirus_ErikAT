@@ -18,7 +18,7 @@ class UserDataProvider extends ChangeNotifier {
   ///Booleana que sirve para marcar si la aplicación se encuentra cargando los assets principales o no
   bool assetsLoaded = false;
 
-  String loadingStatus = "Loading Local Database";
+  int loadingStatus = 0;
 
   ///Cuando carga toda la información que necesita, se convierte en true y deja paso al procesamiento del resto de la aplicación.
   void loadAssets() async {
@@ -27,10 +27,10 @@ class UserDataProvider extends ChangeNotifier {
     await SQLiteUtils.startDB();
 
     //Carga de las firmas de la API
-    loadingStatus = "Loading Signature Database";
+    loadingStatus ++;
     notifyListeners();
     await AppEssentials.loadSigs();
-    loadingStatus = "Reading Quarantine Direcrory";
+    loadingStatus ++;
     notifyListeners();
     Directory dir = Directory(join(
         (await getApplicationDocumentsDirectory()).path, "MagikAV", "MyFiles"));
@@ -38,7 +38,7 @@ class UserDataProvider extends ChangeNotifier {
       dir.createSync(recursive: true);
     }
     AppEssentials.quarantineDirectory = dir;
-    loadingStatus = "Finishing up";
+    loadingStatus++;
     notifyListeners();
     await AppEssentials.registerThisDevice();
     if (AppEssentials.dev!.user != null) {
@@ -105,16 +105,16 @@ class UserDataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<SysFile> selectedFiles = [];
+  List<QuarantinedFile> selectedFiles = [];
 
   ///Función de adición de archivos a la lista de seleccionados
-  void addIntoFiles(SysFile file) {
+  void addIntoFiles(QuarantinedFile file) {
     selectedFiles.add(file);
     notifyListeners();
   }
 
   ///Función de borrado de archivos de la lista de seleccionados
-  void removeFromFiles(SysFile file) {
+  void removeFromFiles(QuarantinedFile file) {
     selectedFiles.remove(file);
     notifyListeners();
   }

@@ -9,19 +9,20 @@ class Signature implements APIContent{
   ///Firma: El código encriptado del malware
   String signature;
 
+  //Constructor
   Signature({required this.type, required this.signature});
   
   @override
   Map<String, String> toAPI() {
     return {
-      "type" : this.type,
-      "signature" : this.signature
+      "type" : type,
+      "signature" : signature
     };
   }
   
   @override
   void toItem(Map<String, String> map) {
-    this.type = map["type"]!;
-    this.signature = map["signature"]!;
+    type = map["type"]!;
+    signature = map["signature"]!;
   }
 }

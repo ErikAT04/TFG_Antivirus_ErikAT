@@ -1,4 +1,9 @@
 {"@@locale":"es",
+    "loadingLocDB":"Cargando base de datos local",
+    "loadingSigDB":"Cargando base de datos de firmas",
+    "readingQuarantine":"Leyendo el directorio de cuarentena",
+    "finishingUp":"Finalizando",
+
     "cancel":"Cancelar",
 
     "logIn": "Iniciar Sesión",
@@ -57,6 +62,9 @@
 
     "fileList":"Lista de archivos",
     "devlist":"Lista de dispositivos",
+    "unlinkDevice": "Desvincular Dispositivo",
+    "unlinkDeviceContext":"Estás seguro de que quieres desvincular '{deviceName}' de tu cuenta? Esta acción no se puede deshacer",
+    "unlink":"Desvincular",
 
     "myDevices":"Mis Dispositivos",
     "devicesLow":"Dispositivos",

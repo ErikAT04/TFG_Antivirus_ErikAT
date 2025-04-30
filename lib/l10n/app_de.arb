@@ -1,4 +1,9 @@
 {"@@locale":"de",
+    "loadingLocDB":"Lade lokale Datenbank",
+    "loadingSigDB":"Lade Signaturdatenbank",
+    "readingQuarantine":"Lese Quarantäneverzeichnis",
+    "finishingUp":"Beende",
+
     "cancel":"Stornieren",
 
     "logIn":"Anmelden",
@@ -57,6 +62,11 @@
 
     "fileList":"Dateiliste",
     "devlist":"Geräteliste",
+    "unlinkDevice": "Gerät trennen",
+    "unlinkDeviceContext": "Möchten Sie '{deviceName}' wirklich von Ihrem Konto trennen? Diese Aktion kann nicht rückgängig gemacht werden",
+    "unlink": "Trennen",
+
+
 
     "myDevices":"Meine Geräte",
     "devicesLow":"Geräte",

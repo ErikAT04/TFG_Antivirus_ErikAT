@@ -1,4 +1,8 @@
 {"@@locale":"fr",
+    "loadingLocDB":"Chargement de la base de données locale",
+    "loadingSigDB":"Chargement de la base de données de signatures",
+    "readingQuarantine":"Lecture du répertoire de quarantaine",
+    "finishingUp":"Finalisation",
     
     "cancel":"Annuler",
 
@@ -57,6 +61,9 @@
 
     "fileList":"Liste des fichiers",
     "devlist":"Liste des appareils",
+    "unlinkDevice": "Dissocier l'appareil",
+    "unlinkDeviceContext": "Êtes-vous sûr de vouloir dissocier '{deviceName}' de votre compte ? Cette action est irréversible",
+    "unlink": "Dissocier",
 
     "myDevices": "Mes appareils",
     "devicesLow": "Appareils",

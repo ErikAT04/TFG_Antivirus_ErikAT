@@ -8,6 +8,8 @@ import 'package:magik_antivirus/data_access/dao_interfaces.dart';
 ///
 ///La información de esta se hace por medio de un servicio API REST conectado a una base de datos de MySQL, ya que se guarda en un servidor en red que gestiona a cada usuario y sus dispositivos
 class DeviceDAO implements DAOInterface<Device, String> {
+
+  ///URL del router de la API (en este caso, el router de dispositivos)
   final routerUrl = "api/devices";
 
   ///Función de borrado de dispositivos (Actualmente sin uso)
@@ -33,16 +35,15 @@ class DeviceDAO implements DAOInterface<Device, String> {
   Future<Device?> get(String value) async {
     try {
       var uri = Uri.https(APIReaderUtils.apiRESTLink, "$routerUrl/${value}");
-      print(uri);
       var body = await APIReaderUtils.getData(uri);
       if (body != "Dispositivo no encontrado") {
         var map = convert.jsonDecode(body);
         return Device(
             id: value,
-            dev_name: map["dev_name"]!,
-            dev_type: map["dev_type"]!,
-            join_in: DateTime.parse(map["join_in"]!),
-            last_scan: DateTime.parse(map["last_scan"]!),
+            devName: map["dev_name"]!,
+            devType: map["dev_type"]!,
+            joinIn: DateTime.parse(map["join_in"]!),
+            lastScan: DateTime.parse(map["last_scan"]!),
             user: map["user"]);
       } else {
         return null;
@@ -81,10 +82,10 @@ class DeviceDAO implements DAOInterface<Device, String> {
       for (var map in mapList) {
         list.add(Device(
             id: map["id"],
-            dev_name: map["dev_name"]!,
-            dev_type: map["dev_type"]!,
-            join_in: DateTime.parse(map["join_in"]!),
-            last_scan: DateTime.parse(map["last_scan"]!),
+            devName: map["dev_name"]!,
+            devType: map["dev_type"]!,
+            joinIn: DateTime.parse(map["join_in"]!),
+            lastScan: DateTime.parse(map["last_scan"]!),
             user: map["user"]));
       }
     } catch (e) {

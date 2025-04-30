@@ -6,12 +6,12 @@ import 'package:magik_antivirus/data_access/dao_interfaces.dart';
 ///Clase que lleva todo lo relacionado a las operaciones CRUD de los archivos
 ///
 ///La información de esta se hace por medio de la base de datos de SQLite, ya que se guarda en local
-class FileDAO implements DAOInterface<SysFile, int> {
+class FileDAO implements DAOInterface<QuarantinedFile, int> {
   ///Función de borrado
   ///
   ///Recibe un item y lo borra por su ID
   @override
-  Future<bool> delete(SysFile item) async {
+  Future<bool> delete(QuarantinedFile item) async {
     try {
       var res = await SQLiteUtils.db
           .delete('files', where: 'id = ?', whereArgs: [item.id]);
@@ -26,12 +26,12 @@ class FileDAO implements DAOInterface<SysFile, int> {
   ///
   ///Recibe un id por parámetro y devuelve la información de un fichero
   @override
-  Future<SysFile?> get(int value) async {
+  Future<QuarantinedFile?> get(int value) async {
     try {
       var line = (await SQLiteUtils.db
               .query('files', where: 'id=?', whereArgs: [value]))
           .first;
-      return SysFile(
+      return QuarantinedFile(
           id: int.parse(line["id"].toString()),
           name: line["name"].toString(),
           route: line["route"].toString(),
@@ -50,7 +50,7 @@ class FileDAO implements DAOInterface<SysFile, int> {
   ///
   ///Recibe un item y guarda su información en la base de datos
   @override
-  Future<bool> insert(SysFile item) async {
+  Future<bool> insert(QuarantinedFile item) async {
     try {
       var res = await SQLiteUtils.db.insert('files', {
         'name': item.name,
@@ -71,12 +71,12 @@ class FileDAO implements DAOInterface<SysFile, int> {
   ///
   ///Envia al usuario el listado de todos los archivos en la BD
   @override
-  Future<List<SysFile>> list() async {
-    List<SysFile> list = [];
+  Future<List<QuarantinedFile>> list() async {
+    List<QuarantinedFile> list = [];
     try {
       var res = await SQLiteUtils.db.query('files');
       for (var line in res) {
-        list.add(SysFile(
+        list.add(QuarantinedFile(
             id: int.parse(line["id"].toString()),
             name: line["name"].toString(),
             route: line["route"].toString(),
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS files(
   ///
   ///Recibe un objeto entero por parámetro y cambia todos sus valores de la BD en función del ID
   @override
-  Future<bool> update(SysFile item) async {
+  Future<bool> update(QuarantinedFile item) async {
     try {
       var res = await SQLiteUtils.db.update(
           'files',
