@@ -184,6 +184,14 @@ class ScanIsolate {
     //Se crea el archivo en cuarentena, con su ruta (directorio de archivos en cuarentena) y nombre
     File file = File(join(AppEssentials.quarantineDirectory.path, pathSHA));
 
+    //En el supuesto caso de que el archivo ya exista, se reitera el proceso de creación del nuevo archivo en cuarentena, esperando que el nuevo nombre no se repita
+    while (file.existsSync()) {
+      pathSHA = crypto.sha256
+          .convert(utf8.encode("${basename(f.path)} ${DateTime.now()}"))
+          .toString();
+      file = File(join(AppEssentials.quarantineDirectory.path, pathSHA));
+    }
+
     //Se leen los bytes del archivo original, se codifican en base64 y se escriben en el nuevo archivo.
     var fileInside = await f.readAsBytes();
     file = await file.writeAsString(base64Encode(fileInside));

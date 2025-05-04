@@ -168,12 +168,19 @@ class AppEssentials {
   ///Función de restauración del archivo en cuarentena
   static Future<void> getOutOfQuarantine(QuarantinedFile s) async {
     File file = File(s.route); //"Archivo" en su ruta original
+    //Si, por algun casual, el archivo ya existe, se le agrega un número al final hasta que no exista
+    int i = 1;
+    if (file.existsSync()) {
+      file = File("${s.route}_$i");
+      i++;
+    }
     File quarantined = File(s.newRoute); //Archivo en cuarentena
 
     var bytes = await quarantined.readAsString();
 
     //Se decodifica el archvo en cuarentena y se escriben sus bytes en la ruta original
     file = await file.writeAsBytes(base64Decode(bytes));
+
     await file.create();
 
     await quarantined.delete();
