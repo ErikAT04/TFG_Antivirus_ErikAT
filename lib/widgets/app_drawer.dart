@@ -97,13 +97,13 @@ class AppDrawer extends StatelessWidget {
                 leading: Icon(Icons.folder,
                     color: context
                         .watch<StyleProvider>()
-                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                        .palette[(modoClaro) ? "appMain" : "appLight"]),
                 title: Text(
                   AppLocalizations.of(context)!.drawerFFolders,
                   style: TextStyle(
                     color: (context
                         .watch<StyleProvider>()
-                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                        .palette[(modoClaro) ? "appMain" : "appLight"]),
                   ),
                 ),
               ),
@@ -116,13 +116,13 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.translate,
                   color: context
                       .watch<StyleProvider>()
-                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                      .palette[(modoClaro) ? "appMain" : "appLight"]),
               title: Text(
                 AppLocalizations.of(context)!.drawerTranslate,
                 style: TextStyle(
                   color: (context
                       .watch<StyleProvider>()
-                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                      .palette[(modoClaro) ? "appMain" : "appLight"]),
                 ),
               ),
               trailing: DropdownButton(
@@ -158,13 +158,13 @@ class AppDrawer extends StatelessWidget {
               leading: Icon(Icons.dark_mode,
                   color: context
                       .watch<StyleProvider>()
-                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                      .palette[(modoClaro) ? "appMain" : "appLight"]),
               title: Text(
                 AppLocalizations.of(context)!.drawerDarkMode,
                 style: TextStyle(
                   color: (context
                       .watch<StyleProvider>()
-                      .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                      .palette[(modoClaro) ? "appMain" : "appLight"]),
                 ),
               ),
               trailing: Switch(
@@ -178,28 +178,29 @@ class AppDrawer extends StatelessWidget {
             label: AppLocalizations.of(context)!.changeColor,
             hint: AppLocalizations.of(context)!.changeColorContext,
             child: ListTile(
-            leading: Icon(
-              Icons.brush,
-              color: context
-                  .watch<StyleProvider>()
-                  .colorsMap[(modoClaro) ? "appMain" : "appLight"],
+              leading: Icon(
+                Icons.brush,
+                color: context
+                    .watch<StyleProvider>()
+                    .palette[(modoClaro) ? "appMain" : "appLight"],
+              ),
+              title: Text(AppLocalizations.of(context)!.changeColor),
+              trailing: DropdownButton<Color>(
+                  items: [
+                    DropDownColorItem(color: Color.fromARGB(255, 14, 54, 111)),
+                    DropDownColorItem(color: Color.fromARGB(255, 14, 111, 14)),
+                    DropDownColorItem(color: Color.fromARGB(255, 199, 199, 61)),
+                    DropDownColorItem(
+                        color: Color.fromARGB(255, 105, 104, 104)),
+                    DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
+                    DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
+                    DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
+                  ],
+                  onChanged: (value) {
+                    context.read<StyleProvider>().changeThemeColor(value!);
+                  },
+                  value: context.watch<StyleProvider>().mainColor),
             ),
-            title: Text(AppLocalizations.of(context)!.changeColor),
-            trailing: DropdownButton<Color>(
-                items: [
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 54, 111)),
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 14)),
-                  DropDownColorItem(color: Color.fromARGB(255, 199, 199, 61)),
-                  DropDownColorItem(color: Color.fromARGB(255, 0, 0, 0)),
-                  DropDownColorItem(color: Color.fromARGB(255, 111, 17, 14)),
-                  DropDownColorItem(color: Color.fromARGB(255, 14, 111, 111)),
-                  DropDownColorItem(color: Color.fromARGB(255, 88, 14, 111)),
-                ],
-                onChanged: (value) {
-                  context.read<StyleProvider>().changeThemeColor(value!);
-                },
-                value: context.watch<StyleProvider>().mainColor),
-          ),
           ),
           Semantics(
             label: AppLocalizations.of(context)!.drawerAppVer,
@@ -220,13 +221,13 @@ class AppDrawer extends StatelessWidget {
                 leading: Icon(Icons.info,
                     color: context
                         .watch<StyleProvider>()
-                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                        .palette[(modoClaro) ? "appMain" : "appLight"]),
                 title: Text(
                   AppLocalizations.of(context)!.appVer,
                   style: TextStyle(
                     color: (context
                         .watch<StyleProvider>()
-                        .colorsMap[(modoClaro) ? "appMain" : "appLight"]),
+                        .palette[(modoClaro) ? "appMain" : "appLight"]),
                   ),
                 ),
               ),

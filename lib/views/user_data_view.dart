@@ -52,8 +52,8 @@ class UserViewState extends State<UserView> {
               child: Container(
             padding: EdgeInsets.all(10),
             color: (context.watch<StyleProvider>().isLightModeActive)
-                ? context.watch<StyleProvider>().colorsMap["grey"]
-                : context.watch<StyleProvider>().colorsMap["appDark"],
+                ? context.watch<StyleProvider>().palette["grey"]
+                : context.watch<StyleProvider>().palette["appDark"],
             child: Row(
               spacing: 10,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -143,9 +143,8 @@ class UserViewState extends State<UserView> {
                       iconColor: Colors.white,
                       leading: Icon(Icons.remove),
                       textColor:
-                          context.watch<StyleProvider>().colorsMap["white"],
-                      tileColor:
-                          context.watch<StyleProvider>().colorsMap["red"],
+                          context.watch<StyleProvider>().palette["white"],
+                      tileColor: context.watch<StyleProvider>().palette["red"],
                       title: Text(AppLocalizations.of(context)!.userErase),
                       subtitle:
                           Text(AppLocalizations.of(context)!.userEraseContext),

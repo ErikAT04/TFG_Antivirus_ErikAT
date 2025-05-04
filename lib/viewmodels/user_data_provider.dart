@@ -16,11 +16,13 @@ import 'package:path/path.dart';
 ///Provider de la aplicación, que guarda datos que van mutando a lo largo de la aplicación y se comparten entre varias vistas.
 class UserDataProvider extends ChangeNotifier {
   ///Booleana que sirve para marcar si la aplicación se encuentra cargando los assets principales o no
+  ///Cuando carga toda la información que necesita, se convierte en true y deja paso al procesamiento del resto de la aplicación.
+
   bool assetsLoaded = false;
 
   int loadingStatus = 0;
 
-  ///Cuando carga toda la información que necesita, se convierte en true y deja paso al procesamiento del resto de la aplicación.
+  ///Función de carga de todos los datos de la aplicación
   void loadAssets() async {
     //Carga de la Base de Datos
     await SQLiteUtils.cargardb();
@@ -40,13 +42,13 @@ class UserDataProvider extends ChangeNotifier {
     AppEssentials.quarantineDirectory = dir;
     loadingStatus++;
     notifyListeners();
-    await AppEssentials.registerThisDevice();
-    if (AppEssentials.dev!.user != null) {
-      User? u = (await UserDAO().get(AppEssentials.dev!.user!));
-      if (u != null) {
-        changeUser(u);
-      }
-    }
+await AppEssentials.registerThisDevice();
+if (AppEssentials.dev!.user != null) {
+  User? u = (await UserDAO().get(AppEssentials.dev!.user!));
+  if (u != null) {
+    changeUser(u);
+  }
+}
     assetsLoaded = true;
     notifyListeners();
   }

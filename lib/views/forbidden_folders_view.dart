@@ -25,7 +25,7 @@ class ForbFoldersView extends StatelessWidget {
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(4),
               child: Container(
-                color: context.watch<StyleProvider>().colorsMap[
+                color: context.watch<StyleProvider>().palette[
                     (context.watch<StyleProvider>().isLightModeActive)
                         ? "appMain"
                         : "appLight"],
@@ -94,8 +94,10 @@ class ForbFoldersView extends StatelessWidget {
         }
       }
       if (b) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(AppLocalizations.of(context)!.fFoldersAlreadyError), backgroundColor: Colors.red,));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context)!.fFoldersAlreadyError),
+          backgroundColor: Colors.red,
+        ));
       } else {
         await ForbFolderDAO()
             .insert(ForbFolder(name: basename(dirPath), route: dirPath));

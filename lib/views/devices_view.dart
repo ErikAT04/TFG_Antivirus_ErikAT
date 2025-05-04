@@ -51,14 +51,6 @@ class AppDevicesViewState extends State<AppDevicesView> {
                           showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
-                                    shape: (context
-                                            .read<StyleProvider>()
-                                            .isLightModeActive)
-                                        ? RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          )
-                                        : null,
                                     title: FittedBox(
                                         fit: BoxFit.fitWidth,
                                         child: Text(
@@ -76,10 +68,12 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                           child: Text(
                                             AppLocalizations.of(context)!
                                                 .unlink,
-                                            style: TextStyle(
-                                                color: context
-                                                    .read<StyleProvider>()
-                                                    .colorsMap["white"]),
+                                            style: (!modoClaro)
+                                                ? TextStyle(
+                                                    color: context
+                                                        .read<StyleProvider>()
+                                                        .palette["white"])
+                                                : null,
                                           )),
                                       TextButton(
                                           onPressed: () {
@@ -89,9 +83,11 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                               AppLocalizations.of(context)!
                                                   .cancel,
                                               style: TextStyle(
-                                                  color: context
-                                                      .read<StyleProvider>()
-                                                      .colorsMap["white"])))
+                                                  color: (modoClaro)
+                                                      ? null
+                                                      : context
+                                                          .read<StyleProvider>()
+                                                          .palette["white"])))
                                     ],
                                   ));
                         }
@@ -101,13 +97,12 @@ class AppDevicesViewState extends State<AppDevicesView> {
                           child: Container(
                               padding: EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                  color:
-                                      context.watch<StyleProvider>().colorsMap[
-                                          (modoClaro) ? "white" : "appMain"],
+                                  color: context.watch<StyleProvider>().palette[
+                                      (modoClaro) ? "white" : "appMain"],
                                   border: Border.all(
                                       color: context
                                               .watch<StyleProvider>()
-                                              .colorsMap[
+                                              .palette[
                                           (modoClaro)
                                               ? "appMain"
                                               : "appLight"]!,
@@ -125,7 +120,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                           style: TextStyle(
                                               color: context
                                                       .watch<StyleProvider>()
-                                                      .colorsMap[
+                                                      .palette[
                                                   (modoClaro)
                                                       ? "appMain"
                                                       : "appLight"],
@@ -138,7 +133,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             size: 100,
                                             color: context
                                                     .watch<StyleProvider>()
-                                                    .colorsMap[
+                                                    .palette[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"]),
@@ -146,7 +141,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             size: 100,
                                             color: context
                                                     .watch<StyleProvider>()
-                                                    .colorsMap[
+                                                    .palette[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"]),
@@ -156,7 +151,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             height: 100,
                                             color: context
                                                     .watch<StyleProvider>()
-                                                    .colorsMap[
+                                                    .palette[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"]),
@@ -166,7 +161,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             height: 100,
                                             color: context
                                                     .watch<StyleProvider>()
-                                                    .colorsMap[
+                                                    .palette[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"]),
@@ -176,7 +171,7 @@ class AppDevicesViewState extends State<AppDevicesView> {
                                             height: 100,
                                             color: context
                                                     .watch<StyleProvider>()
-                                                    .colorsMap[
+                                                    .palette[
                                                 (modoClaro)
                                                     ? "appMain"
                                                     : "appLight"]),

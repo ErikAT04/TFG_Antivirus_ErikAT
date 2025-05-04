@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  cancelable_compute:
+    dependency: "direct main"
+    description:
+      name: cancelable_compute
+      sha256: "41b77e8eff1d3b90a1a03e3f91eb246ea5aa2eb7d7a8ba80b5644ebff640d11f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   characters:
     dependency: transitive
     description:

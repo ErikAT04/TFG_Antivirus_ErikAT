@@ -41,13 +41,12 @@ class LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:
-            context.watch<StyleProvider>().colorsMap["appMainBlue"],
+        backgroundColor: context.watch<StyleProvider>().palette["appMain"],
         appBar: AppBar(
             bottom: PreferredSize(
                 preferredSize: Size.fromHeight(4),
                 child: Container(
-                  color: context.watch<StyleProvider>().colorsMap[
+                  color: context.watch<StyleProvider>().palette[
                       (context.watch<StyleProvider>().isLightModeActive)
                           ? "appMain"
                           : "appLight"],
@@ -97,7 +96,9 @@ class LogInViewState extends State<LogInView> {
                           if (isLoading) return;
                           logIn(context);
                         },
-                        child: (isLoading) ? CircularProgressIndicator() : Text(AppLocalizations.of(context)!.logIn))),
+                        child: (isLoading)
+                            ? CircularProgressIndicator()
+                            : Text(AppLocalizations.of(context)!.logIn))),
                 Padding(padding: EdgeInsets.all(5)),
                 Semantics(
                     label: AppLocalizations.of(context)!.signUp,

@@ -109,18 +109,18 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
               child: TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.email,
+                    label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(AppLocalizations.of(context)!.email)),
                     errorText: errorEmail,
                     labelStyle: TextStyle(
-                        fontSize: 10,
-                        color:
-                            (context.watch<StyleProvider>().isLightModeActive)
-                                ? context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appMain"]
-                                : context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appLight"]),
+                        color: (context
+                                .watch<StyleProvider>()
+                                .isLightModeActive)
+                            ? context.watch<StyleProvider>().palette["appMain"]
+                            : context
+                                .watch<StyleProvider>()
+                                .palette["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               )),
           Padding(padding: EdgeInsets.all(10)),
@@ -130,15 +130,14 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
             child: TextField(
               controller: unameController,
               decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.uname,
+                  label: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(AppLocalizations.of(context)!.uname)),
                   errorText: errorUname,
                   labelStyle: TextStyle(
-                      fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
-                          ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context
-                              .watch<StyleProvider>()
-                              .colorsMap["appLight"]),
+                          ? context.watch<StyleProvider>().palette["appMain"]
+                          : context.watch<StyleProvider>().palette["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),
@@ -149,15 +148,14 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
             child: TextField(
               controller: passController,
               decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.pass,
+                  label: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(AppLocalizations.of(context)!.pass)),
                   errorText: errorPass,
                   labelStyle: TextStyle(
-                      fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
-                          ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context
-                              .watch<StyleProvider>()
-                              .colorsMap["appLight"]),
+                          ? context.watch<StyleProvider>().palette["appMain"]
+                          : context.watch<StyleProvider>().palette["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
               obscureText: true,
             ),
@@ -169,18 +167,18 @@ class RegisterContextDialogState extends State<RegisterContextDialog> {
               child: TextField(
                 controller: repPassController,
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.repPass,
+                    label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(AppLocalizations.of(context)!.repPass)),
                     errorText: errorRepPass,
                     labelStyle: TextStyle(
-                        fontSize: 10,
-                        color:
-                            (context.watch<StyleProvider>().isLightModeActive)
-                                ? context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appMain"]
-                                : context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appLight"]),
+                        color: (context
+                                .watch<StyleProvider>()
+                                .isLightModeActive)
+                            ? context.watch<StyleProvider>().palette["appMain"]
+                            : context
+                                .watch<StyleProvider>()
+                                .palette["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
                 obscureText: true,
               )),
@@ -346,17 +344,19 @@ class ChangeUserNameContextDialogState
                   controller: unameController,
                   decoration: InputDecoration(
                       errorText: unameError,
-                      labelText: AppLocalizations.of(context)!.newUserName,
+                      label: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child:
+                              Text(AppLocalizations.of(context)!.newUserName)),
                       labelStyle: TextStyle(
-                          fontSize: 10,
                           color:
                               (context.watch<StyleProvider>().isLightModeActive)
                                   ? context
                                       .watch<StyleProvider>()
-                                      .colorsMap["appMain"]
+                                      .palette["appMain"]
                                   : context
                                       .watch<StyleProvider>()
-                                      .colorsMap["appLight"]),
+                                      .palette["appLight"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
@@ -368,17 +368,19 @@ class ChangeUserNameContextDialogState
                   controller: passController,
                   decoration: InputDecoration(
                       errorText: passError,
-                      labelText: AppLocalizations.of(context)!.passConfirm,
+                      label: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child:
+                              Text(AppLocalizations.of(context)!.passConfirm)),
                       labelStyle: TextStyle(
-                          fontSize: 10,
                           color:
                               (context.watch<StyleProvider>().isLightModeActive)
                                   ? context
                                       .watch<StyleProvider>()
-                                      .colorsMap["appMain"]
+                                      .palette["appMain"]
                                   : context
                                       .watch<StyleProvider>()
-                                      .colorsMap["appLight"]),
+                                      .palette["appLight"]),
                       errorStyle: TextStyle(fontSize: 10)),
                 ),
               ),
@@ -524,18 +526,19 @@ class ChangePasswordContextDialogState
                 controller: oldPassController,
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.formerPassword,
+                    label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child:
+                            Text(AppLocalizations.of(context)!.formerPassword)),
                     errorText: errorOld,
                     labelStyle: TextStyle(
-                        fontSize: 10,
-                        color:
-                            (context.watch<StyleProvider>().isLightModeActive)
-                                ? context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appMain"]
-                                : context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appLight"]),
+                        color: (context
+                                .watch<StyleProvider>()
+                                .isLightModeActive)
+                            ? context.watch<StyleProvider>().palette["appMain"]
+                            : context
+                                .watch<StyleProvider>()
+                                .palette["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -545,18 +548,18 @@ class ChangePasswordContextDialogState
                 controller: newPassController,
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.newPassword,
+                    label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(AppLocalizations.of(context)!.newPassword)),
                     errorText: errorNew,
                     labelStyle: TextStyle(
-                        fontSize: 10,
-                        color:
-                            (context.watch<StyleProvider>().isLightModeActive)
-                                ? context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appMain"]
-                                : context
-                                    .watch<StyleProvider>()
-                                    .colorsMap["appLight"]),
+                        color: (context
+                                .watch<StyleProvider>()
+                                .isLightModeActive)
+                            ? context.watch<StyleProvider>().palette["appMain"]
+                            : context
+                                .watch<StyleProvider>()
+                                .palette["appLight"]),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -566,17 +569,17 @@ class ChangePasswordContextDialogState
                 obscureText: true,
                 controller: repNewPassController,
                 decoration: InputDecoration(
-                    labelText: AppLocalizations.of(context)!.repeatNewPass,
+                    label: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child:
+                            Text(AppLocalizations.of(context)!.repeatNewPass)),
                     errorText: errorRep,
                     labelStyle: TextStyle(
-                        fontSize: 10,
                         color: (context.watch<StyleProvider>().isLightModeActive
-                            ? context
-                                .watch<StyleProvider>()
-                                .colorsMap["appMain"]
+                            ? context.watch<StyleProvider>().palette["appMain"]
                             : context
                                 .watch<StyleProvider>()
-                                .colorsMap["appLight"])),
+                                .palette["appLight"])),
                     errorStyle: TextStyle(fontSize: 10)),
               ),
             ),
@@ -722,15 +725,15 @@ class ImageUploadContextDialogState extends State<ImageUploadContextDialog> {
             child: TextField(
               controller: linkController,
               decoration: InputDecoration(
-                  labelText: AppLocalizations.of(context)!.linkput,
+                  label: FittedBox(
+                    child: Text(AppLocalizations.of(context)!.linkput),
+                    fit: BoxFit.scaleDown,
+                  ),
                   errorText: errorTxt,
                   labelStyle: TextStyle(
-                      fontSize: 10,
                       color: (context.watch<StyleProvider>().isLightModeActive)
-                          ? context.watch<StyleProvider>().colorsMap["appMain"]
-                          : context
-                              .watch<StyleProvider>()
-                              .colorsMap["appLight"]),
+                          ? context.watch<StyleProvider>().palette["appMain"]
+                          : context.watch<StyleProvider>().palette["appLight"]),
                   errorStyle: TextStyle(fontSize: 10)),
             ),
           ),

@@ -48,7 +48,7 @@ class MainviewState extends State<Mainview> {
           bottom: PreferredSize(
               preferredSize: Size.fromHeight(4),
               child: Container(
-                color: context.watch<StyleProvider>().colorsMap[
+                color: context.watch<StyleProvider>().palette[
                     (context.watch<StyleProvider>().isLightModeActive)
                         ? "appMain"
                         : "appLight"],
