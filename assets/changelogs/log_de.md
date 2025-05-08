@@ -1,11 +1,21 @@
-## Aktuelle Version (0.4) - 02/02/2025
+## Aktuelle Version (0.5) - 08/05/2025
+**Neue Ergänzungen**:
+
+- Du kannst dich jetzt aus *der Ferne abmelden*. Wenn du keinen Zugriff mehr auf eines deiner Geräte hast, kannst du dich einfach von einem anderen Gerät anmelden, das gewünschte Gerät lange gedrückt halten und auf `Trennen` tippen.
+- Der Scan kann jetzt *abgebrochen* werden, indem du auf dem Analysebildschirm die Schaltfläche `Stornieren` drückst.
+- Die Option Verzeichnisbasierte **Analyse wurde hinzugefügt**: Benutzer können jetzt wählen, welchen Ordner sie scannen möchten, indem sie auf die Schaltfläche `Einen Ordner analysieren` tippen. Kein langes Warten mehr, bis der gewünschte Ordner erreicht ist!
+
+**Korrekturen**:
+- Die **parallele Programmierung** wurde implementiert, damit die Analyse vollständig unabhängig von der App läuft.
+
+## Frühere Versionen
+### Version 0.4 - 02/02/2025
 **Neue Ergänzungen**:
 - Die Option zum **Ändern der Farbe** wurde der Benutzeroberfläche hinzugefügt. *„Dass es nur eine Farbe gab, schien etwas langweilig, daher kann der Benutzer jetzt zwischen 14 verschiedenen Optionen wählen: 7 Farben, abwechselnd heller und dunkler Modus“*.
 
 **Korrekturen**:
 - Die Vernetzung sollte nun problemlos funktionieren.
 
-## Alte Versionen
 ### Version 0.3 - 23/01/2025
 **Neue Ergänzungen**:
 - **Dateianalyse** wurde implementiert und unter Windows und Android getestet.

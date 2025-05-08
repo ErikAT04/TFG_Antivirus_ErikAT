@@ -1,12 +1,20 @@
-## Current Version (0.4) - 02/02/2025
+## Current Version (0.5) - 08/05/2025
+**New Additions**:
+- You can now *remotely log out*. If you no longer have access to one of your devices and want to log out, simply log in from another device, long-press the one you want to disconnect, and tap `Unlink`.
+- The scan can now be cancelled by tapping the `Cancel` button on the scanning screen.
+- Added the option to **scan from a specific directory**: Users can now choose which folder to scan by tapping the `Scan a folder` button. No need to wait for the entire scanning process to reach the desired folder!
+
+**Fixes**:
+- **Parallel programming** has been implemented so the scan runs independently from the app.
+
+## Previous Versions
+### Version 0.4 - 02/02/2025
 **New additions**:
 - The option to **change color** has been added to the interface. *"That there was only one color seemed a bit boring, so now the user can choose between 14 different options: 7 colors alternating light and dark mode"*.
 
 **Fixes**:
 - Network functions should now work without any issues.
 
-
-## Old versions
 ### Version 0.3 - 01/23/2025
 **New additions**:
 - **File analysis** has been implemented, tested on Windows and Android.

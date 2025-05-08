@@ -1,11 +1,21 @@
-## Versión actual (0.4) - 02/02/2025
+## Versión Actual (0.5) - 08/05/2025
+**Nuevas Adiciones**:
+- Ahora se puede *cerrar sesión de forma remota*. Si no tienes acceso a uno de tus dispositivos y quieres cerrar sesión, sólo tendrás que entrar desde otro dispositivo, mantener pulsado en el que quieras cerrar sesión y pulsar en la opción `Desvincular`.
+- El análisis se puede *cancelar* dando al botón `Cancelar` en la pantalla de análisis.
+- Se ha añadido la opción de **analizar a partir de un directorio**: El usuario ahora puede elegir qué carpeta analizar dando al botón de `Analizar una carpeta`. ¡Así no tiene que esperar todo el proceso de análisis hasta llegar a su carpeta deseada!.
+
+**Arreglos**:
+- Se ha implementado **programación paralela** para que el análisis sea totalmente independiente de la aplicación.
+
+## Antiguas versiones
+### Versión 0.4 - 02/02/2025
 **Nuevas Adiciones**:
 - Se ha añadido la opción de **cambiar de color** a la interfaz. *"Que solo hubiera un color parecía algo aburrido, asi que ahora el usuario puede elegir entre 14 opciones distintas: 7 colores alternando modo claro y oscuro"*.
 
 **Arreglos**:
 - Las funciones en red deberían funcionar a sin problema alguno actualmente.
 
-## Antiguas versiones
+
 ### Versión 0.3 - 23/01/2025
 **Nuevas Adiciones**:
 - Se ha implementado el **análisis de archivos**, probado en Windows y Android.

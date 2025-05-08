@@ -1,11 +1,20 @@
-## Version actuelle (0.4) - 02/02/2025
+## Version Actuelle (0.5) - 08/05/2025
+**Nouveaux ajouts**:
+- Il est désormais possible de *se déconnecter à distance*. Si vous n'avez plus accès à un de vos appareils et souhaitez vous déconnecter, connectez-vous depuis un autre appareil, effectuez un appui long sur celui que vous souhaitez déconnecter, puis appuyez sur `Dissocier`.
+- L'analyse peut désormais être *annulée* en appuyant sur le bouton `Annuler` à l'écran d'analyse.
+- Ajout de l'option **analyser à partir d'un répertoire** : L'utilisateur peut maintenant choisir le dossier à analyser en appuyant sur le bouton `Analyser un dossier`. Plus besoin d'attendre que l'analyse passe par tout le système !
+
+**Corrections**:
+- La **programmation parallèle** a été mise en place pour que l'analyse fonctionne de manière totalement indépendante de l'application.
+
+## Versions Précédentes
+### Version 0.4 - 02/02/2025
 **Nouveaux ajouts**:
 - L'option permettant de **changer la couleur** a été ajoutée à l'interface. *"Le fait qu'il n'y ait qu'une seule couleur semblait un peu ennuyeux, alors maintenant l'utilisateur peut choisir entre 14 options différentes : 7 couleurs alternant les modes clair et sombre"*.
 
 **Corrections**:
 - La mise en réseau devrait maintenant fonctionner sans aucun problème.
 
-## Anciennes versions
 ### Version 0.3 - 23/01/2025
 **Nouveaux ajouts**:
 - **L'analyse de fichiers** a été implémentée et testée sur Windows et Android.
