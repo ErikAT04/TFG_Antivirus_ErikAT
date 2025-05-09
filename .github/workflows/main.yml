@@ -11,11 +11,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        target: [android, ios, windows, macos, linux]
+        target: [android, windows, macos, linux]
         include:
           - target: android
-            os: macos-latest
-          - target: ios
             os: macos-latest
           - target: macos
             os: macos-latest
@@ -66,10 +64,6 @@ jobs:
         if: matrix.target == 'android'
         run: flutter build apk --release
 
-      - name: Build IPA (iOS)
-        if: matrix.target == 'ios'
-        run: flutter build ipa --no-codesign
-
       - name: Build Windows
         if: matrix.target == 'windows'
         run: flutter build windows --release
@@ -89,13 +83,6 @@ jobs:
         with:
           name: build-android
           path: build/app/outputs/flutter-apk/*.apk
-          
-      - name: Upload iOS artifact
-        if: matrix.target == 'ios'
-        uses: actions/upload-artifact@v4.6.2
-        with:
-          name: build-ios
-          path: build/ios/ipa/*.ipa
           
       - name: Upload Windows artifact
         if: matrix.target == 'windows'
