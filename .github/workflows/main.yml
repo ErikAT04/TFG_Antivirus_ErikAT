@@ -5,13 +5,16 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build for ${{ matrix.target }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        target: [android, windows, macos]
+        target: [android, windows, macos, linux]
         include:
           - target: android
             os: windows-latest
@@ -19,8 +22,8 @@ jobs:
             os: macos-latest
           - target: windows
             os: windows-latest
-          #- target: linux
-          #  os: ubuntu-latest
+          - target: linux
+            os: ubuntu-latest
 
     steps:
       - name: Checkout code
