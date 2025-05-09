@@ -33,18 +33,24 @@ jobs:
         with:
           flutter-version: '3.27.3'
           channel: stable
-      
+          
       - name: Enable Windows desktop support
         if: matrix.target == 'windows'
-        run: flutter config --enable-windows-desktop
+        run: |
+          flutter config --enable-windows-desktop
+          flutter create --platforms=windows .
       
       - name: Enable macOS desktop support
         if: matrix.target == 'macos'
-        run: flutter config --enable-macos-desktop
+        run: |
+          flutter config --enable-macos-desktop
+          flutter create --platforms=macos .
 
       - name: Enable Linux desktop support
         if: matrix.target == 'linux'
-        run: flutter config --enable-linux-desktop
+        run: |
+          flutter config --enable-linux-desktop
+          flutter create --platforms=linux .
 
       - name: Install dependencies
         run: flutter pub get
@@ -69,6 +75,7 @@ jobs:
         if: matrix.target == 'linux'
         run: flutter build linux --release
         
+
       - name: Upload Android artifact
         if: matrix.target == 'android'
         uses: actions/upload-artifact@v4.6.2
