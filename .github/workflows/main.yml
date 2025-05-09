@@ -38,6 +38,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev libblkid-dev liblzma-dev libsecret-1-dev libjsoncpp-dev libsqlite3-dev libxkbcommon-dev ninja-build pkg-config
 
+      - name: Set up Java 11
+        if: matrix.target == 'android'
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
           
       - name: Enable Windows desktop support
         if: matrix.target == 'windows'
