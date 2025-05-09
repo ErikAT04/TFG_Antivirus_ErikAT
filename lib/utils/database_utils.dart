@@ -8,6 +8,25 @@ import 'package:magik_antivirus/model/api_content.dart';
 
 ///Utils del gestor de SQLite
 class SQLiteUtils {
+  ///Base de datos de SQLite
+  static late Database db;
+
+  ///Función de carga de la BD de SQLite
+  static Future<void> loadDB() async {
+    DatabaseFactory dbfact;
+    sqfliteFfiInit();
+    if (!(Platform.isAndroid || Platform.isIOS)) {
+      dbfact = databaseFactoryFfi;
+    } else {
+      dbfact = databaseFactory;
+    }
+
+    //Creo el path a la base de datos
+    final dbPath = join(await dbfact.getDatabasesPath(), "localdb.db");
+    //Se abre la base de datos
+    db = await dbfact.openDatabase(dbPath);
+  }
+
   ///Función de creación de la BD (Saldrá la primera vez que se inicie la app)
   static Future<void> startDB() async {
     await db.execute("""
@@ -29,25 +48,6 @@ class SQLiteUtils {
       route TEXT
     );
   """);
-  }
-
-  ///Base de datos de SQLite
-  static late Database db;
-
-  ///Función de carga de la BD de SQLite
-  static Future<void> cargardb() async {
-    DatabaseFactory dbfact;
-    sqfliteFfiInit();
-    if (!(Platform.isAndroid || Platform.isIOS)) {
-      dbfact = databaseFactoryFfi;
-    } else {
-      dbfact = databaseFactory;
-    }
-
-    //Creo el path a la base de datos
-    final dbPath = join(await dbfact.getDatabasesPath(), "localdb.db");
-    //Se abre la base de datos
-    db = await dbfact.openDatabase(dbPath);
   }
 }
 

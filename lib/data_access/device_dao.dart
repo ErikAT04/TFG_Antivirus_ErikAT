@@ -8,7 +8,6 @@ import 'package:magik_antivirus/data_access/dao_interfaces.dart';
 ///
 ///La información de esta se hace por medio de un servicio API REST conectado a una base de datos de MySQL, ya que se guarda en un servidor en red que gestiona a cada usuario y sus dispositivos
 class DeviceDAO implements DAOInterface<Device, String> {
-
   ///URL del router de la API (en este caso, el router de dispositivos)
   final routerUrl = "api/devices";
 

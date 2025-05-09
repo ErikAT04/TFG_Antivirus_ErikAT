@@ -19,6 +19,7 @@ import 'package:crypto/crypto.dart' as crypto;
 
 class ScanIsolate {
   static cancelable.ComputeOperation? compute;
+  static ReceivePort? receivePort;
 
   ///Función de comienzo del análisis
   ///
@@ -27,7 +28,7 @@ class ScanIsolate {
   ///Espera a recibir el mensaje del Isolate y, cuando lo recibe, llama a la función que pone los archivos en cuarentena.
   static void startAnalysis(String? customDir, BuildContext context) async {
     //Crea el puerto de recepción.
-    final receivePort = ReceivePort();
+    receivePort = ReceivePort();
 
     //Directorio Principal del dispositivo.
     //Dependiendo del dispositivo, el directorio raíz puede ser uno u otro:
@@ -44,7 +45,7 @@ class ScanIsolate {
     //Guarda en argumentos el puerto de envío y el enlace al directorio a analizar (Por defecto el directorio raíz)
     List<dynamic> args = [
       mainDirectory,
-      receivePort.sendPort,
+      receivePort!.sendPort,
     ];
 
     //Guarda la ruta de cada directorio al que no se puede acceder
@@ -58,13 +59,14 @@ class ScanIsolate {
     compute = cancelable.compute(scanDirInThread, args);
 
     //Se crea el listener para el puerto de recepción
-    receivePort.listen((message) {
+    receivePort!.listen((message) {
       Logger().d("Mensaje del Isolate: $message");
       setAllOnQuarantine(message).then((_) {
         //Cuando termina, se cierra el puerto de recepción y se cambia el estado del escaneo.
         context.read<AnalysisProvider>().isIsolateActive = false;
         context.read<AnalysisProvider>().setIsolateActive(false);
-        receivePort.close();
+        receivePort!.close();
+        receivePort = null;
       });
     });
   }
@@ -233,9 +235,19 @@ class ScanIsolate {
     }
   }
 
+  ///Función de cancelación del escaneo
+  ///
+  ///Si el Isolate de escaneo no ha sido cancelado, se cancela y se cierra el puerto de recepción.
   static void cancelScan(BuildContext context) {
-    compute?.cancel(-1);
-    compute = null;
-    context.read<AnalysisProvider>().setIsolateActive(false);
+    //Comprueba si el hilo sigue en ejecución, y si es así, se cancela y se cierra el puerto de recepción.
+    if (compute != null && !compute!.isCanceled) {
+      compute?.cancel(-1);
+      compute = null;
+      receivePort!.close();
+      receivePort = null;
+      //Se cambia el estado.
+      context.read<AnalysisProvider>().setIsolateActive(false);
+    }
+    //Si se ha terminado el proceso de ejecución (el hilo no está activo), pero sigue estando la opción de cancelar, lo más seguro es que termine el proceso de escaneo de un momento a otro.
   }
 }

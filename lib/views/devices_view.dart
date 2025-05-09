@@ -192,9 +192,8 @@ class AppDevicesViewState extends State<AppDevicesView> {
   }
 
   void loadList() async {
-    List<Device> auxList = (await DeviceDAO().list());
-    auxList.retainWhere((element) =>
-        element.user == context.read<UserDataProvider>().thisUser!.email);
+    List<Device> auxList = (await AppEssentials.getDevicesList(
+        context.read<UserDataProvider>().thisUser!));
     setState(() {
       devs = auxList;
     });

@@ -25,14 +25,14 @@ class UserDataProvider extends ChangeNotifier {
   ///Función de carga de todos los datos de la aplicación
   void loadAssets() async {
     //Carga de la Base de Datos
-    await SQLiteUtils.cargardb();
+    await SQLiteUtils.loadDB();
     await SQLiteUtils.startDB();
 
     //Carga de las firmas de la API
-    loadingStatus ++;
+    loadingStatus++;
     notifyListeners();
     await AppEssentials.loadSigs();
-    loadingStatus ++;
+    loadingStatus++;
     notifyListeners();
     Directory dir = Directory(join(
         (await getApplicationDocumentsDirectory()).path, "MagikAV", "MyFiles"));
@@ -42,13 +42,13 @@ class UserDataProvider extends ChangeNotifier {
     AppEssentials.quarantineDirectory = dir;
     loadingStatus++;
     notifyListeners();
-await AppEssentials.registerThisDevice();
-if (AppEssentials.dev!.user != null) {
-  User? u = (await UserDAO().get(AppEssentials.dev!.user!));
-  if (u != null) {
-    changeUser(u);
-  }
-}
+    await AppEssentials.registerThisDevice();
+    if (AppEssentials.dev!.user != null) {
+      User? u = (await UserDAO().get(AppEssentials.dev!.user!));
+      if (u != null) {
+        changeUser(u);
+      }
+    }
     assetsLoaded = true;
     notifyListeners();
   }

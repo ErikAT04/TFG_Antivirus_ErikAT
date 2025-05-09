@@ -48,14 +48,6 @@ class AppEssentials {
   static bool isLightMode =
       ((prefs.getString("themeMode") ?? "Dark") != "Dark");
 
-  ///Lista de idiomas que se pueden usar
-  static List<Locale> listLocales = [
-    Locale('es'),
-    Locale('en'),
-    Locale('de'),
-    Locale('fr')
-  ];
-
   ///Dispositivo actual
   static Device? dev;
 
@@ -65,7 +57,7 @@ class AppEssentials {
   ///Función de obtención de preferencias
   ///
   ///Obtiene las preferencias del usuario de la base de datos
-  static Future<void> getProperties() async {
+  static Future<void> getPreferences() async {
     prefs = await SharedPreferences.getInstance();
     if (!prefs.containsKey("colorR")) {
       await newPreferences();

@@ -21,11 +21,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 ///
 ///Una vez se han inicializado correctamente todas las acciones previas, se inicia la aplicación.
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await AppEssentials.getProperties();
+  WidgetsFlutterBinding
+      .ensureInitialized(); //Asegura que los widgets se inicializan correctamente
+  await AppEssentials
+      .getPreferences(); // Carga las preferencias del usuario en la aplicación.
   UserDataProvider provider = UserDataProvider();
-  provider.loadAssets();
+  provider
+      .loadAssets(); //Comienza la carga de todos los datos de la aplicación.
   runApp(MultiProvider(
+    //Inicia la interfaz gráfica.
     providers: [
       ChangeNotifierProvider(create: (context) => provider),
       ChangeNotifierProvider(create: (context) => StyleProvider()),
@@ -53,20 +57,19 @@ class MainApp extends StatelessWidget {
     Provider.debugCheckInvalidValueType = null;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: const[
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      supportedLocales: const[
+      supportedLocales: const [
         Locale('es'),
         Locale('en'),
         Locale('de'),
         Locale('fr')
       ],
-      locale: //Controlar el lenguaje formato Locale('codigo')
-          context.watch<LanguageNotifier>().language,
+      locale: context.watch<LanguageNotifier>().language,
       theme: context.watch<StyleProvider>().isLightModeActive
           ? context.watch<StyleProvider>().lightMode
           : context.watch<StyleProvider>().darkMode,
