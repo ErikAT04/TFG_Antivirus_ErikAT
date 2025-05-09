@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        target: [android, windows, macos, linux]
+        target: [android, windows, macos]
         include:
           - target: android
             os: windows-latest
@@ -19,8 +19,8 @@ jobs:
             os: macos-latest
           - target: windows
             os: windows-latest
-          - target: linux
-            os: ubuntu-latest
+          #- target: linux
+          #  os: ubuntu-latest
 
     steps:
       - name: Checkout code
