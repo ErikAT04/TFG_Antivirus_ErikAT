@@ -33,8 +33,17 @@ jobs:
         with:
           flutter-version: '3.27.3'
           channel: stable
+      
+      - name: Enable Windows desktop support
+        if: matrix.target == 'windows'
+        run: flutter config --enable-windows-desktop
+      
+      - name: Enable macOS desktop support
+        if: matrix.target == 'macos'
+        run: flutter config --enable-macos-desktop
 
       - name: Enable Linux desktop support
+        if: matrix.target == 'linux'
         run: flutter config --enable-linux-desktop
 
       - name: Install dependencies
@@ -50,51 +59,82 @@ jobs:
 
       - name: Build Windows
         if: matrix.target == 'windows'
-        run: flutter build windows
+        run: flutter build windows --release
 
       - name: Build macOS
         if: matrix.target == 'macos'
-        run: flutter build macos
+        run: flutter build macos --release
 
       - name: Build Linux
         if: matrix.target == 'linux'
-        run: flutter build linux
-
-      - name: Upload artifact
+        run: flutter build linux --release
+        
+      - name: Upload Android artifact
+        if: matrix.target == 'android'
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: build-${{ matrix.target }}
-          path: |
-            build/app/outputs/flutter-apk/*.apk
-            build/ios/iphoneos/*.app
-            build/windows/runner/Release/*.exe
-            build/macos/Build/Products/Release/*.app
-            build/linux/x64/release/bundle/
+          name: build-android
+          path: build/app/outputs/flutter-apk/*.apk
+          
+      - name: Upload iOS artifact
+        if: matrix.target == 'ios'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: build-ios
+          path: build/ios/ipa/*.ipa
+          
+      - name: Upload Windows artifact
+        if: matrix.target == 'windows'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: build-windows
+          path: build/windows/runner/Release/
+          
+      - name: Upload macOS artifact
+        if: matrix.target == 'macos'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: build-macos
+          path: build/macos/Build/Products/Release/
+          
+      - name: Upload Linux artifact
+        if: matrix.target == 'linux'
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: build-linux
+          path: build/linux/x64/release/bundle/
 
   release:
     name: Create Release
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v2
-        with:
-          path: artifacts
-
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
       - name: Extract version from pubspec.yaml
         id: extract_version
         run: |
           version=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f2 | tr -d '\r')
           echo "VERSION=$version" >> $GITHUB_ENV
+          echo "Extracted version: $version"
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
       - name: Zip all builds
         run: |
           cd artifacts
+          ls -la
           zip -r flutter_builds_${{ env.VERSION }}.zip .
+          mv flutter_builds_${{ env.VERSION }}.zip ../
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           tag: v${{ env.VERSION }}
-          artifacts: artifacts/flutter_builds_${{ env.VERSION }}.zip
+          artifacts: flutter_builds_${{ env.VERSION }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
