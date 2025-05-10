@@ -50,7 +50,7 @@ Se lamenta la posible mala experiencia en el análisis de ficheros, aún hace fa
 - Se puede añadir y quitar las carpetas prohibidas del equipo
 - Se puede cambiar la foto de perfil del usuario dando a la foto en su respectivo menú
 - Botones funcionales, se puede cambiar de nombre de usuario, contraseña, etc.
-- Análisis en progreso: El botón de momento recorre los ficheros de Android y Windows, sin analizar por falta de API o Recurso de detección de firmas.
+- Análisis en progreso: El botón de momento recorre los ficheros de Android y Windows, sin analizar por falta de API o Recurso de detección de huellas.
 - Se guardan las preferencias del usuario en una base de datos local para que carguen nada más abrir la aplicación.
 - El usuario puede ver los dispositivos vinculados a su cuenta
 - Concepto de lista de archivos en cuarentena creado. No se sabe su resultado actual debido a que no función de análisis

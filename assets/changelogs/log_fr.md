@@ -50,7 +50,7 @@ L'éventuelle mauvaise expérience dans l'analyse des dossiers est regrettée, c
 - Vous pouvez ajouter et supprimer des dossiers interdits de votre ordinateur
 - Vous pouvez modifier la photo de profil de l'utilisateur en cliquant sur la photo dans son menu respectif
 - Boutons fonctionnels, vous pouvez modifier le nom d'utilisateur, le mot de passe, etc.
-- Analyse en cours : Le bouton scanne actuellement les fichiers Android et Windows, sans analyse faute d'API ou de ressource de détection de signature.
+- Analyse en cours : Le bouton scanne actuellement les fichiers Android et Windows, sans analyse faute d'API ou de ressource de détection des h.
 - Les préférences de l'utilisateur sont enregistrées dans une base de données locale afin qu'elles se chargent dès l'ouverture de l'application.
 - L'utilisateur peut voir les appareils liés à son compte
 - Création d'un concept de liste de fichiers en quarantaine. Votre résultat actuel n'est pas connu car il n'y a pas de fonction d'analyse

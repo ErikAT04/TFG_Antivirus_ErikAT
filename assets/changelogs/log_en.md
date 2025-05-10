@@ -50,7 +50,7 @@ The possible bad experience in file analysis is regretted, certain aspects still
 - You can add and remove prohibited folders from your computer
 - You can change the user's profile photo by clicking on the photo in its respective menu
 - Functional buttons, you can change username, password, etc.
-- Analysis function in progress: The button currently scans the Android and Windows files, without analyzing due to lack of API or Signature Detection Resource.
+- Analysis function in progress: The button currently scans the Android and Windows files, without analyzing due to lack of API or Hash Detection Resource.
 - User preferences are saved in a local database so that they load as soon as the application is opened.
 - The user can see the devices linked to their account
 - Quarantined file list concept created. Current result is not known because there is no analysis function avaliable
