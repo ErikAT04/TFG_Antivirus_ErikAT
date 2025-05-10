@@ -1,6 +1,6 @@
 {"@@locale":"en",
     "loadingLocDB":"Loading Local Database",
-    "loadingSigDB":"Loading Signature Database",
+    "loadingHashDB":"Loading Hash Database",
     "readingQuarantine":"Reading Quarantine Directory",
     "finishingUp":"Finishing up",
 

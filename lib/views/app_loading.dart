@@ -19,7 +19,7 @@ class AppLoadingView extends StatelessWidget {
         children: [
           CircularProgressIndicator(),
           Text(switch (context.watch<UserDataProvider>().loadingStatus) {
-            1 => AppLocalizations.of(context)!.loadingSigDB,
+            1 => AppLocalizations.of(context)!.loadingHashDB,
             2 => AppLocalizations.of(context)!.readingQuarantine,
             3 => AppLocalizations.of(context)!.finishingUp,
             int() => AppLocalizations.of(context)!.loadingLocDB,

@@ -31,7 +31,7 @@ class UserDataProvider extends ChangeNotifier {
     //Carga de las firmas de la API
     loadingStatus++;
     notifyListeners();
-    await AppEssentials.loadSigs();
+    await AppEssentials.loadHashes();
     loadingStatus++;
     notifyListeners();
     Directory dir = Directory(join(

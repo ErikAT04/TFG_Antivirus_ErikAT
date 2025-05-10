@@ -3,26 +3,24 @@ import 'package:magik_antivirus/model/api_content.dart';
 ///Clase de Firma
 ///
 ///Sirve para guardar las distintas firmas de malware de una base de datos
-class Signature implements APIContent{
+class Hash implements APIContent {
   ///Tipo de malware (virus, trojan, worm...)
   String type;
+
   ///Firma: El código encriptado del malware
-  String signature;
+  String hash_code;
 
   //Constructor
-  Signature({required this.type, required this.signature});
-  
+  Hash({required this.type, required this.hash_code});
+
   @override
   Map<String, String> toAPI() {
-    return {
-      "type" : type,
-      "signature" : signature
-    };
+    return {"type": type, "hash": hash_code};
   }
-  
+
   @override
   void toItem(Map<String, String> map) {
     type = map["type"]!;
-    signature = map["signature"]!;
+    hash_code = map["hash"]!;
   }
 }

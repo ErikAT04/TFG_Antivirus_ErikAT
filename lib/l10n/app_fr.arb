@@ -1,6 +1,6 @@
 {"@@locale":"fr",
     "loadingLocDB":"Chargement de la base de données locale",
-    "loadingSigDB":"Chargement de la base de données de signatures",
+    "loadingHashDB":"Chargement de la base de données d' hachages",
     "readingQuarantine":"Lecture du répertoire de quarantaine",
     "finishingUp":"Finalisation",
     

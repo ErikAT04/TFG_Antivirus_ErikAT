@@ -1,6 +1,6 @@
 {"@@locale":"es",
     "loadingLocDB":"Cargando base de datos local",
-    "loadingSigDB":"Cargando base de datos de firmas",
+    "loadingHashDB":"Cargando base de datos de huellas",
     "readingQuarantine":"Leyendo el directorio de cuarentena",
     "finishingUp":"Finalizando",
 

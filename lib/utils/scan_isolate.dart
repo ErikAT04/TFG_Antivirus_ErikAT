@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:magik_antivirus/data_access/file_dao.dart';
 import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
-import 'package:magik_antivirus/data_access/signature_dao.dart';
+import 'package:magik_antivirus/data_access/hash_dao.dart';
 import 'package:magik_antivirus/model/file.dart';
-import 'package:magik_antivirus/model/signature.dart';
+import 'package:magik_antivirus/model/hash.dart';
 import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
 import 'package:path/path.dart';
@@ -83,8 +83,8 @@ class ScanIsolate {
     SendPort sendPort = args[1];
     //Los directorios son todos los argumentos que van de la posición 2 en adelante
     List<String> folders = args.sublist(2).cast<String>();
-    //Se guarda la lista de firmas en la variable, debido a que se tiene que volver a generar
-    List<Signature> sigs = await SignatureDAO().getSigs();
+    //Se guarda la lista de hashes en la variable, debido a que se tiene que volver a generar
+    List<Hash> hashes = await HashDAO().getHashes();
 
     //Lista de archivos a meter en cuarentena UNA VEZ TERMINE EL ESCANEO
     List<Map<String, String>> files = [];
@@ -92,11 +92,11 @@ class ScanIsolate {
     //Se declara el directorio que se va a analizar
     Directory d = Directory(path);
 
-    //Se guarda una lista unicamente con las firmas de cada Signature
-    List<String> signatures = sigs.map((sig) => sig.signature).toList();
+    //Se guarda una lista unicamente con las hash_code de cada Hash
+    List<String> hashCodes = hashes.map((hash) => hash.hash_code).toList();
     try {
       //Se escanea el directorio
-      await scanDir(d, signatures, folders, files);
+      await scanDir(d, hashCodes, folders, files);
     } catch (e) {
       sendPort.send("Error: $e");
     }
@@ -111,8 +111,8 @@ class ScanIsolate {
   ///
   ///Si es un directorio y tiene acceso a él, llama otra vez a su función, esta vez desde este nuevo directorio
   ///
-  ///Recibe por parámetros el directorio a escanear, la lista de firmas, la lista de rutas a directorios prohibidos y la lista de archivos a poner en cuarentena
-  static Future<void> scanDir(Directory dir, List<String> signatures,
+  ///Recibe por parámetros el directorio a escanear, la lista de hashes, la lista de rutas a directorios prohibidos y la lista de archivos a poner en cuarentena
+  static Future<void> scanDir(Directory dir, List<String> hashList,
       List<String> folders, List<Map<String, String>> files) async {
     //Se comprueba si el directorio está en la lista de directorios prohibidos
     if (!folders.contains(dir.path)) {
@@ -122,11 +122,11 @@ class ScanIsolate {
           Logger().d("Escaneando: ${f.path}");
           //Si es un archivo, se escanea.
           if (f is File) {
-            await scanFile(f, signatures, files);
+            await scanFile(f, hashList, files);
           } else
           //Si es un directorio, se reitera la función desde el nuevo directorio.
           if (f is Directory) {
-            await scanDir(f, signatures, folders, files);
+            await scanDir(f, hashList, folders, files);
           }
         }
       } catch (e) {}
@@ -135,12 +135,12 @@ class ScanIsolate {
 
   ///Función de escaneo de archivos
   ///
-  ///Recibe un archivo, la lista de firmas y la lista de archivos a poner en cuarentena
+  ///Recibe un archivo, la lista de hashes y la lista de archivos a poner en cuarentena
   ///
   ///Se escanea el archivo, recogiendo los bytes y generando su hash.
-  ///Si este hash coincide con alguna de las firmas, será directamente considerado malware y se añadirá a la lista de cuarentena.
+  ///Si este hash coincide con alguna de las huellas digitales, será directamente considerado malware y se añadirá a la lista de cuarentena.
   static Future<void> scanFile(
-      File f, List<String> signatures, List<Map<String, String>> files) async {
+      File f, List<String> hashList, List<Map<String, String>> files) async {
     try {
       Logger().d("Escaneando: ${f.path}");
       //Se leen los bytes del archivo.
@@ -148,12 +148,12 @@ class ScanIsolate {
       //Se codifican los bytes en md5
       String s = crypto.md5.convert(bytes).toString();
       Logger().d("Hash: $s");
-      //Si el hash aparece en la lista de firmas, se añade a la lista de archivos a poner en cuarentena.
-      if (signatures.contains(s)) {
+      //Si el hash aparece en la lista de la base de datos, se añade a la lista de archivos a poner en cuarentena.
+      if (hashList.contains(s)) {
         Logger().d("Archivo ${f.path} es un virus");
         files.add({
           "path": f.path,
-          "sig": s,
+          "hash": s,
         });
       }
     } catch (e) {}
@@ -161,9 +161,9 @@ class ScanIsolate {
 
   ///Función de puesta en cuarentena de archivos
   ///
-  ///Recibe el path del archivo y el tipo de firma que tiene.
+  ///Recibe el path del archivo y el tipo de hash que tiene.
   ///Con ello, se crea un nuevo archivo en la carpeta de cuarentena y se guarda el "enlace" entre el archivo original y el nuevo archivo en la base de datos.
-  static Future<void> putInQuarantine(String fpath, String sig) async {
+  static Future<void> putInQuarantine(String fpath, String hash_code) async {
     //Se declara el archivo a poner en cuarentena
     File f = File(fpath);
 
@@ -205,7 +205,7 @@ class ScanIsolate {
         route: f.path,
         newName: pathSHA,
         newRoute: file.path,
-        malwareType: sig,
+        malwareType: hash_code,
         quarantineDate: DateTime.now());
 
     Logger().d("Guardando el archivo en la BD");
@@ -226,9 +226,9 @@ class ScanIsolate {
       List<Map<String, String>> message) async {
     for (var line in message) {
       String type = "";
-      for (var sig in AppEssentials.sigs) {
-        if (line["sig"] == sig.signature) {
-          type = sig.type;
+      for (var hash in AppEssentials.hashes) {
+        if (line["hash"] == hash.hash_code) {
+          type = hash.type;
         }
       }
       await putInQuarantine(line["path"]!, type);

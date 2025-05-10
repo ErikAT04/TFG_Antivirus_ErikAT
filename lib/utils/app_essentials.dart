@@ -8,11 +8,11 @@ import 'package:crypto/crypto.dart' as crypto;
 import 'package:magik_antivirus/model/file.dart';
 import 'package:magik_antivirus/model/user.dart';
 import 'package:magik_antivirus/model/device.dart';
-import 'package:magik_antivirus/model/signature.dart';
+import 'package:magik_antivirus/model/hash.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:magik_antivirus/data_access/file_dao.dart';
 import 'package:magik_antivirus/data_access/device_dao.dart';
-import 'package:magik_antivirus/data_access/signature_dao.dart';
+import 'package:magik_antivirus/data_access/hash_dao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación
@@ -39,7 +39,7 @@ class AppEssentials {
   ///Lista de Firmas
   ///
   ///Al estar siendo cargado de una API que, de primeras, no cambia de forma constante, es innecesario meter esta información en el Provider
-  static late List<Signature> sigs;
+  static late List<Hash> hashes;
 
   ///Lenguaje elegido
   static String chosenLocale = prefs.getString("chosenLang") ?? "es";
@@ -141,8 +141,8 @@ class AppEssentials {
   }
 
   ///Función de carga de firmas en la app
-  static Future<void> loadSigs() async {
-    sigs = await SignatureDAO().getSigs();
+  static Future<void> loadHashes() async {
+    hashes = await HashDAO().getHashes();
   }
 
   ///Función de obtención de la lista de dispositivos del usuario
