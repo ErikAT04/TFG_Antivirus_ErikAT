@@ -123,10 +123,9 @@ class ScanIsolate {
           //Si es un archivo, se escanea.
           if (f is File) {
             await scanFile(f, hashList, files);
-          } else
-          //Si es un directorio, se reitera la función desde el nuevo directorio.
-          if (f is Directory) {
-            await scanDir(f, hashList, folders, files);
+          } else {
+            //Si es un directorio, se reitera la función desde el nuevo directorio.
+            await scanDir(f as Directory, hashList, folders, files);
           }
         }
       } catch (e) {}
