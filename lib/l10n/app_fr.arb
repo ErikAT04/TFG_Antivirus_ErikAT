@@ -125,5 +125,8 @@
 
     "appVer": "Version de l'application",
     "appLastFix": "Version Alpha 0.1 - Flutter",
-    "appFixesContent":"Ajout de différentes langues"
+    "appFixesContent":"Ajout de différentes langues",
+
+    "errorLoading": "Erreur de chargement des données. Cette erreur peut se produire en raison d'une erreur de connexion ou d'une erreur de serveur.",
+    "tryAgainLater": "Essayez de nouveau plus tard"
 }

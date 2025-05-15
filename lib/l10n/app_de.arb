@@ -127,5 +127,8 @@
 
     "appVer":"App-Version",
     "appLastFix":"Alpha-Version 0.1 - Flutter",
-    "appFixesContent":"Verschiedene Sprachen hinzugefügt"
+    "appFixesContent":"Verschiedene Sprachen hinzugefügt",
+
+    "errorLoading": "Fehler beim Laden der Daten. Dies kann aufgrund einer Verbindungsfehler oder eines Serverfehlers passieren.",
+    "tryAgainLater": "Bitte versuchen Sie es erneut in ein paar Minuten"
 }

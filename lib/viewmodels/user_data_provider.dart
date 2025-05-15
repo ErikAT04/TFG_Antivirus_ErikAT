@@ -24,33 +24,40 @@ class UserDataProvider extends ChangeNotifier {
 
   ///Función de carga de todos los datos de la aplicación
   void loadAssets() async {
-    //Carga de la Base de Datos
-    await SQLiteUtils.loadDB();
-    await SQLiteUtils.startDB();
+    try {
+      //Carga de la Base de Datos
+      await SQLiteUtils.loadDB();
+      await SQLiteUtils.startDB();
 
-    //Carga de las firmas de la API
-    loadingStatus++;
-    notifyListeners();
-    await AppEssentials.loadHashes();
-    loadingStatus++;
-    notifyListeners();
-    Directory dir = Directory(join(
-        (await getApplicationDocumentsDirectory()).path, "MagikAV", "MyFiles"));
-    if (!dir.existsSync()) {
-      dir.createSync(recursive: true);
-    }
-    AppEssentials.quarantineDirectory = dir;
-    loadingStatus++;
-    notifyListeners();
-    await AppEssentials.registerThisDevice();
-    if (AppEssentials.dev!.user != null) {
-      User? u = (await UserDAO().get(AppEssentials.dev!.user!));
-      if (u != null) {
-        changeUser(u);
+      //Carga de las firmas de la API
+      loadingStatus++;
+      notifyListeners();
+      await AppEssentials.loadHashes();
+      loadingStatus++;
+      notifyListeners();
+      Directory dir = Directory(join(
+          (await getApplicationDocumentsDirectory()).path,
+          "MagikAV",
+          "MyFiles"));
+      if (!dir.existsSync()) {
+        dir.createSync(recursive: true);
       }
+      AppEssentials.quarantineDirectory = dir;
+      loadingStatus++;
+      notifyListeners();
+      await AppEssentials.registerThisDevice();
+      if (AppEssentials.dev!.user != null) {
+        User? u = (await UserDAO().get(AppEssentials.dev!.user!));
+        if (u != null) {
+          changeUser(u);
+        }
+      }
+      assetsLoaded = true;
+      notifyListeners();
+    } catch (e) {
+      loadingStatus = -1;
+      notifyListeners();
     }
-    assetsLoaded = true;
-    notifyListeners();
   }
 
   ///Usuario de la aplicación, empezando por el usuario guardado en las preferencias

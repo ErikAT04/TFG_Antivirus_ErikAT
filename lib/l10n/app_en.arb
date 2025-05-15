@@ -128,6 +128,9 @@
 
     "appVer":"App Version",
     "appLastFix":"Version Alpha 0.1 - Flutter",
-    "appFixesContent":"Added Language Support"
+    "appFixesContent":"Added Language Support",
+
+    "errorLoading": "Error loading data. This can happen due to a connection error or a server error.",
+    "tryAgainLater": "Try again later"
     
 }

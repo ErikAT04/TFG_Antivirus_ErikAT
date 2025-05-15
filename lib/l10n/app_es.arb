@@ -125,5 +125,8 @@
 
     "appVer":"Versión de la Aplicación",
     "appLastFix":"Versión Alpha 0.1 - Flutter",
-    "appFixesContent":"Idiomas añadidos"
+    "appFixesContent":"Idiomas añadidos",
+
+    "errorLoading": "Error cargando datos. Esto puede ocurrir debido a un error de conexión o un error del servidor.",
+    "tryAgainLater": "Inténtelo de nuevo mas tarde"
 }
