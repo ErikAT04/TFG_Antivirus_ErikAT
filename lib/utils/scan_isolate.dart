@@ -16,6 +16,7 @@ import 'package:cancelable_compute/cancelable_compute.dart' as cancelable;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:crypto/crypto.dart' as crypto;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ScanIsolate {
   static cancelable.ComputeOperation? compute;
@@ -61,13 +62,26 @@ class ScanIsolate {
     //Se crea el listener para el puerto de recepción
     receivePort!.listen((message) {
       Logger().d("Mensaje del Isolate: $message");
-      setAllOnQuarantine(message).then((_) {
-        //Cuando termina, se cierra el puerto de recepción y se cambia el estado del escaneo.
-        context.read<AnalysisProvider>().isIsolateActive = false;
+      if (message is! List<Map<String, String>>) {
+        if (message.toString() == "_ClientSocketException") {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(AppLocalizations.of(context)!.errorLoading)));
+        }
+        ;
         context.read<AnalysisProvider>().setIsolateActive(false);
+        context.read<AnalysisProvider>().isIsolateActive = false;
         receivePort!.close();
         receivePort = null;
-      });
+        return;
+      } else {
+        setAllOnQuarantine(message).then((_) {
+          //Cuando termina, se cierra el puerto de recepción y se cambia el estado del escaneo.
+          context.read<AnalysisProvider>().isIsolateActive = false;
+          context.read<AnalysisProvider>().setIsolateActive(false);
+          receivePort!.close();
+          receivePort = null;
+        });
+      }
     });
   }
 
@@ -83,8 +97,6 @@ class ScanIsolate {
     SendPort sendPort = args[1];
     //Los directorios son todos los argumentos que van de la posición 2 en adelante
     List<String> folders = args.sublist(2).cast<String>();
-    //Se guarda la lista de hashes en la variable, debido a que se tiene que volver a generar
-    List<Hash> hashes = await HashDAO().getHashes();
 
     //Lista de archivos a meter en cuarentena UNA VEZ TERMINE EL ESCANEO
     List<Map<String, String>> files = [];
@@ -92,13 +104,17 @@ class ScanIsolate {
     //Se declara el directorio que se va a analizar
     Directory d = Directory(path);
 
-    //Se guarda una lista unicamente con las hash_code de cada Hash
-    List<String> hashCodes = hashes.map((hash) => hash.hash_code).toList();
     try {
+      //Se guarda la lista de hashes en la variable, debido a que se tiene que volver a generar
+      List<Hash> hashes = await HashDAO().getHashes();
+
+      //Se guarda una lista unicamente con las hash_code de cada Hash
+      List<String> hashCodes = hashes.map((hash) => hash.hash_code).toList();
+
       //Se escanea el directorio
       await scanDir(d, hashCodes, folders, files);
     } catch (e) {
-      sendPort.send("Error: $e");
+      sendPort.send(e.runtimeType);
     }
     sendPort.send(files);
   }
