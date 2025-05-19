@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magik_antivirus/utils/app_essentials.dart';
 import 'package:magik_antivirus/viewmodels/style_provider.dart';
 import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,6 @@ import 'package:magik_antivirus/model/device.dart';
 import 'package:magik_antivirus/views/login_view.dart';
 import 'package:magik_antivirus/widgets/dialogs.dart';
 import 'package:magik_antivirus/data_access/user_dao.dart';
-import 'package:magik_antivirus/data_access/device_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.
@@ -234,7 +234,8 @@ class UserViewState extends State<UserView> {
   }
 
   void loadList() async {
-    List<Device> auxList = await DeviceDAO().list();
+    List<Device> auxList = await AppEssentials.getDevicesList(
+        context.read<UserDataProvider>().thisUser!);
     setState(() {
       devs = auxList;
     });
