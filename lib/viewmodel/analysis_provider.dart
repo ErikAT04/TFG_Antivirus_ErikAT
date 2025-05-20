@@ -12,11 +12,4 @@ class AnalysisProvider extends ChangeNotifier {
     isIsolateActive = value;
     notifyListeners();
   }
-
-  ///Función de análisis de archivos
-  ///
-  ///En esta versión de prueba, comienza con pedir el permiso de acceder a los ficheros al usuario si fuera necesario
-  ///
-  ///Si este acepta, recorrerá los archivos del dispositivo.  
-    
 }

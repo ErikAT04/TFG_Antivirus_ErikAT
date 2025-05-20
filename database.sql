@@ -38,7 +38,12 @@ INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC
 INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC_4", "Linux - Prueba", "linux", NOW(), NOW(), "prueba@gmail.com");
 INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC_5", "iOS - Prueba", "ios", NOW(), NOW(), "prueba@gmail.com");
 
-INSERT INTO signature(signature, type, extended_type) VALUES ('00f538c3d410822e241486ca061a57ee', 'VIRUS', 'Win32/ASuspect.HHDYL!genus'),
+INSERT INTO signature(signature, type, extended_type) VALUES ('1e580212a3cc7b1df648d80eaa00e0e5', 'TRIAL', 'PruebaVirus');
+INSERT INTO signature(signature, type, extended_type) VALUES ('00f538c3d410822e241486ca061a57ee', 'VIRUS', 'Win32/ASuspect.HHDYL!genus');
+
+/*El resto de líneas de inserción de firmas las omito en la memoria, debido a que hay 1000 inserciones en total*/
+
+INSERT INTO signature(signature, type, extended_type) VALUES
 ('0955924ebc1876f0b849b3b9e45ed49d', 'WORM', 'W32.EloradoKQ.Worm'),
 ('01b656578e9f00f289d4c560fb8f2ff8', 'VIRUS', 'Win32/Zuten.JZ'),
 ('0615864d027b6f46731ee3bdcbe24edd', 'VIRUS', 'W32/Zbot.TH.gen!Eldorado'),
@@ -1038,4 +1043,3 @@ INSERT INTO signature(signature, type, extended_type) VALUES ('00f538c3d410822e2
 ('0e3e13292540b823c8cabfa7c326711f', 'TROJAN', 'W32.Clod3a0.Trojan.d8d9'),
 ('0a8b44bf42d642b9db5861fc3ab4317c', 'TROJAN', 'W32.Cloda88.Trojan.97a7'),
 ('0f5b5482e857019263360725ac7a51e6', 'TROJAN', 'W32.Clod003.Trojan.ca80');
-INSERT INTO signature(signature, type, extended_type) VALUES ('1e580212a3cc7b1df648d80eaa00e0e5', 'TRIAL', 'PruebaVirus');
