@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magik_antivirus/model/data_classes/file.dart';
 import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
-import 'package:magik_antivirus/views/widgets/dialogs.dart';
+import 'package:magik_antivirus/view/widgets/dialogs.dart';
 import 'package:magik_antivirus/model/data_access/file_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';

@@ -5,8 +5,8 @@ import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:magik_antivirus/model/data_classes/user.dart';
 import 'package:magik_antivirus/model/data_classes/device.dart';
-import 'package:magik_antivirus/views/screens/login_view.dart';
-import 'package:magik_antivirus/views/widgets/dialogs.dart';
+import 'package:magik_antivirus/view/screens/login_view.dart';
+import 'package:magik_antivirus/view/widgets/dialogs.dart';
 import 'package:magik_antivirus/model/data_access/user_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
