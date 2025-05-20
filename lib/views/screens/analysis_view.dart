@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 // ignore: unnecessary_import
 import 'package:flutter/rendering.dart';
 import 'package:logger/logger.dart';
-import 'package:magik_antivirus/data_access/device_dao.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
-import 'package:magik_antivirus/utils/scan_isolate.dart';
-import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/model/data_access/device_dao.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
+import 'package:magik_antivirus/model/utils/scan_isolate.dart';
+import 'package:magik_antivirus/viewmodel/analysis_provider.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

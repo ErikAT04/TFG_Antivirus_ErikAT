@@ -5,14 +5,14 @@ import 'dart:convert';
 import 'package:flutter_device_name/flutter_device_name.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:magik_antivirus/model/file.dart';
-import 'package:magik_antivirus/model/user.dart';
-import 'package:magik_antivirus/model/device.dart';
-import 'package:magik_antivirus/model/hash.dart';
+import 'package:magik_antivirus/model/data_classes/file.dart';
+import 'package:magik_antivirus/model/data_classes/user.dart';
+import 'package:magik_antivirus/model/data_classes/device.dart';
+import 'package:magik_antivirus/model/data_classes/hash.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:magik_antivirus/data_access/file_dao.dart';
-import 'package:magik_antivirus/data_access/device_dao.dart';
-import 'package:magik_antivirus/data_access/hash_dao.dart';
+import 'package:magik_antivirus/model/data_access/file_dao.dart';
+import 'package:magik_antivirus/model/data_access/device_dao.dart';
+import 'package:magik_antivirus/model/data_access/hash_dao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///Métodos atributos 'esenciales' para el correcto funcionamiento de la aplicación

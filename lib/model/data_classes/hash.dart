@@ -1,4 +1,4 @@
-import 'package:magik_antivirus/model/api_content.dart';
+import 'package:magik_antivirus/model/interfaces/api_content.dart';
 
 ///Clase de Firma
 ///

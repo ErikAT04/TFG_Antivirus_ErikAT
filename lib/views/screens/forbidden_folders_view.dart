@@ -1,12 +1,12 @@
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
 import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:magik_antivirus/model/forbidden_folder.dart';
+import 'package:magik_antivirus/model/data_classes/forbidden_folder.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
+import 'package:magik_antivirus/model/data_access/forbidden_folders_dao.dart';
 
 ///Vista de las carpetas prohibidas.
 class ForbFoldersView extends StatelessWidget {

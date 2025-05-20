@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/model/user.dart';
-import 'package:magik_antivirus/model/device.dart';
-import 'package:magik_antivirus/views/login_view.dart';
-import 'package:magik_antivirus/widgets/dialogs.dart';
-import 'package:magik_antivirus/data_access/user_dao.dart';
+import 'package:magik_antivirus/model/data_classes/user.dart';
+import 'package:magik_antivirus/model/data_classes/device.dart';
+import 'package:magik_antivirus/views/screens/login_view.dart';
+import 'package:magik_antivirus/views/widgets/dialogs.dart';
+import 'package:magik_antivirus/model/data_access/user_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de la gestión del usuario.

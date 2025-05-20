@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:magik_antivirus/model/api_content.dart';
+import 'package:magik_antivirus/model/interfaces/api_content.dart';
 
 ///Utils del gestor de SQLite
 class SQLiteUtils {

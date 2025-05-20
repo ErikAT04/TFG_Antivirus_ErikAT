@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/widgets/app_drawer.dart';
+import 'package:magik_antivirus/views/widgets/app_drawer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:magik_antivirus/views/app_vault_view.dart';
-import 'package:magik_antivirus/views/devices_view.dart';
-import 'package:magik_antivirus/views/analysis_view.dart';
+import 'package:magik_antivirus/views/screens/app_vault_view.dart';
+import 'package:magik_antivirus/views/screens/devices_view.dart';
+import 'package:magik_antivirus/views/screens/analysis_view.dart';
 
 ///Vista de la pantalla principal
 class Mainview extends StatefulWidget {

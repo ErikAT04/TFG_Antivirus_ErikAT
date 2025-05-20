@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
 
 ///Provider que controla los estilos de la aplicación
 ///

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
 
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Pantalla de carga de la aplicación al inicio de esta.

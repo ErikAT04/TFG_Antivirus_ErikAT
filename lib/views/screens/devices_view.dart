@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:magik_antivirus/model/device.dart';
-import 'package:magik_antivirus/data_access/device_dao.dart';
+import 'package:magik_antivirus/model/data_classes/device.dart';
+import 'package:magik_antivirus/model/data_access/device_dao.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 ///Vista de dispostivos

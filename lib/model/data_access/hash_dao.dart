@@ -1,6 +1,6 @@
 import 'dart:convert' as convert;
-import 'package:magik_antivirus/utils/database_utils.dart';
-import 'package:magik_antivirus/model/hash.dart';
+import 'package:magik_antivirus/model/utils/database_utils.dart';
+import 'package:magik_antivirus/model/data_classes/hash.dart';
 
 ///Clase de acceso a datos de las firmas
 ///

@@ -1,13 +1,13 @@
-import 'package:magik_antivirus/viewmodels/analysis_provider.dart';
-import 'package:magik_antivirus/viewmodels/language_provider.dart';
-import 'package:magik_antivirus/viewmodels/user_data_provider.dart';
-import 'package:magik_antivirus/viewmodels/style_provider.dart';
-import 'package:magik_antivirus/views/app_loading.dart';
+import 'package:magik_antivirus/viewmodel/analysis_provider.dart';
+import 'package:magik_antivirus/viewmodel/language_provider.dart';
+import 'package:magik_antivirus/viewmodel/user_data_provider.dart';
+import 'package:magik_antivirus/viewmodel/style_provider.dart';
+import 'package:magik_antivirus/views/screens/app_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:magik_antivirus/views/main_view.dart';
-import 'package:magik_antivirus/views/login_view.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
+import 'package:magik_antivirus/views/screens/main_view.dart';
+import 'package:magik_antivirus/views/screens/login_view.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

@@ -1,15 +1,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:magik_antivirus/data_access/device_dao.dart';
-import 'package:magik_antivirus/data_access/forbidden_folders_dao.dart';
-import 'package:magik_antivirus/data_access/user_dao.dart';
-import 'package:magik_antivirus/model/device.dart';
-import 'package:magik_antivirus/model/file.dart';
-import 'package:magik_antivirus/model/forbidden_folder.dart';
-import 'package:magik_antivirus/model/user.dart';
-import 'package:magik_antivirus/utils/app_essentials.dart';
-import 'package:magik_antivirus/utils/database_utils.dart';
+import 'package:magik_antivirus/model/data_access/device_dao.dart';
+import 'package:magik_antivirus/model/data_access/forbidden_folders_dao.dart';
+import 'package:magik_antivirus/model/data_access/user_dao.dart';
+import 'package:magik_antivirus/model/data_classes/device.dart';
+import 'package:magik_antivirus/model/data_classes/file.dart';
+import 'package:magik_antivirus/model/data_classes/forbidden_folder.dart';
+import 'package:magik_antivirus/model/data_classes/user.dart';
+import 'package:magik_antivirus/model/utils/app_essentials.dart';
+import 'package:magik_antivirus/model/utils/database_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 

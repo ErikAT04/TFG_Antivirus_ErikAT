@@ -1,7 +1,7 @@
-import 'package:magik_antivirus/model/api_content.dart';
+import 'package:magik_antivirus/model/interfaces/api_content.dart';
 
 ///Clase de Usuario: Guarda la información de inicio de sesión
-class User implements APIContent{
+class User implements APIContent {
   ///Nombre de usuario
   String username;
 
@@ -20,7 +20,7 @@ class User implements APIContent{
       required this.passwd,
       required this.email,
       this.image});
-  
+
   @override
   Map<String, String?> toAPI() {
     return {
@@ -30,7 +30,7 @@ class User implements APIContent{
       "image": image
     };
   }
-  
+
   @override
   void toItem(Map<String, String> map) {
     email = map["email"]!;
