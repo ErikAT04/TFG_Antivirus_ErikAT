@@ -1,5 +1,5 @@
 # Magik Antivirus 
-Proyecto de fin de grado de Desarrollo de Aplicaciones Multiplataforma:<br> Aplicación de protección ante malware basado en la **detección basada en huellas**.
+Proyecto de fin de grado de Desarrollo de Aplicaciones Multiplataforma:<br> Aplicación de protección ante malware siguendo el modelo de **detección basada en huellas**.
 
 <img alt="Tiempo de Código:" src="https://img.shields.io/endpoint?url=https://wakapi.dev/api/compat/shields/v1/ByErikAT/interval:any/project:tfg_antivirus_erikat&label=Tiempo%20Utilizado&color=blue">
 
