@@ -162,7 +162,7 @@ class AppEssentials {
     File file = File(s.route); //"Archivo" en su ruta original
     //Si, por algun casual, el archivo ya existe, se le agrega un número al final hasta que no exista
     int i = 1;
-    if (file.existsSync()) {
+    while (file.existsSync()) {
       file = File("${s.route}_$i");
       i++;
     }
