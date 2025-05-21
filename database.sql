@@ -41,7 +41,7 @@ INSERT INTO device(id, dev_name, dev_type, last_scan, join_in, user) VALUES("ABC
 INSERT INTO hash(hash, type, extended_type) VALUES ('1e580212a3cc7b1df648d80eaa00e0e5', 'TRIAL', 'PruebaVirus');
 INSERT INTO hash(hash, type, extended_type) VALUES ('00f538c3d410822e241486ca061a57ee', 'VIRUS', 'Win32/ASuspect.HHDYL!genus');
 
-/*El resto de líneas de inserción de firmas las omito en la memoria, debido a que hay 1000 inserciones en total*/
+/*El resto de líneas de inserción de huellas las omito en la memoria, debido a que hay 1000 inserciones en total*/
 
 INSERT INTO hash(hash, type, extended_type) VALUES
 ('0955924ebc1876f0b849b3b9e45ed49d', 'WORM', 'W32.EloradoKQ.Worm'),
